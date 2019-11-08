@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:14:37 by juligonz          #+#    #+#             */
-/*   Updated: 2019/11/08 19:59:22 by juligonz         ###   ########.fr       */
+/*   Updated: 2019/11/08 21:50:14 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,21 +55,41 @@ int	deal_key(int key, void *param)
 	return (0);
 }
 
+#define ORGB(o,r,g,b) (o << 24 | r << 16 | g << 8 | b)
+
 int	main(void)
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	void	*img_ptr;
+//	void	*img_ptr;
+	
+	int img[1000][1000] ;
+	int i;
+	int j;
+	(void)img;
+	int color;
+
 
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr, 1000, 1000, "Name windows");
-//	mlx_pixel_put(mlx_ptr, win_ptr, 250, 250, 0xFFFFFF);
-//	mlx_key_hook(win_ptr, deal_key, (void *)0);
-	img = mlx_new_image(1000, 1000);
 	
-	mlx_destroy_image(mlx_ptr);
+	i = 0;
+	j = 0;
+	color = ORGB(125,100,255,255);
+	while (i < 1000)
+	{
+		while (j < 1000)
+			mlx_pixel_put(mlx_ptr, win_ptr, i, j++, color);
+		j = 0;
+		i++;
+	}
+	
+//	mlx_key_hook(win_ptr, deal_key, (void *)0);
+//	img = mlx_new_image(1000, 1000);
+	
+//	mlx_destroy_image(mlx_ptr);
 	mlx_loop(mlx_ptr);
-	if (ptr && win)
-		mlx_destroy_window(ptr, win);
+	if (mlx_ptr && win_ptr)
+		mlx_destroy_window(mlx_ptr, win_ptr);
 }
 
