@@ -6,12 +6,12 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:14:37 by juligonz          #+#    #+#             */
-/*   Updated: 2019/11/08 21:50:14 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/10 12:32:53 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
-#include "cube_3d.h"
+#include "cub3d.h"
 
 void ft_putchar_fd(char c, int fd)
 {
