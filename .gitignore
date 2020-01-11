@@ -2,3 +2,6 @@
 *.o
 Cub3D
 *.a
+a.out
+a.out.dSYM
+*dSYM
