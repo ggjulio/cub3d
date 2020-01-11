@@ -32,36 +32,43 @@ _IWHITE=$'\x1b[47m
 #    By: juligonz <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 18:50:56 by juligonz          #+#    #+#              #
-#    Updated: 2020/01/10 13:02:51 by juligonz         ###   ########.fr        #
+#    Updated: 2020/01/11 19:56:37 by juligonz         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME = Cub3D
 
-CC = gcc
-LIB = libft.a mlx.a
+LIB = ft mlx
 FRAMEWORKS = OpenGL AppKit
 
 SRCS = main.c
-SRCS := $(addprefix srcs/, $(SRCS))
+SRC := $(addprefix srcs/, $(SRC))
 
 OBJ = $(SRCS:.c=.o)
 
-IFLAGS = lib/mlx/mlx.h lib/libft/libft.h
-LFLAGS = $(foreach framework, $(FRAMEWORKS), -framework $(framework))
-LFLAGS = $(foreach dir, $(LIB_DIR), -L $(dir) ) $(foreach lib, $(LIB), -l $(lib))
-CFLAGS = -Wall -Wextra -Werror
+LFLAGS  = $(foreach framework, $(FRAMEWORKS),-framework $(framework))
+LFLAGS += -L./lib $(foreach lib, $(LIB),-l $(lib))
+IFLAGS  = -I./lib/libmlx -I./lib/libft -I./includes
 
-all: $(NAME) $(NAME_BONUS)
+CC = gcc
+CFLAGS  = -Wall -Wextra # -Werror
+CFLAGS  += $(IFLAGS) $(LFLAGS)
+
+all: $(NAME)
+
+libs:
+	$(make -C /lib/libft)
 
 show:
-	@echo "$(_CYAN)IFLAGS :\n$(_RED)$(SRCS)$(_END)"
-	@echo "$(_CYAN)IFLAGS :\n$(_RED)$(IFLAGS)$(_END)"
-	@echo "$(_CYAN)LFLAGS :\n$(_RED)$(LFLAGS)$(_END)"
+	@echo "$(_CYAN)SRC    :$(_RED)  $(SRC)$(_END)"
+	@echo "$(_CYAN)OBJ    :$(_RED)  $(OBJ)$(_END)"
+	@echo "$(_CYAN)IFLAGS :$(_RED)  $(IFLAGS)$(_END)"
+	@echo "$(_CYAN)LFLAGS :$(_RED)  $(LFLAGS)$(_END)"
+	@echo "$(_CYAN)CFLAGS :$(_RED)  $(CFLAGS)$(_END)"
 
 $(NAME): $(OBJ)
 	@echo "$(_GREEN)Compiling ...$(_END)"
-	$(CC) main.c -o $@ $(IFLAGS) $(LFLAGS) $^
+	$(CC) $(CFLAGS) $(IFLAGS) -o $@ $(LFLAGS) $^
 	@echo "$(_GREEN)Compiled !$(_END)"
 
 clean:
@@ -70,7 +77,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "$(_GREEN).o $(NAME) removed !$(_END)"
+	@echo "$(_GREEN)$(NAME) program removed !$(_END)"
 
 bonus: $(NAME)
 
@@ -108,3 +115,4 @@ https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html     
 resources :                                                                      \
 https://www.gnu.org/software/make/manual/html_node/index.html#SEC_Contents       \
 http://web.mit.edu/gnu/doc/html/make_toc.html#SEC88                              \
+https://www3.nd.edu/~zxu2/acms60212-40212/Makefile.pdf                           \

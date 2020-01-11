@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   application.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/10 13:59:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/10 14:49:59 by juligonz         ###   ########.fr       */
+/*   Created: 2020/01/11 12:46:35 by juligonz          #+#    #+#             */
+/*   Updated: 2020/01/11 19:59:24 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3.h"
+#ifndef APPLICATION_H
+# define APPLICATION_H
 
-int parse()
+# include "vector.h"
+
+typedef struct	s_application
 {
+	void	*mlx_ptr;
+	void	*win_ptr;
+	void	*img_ptr;
 
-}
+	t_resolution resolution;	
+}				t_application;
 
-int load_cub(char *file)
-{
-	int ret;
-	int fd;
-
-	int fd = open("test", O_RDONLY);
-	while ((ret = get_next_line(fd, &line)) > 0)
-	{
-		// line
-		free(line);
-	}
-
-//	printf("%s|%d|\n", line, ret);
-	free(line);
-}
+#endif

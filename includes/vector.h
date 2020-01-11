@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/10 13:59:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/10 14:49:59 by juligonz         ###   ########.fr       */
+/*   Created: 2020/01/11 13:01:42 by juligonz          #+#    #+#             */
+/*   Updated: 2020/01/11 13:51:30 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3.h"
+#ifndef VECTOR_H
+# define VECTOR_H
 
-int parse()
+typedef struct	s_coordinate
 {
+	int x;
+	int y;
+}				t_coordinate;
 
-}
+typedef struct s_coordinate t_vector;
+typedef struct s_coordinate t_resolution;
 
-int load_cub(char *file)
-{
-	int ret;
-	int fd;
-
-	int fd = open("test", O_RDONLY);
-	while ((ret = get_next_line(fd, &line)) > 0)
-	{
-		// line
-		free(line);
-	}
-
-//	printf("%s|%d|\n", line, ret);
-	free(line);
-}
+#endif
