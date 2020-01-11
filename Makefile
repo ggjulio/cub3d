@@ -32,7 +32,7 @@ _IWHITE=$'\x1b[47m
 #    By: juligonz <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 18:50:56 by juligonz          #+#    #+#              #
-#    Updated: 2020/01/11 19:56:37 by juligonz         ###   ########.fr        #
+#    Updated: 2020/01/11 20:21:31 by juligonz         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -41,17 +41,17 @@ NAME = Cub3D
 LIB = ft mlx
 FRAMEWORKS = OpenGL AppKit
 
-SRCS = main.c
+SRC = main.c
 SRC := $(addprefix srcs/, $(SRC))
 
-OBJ = $(SRCS:.c=.o)
+OBJ = $(SRC:.c=.o)
 
 LFLAGS  = $(foreach framework, $(FRAMEWORKS),-framework $(framework))
-LFLAGS += -L./lib $(foreach lib, $(LIB),-l $(lib))
+LFLAGS += -L./lib/libft $(foreach lib, $(LIB),-l$(lib))
 IFLAGS  = -I./lib/libmlx -I./lib/libft -I./includes
 
 CC = gcc
-CFLAGS  = -Wall -Wextra # -Werror
+CFLAGS  = -Wall -Wextra           # -Werror
 CFLAGS  += $(IFLAGS) $(LFLAGS)
 
 all: $(NAME)
