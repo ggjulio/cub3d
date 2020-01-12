@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/12 22:43:50 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/12 22:58:42 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,19 @@
 # include "color.h"
 # include "application.h"
 
-typedef struct	s_cub3d
+typedef struct	s_player
 {
-	t_application app;
-	
-	// map etc.
-}				t_cub3d;
+	int x;
+	int y;
+	int direction;
+}				t_player;
+
+typedef struct	s_game
+{
+	t_application	*app;
+	t_player		player;
+	int				map[10][10];
+}				t_game;
 
 
 #endif
