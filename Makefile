@@ -32,7 +32,7 @@ _IWHITE=$'\x1b[47m
 #    By: juligonz <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 18:50:56 by juligonz          #+#    #+#              #
-#    Updated: 2020/01/12 15:05:18 by juligonz         ###   ########.fr        #
+#    Updated: 2020/01/12 18:34:29 by juligonz         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -51,22 +51,23 @@ LFLAGS += -L./lib $(foreach lib, $(LIB),-l$(lib))
 IFLAGS  = -I./lib/libmlx -I./lib/libft -I./includes
 
 CC = gcc
-CFLAGS  = -Wall -Wextra           # -Werror
+CFLAGS  = -Wall -Wextra #-Werror
 CFLAGS  += $(IFLAGS) $(LFLAGS)
 
 all: $(NAME)
 
 libs: 
-	make -C lib/libft/
-	mv lib/libft/libft.a lib/
-	make -C lib/libmlx/
-	mv lib/libmlx/*.a lib/
-
-obj/%.o : %.c
-	@echo "Compiling $(_YELLOW)$@$(_WHITE) ... \c"
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) $(IFLAGS) -o $@ -c $<
-	@echo "$(_GREEN)DONE$(_WHITE)"
+	@echo "$(_GREEN)Compiling libft.a ...$(_END)"
+	@make -s -C lib/libft/
+	@mv lib/libft/libft.a lib/
+	@make -s fclean -s -C lib/libft/
+	@echo "$(_RED)done ...$(_END)"
+	@echo "\n"
+	@echo "$(_GREEN)Compiling libmlx.a ...$(_END)"
+	@make -s -i CFLAGS+=-w -C lib/libmlx/
+	@mv lib/libmlx/libmlx.a lib/
+	@make clean -s -i -C lib/libmlx/
+	@echo "$(_RED)done ...$(_END)"
 
 show:
 	@echo "$(_CYAN)SRC    :$(_RED)  $(SRC)$(_END)"
@@ -77,7 +78,7 @@ show:
 
 $(NAME): $(OBJ)
 	@echo "$(_GREEN)Compiling ...$(_END)"
-	$(CC) $(CFLAGS) $(IFLAGS) -o $@ $(LFLAGS) $^
+	$(CC) $(CFLAGS) -o $@ $^
 	@echo "$(_GREEN)Compiled !$(_END)"
 
 clean:

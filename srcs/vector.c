@@ -6,13 +6,13 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 14:05:14 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/12 14:22:10 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/12 17:19:53 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_vector    vector_create(int x, int y)
+t_vector	create_vector(int x, int y)
 {
 	t_vector vector;
 
@@ -22,23 +22,23 @@ t_vector    vector_create(int x, int y)
 	return (vector);
 }
 
-t_vector    *vector_malloc(int x, int y)
+t_vector	*malloc_vector(int x, int y)
 {
 	t_vector *vector_ptr;
 
 	if (!(vector_ptr = malloc(sizeof(t_vector))))
 		return (NULL);
-	*vector_ptr = vector_create(x, y);
+	*vector_ptr = create_vector(x, y);
 	return (vector_ptr);
 }
 
-void        vector_destroy(t_vector to_destroy)
+void		destroy_vector(t_vector to_destroy)
 {
 	(void)to_destroy;
 }
 
-void        vector_free(t_vector *to_free)
+void		free_vector(t_vector *to_free)
 {
-	vector_destroy(*to_free);
+	destroy_vector(*to_free);
 	free(to_free);
 }
