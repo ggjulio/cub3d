@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:14:37 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/12 20:59:32 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/12 22:15:18 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,25 @@ void draw_rectangle(t_application *app, t_vector coord, t_vector size, t_color c
 	}
 }
 
+int shit()
+{
+
+}
+
 int	main(void)
 {
 	t_application app;
-	
 
-	app = create_application(1000, 800, "Shit");
+	app = create_application(1000, 1000, "Shit");
 
-	mlx_put_image_to_window(app.mlx_ptr,
-							app.win_ptr,
-							app.img_ptr,
-							0, 0);
-	draw_rectangle(&app, create_vector(30, 30), create_vector(100, 100), create_color(255,255,255,0));
-	draw_rectangle(&app, create_vector(30, 30), create_vector(100, 100), create_color(0,255,255,0));
-	draw_rectangle(&app, create_vector(30, 30), create_vector(100, 100), create_color(255,0,255,0));
-	draw_rectangle(&app, create_vector(30, 30), create_vector(100, 100), create_color(0,0,255,255));
-//	mlx_string_put(app.mlx_ptr, app.win_ptr, 300, 300, create_color(255, 0, 0, 0).c, "HELLO WORLD");
+	draw_rectangle(&app, create_vector(0, 0), create_vector(100, 100), create_color(255,0,0,0));
+
+	mlx_put_image_to_window(app.mlx_ptr, app.win_ptr, app.img_ptr, 0, 0);
+	mlx_string_put(app.mlx_ptr, app.win_ptr, 0, 0, create_color(255, 255, 255, 0).c, "Shit");
+
+
+	mlx_loop_hook(app.mlx_ptr, shit, void *param);
+
 	mlx_loop(app.mlx_ptr);
 	return (0);
 }
-

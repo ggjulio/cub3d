@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 17:14:55 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/12 20:34:47 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/12 21:42:39 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ void            free_application(t_application *to_free)
 {
 	(void)to_free;
 }
-
-
 
 void put_pixel(t_application *app, t_vector coord, t_color color)
 {

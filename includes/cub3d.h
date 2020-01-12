@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/12 20:22:09 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/12 22:43:50 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,12 @@
 # include "color.h"
 # include "application.h"
 
-# define ERROR		-1
+typedef struct	s_cub3d
+{
+	t_application app;
+	
+	// map etc.
+}				t_cub3d;
 
-# define ERR_MAP		-2
-# define ERR_NO_R	-3
-# define ERR_NO_NO	-4
-# define ERR_NO_SO	-5
-# define ERR_NO_WE	-6
-# define ERR_NO_EA	-7
-# define ERR_NO_S	-8
-# define ERR_NO_F	-9
-# define ERR_NO_C	-10
 
 #endif
