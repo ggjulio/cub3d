@@ -32,7 +32,7 @@ _IWHITE=$'\x1b[47m
 #    By: juligonz <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 18:50:56 by juligonz          #+#    #+#              #
-#    Updated: 2020/01/11 20:21:31 by juligonz         ###   ########.fr        #
+#    Updated: 2020/01/12 15:05:18 by juligonz         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -41,13 +41,13 @@ NAME = Cub3D
 LIB = ft mlx
 FRAMEWORKS = OpenGL AppKit
 
-SRC = main.c
+SRC = main.c color.c vector.c
 SRC := $(addprefix srcs/, $(SRC))
 
 OBJ = $(SRC:.c=.o)
 
 LFLAGS  = $(foreach framework, $(FRAMEWORKS),-framework $(framework))
-LFLAGS += -L./lib/libft $(foreach lib, $(LIB),-l$(lib))
+LFLAGS += -L./lib $(foreach lib, $(LIB),-l$(lib))
 IFLAGS  = -I./lib/libmlx -I./lib/libft -I./includes
 
 CC = gcc
@@ -56,8 +56,17 @@ CFLAGS  += $(IFLAGS) $(LFLAGS)
 
 all: $(NAME)
 
-libs:
-	$(make -C /lib/libft)
+libs: 
+	make -C lib/libft/
+	mv lib/libft/libft.a lib/
+	make -C lib/libmlx/
+	mv lib/libmlx/*.a lib/
+
+obj/%.o : %.c
+	@echo "Compiling $(_YELLOW)$@$(_WHITE) ... \c"
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CFLAGS) $(IFLAGS) -o $@ -c $<
+	@echo "$(_GREEN)DONE$(_WHITE)"
 
 show:
 	@echo "$(_CYAN)SRC    :$(_RED)  $(SRC)$(_END)"

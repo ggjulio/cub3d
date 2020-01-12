@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube3d.h                                           :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/11 20:00:24 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/12 15:12:10 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE_3D_H
-# define CUBE_3D_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
 # include <fcntl.h>
 # include <sys/types.h>
@@ -19,12 +19,14 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <stdint.h>
 # include <math.h>
 
-# include <mlx.h>
+# include "mlx.h"
 
-# include <application.h>
-# include <vector.h>
+# include "application.h"
+# include "vector.h"
+# include "color.h"
 
 # define ERROR		-1
 
@@ -37,7 +39,5 @@
 # define ERR_NO_S	-8
 # define ERR_NO_F	-9
 # define ERR_NO_C	-10
-
-
 
 #endif
