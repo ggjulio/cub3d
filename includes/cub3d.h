@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/12 15:12:10 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/12 20:22:09 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
 
 # include "mlx.h"
 
-# include "application.h"
 # include "vector.h"
 # include "color.h"
+# include "application.h"
 
 # define ERROR		-1
 

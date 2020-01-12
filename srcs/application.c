@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 17:14:55 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/12 18:20:09 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/12 20:34:47 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,16 @@ t_application   create_application(int size_x, int size_y, char *title)
 	app.title = title;
 	app.mlx_ptr = mlx_init();
 	app.win_ptr = mlx_new_window(app.mlx_ptr, size_x, size_y, title);
-	app.pixel = mlx_get_data_addr(app.img_ptr, &(app.bits_per_pixel),
-								  &(app.size_line), &(app.endian));
+	app.img_ptr = mlx_new_image(app.mlx_ptr, size_x, size_y);
+	app.pixels = mlx_get_data_addr(app.img_ptr, &(app.bits_per_pixel),
+								  &(app.size_line), &(app.endian));	
+	return (app);
 }
 
-t_application   *malloc_application(int size_x, int size_y, char *title)
-{
-	(void)size_x;
-}
+//t_application   *malloc_application(int size_x, int size_y, char *title)
+//{
+//	(void)size_x;
+//}
 
 void            destroy_application(t_application to_destroy)
 {
@@ -38,4 +40,16 @@ void            destroy_application(t_application to_destroy)
 void            free_application(t_application *to_free)
 {
 	(void)to_free;
+}
+
+
+
+void put_pixel(t_application *app, t_vector coord, t_color color)
+{
+	int *pixels;
+
+	if (coord.x < 0 ||coord.y < 0 || coord.x == app->resolution.x - 1 || coord.y == app->resolution.y - 1)
+		return ;
+	pixels = (int *)(app->pixels);
+	pixels[coord.x + (app->resolution.x * coord.y)] = color.c;
 }
