@@ -32,7 +32,7 @@ _IWHITE=$'\x1b[47m
 #    By: juligonz <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 18:50:56 by juligonz          #+#    #+#              #
-#    Updated: 2020/01/12 18:34:29 by juligonz         ###   ########.fr        #
+#    Updated: 2020/01/12 19:13:56 by juligonz         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -41,7 +41,7 @@ NAME = Cub3D
 LIB = ft mlx
 FRAMEWORKS = OpenGL AppKit
 
-SRC = main.c color.c vector.c
+SRC = main.c color.c vector.c application.c
 SRC := $(addprefix srcs/, $(SRC))
 
 OBJ = $(SRC:.c=.o)
@@ -51,8 +51,8 @@ LFLAGS += -L./lib $(foreach lib, $(LIB),-l$(lib))
 IFLAGS  = -I./lib/libmlx -I./lib/libft -I./includes
 
 CC = gcc
-CFLAGS  = -Wall -Wextra #-Werror
-CFLAGS  += $(IFLAGS) $(LFLAGS)
+CFLAGS  = -Wall -Wextra -Werror
+CFLAGS  += $(IFLAGS) #$(LFLAGS)
 
 all: $(NAME)
 
@@ -78,7 +78,7 @@ show:
 
 $(NAME): $(OBJ)
 	@echo "$(_GREEN)Compiling ...$(_END)"
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) $(LFLAGS) -o $@ $^
 	@echo "$(_GREEN)Compiled !$(_END)"
 
 clean:
