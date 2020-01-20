@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.h                                           :+:      :+:    :+:   */
+/*   fvector.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/11 13:01:42 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/20 22:31:38 by juligonz         ###   ########.fr       */
+/*   Created: 2020/01/20 22:32:03 by juligonz          #+#    #+#             */
+/*   Updated: 2020/01/20 22:32:41 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR_H
-# define VECTOR_H
 
-typedef struct			s_coordinate
+#ifndef FVECTOR_H
+# define FVECTOR_H
+
+typedef struct			s_fvector
 {
-	int	x;
-	int	y;
-}						t_coordinate;
+	double	x;
+	double	y;
+}						t_fvector;
 
-typedef	t_coordinate	t_vector;
 
-t_vector				create_vector(int x, int y);
-t_vector				*malloc_vector(int x, int y);
-void					destroy_vector(t_vector to_destroy);
-void					free_vector(t_vector *to_free);
+t_fvector				create_fvector(double x, double y);
+t_fvector				*malloc_fvector(double x, double y);
+void					destroy_fvector(t_fvector to_destroy);
+void					free_fvector(t_fvector *to_free);
 
 #endif

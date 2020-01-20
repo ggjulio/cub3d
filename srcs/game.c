@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.h                                           :+:      :+:    :+:   */
+/*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/11 13:01:42 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/20 22:31:38 by juligonz         ###   ########.fr       */
+/*   Created: 2020/01/20 22:45:46 by juligonz          #+#    #+#             */
+/*   Updated: 2020/01/20 22:58:07 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR_H
-# define VECTOR_H
+#include "cub3d.h"
 
-typedef struct			s_coordinate
+t_game	create_game(t_app *app, t_camera camera, uint8_t *map)
 {
-	int	x;
-	int	y;
-}						t_coordinate;
+	t_game game;
 
-typedef	t_coordinate	t_vector;
+	game.app = app;
+	game.camera = camera;
+	game.map = map;
 
-t_vector				create_vector(int x, int y);
-t_vector				*malloc_vector(int x, int y);
-void					destroy_vector(t_vector to_destroy);
-void					free_vector(t_vector *to_free);
+	return (game);
+}
 
-#endif
+void	destroy_game(t_game game)
+{
+	destroy_application(game.app);
+}

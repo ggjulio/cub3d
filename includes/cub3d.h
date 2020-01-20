@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/12 22:58:42 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/20 22:44:17 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,25 @@
 # include "mlx.h"
 
 # include "vector.h"
+# include "fvector.h"
 # include "color.h"
 # include "application.h"
+# include "draw.h"
 
-typedef struct	s_player
+
+
+typedef struct	s_camera
 {
-	int x;
-	int y;
-	int direction;
-}				t_player;
+	t_fvector pos;
+	t_fvector dir;
+	t_fvector plane;
+}				t_camera;
 
 typedef struct	s_game
 {
 	t_application	*app;
-	t_player		player;
-	int				map[10][10];
+	t_camera		cam;
+	uint8_t			*map;
 }				t_game;
 
 
