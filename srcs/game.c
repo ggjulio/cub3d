@@ -6,19 +6,19 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 22:45:46 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/21 13:50:59 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/21 14:34:55 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_game	create_game()
+t_game	create_game(t_application app, t_camera cam, t_map *map)
 {
 	t_game game;
 
-	game.app = create_application(app);
-	game.camera = create_camera();
-	game.map = NULL;
+	game.app = app;
+	game.camera = cam;
+	game.map = map;
 
 	return (game);
 }
@@ -26,6 +26,7 @@ t_game	create_game()
 void	destroy_game(t_game game)
 {
 	destroy_application(game.app);
+	destroy_camera(game.camera);
 	// free_map();
 }
 

@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camera.c                                           :+:      :+:    :+:   */
+/*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/21 13:52:56 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/21 14:31:54 by juligonz         ###   ########.fr       */
+/*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
+/*   Updated: 2020/01/21 14:42:29 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef GAME_H
+# define GAME_H
 
-t_camera create_camera(t_fvector position, t_fvector direction, t_fvector plane)
+# include "cub3d.h"
+
+typedef struct s_game
 {
-	t_camera camera;
-	
-	camera.pos = position;
-	camera.dir = direction;
-	camera.plane = plane;
-	return (camera)
+	t_application	app;
+	t_camera		cam;
+	t_map			*map;
 }
 
-void destroy_camera(t_camera to_destroy)
-{
-	(void)to_destroy;
-}
+#endif
