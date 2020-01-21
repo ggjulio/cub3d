@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 12:46:35 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/21 18:03:06 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/21 22:22:13 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct	s_application
 	int				bits_per_pixel;
 	int				size_line;
 	int				endian;
-	char			*pixels;	
+	char			*pixels;
 }				t_application;
 
 t_application	create_application(int size_x, int size_y, char *title);

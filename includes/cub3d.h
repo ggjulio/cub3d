@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/21 17:23:15 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/21 21:02:08 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # include "color.h"
 # include "application.h"
 # include "camera.h"
+# include "raycast.h"
 # include "game.h"
 # include "draw.h"
 

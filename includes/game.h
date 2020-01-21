@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/21 17:43:04 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/21 22:25:15 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ typedef struct	s_game
 	uint8_t			*map;
 }				t_game;
 
+t_game			create_game(t_application app, t_camera cam, uint8_t *map);
+void			destroy_game(t_game game);
+
 #endif
-
-t_game  create_game(t_application app, t_camera cam, uint8_t *map);
-void    destroy_game(t_game game);
-
