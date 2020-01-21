@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 14:05:14 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/20 22:30:21 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/21 17:45:17 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ t_fvector	create_fvector(double x, double y)
 	fvector.x = x;
 	fvector.y = y;
 
-	return (vector);
+	return (fvector);
 }
 
 t_fvector	*malloc_fvector(double x, double y)
 {
-	t_fvector *vector_ptr;
+	t_fvector *fvector_ptr;
 
 	if (!(fvector_ptr = malloc(sizeof(t_fvector))))
 		return (NULL);

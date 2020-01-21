@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 12:46:35 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/12 20:29:58 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/21 18:03:06 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ t_application	*malloc_application(int size_x, int size_y, char *title);
 void			destroy_application(t_application to_destroy);
 void			free_application(t_application *to_free);
 void			put_pixel(t_application *app, t_vector coord, t_color color);
+int				run_application(t_application *application);
+void			render_application(t_application *app);
 
 #endif

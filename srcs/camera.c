@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:52:56 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/21 14:31:54 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/21 17:43:40 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_camera create_camera(t_fvector position, t_fvector direction, t_fvector plane)
 	camera.pos = position;
 	camera.dir = direction;
 	camera.plane = plane;
-	return (camera)
+	return (camera);
 }
 
 void destroy_camera(t_camera to_destroy)

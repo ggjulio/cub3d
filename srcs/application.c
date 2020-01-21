@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 17:14:55 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/21 13:46:30 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/21 17:28:54 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ t_application	*malloc_application(int size_x, int size_y, char *title)
 
 void            destroy_application(t_application to_destroy)
 {
-	mlx_destroy_image(to_destroy.mlx_ptr, to_destroy.img_ptr)
-	mlx_destroy_window(to_destroy.mlx_ptr, to_destroy.img_ptr)
+	mlx_destroy_image(to_destroy.mlx_ptr, to_destroy.img_ptr);
+	mlx_destroy_window(to_destroy.mlx_ptr, to_destroy.img_ptr);
 }
 
 void            free_application(t_application *to_free)
@@ -67,5 +67,5 @@ int run_application(t_application *application)
 
 void render_application(t_application *app)
 {
-	mlx_put_image_to_windows(app->mlx_ptr, app->win_ptr, app->img_ptr   0, 0);
+	mlx_put_image_to_window(app->mlx_ptr, app->win_ptr, app->img_ptr, 0, 0);
 }
