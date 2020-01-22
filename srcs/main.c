@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:14:37 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/22 20:21:15 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/22 22:53:26 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,6 +213,7 @@ int resize_windows(int key, t_game *g)
 {
 	(void)key;
 	(void)g;
+	printf("AHHHHHHHHHHHHHHHHH\n");
 	return (0);
 }
 
@@ -237,7 +238,7 @@ int	main(void)
 	mlx_hook(app.win_ptr, KEYPRESS, KEYPRESSMASK, is_key_press, &g);
 	mlx_hook(app.win_ptr, KEYRELEASE, KEYRELEASEMASK, is_key_release, &g);
 	mlx_hook(app.win_ptr, DESTROYNOTIFY, STRUCTURENOTIFYMASK, close_program, &g);
-	mlx_hook(app.win_ptr, EXPOSE, NOEVENTMASK, resize_windows, &g);
+//	mlx_mouse_hide();
 	mlx_loop_hook(app.mlx_ptr, do_job, &g);
 	mlx_loop(app.mlx_ptr);
 	return (0);
