@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.h                                             :+:      :+:    :+:   */
+/*   events.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/22 16:43:10 by juligonz         ###   ########.fr       */
+/*   Created: 2020/01/22 16:45:11 by juligonz          #+#    #+#             */
+/*   Updated: 2020/01/22 16:46:09 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GAME_H
-# define GAME_H
+#ifndef EVENTS_H
+# define EVENTS_H
 
 # include "cub3d.h"
 
-typedef struct	s_game
-{
-	t_application	app;
-	t_camera		cam;
-	uint8_t			*map;
-	uint16_t		key_w:1;
-	uint16_t		key_a:1;
-	uint16_t		key_s:1;
-	uint16_t		key_d:1;
-	uint16_t		key_left:1;
-	uint16_t		key_right:1;
-	uint16_t		remaining:10;
-}				t_game;
-
-t_game			create_game(t_application app, t_camera cam, uint8_t *map);
-void			destroy_game(t_game game);
+int		is_key_press(int key, t_game *g);
+int		is_key_release(int key, t_game *g);
+int		close_program(int key, t_game *g);
 
 #endif
