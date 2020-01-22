@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:14:37 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/22 17:24:24 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/22 20:21:15 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ void raycasting(t_game *g, int worldMap[24][24])
 
 void move(t_game *g, int worldMap[24][24])
 {
-	t_camera cam;
+	t_camera *cam = &(g->cam);
 	double speed = 0.2;
 	double rot_speed = 0.05;
 
@@ -161,7 +161,7 @@ void move(t_game *g, int worldMap[24][24])
 		g->cam.plane.x = g->cam.plane.x * cos(-rot_speed) - g->cam.plane.y * sin(-rot_speed);
 		g->cam.plane.y = old_plane_x * sin(-rot_speed) + g->cam.plane.y * cos(-rot_speed);
     }
-    if (g->key_left)
+/*    if (g->key_left)
     {
 		double old_dir_x = g->cam.dir.x;
 		g->cam.dir.x = g->cam.dir.x * cos(rot_speed) - g->cam.dir.y * sin(rot_speed);
@@ -209,6 +209,13 @@ int do_job(t_game *g)
 	return (0);
 }
 
+int resize_windows(int key, t_game *g)
+{
+	(void)key;
+	(void)g;
+	return (0);
+}
+
 int	main(void)
 {
 	t_game			g;
@@ -226,12 +233,11 @@ int	main(void)
 	g.cam.dir.x = -1; g.cam.dir.y = -0.4; //initial direction vector
 	g.cam.plane.x = 0; g.cam.plane.y = 0.66; //the 2d raycaster version of camera plane
 
-
-	printf(">>|%d|\n", KEYPRESSMASK);
 	mlx_do_key_autorepeatoff(app.mlx_ptr);
 	mlx_hook(app.win_ptr, KEYPRESS, KEYPRESSMASK, is_key_press, &g);
 	mlx_hook(app.win_ptr, KEYRELEASE, KEYRELEASEMASK, is_key_release, &g);
-	mlx_hook(app.win_ptr, DESTROYNOTIFY, NOEVENTMASK, close_program, &g);
+	mlx_hook(app.win_ptr, DESTROYNOTIFY, STRUCTURENOTIFYMASK, close_program, &g);
+	mlx_hook(app.win_ptr, EXPOSE, NOEVENTMASK, resize_windows, &g);
 	mlx_loop_hook(app.mlx_ptr, do_job, &g);
 	mlx_loop(app.mlx_ptr);
 	return (0);
