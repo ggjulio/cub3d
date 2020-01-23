@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/23 15:36:54 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/23 20:48:25 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # include "events.h"
 # include "draw.h"
 
-int load_cub(char *file);
-
+int		load_cub(char *file, t_game *g);
+int		exit_cub3d(t_game *g);
 
 #endif

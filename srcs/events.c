@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 16:44:33 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/22 16:48:29 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/23 17:22:40 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ int	is_key_release(int key, t_game *g)
 int close_program(int key, t_game *g)
 {
 	(void)key;
-	(void)g;
 	printf("red cross pressed\n");
-	
-	exit(0);
+	return (exit_cub3d(g));
 }

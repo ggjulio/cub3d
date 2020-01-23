@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/22 16:43:10 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/23 22:06:33 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,18 @@
 
 # include "cub3d.h"
 
+/*typedef struct	s_texture
+{
+	t_color		color;
+	
+	}*/
+
 typedef struct	s_game
 {
 	t_application	app;
 	t_camera		cam;
 	uint8_t			*map;
+	
 	uint16_t		key_w:1;
 	uint16_t		key_a:1;
 	uint16_t		key_s:1;

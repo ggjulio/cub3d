@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:14:37 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/23 15:29:00 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/23 22:55:35 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,19 @@ void	fix_fisheye(t_game *g, t_raycast *r)
 		r->non_eucl_dist = (r->map.x - g->cam.pos.x + (1 - r->step.x) / 2) / r->ray_dir.x;
 	else
 		r->non_eucl_dist = (r->map.y - g->cam.pos.y + (1 - r->step.y) / 2) / r->ray_dir.y;
+}
 
+void	calculate_wall_height(t_game *g, t_raycast *r)
+{
+	int line_height = (int)(RES_Y / r->non_eucl_dist);
+	(void)g;
+
+	r->wall_start = -line_height / 2 + RES_Y / 2;
+	if (r->wall_start < 0)
+		r->wall_start = 0;
+	r->wall_end = line_height / 2 + RES_Y / 2;
+	if (r->wall_end >= RES_Y)
+		r->wall_end = RES_Y - 1;
 }
 
 void raycasting(t_game *g, int worldMap[24][24])
@@ -98,28 +110,12 @@ void raycasting(t_game *g, int worldMap[24][24])
 		r.camera_x = 2 * x / (double)RES_Y - 1;
 		r.ray_dir = create_fvector(g->cam.dir.x + g->cam.plane.x * r.camera_x,
 								   g->cam.dir.y + g->cam.plane.y * r.camera_x);
-		// which box of the map we're in
 		r.map = create_vector((int)g->cam.pos.x, (int)g->cam.pos.y);
-		// length of ray from one x or y-side to next x or y-side
 		r.delta_dist = create_fvector(fabs(1 / r.ray_dir.x), fabs(1 / r.ray_dir.y));
-
 		prehit_wall(g, &r);	
 		hit_wall(&r, worldMap);			//DDA
-
 		fix_fisheye(g, &r);
-
-		//Calculate height of line to draw on screen
-		int line_height = (int)(RES_Y / r.non_eucl_dist);
-
-		//calculate lowest and highest pixel to fill in current stripe
-
-		r.wall_start = -line_height / 2 + RES_Y / 2;
-		if (r.wall_start < 0)
-			r.wall_start = 0;
-		r.wall_end = line_height / 2 + RES_Y / 2;
-		if (r.wall_end >= RES_Y)
-			r.wall_end = RES_Y - 1;
-
+		calculate_wall_height(g, &r);
 		t_color color;
 		if (worldMap[r.map.x][r.map.y] == 1)
 			color = create_color(155, 155, 25, 0);
@@ -133,8 +129,8 @@ void raycasting(t_game *g, int worldMap[24][24])
 void move(t_game *g, int worldMap[24][24])
 {
 	t_camera *cam = &(g->cam);
-	double speed = 0.2;
-	double rot_speed = 0.05;
+	double speed = 1;
+	double rot_speed = 0.1;
 
 	(void)cam;
 	if (g->key_w)
@@ -151,6 +147,20 @@ void move(t_game *g, int worldMap[24][24])
 		if(!worldMap[(int)g->cam.pos.x][(int)(g->cam.pos.y - g->cam.dir.y * speed)])
 			g->cam.pos.y -= g->cam.dir.y * speed;
     }
+/*    if (g->key_a)
+    {
+		if(!worldMap[(int)()][(int)()])
+			g->cam.pos.x += g->cam.dir.x * speed;
+		if(!worldMap[(int)()][(int)()])
+			g->cam.pos.y += g->cam.dir.y * speed;
+    }
+    if (g->key_d)
+    {
+		if(!worldMap[(int)(g->cam.pos.x - g->cam.dir.x * speed)][(int)g->cam.pos.y])
+			g->cam.pos.y -= g->cam.dir.y * speed;
+		if(!worldMap[(int)g->cam.pos.x][(int)(g->cam.pos.y - g->cam.dir.y * speed)])
+			g->cam.pos.y -= g->cam.dir.y * speed;
+			}*/
     if (g->key_right)
     {
 		double old_dir_x = g->cam.dir.x;
@@ -189,7 +199,7 @@ int do_job(t_game *g)
 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1},
 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -213,36 +223,39 @@ int do_job(t_game *g)
 int	main(int ac, char **av)
 {
 	t_game			g;
-	t_application	app;
 
 	(void)av;
 	if (ac == 2)
 	{
-//		load_cub(av[1]);
-		if (ac == 3)
-			printf("-save");
+		load_cub(av[1], &g);
+		printf("check game struct here");
+//		exit(0);
 	}
 	else
-		printf ("No Arguments !");
-	app = create_application(1000,1000,"Shit");
-	g = create_game(app,	create_camera(
-						   (t_fvector){0.0,0.0},
-						   (t_fvector){0.0,0.0},
-						   (t_fvector){0.0,0.0}),
-					   malloc(sizeof(uint8_t) * 24 * 24)
+	{
+		printf(".cub file missing\n");
+		exit(0);
+	}
+	
+	g = create_game(create_application(1000,1000,"Shit"),
+					create_camera(
+						(t_fvector){0.0,0.0},
+						(t_fvector){0.0,0.0},
+						(t_fvector){0.0,0.0}),
+					malloc(sizeof(uint8_t) * 24 * 24)
 		);
 
 	g.cam.pos.x = 18; g.cam.pos.y = 17; // start pos 
 	g.cam.dir.x = -1; g.cam.dir.y = -0.4; //initial direction vector
 	g.cam.plane.x = 0; g.cam.plane.y = 0.66; //the 2d raycaster version of camera plane
 
-	mlx_do_key_autorepeatoff(app.mlx_ptr);
-	mlx_hook(app.win_ptr, KEYPRESS, KEYPRESSMASK, is_key_press, &g);
-	mlx_hook(app.win_ptr, KEYRELEASE, KEYRELEASEMASK, is_key_release, &g);
-	mlx_hook(app.win_ptr, DESTROYNOTIFY, STRUCTURENOTIFYMASK, close_program, &g);
+	mlx_do_key_autorepeatoff(g.app.mlx_ptr);
+	mlx_hook(g.app.win_ptr, KEYPRESS, KEYPRESSMASK, is_key_press, &g);
+	mlx_hook(g.app.win_ptr, KEYRELEASE, KEYRELEASEMASK, is_key_release, &g);
+	mlx_hook(g.app.win_ptr, DESTROYNOTIFY, STRUCTURENOTIFYMASK, close_program, &g);
 //	mlx_mouse_hide();
-	mlx_loop_hook(app.mlx_ptr, do_job, &g);
-	mlx_loop(app.mlx_ptr);
+	mlx_loop_hook(g.app.mlx_ptr, do_job, &g);
+	mlx_loop(g.app.mlx_ptr);
 	return (0);
 }
 
