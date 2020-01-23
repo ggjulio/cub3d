@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/22 16:47:11 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/23 15:36:54 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <math.h>
 
 # include "mlx.h"
+# include "libft.h"
 
 # include "vector.h"
 # include "x11.h"
@@ -34,5 +35,8 @@
 # include "game.h"
 # include "events.h"
 # include "draw.h"
+
+int load_cub(char *file);
+
 
 #endif

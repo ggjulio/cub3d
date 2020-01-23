@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:14:37 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/22 22:53:26 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/23 15:29:00 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,15 +161,15 @@ void move(t_game *g, int worldMap[24][24])
 		g->cam.plane.x = g->cam.plane.x * cos(-rot_speed) - g->cam.plane.y * sin(-rot_speed);
 		g->cam.plane.y = old_plane_x * sin(-rot_speed) + g->cam.plane.y * cos(-rot_speed);
     }
-/*    if (g->key_left)
+    if (g->key_left)
     {
 		double old_dir_x = g->cam.dir.x;
 		g->cam.dir.x = g->cam.dir.x * cos(rot_speed) - g->cam.dir.y * sin(rot_speed);
 		g->cam.dir.y = old_dir_x * sin(rot_speed) + g->cam.dir.y * cos(rot_speed);
 		double old_plane_x = g->cam.plane.x;
-		g->cam.plane.x = planeX * cos(rot_speed) - planeY * sin(rot_speed);
-		g->cam.plane.y = oldPlaneX * sin(rot_speed) + planeY * cos(rot_speed);
-		}*/
+		g->cam.plane.x = g->cam.plane.x * cos(rot_speed) - g->cam.plane.y * sin(rot_speed);
+		g->cam.plane.y = old_plane_x * sin(rot_speed) + g->cam.plane.y * cos(rot_speed);
+		}
 }
 
 int do_job(t_game *g)
@@ -206,22 +206,24 @@ int do_job(t_game *g)
 	move(g, worldMap);
 	raycasting(g, worldMap);
 	render_application(&(g->app));
+//	mlx_string_put(app.mlx_ptr, app.win_ptr, 0, 0, create_color(255, 255, 255, 0).c, "Shit");
 	return (0);
 }
 
-int resize_windows(int key, t_game *g)
-{
-	(void)key;
-	(void)g;
-	printf("AHHHHHHHHHHHHHHHHH\n");
-	return (0);
-}
-
-int	main(void)
+int	main(int ac, char **av)
 {
 	t_game			g;
 	t_application	app;
 
+	(void)av;
+	if (ac == 2)
+	{
+//		load_cub(av[1]);
+		if (ac == 3)
+			printf("-save");
+	}
+	else
+		printf ("No Arguments !");
 	app = create_application(1000,1000,"Shit");
 	g = create_game(app,	create_camera(
 						   (t_fvector){0.0,0.0},
@@ -244,4 +246,3 @@ int	main(void)
 	return (0);
 }
 
-//	mlx_string_put(game->app->mlx_ptr, game->app->win_ptr, 0, 0, create_color(255, 255, 255, 0).c, "Shit");

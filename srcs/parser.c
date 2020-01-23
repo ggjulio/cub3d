@@ -6,29 +6,32 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 13:59:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/10 14:49:59 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/23 15:40:36 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3.h"
+#include "cub3d.h"
 
-int parse()
-{
 
-}
+//int parse()
+//{
+//
+//}
 
 int load_cub(char *file)
 {
+	char *line;
 	int ret;
 	int fd;
 
-	int fd = open("test", O_RDONLY);
+	fd = open(file, O_RDONLY);
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
-		// line
+		printf("%s", line);
 		free(line);
 	}
 
-//	printf("%s|%d|\n", line, ret);
+	ft_printf("%s|%d|\n", line, ret);
 	free(line);
+	return (0);
 }
