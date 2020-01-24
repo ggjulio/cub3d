@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/24 14:20:14 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/24 14:27:54 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,22 @@
 # include "game.h"
 # include "raycast.h"
 # include "game.h"
-# include "events.h"
 # include "draw.h"
 
-int		load_cub(char *file, t_game *g);
-int		exit_cub3d(t_game *g);
+/*
+** parser.c
+*/
+
+int	load_cub(char *file, t_game *g);
+int	exit_cub3d(t_game *g);
+
+/*
+** events.c
+*/
+
+int	is_key_press(int key, t_game *g);
+int	is_key_release(int key, t_game *g);
+int	close_program(int key, t_game *g);
+
 
 #endif
