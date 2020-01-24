@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/23 20:48:25 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/24 14:20:14 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,11 @@
 # include "mlx.h"
 # include "libft.h"
 
-# include "vector.h"
+# include "vectors.h"
 # include "x11.h"
-# include "fvector.h"
 # include "color.h"
 # include "application.h"
-# include "camera.h"
+# include "game.h"
 # include "raycast.h"
 # include "game.h"
 # include "events.h"

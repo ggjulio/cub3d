@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camera.c                                           :+:      :+:    :+:   */
+/*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/21 13:52:56 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/21 17:43:40 by juligonz         ###   ########.fr       */
+/*   Created: 2020/01/11 13:01:42 by juligonz          #+#    #+#             */
+/*   Updated: 2020/01/24 14:16:30 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef VECTOR_H
+# define VECTOR_H
 
-t_camera create_camera(t_fvector position, t_fvector direction, t_fvector plane)
+typedef struct			s_coordinate
 {
-	t_camera camera;
-	
-	camera.pos = position;
-	camera.dir = direction;
-	camera.plane = plane;
-	return (camera);
-}
+	int	x;
+	int	y;
+}						t_coordinate;
 
-void destroy_camera(t_camera to_destroy)
+typedef	t_coordinate	t_vector;
+
+t_vector				create_vector(int x, int y);
+
+typedef struct			s_fvector
 {
-	(void)to_destroy;
-}
+    double	x;
+    double	y;
+}                       t_fvector;
+
+t_fvector				create_fvector(double x, double y);
+
+#endif

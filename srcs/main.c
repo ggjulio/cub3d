@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:14:37 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/23 22:55:35 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/24 14:01:09 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,13 +237,9 @@ int	main(int ac, char **av)
 		exit(0);
 	}
 	
-	g = create_game(create_application(1000,1000,"Shit"),
-					create_camera(
-						(t_fvector){0.0,0.0},
-						(t_fvector){0.0,0.0},
-						(t_fvector){0.0,0.0}),
-					malloc(sizeof(uint8_t) * 24 * 24)
-		);
+	g.app = create_application(g.app.resolution.x,g.app.resolution.y,"Shit");
+	g.cam = create_camera((t_fvector){0.0,0.0},(t_fvector){0.0,0.0},(t_fvector){0.0,0.0});
+	g.map = malloc(sizeof(uint8_t) * 24 * 24);
 
 	g.cam.pos.x = 18; g.cam.pos.y = 17; // start pos 
 	g.cam.dir.x = -1; g.cam.dir.y = -0.4; //initial direction vector

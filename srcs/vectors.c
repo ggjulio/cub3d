@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fvector.h                                          :+:      :+:    :+:   */
+/*   vectors.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/20 22:32:03 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/21 22:24:01 by juligonz         ###   ########.fr       */
+/*   Created: 2020/01/24 14:12:16 by juligonz          #+#    #+#             */
+/*   Updated: 2020/01/24 14:12:20 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FVECTOR_H
-# define FVECTOR_H
+#include "cub3d.h"
 
-typedef struct			s_fvector
+t_vector	create_vector(int x, int y)
 {
-	double	x;
-	double	y;
-}						t_fvector;
+	t_vector vector;
 
-t_fvector				create_fvector(double x, double y);
-t_fvector				*malloc_fvector(double x, double y);
-void					destroy_fvector(t_fvector to_destroy);
-void					free_fvector(t_fvector *to_free);
+	vector.x = x;
+	vector.y = y;
 
-#endif
+	return (vector);
+}
+
+t_fvector	create_fvector(double x, double y)
+{
+	t_fvector fvector;
+
+	fvector.x = x;
+	fvector.y = y;
+
+	return (fvector);
+}
