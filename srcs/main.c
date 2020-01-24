@@ -6,28 +6,30 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:14:37 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/24 14:01:09 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/24 22:05:34 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 #define RES_X 1000
-#define RES_Y 1000
+#define RES_Y 800
 
-void draw_vertical_line(int x, int start, int end, t_color color, t_game *game)
+void draw_vertical_line(int x, int y_start, int y_end, t_color color, t_game *game)
 {
-	int i;
-
-	i = 0;
 	t_color ceil = create_color(75,155,105, 0);
-	while(i < start)
-		put_pixel(&(game->app), create_vector(x, i++), ceil);
-	while (start < end)
-		put_pixel(&(game->app), create_vector(x, start++), color);
 	t_color floor = create_color(55,55,55, 0);
-	while (end < RES_Y)
-		put_pixel(&(game->app), create_vector(x, end++), floor);		
+
+	while (y_start < y_end)
+		put_pixel(&(game->app), create_vector(x, y_start++), color);
+//	while (y_end < RES_Y)
+//		put_pixel(&(game->app), create_vector(x, y_end++), floor);		
+	while (y_end < RES_Y)
+	{
+		put_pixel(&(game->app), create_vector(x, y_end), floor);
+		put_pixel(&(game->app), create_vector(x, RES_Y - y_end), ceil);
+		y_end++;
+	}
 }
 
 // calculate step and initial sideDist
@@ -98,6 +100,7 @@ void	calculate_wall_height(t_game *g, t_raycast *r)
 	r->wall_end = line_height / 2 + RES_Y / 2;
 	if (r->wall_end >= RES_Y)
 		r->wall_end = RES_Y - 1;
+//	printf("line_height:%d\nstart: %d\nend: %d\ndir.x: %f\ndir.y: %f\n", line_height, r->wall_start, r->wall_end, g->cam.dir.x, g->cam.dir.y);
 }
 
 void raycasting(t_game *g, int worldMap[24][24])
@@ -108,31 +111,36 @@ void raycasting(t_game *g, int worldMap[24][24])
 	{
 		// calculate ray position and direction
 		r.camera_x = 2 * x / (double)RES_Y - 1;
-		r.ray_dir = create_fvector(g->cam.dir.x + g->cam.plane.x * r.camera_x,
-								   g->cam.dir.y + g->cam.plane.y * r.camera_x);
-		r.map = create_vector((int)g->cam.pos.x, (int)g->cam.pos.y);
-		r.delta_dist = create_fvector(fabs(1 / r.ray_dir.x), fabs(1 / r.ray_dir.y));
-		prehit_wall(g, &r);	
-		hit_wall(&r, worldMap);			//DDA
+		r.ray_dir = (t_fvector){g->cam.dir.x + g->cam.plane.x * r.camera_x,
+								g->cam.dir.y + g->cam.plane.y * r.camera_x};
+		r.map = (t_vector){(int)g->cam.pos.x, (int)g->cam.pos.y};
+		r.delta_dist = (t_fvector){fabs(1 / r.ray_dir.x), fabs(1 / r.ray_dir.y)};
+		prehit_wall(g, &r);
+		hit_wall(&r, worldMap);
 		fix_fisheye(g, &r);
 		calculate_wall_height(g, &r);
 		t_color color;
+		t_color color2;
 		if (worldMap[r.map.x][r.map.y] == 1)
 			color = create_color(155, 155, 25, 0);
-
-		if (r.side == 1) 
-			color.c = color.c / 2;
-		draw_vertical_line(x, r.wall_start, r.wall_end, color, g);
+		color2 = create_color(55, 55, 25, 0);
+//		if (r.side == 1) 
+//			color.c = color.c / 2;
+		draw_vertical_line(x, r.wall_start, r.wall_end, r.side == 1 ? color : color2, g);
 	}
 }
 
 void move(t_game *g, int worldMap[24][24])
 {
 	t_camera *cam = &(g->cam);
-	double speed = 1;
+	double speed = 0.4;
+	double lat_speed = 0.2;
 	double rot_speed = 0.1;
 
+//	t_camera old_cam = g->cam;
+
 	(void)cam;
+	printf("pos.x: %f | pos.y: %f\ndir.x: %f | dir.y: %f", g->cam.pos.x, g->cam.pos.y, g->cam.dir.x, g->cam.dir.y);
 	if (g->key_w)
     {
 		if (!worldMap[(int)(g->cam.pos.x + g->cam.dir.x * speed)][(int)g->cam.pos.y])
@@ -147,39 +155,31 @@ void move(t_game *g, int worldMap[24][24])
 		if(!worldMap[(int)g->cam.pos.x][(int)(g->cam.pos.y - g->cam.dir.y * speed)])
 			g->cam.pos.y -= g->cam.dir.y * speed;
     }
-/*    if (g->key_a)
+    if (g->key_a)
     {
-		if(!worldMap[(int)()][(int)()])
-			g->cam.pos.x += g->cam.dir.x * speed;
-		if(!worldMap[(int)()][(int)()])
-			g->cam.pos.y += g->cam.dir.y * speed;
+		if(!worldMap[(int)(g->cam.pos.x - g->cam.plane.x * lat_speed)][(int)g->cam.pos.y])
+			g->cam.pos.x -= g->cam.plane.x * lat_speed;
+		if(!worldMap[(int)g->cam.pos.x][(int)(g->cam.pos.y - g->cam.plane.y * lat_speed)])
+			g->cam.pos.y -= g->cam.plane.y * lat_speed;
     }
     if (g->key_d)
     {
-		if(!worldMap[(int)(g->cam.pos.x - g->cam.dir.x * speed)][(int)g->cam.pos.y])
-			g->cam.pos.y -= g->cam.dir.y * speed;
-		if(!worldMap[(int)g->cam.pos.x][(int)(g->cam.pos.y - g->cam.dir.y * speed)])
-			g->cam.pos.y -= g->cam.dir.y * speed;
-			}*/
-    if (g->key_right)
-    {
-		double old_dir_x = g->cam.dir.x;
-		g->cam.dir.x = g->cam.dir.x * cos(-rot_speed) - g->cam.dir.y * sin(-rot_speed);
-		g->cam.dir.y = old_dir_x * sin(-rot_speed) + g->cam.dir.y * cos(-rot_speed);
-
-		double old_plane_x = g->cam.plane.x;
-		g->cam.plane.x = g->cam.plane.x * cos(-rot_speed) - g->cam.plane.y * sin(-rot_speed);
-		g->cam.plane.y = old_plane_x * sin(-rot_speed) + g->cam.plane.y * cos(-rot_speed);
+		if (!worldMap[(int)(g->cam.pos.x + g->cam.plane.x * lat_speed)][(int)g->cam.pos.y])
+			g->cam.pos.x += g->cam.plane.x * lat_speed;
+		if (!worldMap[(int)g->cam.pos.x][(int)(g->cam.pos.y + g->cam.plane.y * lat_speed)])
+			g->cam.pos.y += g->cam.plane.y * lat_speed;
     }
-    if (g->key_left)
+    if (g->key_right || g->key_left)
     {
-		double old_dir_x = g->cam.dir.x;
+		double old  = g->cam.dir.x;
+		rot_speed = g->key_right ? -rot_speed : rot_speed;
+
 		g->cam.dir.x = g->cam.dir.x * cos(rot_speed) - g->cam.dir.y * sin(rot_speed);
-		g->cam.dir.y = old_dir_x * sin(rot_speed) + g->cam.dir.y * cos(rot_speed);
-		double old_plane_x = g->cam.plane.x;
+		g->cam.dir.y = old * sin(rot_speed) + g->cam.dir.y * cos(rot_speed);
+		old = g->cam.plane.x;
 		g->cam.plane.x = g->cam.plane.x * cos(rot_speed) - g->cam.plane.y * sin(rot_speed);
-		g->cam.plane.y = old_plane_x * sin(rot_speed) + g->cam.plane.y * cos(rot_speed);
-		}
+		g->cam.plane.y = old * sin(rot_speed) + g->cam.plane.y * cos(rot_speed);
+	}
 }
 
 int do_job(t_game *g)
@@ -188,28 +188,28 @@ int do_job(t_game *g)
 	int worldMap[24][24]=
 {
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+	{1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,1,1,1,0,1,0,0,0,1,1,0,0,0,0,1,1,1,1,1,0,0,0,1},
+	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1},
+	{1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,1},
+	{1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0,1,0,0,0,1},
+	{1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,1,0,0,0,0,0,0,0,1},
 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,1,1,1,1,1,0,0,0,1},
-	{1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,1},
-	{1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,1},
-	{1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,1,1,0,0,1,0,0,0,1},
-	{1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,1,0,1,1,1,0,0,0,1},
+	{1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,1,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,1,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,1,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,1,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,1,1,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,1,0,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,1,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,1,0,1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1},
+	{1,1,0,1,1,1,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,1,0,1},
+	{1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,1},
+	{1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,1},
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
@@ -227,7 +227,7 @@ int	main(int ac, char **av)
 	(void)av;
 	if (ac == 2)
 	{
-		load_cub(av[1], &g);
+//		load_cub(av[1], &g);
 		printf("check game struct here");
 //		exit(0);
 	}
@@ -237,13 +237,13 @@ int	main(int ac, char **av)
 		exit(0);
 	}
 	
-	g.app = create_application(g.app.resolution.x,g.app.resolution.y,"Shit");
-	g.cam = create_camera((t_fvector){0.0,0.0},(t_fvector){0.0,0.0},(t_fvector){0.0,0.0});
+	g.app = create_application(RES_X, RES_Y,"Shit");
 	g.map = malloc(sizeof(uint8_t) * 24 * 24);
 
-	g.cam.pos.x = 18; g.cam.pos.y = 17; // start pos 
-	g.cam.dir.x = -1; g.cam.dir.y = -0.4; //initial direction vector
-	g.cam.plane.x = 0; g.cam.plane.y = 0.66; //the 2d raycaster version of camera plane
+//	g.cam = create_camera((t_fvector){0.0,0.0},(t_fvector){0.0,0.0},(t_fvector){0.0,0.0});
+	g.cam.pos.x = 17; g.cam.pos.y = 17; // start pos 
+	g.cam.dir.x = -1.0; g.cam.dir.y = 0.0; //initial direction vector
+	g.cam.plane.x = 0; g.cam.plane.y = 0.57; //the "screen"
 
 	mlx_do_key_autorepeatoff(g.app.mlx_ptr);
 	mlx_hook(g.app.win_ptr, KEYPRESS, KEYPRESSMASK, is_key_press, &g);
