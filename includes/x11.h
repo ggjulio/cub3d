@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 15:36:53 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/22 19:42:19 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/24 15:24:15 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define X11_H
 
 /*
-** Disclamer: Bit shifting is now prohibed by 42 norm in header file. 
+** Bit shifting is prohibed by 42 norm in header file.
 ** Thus, all defines are in decimal
 */
 

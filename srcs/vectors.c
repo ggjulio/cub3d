@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 14:12:16 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/24 14:12:20 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/24 15:39:53 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ t_vector	create_vector(int x, int y)
 
 	vector.x = x;
 	vector.y = y;
-
 	return (vector);
 }
 
@@ -28,6 +27,5 @@ t_fvector	create_fvector(double x, double y)
 
 	fvector.x = x;
 	fvector.y = y;
-
 	return (fvector);
 }

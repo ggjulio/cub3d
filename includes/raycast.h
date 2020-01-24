@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 20:42:53 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/22 15:36:32 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/24 15:23:50 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 /*
 ** camera_x 	: x-coordinate in camera space
-** ray_dir  	: direction of the ray. 
+** ray_dir  	: direction of the ray.
 ** map			: In which case of the map the camera is. (in decimal)
 ** delta_dist	: Length of ray for x and y, from one x/y to another x/y case
 ** step			: number of steps related to delta_dist
