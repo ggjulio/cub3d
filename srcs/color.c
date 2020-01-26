@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 13:51:02 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/24 15:35:47 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/26 15:43:25 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,44 @@ t_color		create_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 	return (color);
 }
 
-t_color		*malloc_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
+int     valid_color_fmt(char *format)
 {
-	t_color *color_ptr;
+	int	i;
+	int	nb_comma;
+	int nb;
 
-	if (!(color_ptr = malloc(sizeof(t_color))))
-		return (NULL);
-	*color_ptr = create_color(r, g, b, a);
-	return (color_ptr);
+	nb_comma =0;
+	i = -1;
+	nb = 0;
+	while (format[++i])
+	{
+		if (!ft_isdigit(format[i]) && format[i] != ',')
+			return (0);
+		if (format[i] == ',')
+		{
+			if (nb > 255)
+				return (0);
+			nb_comma++;
+			nb = 0;
+		}
+		else
+			nb = nb * 10 + format[i] - '0';
+	}
+	if (nb_comma != 2 || nb > 255)
+		return (0);
+	return (1);
 }
 
-void		destroy_color(t_color to_destroy)
+/*
+t_color create_color_from_str(char *format)
 {
-	(void)to_destroy;
-}
+    t_color color;
+	int r;
+	int g;
+	int b;
 
-void		free_color(t_color *to_free)
-{
-	destroy_color(*to_free);
-	free(to_free);
+//    split = ft_split(format, ',');
+//	ft_atoi
+    return (color);
 }
+*/

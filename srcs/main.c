@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:14:37 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/26 13:43:55 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/26 15:44:09 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,27 @@ int	main(int ac, char **av)
 	if (ac == 2)
 	{
 //		load_cub(av[1], &g);
+		char *str = "253,1,255";
+		printf(">>>>>>%d|\n", valid_color_fmt(str));
+		str = "253,,2553";
+		printf(">>>>>>%d|\n", valid_color_fmt(str));
+		str = "253,3,";
+		printf(">>>>>>%d|\n", valid_color_fmt(str));
+		str = "2,3,";
+		printf(">>>>>>%d|\n", valid_color_fmt(str));
+		str = "2,3,3";
+		printf(">>>>>>%d|\n", valid_color_fmt(str));
+		str = ",,";
+		printf(">>>>>>%d|\n", valid_color_fmt(str));
+		str = "2,3,256";
+		printf(">>>>>>%d|\n", valid_color_fmt(str));
+		str = "2,256,255";
+		printf(">>>>>>%d|\n", valid_color_fmt(str));
+
+
+
 		printf("check game struct here");
-//		exit(0);
+		exit(0);
 	}
 	else
 	{

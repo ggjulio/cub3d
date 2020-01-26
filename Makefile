@@ -32,7 +32,7 @@ _IWHITE=$'\x1b[47m
 #    By: juligonz <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 18:50:56 by juligonz          #+#    #+#              #
-#    Updated: 2020/01/26 13:44:14 by juligonz         ###   ########.fr        #
+#    Updated: 2020/01/26 15:07:24 by juligonz         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -41,7 +41,7 @@ NAME = Cub3D
 LIB = ft mlx
 FRAMEWORKS = OpenGL AppKit
 
-SRC = main.c color.c vectors.c application.c draw.c game.c events.c parser.c raycasting.c move.c
+SRC = main.c color.c vectors.c application.c draw.c game.c events.c parser.c raycasting.c move.c texture.c
 SRC := $(addprefix srcs/, $(SRC))
 
 OBJ = $(SRC:.c=.o)

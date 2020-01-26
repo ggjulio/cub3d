@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/26 13:17:50 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/26 13:49:33 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ void	calculate_wall_height(t_game *g, t_raycast *r)
 	r->wall_end = line_height / 2 + RES_Y / 2;
 	if (r->wall_end >= RES_Y)
 		r->wall_end = RES_Y - 1;
-	printf("line_height:%d   start: %d   end: %d   dir.x: %f   dir.y: %f\n", line_height, r->wall_start, r->wall_end, g->cam.dir.x, g->cam.dir.y);
 }
 
 void raycasting(t_game *g, int worldMap[24][24])

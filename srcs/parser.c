@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 13:59:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/23 21:44:19 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/26 14:04:56 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int parse_resolution(char **words, t_game *g)
 
 int parse_north(char **words, t_game *g)
 {
-
+	
 	(void)g;
 	(void)words;
 	return(0);
@@ -91,7 +91,9 @@ void free_2d_array(char **arr)
 	i = 0;
 	while (arr[i])
 		free(arr[i++]);
+	free(arr[i]);
 	free(arr);
+	arr = NULL;
 }
 
 int parse(char *line, t_game *g)
@@ -119,8 +121,6 @@ int parse(char *line, t_game *g)
 			return (0);
 		}
 	free_2d_array(words);
-	free(words);
-	free(words);
 	return (-1);
 }
 
