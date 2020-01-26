@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 17:14:55 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/24 15:34:20 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/26 18:35:25 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_application	create_application(int size_x, int size_y, char *title)
 void			destroy_application(t_application to_destroy)
 {
 	mlx_destroy_image(to_destroy.mlx_ptr, to_destroy.img_ptr);
-	mlx_destroy_window(to_destroy.mlx_ptr, to_destroy.img_ptr);
+	mlx_destroy_window(to_destroy.mlx_ptr, to_destroy.win_ptr);
 }
 
 void			put_pixel(t_application *app, t_vector coord, t_color color)
@@ -42,6 +42,19 @@ void			put_pixel(t_application *app, t_vector coord, t_color color)
 		return ;
 	pixels = (int *)(app->pixels);
 	pixels[coord.x + (app->resolution.x * coord.y)] = color.c;
+}
+
+/*
+**  extention can be 'xpm' or 'png'.
+*/
+
+void				*load_img(void *mlx_ptr, char *filename, char *extention, t_vector *size)
+{
+	if (ft_strcmp("xpn", extention) == 0)
+		return (mlx_xpm_file_to_image(mlx_ptr, filename, &(size->x), &(size->y)));
+//	else if (ft_strcmp("png", extention) == 0)
+//		return (mlx_png_file_to_image(mlx_ptr, filename, &(size->x), &(size->y)));
+	return (NULL);
 }
 
 void			render_application(t_application *app)

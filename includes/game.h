@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/26 13:59:49 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/26 18:32:34 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,16 @@ typedef struct	s_texture
 {
 	char		id[3];
 	t_color		color;
-	char		*tex_path;
+	char		*filename;
+	void		*img_ptr;
+	char		*pixels;
+	int			bits_per_pixel;
+	int			size_line;
+	int			endian;
+	t_vector	size;
 	uint8_t		is_texture:1;
 	uint8_t		is_color:1;
+	uint8_t		is_valid:1;
 	uint8_t		remaining:6;
 }				t_texture;
 
@@ -47,6 +54,7 @@ typedef struct	s_game
 	t_texture		west;
 	t_texture		ceil;
 	t_texture		floor;
+	t_texture		sprite;
 
 	uint16_t		key_w:1;
 	uint16_t		key_a:1;

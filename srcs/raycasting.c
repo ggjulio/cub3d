@@ -6,26 +6,23 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/26 13:49:33 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/26 19:35:24 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-#define RES_X 1000
-#define RES_Y 800
-
-void draw_vertical_line(int x, int y_start, int y_end, t_color color, t_game *game)
+void draw_vertical_line(int x, int y_start, int y_end,  t_game *g)
 {
-	t_color ceil = create_color(75,155,105, 0);
-	t_color floor = create_color(55,55,55, 0);
-
 	while (y_start < y_end)
-		put_pixel(&(game->app), create_vector(x, y_start++), color);
-	while (y_end < RES_Y)
 	{
-		put_pixel(&(game->app), create_vector(x, y_end), floor);
-		put_pixel(&(game->app), create_vector(x, RES_Y - y_end), ceil);
+//		put_pixel(&(g->app), create_vector(x, y_start++), g->north.color);
+	
+	}
+	while (y_end < g->app.resolution.y)
+	{
+		put_pixel(&(g->app), create_vector(x, y_end), g->floor.color);
+		put_pixel(&(g->app), create_vector(x, g->app.resolution.y - y_end), g->ceil.color);
 		y_end++;
 	}
 }
@@ -89,25 +86,25 @@ void	fix_fisheye(t_game *g, t_raycast *r)
 
 void	calculate_wall_height(t_game *g, t_raycast *r)
 {
-	int line_height = (int)(RES_Y / r->non_eucl_dist);
-	(void)g;
+	int line_height = (int)(g->app.resolution.y / r->non_eucl_dist);
 
-	r->wall_start = -line_height / 2 + RES_Y / 2;
+	r->wall_start = -line_height / 2 + g->app.resolution.y / 2;
 	if (r->wall_start < 0)
 		r->wall_start = 0;
-	r->wall_end = line_height / 2 + RES_Y / 2;
-	if (r->wall_end >= RES_Y)
-		r->wall_end = RES_Y - 1;
+	r->wall_end = line_height / 2 + g->app.resolution.y / 2;
+	if (r->wall_end >= g->app.resolution.y)
+		r->wall_end = g->app.resolution.y - 1;
 }
 
 void raycasting(t_game *g, int worldMap[24][24])
 {
 	int x = -1;
 	t_raycast r;
-	while (++x < RES_X)
+
+	while (++x < g->app.resolution.x)
 	{
 		// calculate ray position and direction
-		r.camera_x = 2 * x / (double)RES_Y - 1;
+		r.camera_x = 2 * x / (double)(g->app.resolution.y) - 1;
 		r.ray_dir = (t_fvector){g->cam.dir.x + g->cam.plane.x * r.camera_x,
 								g->cam.dir.y + g->cam.plane.y * r.camera_x};
 		r.map = (t_vector){(int)g->cam.pos.x, (int)g->cam.pos.y};
@@ -116,14 +113,14 @@ void raycasting(t_game *g, int worldMap[24][24])
 		hit_wall(&r, worldMap);
 		fix_fisheye(g, &r);
 		calculate_wall_height(g, &r);
-		t_color color;
-		t_color color2;
-		if (worldMap[r.map.x][r.map.y] == 1)
-			color = create_color(155, 155, 25, 0);
-		color2 = create_color(55, 55, 25, 0);
+//		t_color color;
+//		t_color color2;
+//		if (worldMap[r.map.x][r.map.y] == 1)
+//			color = create_color(155, 155, 25, 0);
+//		color2 = create_color(55, 55, 25, 0);
 //		if (r.side == 1) 
 //			color.c = color.c / 2;
-		draw_vertical_line(x, r.wall_start, r.wall_end, r.side == 1 ? color : color2, g);
+		draw_vertical_line(x, r.wall_start, r.wall_end, g);
 	}
 }
 

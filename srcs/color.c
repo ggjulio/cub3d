@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 13:51:02 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/26 15:50:50 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/26 15:54:11 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,9 @@ int			valid_color_fmt(char *format)
 t_color		create_color_from_str(char *format)
 {
 	t_color color;
+	char	**arr;
 
 	arr = ft_split(format, ',');
-	color = create_color(ft_atoi(arr[0]), ft_atoi(arr[1]), ft_atoi(arr[1]), 0);
+	color = create_color(ft_atoi(arr[0]), ft_atoi(arr[1]), ft_atoi(arr[2]), 0);
 	return (color);
 }

@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:14:37 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/26 15:44:44 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/26 18:42:07 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,12 @@ int	main(int ac, char **av)
 	(void)av;
 	if (ac == 2)
 	{
-//		load_cub(av[1], &g);
-
-		printf("check game struct here");
-		exit(0);
+		if (load_cub(av[1], &g) == -1)
+		{
+			ft_printf("syntax error in file : %s\n", av[1]);
+			exit(0);
+		}
+//		exit(0);
 	}
 	else
 	{
@@ -71,7 +73,7 @@ int	main(int ac, char **av)
 		exit(0);
 	}
 	
-	g.app = create_application(RES_X, RES_Y,"Shit");
+//	g.app = create_application(RES_X, RES_Y,"Shit");
 	g.map = malloc(sizeof(uint8_t) * 24 * 24);
 
 	g.cam.pos.x = 17; g.cam.pos.y = 17; // start pos 
