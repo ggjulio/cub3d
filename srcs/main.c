@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:14:37 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/26 18:42:07 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/26 21:01:52 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	main(int ac, char **av)
 	{
 		if (load_cub(av[1], &g) == -1)
 		{
-			ft_printf("syntax error in file : %s\n", av[1]);
+			ft_printf("syntax error in file !");
 			exit(0);
 		}
 //		exit(0);
@@ -74,7 +74,6 @@ int	main(int ac, char **av)
 	}
 	
 //	g.app = create_application(RES_X, RES_Y,"Shit");
-	g.map = malloc(sizeof(uint8_t) * 24 * 24);
 
 	g.cam.pos.x = 17; g.cam.pos.y = 17; // start pos 
 	g.cam.dir.x = -1.0; g.cam.dir.y = 0.0; //initial direction vector

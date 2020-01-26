@@ -6,17 +6,19 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/26 19:35:24 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/26 20:16:38 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+
+
 void draw_vertical_line(int x, int y_start, int y_end,  t_game *g)
 {
 	while (y_start < y_end)
 	{
-//		put_pixel(&(g->app), create_vector(x, y_start++), g->north.color);
+		put_pixel(&(g->app), create_vector(x, y_start++), g->north.color);
 	
 	}
 	while (y_end < g->app.resolution.y)
@@ -79,14 +81,14 @@ void	hit_wall(t_raycast *r, int worldMap[24][24])
 void	fix_fisheye(t_game *g, t_raycast *r)
 {
 	if (r->side == 0) 
-		r->non_eucl_dist = (r->map.x - g->cam.pos.x + (1 - r->step.x) / 2) / r->ray_dir.x;
+		r->perpendicular_dist = (r->map.x - g->cam.pos.x + (1 - r->step.x) / 2) / r->ray_dir.x;
 	else
-		r->non_eucl_dist = (r->map.y - g->cam.pos.y + (1 - r->step.y) / 2) / r->ray_dir.y;
+		r->perpendicular_dist = (r->map.y - g->cam.pos.y + (1 - r->step.y) / 2) / r->ray_dir.y;
 }
 
 void	calculate_wall_height(t_game *g, t_raycast *r)
 {
-	int line_height = (int)(g->app.resolution.y / r->non_eucl_dist);
+	int line_height = (int)(g->app.resolution.y / r->perpendicular_dist);
 
 	r->wall_start = -line_height / 2 + g->app.resolution.y / 2;
 	if (r->wall_start < 0)
@@ -113,13 +115,22 @@ void raycasting(t_game *g, int worldMap[24][24])
 		hit_wall(&r, worldMap);
 		fix_fisheye(g, &r);
 		calculate_wall_height(g, &r);
-//		t_color color;
-//		t_color color2;
-//		if (worldMap[r.map.x][r.map.y] == 1)
-//			color = create_color(155, 155, 25, 0);
-//		color2 = create_color(55, 55, 25, 0);
-//		if (r.side == 1) 
-//			color.c = color.c / 2;
+
+		//calculate value of wallX
+/*		double wallX; //where exactly the wall was hit
+		if (side == 0) 
+			r.wall_x = g->cam.pos.y + r.perpendicular_dist * r.ray_dir.y;
+		else
+			r.wall_x = g->cam.pos.x + r.perpendicular_dist * r.ray_dir.x;
+		r.wall_x -= floor(r.wall_x);
+
+		//x coordinate on the texture
+		int texX = (int)(wallX * (double(g->);
+		if (side == 0 && rayDirX > 0)
+			texX = texWidth - texX - 1;
+		if (side == 1 && rayDirY < 0) 
+		texX = texWidth - texX - 1;
+*/
 		draw_vertical_line(x, r.wall_start, r.wall_end, g);
 	}
 }

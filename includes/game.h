@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/26 18:32:34 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/26 21:01:37 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct	s_game
 	t_texture		ceil;
 	t_texture		floor;
 	t_texture		sprite;
-
+	
 	uint16_t		key_w:1;
 	uint16_t		key_a:1;
 	uint16_t		key_s:1;
