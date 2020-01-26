@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 13:59:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/26 14:04:56 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/26 15:47:26 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int parse_map(char **words, t_game *g)
 	return(0);
 }
 
-void free_2d_array(char **arr)
+void free_split(char **arr)
 {
 	int i;
 

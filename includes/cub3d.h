@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/26 15:26:42 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/26 15:47:43 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 
 int	load_cub(char *file, t_game *g);
 int	exit_cub3d(t_game *g);
+void free_split(char **arr);
 
 /*
 ** events.c

@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 13:51:02 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/26 15:43:25 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/26 15:50:50 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ t_color		create_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 	return (color);
 }
 
-int     valid_color_fmt(char *format)
+int			valid_color_fmt(char *format)
 {
 	int	i;
 	int	nb_comma;
 	int nb;
 
-	nb_comma =0;
+	nb_comma = 0;
 	i = -1;
 	nb = 0;
 	while (format[++i])
@@ -51,16 +51,11 @@ int     valid_color_fmt(char *format)
 	return (1);
 }
 
-/*
-t_color create_color_from_str(char *format)
+t_color		create_color_from_str(char *format)
 {
-    t_color color;
-	int r;
-	int g;
-	int b;
+	t_color color;
 
-//    split = ft_split(format, ',');
-//	ft_atoi
-    return (color);
+	arr = ft_split(format, ',');
+	color = create_color(ft_atoi(arr[0]), ft_atoi(arr[1]), ft_atoi(arr[1]), 0);
+	return (color);
 }
-*/
