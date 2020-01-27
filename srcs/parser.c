@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 13:59:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/27 18:18:45 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/27 19:54:17 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 typedef int	(*t_handler)(char **words, t_game *g);
 
-int count_words(char **words)
+int		count_words(char **words)
 {
 	int len;
 
@@ -23,95 +23,94 @@ int count_words(char **words)
 		len++;
 	return (len);
 }
-int parse_resolution(char **words, t_game *g)
+
+int		parse_resolution(char **words, t_game *g)
 {
-	if (count_words(words) != 3 || ft_atoi(words[1]) < 100 || ft_atoi(words[2]) < 100)
+	if (count_words(words) != 3 || ft_atoi(words[1]) < 100
+		|| ft_atoi(words[2]) < 100)
 		return (-1);
 	g->app = create_application(ft_atoi(words[1]), ft_atoi(words[2]), "Coucou");
-	return(0);
+	return (0);
 }
 
-int parse_north(char **words, t_game *g)
+int		parse_north(char **words, t_game *g)
 {
 	if (count_words(words) != 2)
 		return (-1);
 	g->north = create_texture(words[0], words[1]);
 	if (g->north.is_valid)
-		return(0);
+		return (0);
 	return (-1);
 }
 
-int parse_south(char **words, t_game *g)
+int		parse_south(char **words, t_game *g)
 {
 	if (count_words(words) != 2)
 		return (-1);
 	g->south = create_texture(words[0], words[1]);
 	if (g->south.is_valid)
-		return(0);
+		return (0);
 	return (-1);
 }
 
-int parse_west(char **words, t_game *g)
+int		parse_west(char **words, t_game *g)
 {
 	if (count_words(words) != 2)
 		return (-1);
 	g->west = create_texture(words[0], words[1]);
 	if (g->west.is_valid)
-		return(0);
+		return (0);
 	return (-1);
 }
 
-int parse_east(char **words, t_game *g)
+int		parse_east(char **words, t_game *g)
 {
 	if (count_words(words) != 2)
 		return (-1);
 	g->east = create_texture(words[0], words[1]);
 	if (g->east.is_valid)
-		return(0);
+		return (0);
 	return (-1);
 }
 
-int parse_floor(char **words, t_game *g)
+int		parse_floor(char **words, t_game *g)
 {
 	if (count_words(words) != 2)
 		return (-1);
 	g->floor = create_texture(words[0], words[1]);
 	if (g->floor.is_valid)
-		return(0);
+		return (0);
 	return (-1);
 }
 
-int parse_ceil(char **words, t_game *g)
+int		parse_ceil(char **words, t_game *g)
 {
 	if (count_words(words) != 2)
 		return (-1);
 	g->ceil = create_texture(words[0], words[1]);
 	if (g->ceil.is_valid)
-		return(0);
+		return (0);
 	return (-1);
 }
 
-int parse_sprite(char **words, t_game *g)
+int		parse_sprite(char **words, t_game *g)
 {
 	if (count_words(words) != 2)
 		return (-1);
 	g->sprite = create_texture(words[0], words[1]);
 	if (g->sprite.is_valid)
-		return(0);
+		return (0);
 	return (-1);
 }
 
-int parse_map(char **words, t_game *g)
+int		parse_map(char **words, t_game *g)
 {
-//	static char *map;
-//	char 
-	
 	(void)words;
 	(void)g;
-	return(0);
+	return (0);
 }
 
-void free_split(char **arr)
+void	free_split(char **arr)
 {
 	int i;
 
@@ -123,21 +122,18 @@ void free_split(char **arr)
 	arr = NULL;
 }
 
-int parse(char *line, t_game *g)
+int		parse(char *line, t_game *g)
 {
-	const char ids[10][3] = {"R", "NO", "SO", "WE", "EA", "F", "C", "S", "1", ""};
-	const t_handler jmp_table[9] = {parse_resolution,
-									parse_north,
-									parse_south,
-									parse_west,
-									parse_east,
-									parse_floor,
-									parse_ceil,
-									parse_sprite,
+	const char		ids[10][3] = {"R", "NO", "SO", "WE", "EA",
+									"F", "C", "S", "1", ""};
+	const t_handler jmp_table[9] = {parse_resolution, parse_north,
+									parse_south, parse_west,
+									parse_east, parse_floor,
+									parse_ceil, parse_sprite,
 									parse_map};
-	char **words;
-	int i;
-	int ret;
+	char			**words;
+	int				i;
+	int				ret;
 
 	words = ft_split(line, ' ');
 	i = -1;
@@ -152,11 +148,11 @@ int parse(char *line, t_game *g)
 	return (-1);
 }
 
-int load_cub(char *file, t_game *g)
+int		load_cub(char *file, t_game *g)
 {
-	char *line;
-	int ret;
-	int fd;
+	char	*line;
+	int		ret;
+	int		fd;
 
 	if (!ft_valid_extention(file, ".cub"))
 		return (-1);
