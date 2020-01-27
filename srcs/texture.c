@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 14:06:47 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/26 19:11:58 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/27 13:53:04 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int valid_id(char id[3])
 	return (0);
 }
 
-t_texture	create_texture(char id[3], char *value, t_game *g)
+t_texture	create_texture(char id[3], char *value)
 {
 	t_texture tex;
 
@@ -54,12 +54,16 @@ t_texture	create_texture(char id[3], char *value, t_game *g)
 		if ((tex.filename = malloc(sizeof(char) * ft_strlen(value))) == NULL)
 			return (tex);
 		ft_strcpy(tex.filename, value);
-		tex.img_ptr = mlx_xpm_file_to_image(g->app.mlx_ptr, tex.filename, &(tex.size.x), &(tex.size.y));
-		tex.pixels = mlx_get_data_addr(tex.img_ptr, &(tex.bits_per_pixel),
-									&(tex.size_line), &(tex.endian));
 		tex.is_valid = 1;
 	}
 	return (tex);
+}
+
+void	init_tex(t_texture *tex, t_game *g)
+{
+		tex->img_ptr = mlx_xpm_file_to_image(g->app.mlx_ptr, tex->filename, &(tex->size.x), &(tex->size.y));
+		tex->pixels = mlx_get_data_addr(tex->img_ptr, &(tex->bits_per_pixel),
+									&(tex->size_line), &(tex->endian));
 }
 
 void	destroy_texture(t_texture tex, t_game *g)

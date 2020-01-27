@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/26 18:18:37 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/27 14:04:19 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void move(t_game *g, int worldMap[24][24]);
 ** texture.c
 */
 
-t_texture	create_texture(char id[3], char *value, t_game *g);
+t_texture	create_texture(char id[3], char *value);
+void		destroy_texture(t_texture tex, t_game *g);
 
 #endif

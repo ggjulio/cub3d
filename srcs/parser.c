@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 13:59:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/26 20:57:18 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/27 14:05:40 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int parse_north(char **words, t_game *g)
 {
 	if (count_words(words) != 2)
 		return (-1);
-	g->north = create_texture(words[0], words[1], g);
+	g->north = create_texture(words[0], words[1]);
 	if (g->north.is_valid)
 		return(0);
 	return (-1);
@@ -45,7 +45,7 @@ int parse_south(char **words, t_game *g)
 {
 	if (count_words(words) != 2)
 		return (-1);
-	g->south = create_texture(words[0], words[1], g);
+	g->south = create_texture(words[0], words[1]);
 	if (g->south.is_valid)
 		return(0);
 	return (-1);
@@ -55,7 +55,7 @@ int parse_west(char **words, t_game *g)
 {
 	if (count_words(words) != 2)
 		return (-1);
-	g->west = create_texture(words[0], words[1], g);
+	g->west = create_texture(words[0], words[1]);
 	if (g->west.is_valid)
 		return(0);
 	return (-1);
@@ -65,7 +65,7 @@ int parse_east(char **words, t_game *g)
 {
 	if (count_words(words) != 2)
 		return (-1);
-	g->east = create_texture(words[0], words[1], g);
+	g->east = create_texture(words[0], words[1]);
 	if (g->east.is_valid)
 		return(0);
 	return (-1);
@@ -75,7 +75,7 @@ int parse_floor(char **words, t_game *g)
 {
 	if (count_words(words) != 2)
 		return (-1);
-	g->floor = create_texture(words[0], words[1], g);
+	g->floor = create_texture(words[0], words[1]);
 	if (g->floor.is_valid)
 		return(0);
 	return (-1);
@@ -85,7 +85,7 @@ int parse_ceil(char **words, t_game *g)
 {
 	if (count_words(words) != 2)
 		return (-1);
-	g->ceil = create_texture(words[0], words[1], g);
+	g->ceil = create_texture(words[0], words[1]);
 	if (g->ceil.is_valid)
 		return(0);
 	return (-1);
@@ -95,7 +95,7 @@ int parse_sprite(char **words, t_game *g)
 {
 	if (count_words(words) != 2)
 		return (-1);
-	g->sprite = create_texture(words[0], words[1], g);
+	g->sprite = create_texture(words[0], words[1]);
 	if (g->sprite.is_valid)
 		return(0);
 	return (-1);
@@ -175,8 +175,7 @@ int load_cub(char *file, t_game *g)
 
 int	exit_cub3d(t_game *g)
 {
-	(void)g;
-	//free tout
+	destroy_game(*g);
 	exit(0);
 	return(0);
 }

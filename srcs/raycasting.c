@@ -6,13 +6,11 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/26 20:16:38 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/27 13:46:29 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-
 
 void draw_vertical_line(int x, int y_start, int y_end,  t_game *g)
 {
@@ -59,7 +57,6 @@ void	hit_wall(t_raycast *r, int worldMap[24][24])
 {
 	while (1)
 	{
-		//jump to next map square, OR in x-direction, OR in y-direction
 		if (r->side_dist.x < r->side_dist.y)
 		{
 			r->side_dist.x += r->delta_dist.x;
@@ -105,7 +102,6 @@ void raycasting(t_game *g, int worldMap[24][24])
 
 	while (++x < g->app.resolution.x)
 	{
-		// calculate ray position and direction
 		r.camera_x = 2 * x / (double)(g->app.resolution.y) - 1;
 		r.ray_dir = (t_fvector){g->cam.dir.x + g->cam.plane.x * r.camera_x,
 								g->cam.dir.y + g->cam.plane.y * r.camera_x};
