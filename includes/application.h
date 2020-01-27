@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 12:46:35 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/26 18:31:47 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/27 16:38:46 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,5 @@ t_application	create_application(int size_x, int size_y, char *title);
 void			destroy_application(t_application to_destroy);
 void			put_pixel(t_application *app, t_vector coord, t_color color);
 void			render_application(t_application *app);
-void			*load_img(void *mlx_ptr, char *filename, char *extention, t_vector *size);
 
 #endif

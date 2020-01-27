@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:14:37 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/26 21:01:52 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/27 16:41:15 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,8 @@ int	main(int ac, char **av)
 		if (load_cub(av[1], &g) == -1)
 		{
 			ft_printf("syntax error in file !");
-			exit(0);
+			exit_game(0);
 		}
-//		exit(0);
 	}
 	else
 	{

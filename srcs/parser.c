@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 13:59:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/27 14:05:40 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/27 17:24:31 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,28 +152,45 @@ int parse(char *line, t_game *g)
 	return (-1);
 }
 
+/*
+** Usage : 
+**    valid_extention(filename, ".png");
+*/
+int valid_extention(char *filename, char *extention)
+{
+	char *file_ext;
+
+	file_ext = ft_strrchr(filename, '.');
+	if (ft_strcmp(file_ext, extention) == 0)
+		return (1);
+	return (0);
+}
+
 int load_cub(char *file, t_game *g)
 {
 	char *line;
 	int ret;
 	int fd;
 
+	if (!valid_extention(file, ".cub"))
+		return (-1);
 	fd = open(file, O_RDONLY);
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
-		ret = parse(line, g);
+		if (!line[0])
+			ret = parse(line, g);
 		free(line);
 		if (ret == -1)
 			return (-1);
 	}
-	ret = parse(line, g);
+//	ret = parse(line, g);
 	free(line);
 	if (ret == -1)
 		return (-1);
 	return (0);
 }
 
-int	exit_cub3d(t_game *g)
+int	exit_game(t_game *g)
 {
 	destroy_game(*g);
 	exit(0);

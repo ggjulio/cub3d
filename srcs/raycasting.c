@@ -6,19 +6,36 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/27 13:46:29 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/27 14:37:54 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+/*
+void draw_texel(int x, _game *g)
+{
+		//calculate value of wallX
+		double wallX; //where exactly the wall was hit
+		if (side == 0) 
+			r.wall_x = g->cam.pos.y + r.perpendicular_dist * r.ray_dir.y;
+		else
+			r.wall_x = g->cam.pos.x + r.perpendicular_dist * r.ray_dir.x;
+		r.wall_x -= floor(r.wall_x);
+
+		//x coordinate on the texture
+		int texX = (int)(wallX * (double(g->);
+		if (side == 0 && rayDirX > 0)
+			texX = texWidth - texX - 1;
+		if (side == 1 && rayDirY < 0) 
+		texX = texWidth - texX - 1;
+
+
+}*/
 
 void draw_vertical_line(int x, int y_start, int y_end,  t_game *g)
 {
 	while (y_start < y_end)
-	{
 		put_pixel(&(g->app), create_vector(x, y_start++), g->north.color);
-	
-	}
 	while (y_end < g->app.resolution.y)
 	{
 		put_pixel(&(g->app), create_vector(x, y_end), g->floor.color);
@@ -112,21 +129,6 @@ void raycasting(t_game *g, int worldMap[24][24])
 		fix_fisheye(g, &r);
 		calculate_wall_height(g, &r);
 
-		//calculate value of wallX
-/*		double wallX; //where exactly the wall was hit
-		if (side == 0) 
-			r.wall_x = g->cam.pos.y + r.perpendicular_dist * r.ray_dir.y;
-		else
-			r.wall_x = g->cam.pos.x + r.perpendicular_dist * r.ray_dir.x;
-		r.wall_x -= floor(r.wall_x);
-
-		//x coordinate on the texture
-		int texX = (int)(wallX * (double(g->);
-		if (side == 0 && rayDirX > 0)
-			texX = texWidth - texX - 1;
-		if (side == 1 && rayDirY < 0) 
-		texX = texWidth - texX - 1;
-*/
 		draw_vertical_line(x, r.wall_start, r.wall_end, g);
 	}
 }
