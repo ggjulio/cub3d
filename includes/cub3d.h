@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/27 16:40:30 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/27 18:19:07 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@
 */
 
 int	load_cub(char *file, t_game *g);
-int	exit_game(t_game *g);
 void free_split(char **arr);
 
 /*

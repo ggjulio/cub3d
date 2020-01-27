@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 16:44:33 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/27 16:40:44 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/27 18:16:46 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,5 @@ int	is_key_release(int key, t_game *g)
 int	close_program(int key, t_game *g)
 {
 	(void)key;
-	printf("red cross pressed\n");
 	return (exit_game(g));
 }

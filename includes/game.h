@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/27 14:05:06 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/27 18:18:27 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ typedef struct	s_game
 }				t_game;
 
 void        destroy_game(t_game g);
+int			exit_game(t_game *g);
 
 #endif

@@ -6,14 +6,11 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:14:37 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/27 16:41:15 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/27 18:14:23 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-#define RES_X 1000
-#define RES_Y 800
 
 int do_job(t_game *g)
 {
@@ -63,7 +60,7 @@ int	main(int ac, char **av)
 		if (load_cub(av[1], &g) == -1)
 		{
 			ft_printf("syntax error in file !");
-			exit_game(0);
+			exit_game(&g);
 		}
 	}
 	else
@@ -74,9 +71,13 @@ int	main(int ac, char **av)
 	
 //	g.app = create_application(RES_X, RES_Y,"Shit");
 
-	g.cam.pos.x = 17; g.cam.pos.y = 17; // start pos 
+	g.cam.pos.x = 17.0; g.cam.pos.y = 17.0; // start pos 
 	g.cam.dir.x = -1.0; g.cam.dir.y = 0.0; //initial direction vector
-	g.cam.plane.x = 0; g.cam.plane.y = 0.66; //the "screen"
+	g.cam.plane.x = 0.0; g.cam.plane.y = 0.66; //the "screen"
+
+	double old = g.cam.plane.x;
+    g.cam.plane.x = g.cam.plane.x * cos(0) - g.cam.plane.y * sin(0);
+    g.cam.plane.y = old * sin(0) + g.cam.plane.y * cos(0);
 
 	mlx_do_key_autorepeatoff(g.app.mlx_ptr);
 	mlx_hook(g.app.win_ptr, KEYPRESS, KEYPRESSMASK, is_key_press, &g);

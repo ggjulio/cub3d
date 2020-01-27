@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/27 14:37:54 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/27 18:27:25 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,10 @@ void	calculate_wall_height(t_game *g, t_raycast *r)
 
 void raycasting(t_game *g, int worldMap[24][24])
 {
-	int x = -1;
+	int x;
 	t_raycast r;
 
+	x = -1;
 	while (++x < g->app.resolution.x)
 	{
 		r.camera_x = 2 * x / (double)(g->app.resolution.y) - 1;
