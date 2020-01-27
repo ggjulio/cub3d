@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 17:14:55 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/27 16:38:23 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/27 19:57:58 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ t_application	create_application(int size_x, int size_y, char *title)
 {
 	t_application app;
 
-	app.resolution.x = size_x;
-	app.resolution.y = size_y;
+	app.res.x = size_x;
+	app.res.y = size_y;
 	app.title = title;
 	app.mlx_ptr = mlx_init();
 	app.win_ptr = mlx_new_window(app.mlx_ptr, size_x, size_y, title);
@@ -37,11 +37,11 @@ void			put_pixel(t_application *app, t_vector coord, t_color color)
 {
 	int *pixels;
 
-	if (coord.x < 0 || coord.y < 0 || coord.x >= app->resolution.x - 1
-		|| coord.y >= app->resolution.y - 1)
+	if (coord.x < 0 || coord.y < 0 || coord.x >= app->res.x - 1
+		|| coord.y >= app->res.y - 1)
 		return ;
 	pixels = (int *)(app->pixels);
-	pixels[coord.x + (app->resolution.x * coord.y)] = color.c;
+	pixels[coord.x + (app->res.x * coord.y)] = color.c;
 }
 
 void			render_application(t_application *app)

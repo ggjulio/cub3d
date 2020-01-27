@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 12:46:35 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/27 16:38:46 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/27 19:57:17 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct	s_resolution
 typedef struct	s_application
 {
 	char			*title;
-	t_resolution	resolution;
+	t_resolution	res;
 
 	void			*mlx_ptr;
 	void			*win_ptr;

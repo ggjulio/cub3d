@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 13:59:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/27 19:54:17 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/27 20:00:56 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int		parse_resolution(char **words, t_game *g)
 	if (count_words(words) != 3 || ft_atoi(words[1]) < 100
 		|| ft_atoi(words[2]) < 100)
 		return (-1);
-	g->app = create_application(ft_atoi(words[1]), ft_atoi(words[2]), "Coucou");
+	g->app.res.x = ft_atoi(words[1]);
+	g->app.res.y = ft_atoi(words[2]);
 	return (0);
 }
 

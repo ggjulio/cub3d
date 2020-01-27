@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:14:37 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/27 18:14:23 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/27 20:07:10 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	main(int ac, char **av)
 {
 	t_game			g;
 
-	(void)av;
 	if (ac == 2)
 	{
 		if (load_cub(av[1], &g) == -1)
@@ -69,11 +68,11 @@ int	main(int ac, char **av)
 		exit(0);
 	}
 	
-//	g.app = create_application(RES_X, RES_Y,"Shit");
+	g.app = create_application(g.app.res.x, g.app.res.y,"Shit");
 
-	g.cam.pos.x = 17.0; g.cam.pos.y = 17.0; // start pos 
-	g.cam.dir.x = -1.0; g.cam.dir.y = 0.0; //initial direction vector
-	g.cam.plane.x = 0.0; g.cam.plane.y = 0.66; //the "screen"
+	g.cam.pos.x = 17.0 + 0.5; g.cam.pos.y = 17.0 + 0.5; 
+	g.cam.dir.x = -1.0; g.cam.dir.y = 0.0;
+	g.cam.plane.x = 0.0; g.cam.plane.y = 0.66;
 
 	double old = g.cam.plane.x;
     g.cam.plane.x = g.cam.plane.x * cos(0) - g.cam.plane.y * sin(0);

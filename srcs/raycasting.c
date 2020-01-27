@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/27 18:27:25 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/27 19:59:06 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void draw_vertical_line(int x, int y_start, int y_end,  t_game *g)
 {
 	while (y_start < y_end)
 		put_pixel(&(g->app), create_vector(x, y_start++), g->north.color);
-	while (y_end < g->app.resolution.y)
+	while (y_end < g->app.res.y)
 	{
 		put_pixel(&(g->app), create_vector(x, y_end), g->floor.color);
-		put_pixel(&(g->app), create_vector(x, g->app.resolution.y - y_end), g->ceil.color);
+		put_pixel(&(g->app), create_vector(x, g->app.res.y - y_end), g->ceil.color);
 		y_end++;
 	}
 }
@@ -102,14 +102,14 @@ void	fix_fisheye(t_game *g, t_raycast *r)
 
 void	calculate_wall_height(t_game *g, t_raycast *r)
 {
-	int line_height = (int)(g->app.resolution.y / r->perpendicular_dist);
+	int line_height = (int)(g->app.res.y / r->perpendicular_dist);
 
-	r->wall_start = -line_height / 2 + g->app.resolution.y / 2;
+	r->wall_start = -line_height / 2 + g->app.res.y / 2;
 	if (r->wall_start < 0)
 		r->wall_start = 0;
-	r->wall_end = line_height / 2 + g->app.resolution.y / 2;
-	if (r->wall_end >= g->app.resolution.y)
-		r->wall_end = g->app.resolution.y - 1;
+	r->wall_end = line_height / 2 + g->app.res.y / 2;
+	if (r->wall_end >= g->app.res.y)
+		r->wall_end = g->app.res.y - 1;
 }
 
 void raycasting(t_game *g, int worldMap[24][24])
@@ -118,9 +118,9 @@ void raycasting(t_game *g, int worldMap[24][24])
 	t_raycast r;
 
 	x = -1;
-	while (++x < g->app.resolution.x)
+	while (++x < g->app.res.x)
 	{
-		r.camera_x = 2 * x / (double)(g->app.resolution.y) - 1;
+		r.camera_x = 2 * x / (double)(g->app.res.y) - 1;
 		r.ray_dir = (t_fvector){g->cam.dir.x + g->cam.plane.x * r.camera_x,
 								g->cam.dir.y + g->cam.plane.y * r.camera_x};
 		r.map = (t_vector){(int)g->cam.pos.x, (int)g->cam.pos.y};
