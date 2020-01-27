@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 13:59:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/27 17:24:31 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/27 17:43:42 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,13 +177,13 @@ int load_cub(char *file, t_game *g)
 	fd = open(file, O_RDONLY);
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
-		if (!line[0])
+		if (line[0])
 			ret = parse(line, g);
 		free(line);
 		if (ret == -1)
 			return (-1);
 	}
-//	ret = parse(line, g);
+	ret = parse(line, g);
 	free(line);
 	if (ret == -1)
 		return (-1);
