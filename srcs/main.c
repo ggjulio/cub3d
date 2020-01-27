@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:14:37 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/27 20:07:10 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/27 22:45:22 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,12 @@ int	main(int ac, char **av)
 {
 	t_game			g;
 
+	ft_bzero(&g, sizeof(t_game));
 	if (ac == 2)
 	{
 		if (load_cub(av[1], &g) == -1)
 		{
-			ft_printf("syntax error in file !");
+			printf("syntax error in file ![1]    42232 segmentation faulte\n" );
 			exit_game(&g);
 		}
 	}
@@ -67,7 +68,6 @@ int	main(int ac, char **av)
 		printf(".cub file missing\n");
 		exit(0);
 	}
-	
 	g.app = create_application(g.app.res.x, g.app.res.y,"Shit");
 
 	g.cam.pos.x = 17.0 + 0.5; g.cam.pos.y = 17.0 + 0.5; 
