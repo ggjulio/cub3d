@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:00:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/28 22:27:55 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/28 22:30:10 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,20 @@ int		valid_line_values(char *line, t_game *g)
 	static uint8_t	is_pos;
 	int 			i;
 
-	(void)is_pos;
 	i = 0;
 	if (line[g->map_len_x - 1] != '1')
 		return (0);
-//	while (line[++i])
-//	{
-//		
-//	}
+	while (line[++i])
+	{
+		if (in_set(line[i], "NSEW"))
+		{
+			if (is_pos)
+				return (0);
+			is_pos = 1;
+		}
+		if (!in_set(line[i], "012NSEW"))
+			return (0);
+	}
 	return (1);
 }
 
