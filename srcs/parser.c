@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 13:59:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/28 17:34:40 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/28 21:11:08 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		parse_resolution(char **words, char *line, t_game *g)
 int		parse_north(char **words, char *line, t_game *g)
 {
 	(void)line;
-	if (count_words(words) != 2 || g->north.id[0])
+	if (count_words(words) != 2 || g->north.id[0] || g->str_map != NULL)
 		return (-1);
 	g->north = create_texture(words[0], words[1]);
 	if (g->north.is_valid)
@@ -56,7 +56,7 @@ int		parse_north(char **words, char *line, t_game *g)
 int		parse_south(char **words, char *line, t_game *g)
 {
 	(void)line;
-	if (count_words(words) != 2 || g->south.id[0])
+	if (count_words(words) != 2 || g->south.id[0] || g->str_map != NULL)
 		return (-1);
 	g->south = create_texture(words[0], words[1]);
 	if (g->south.is_valid)
@@ -67,7 +67,7 @@ int		parse_south(char **words, char *line, t_game *g)
 int		parse_west(char **words, char *line, t_game *g)
 {
 	(void)line;
-	if (count_words(words) != 2 || g->west.id[0])
+	if (count_words(words) != 2 || g->west.id[0] || g->str_map != NULL)
 		return (-1);
 	g->west = create_texture(words[0], words[1]);
 	if (g->west.is_valid)
@@ -89,7 +89,7 @@ int		parse_east(char **words, char *line, t_game *g)
 int		parse_floor(char **words, char *line, t_game *g)
 {
 	(void)line;
-	if (count_words(words) != 2 || g->floor.id[0])
+	if (count_words(words) != 2 || g->floor.id[0] || g->str_map != NULL)
 		return (-1);
 	g->floor = create_texture(words[0], words[1]);
 	if (g->floor.is_valid)
@@ -100,7 +100,7 @@ int		parse_floor(char **words, char *line, t_game *g)
 int		parse_ceil(char **words, char *line, t_game *g)
 {
 	(void)line;
-	if (count_words(words) != 2 || g->ceil.id[0])
+	if (count_words(words) != 2 || g->ceil.id[0] || g->str_map != NULL)
 		return (-1);
 	g->ceil = create_texture(words[0], words[1]);
 	if (g->ceil.is_valid)
@@ -133,13 +133,13 @@ void	free_split(char **arr)
 
 int		parse(char *line, t_game *g)
 {
-	const char		ids[11][3] = {"R", "NO", "SO", "WE", "EA",
-								  "F", "C", "S", "1", "11", ""};
-	const t_handler jmp_table[10] = {parse_resolution, parse_north,
+	const char		ids[10][3] = {"R", "NO", "SO", "WE", "EA",
+								  "F", "C", "S", "1", ""};
+	const t_handler jmp_table[9] = {parse_resolution, parse_north,
 									parse_south, parse_west,
 									parse_east, parse_floor,
 									parse_ceil, parse_sprite,
-									parse_str_map, parse_str_map};
+									parse_str_map};
 	char			**words;
 	int				i;
 	int				ret;
@@ -168,6 +168,8 @@ int		load_cub(char *file, t_game *g)
 	fd = open(file, O_RDONLY);
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
+		if (g->str_map != NULL && line[0] == '\0')
+			return (-1);
 		if (line[0])
 			ret = parse(line, g);
 		free(line);
@@ -176,8 +178,8 @@ int		load_cub(char *file, t_game *g)
 	}
 	if (ret == -1)
 		return (-1);
-	if (line[0])
-		ret = parse(line, g);
+//	if (line[0])
+//		ret = parse(line, g);
 	free(line);
 //	parse_map(g);
 	printf("|%s|\n", g->str_map);

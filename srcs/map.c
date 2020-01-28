@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:00:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/28 17:32:44 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/28 18:24:27 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int		parse_str_map(char **words, char *line, t_game *g)
 //	if (!valid_line_values(words, g))
 //		return (-1);
 	tmp = g->str_map;
-	g->str_map = ft_strjoin(g->str_map, line);
+	g->str_map = ft_strjoin(tmp, line);
 	free(tmp);
 	g->map_len_y++;
 	return (0);

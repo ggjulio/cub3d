@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:14:37 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/28 16:52:09 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/28 20:47:18 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	main(int ac, char **av)
 			printf("syntax error in file ![1]    42232 segmentation fault :)\n" );
 			exit_game(&g);
 		}
+		exit(0);
 	}
 	else
 	{
@@ -73,10 +74,6 @@ int	main(int ac, char **av)
 	g.cam.pos.x = 17.0 + 0.5; g.cam.pos.y = 17.0 + 0.5; 
 	g.cam.dir.x = -1.0; g.cam.dir.y = 0.0;
 	g.cam.plane.x = 0.0; g.cam.plane.y = 0.66;
-
-	double old = g.cam.plane.x;
-    g.cam.plane.x = g.cam.plane.x * cos(0) - g.cam.plane.y * sin(0);
-    g.cam.plane.y = old * sin(0) + g.cam.plane.y * cos(0);
 
 	mlx_do_key_autorepeatoff(g.app.mlx_ptr);
 	mlx_hook(g.app.win_ptr, KEYPRESS, KEYPRESSMASK, is_key_press, &g);
