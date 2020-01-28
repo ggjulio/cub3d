@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/27 18:18:27 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/28 14:33:25 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,15 @@ typedef struct	s_texture
 	uint8_t		remaining:6;
 }				t_texture;
 
+
+
 typedef struct	s_game
 {
 	t_application	app;
 	t_camera		cam;
+	uint8_t			map_len_x;
+	uint8_t			map_len_y;
+	char			*str_map;
 	uint8_t			*map;
 
 	t_texture		north;

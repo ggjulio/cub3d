@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/27 18:19:07 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/28 16:04:17 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,28 +38,30 @@
 ** parser.c
 */
 
-int	load_cub(char *file, t_game *g);
-void free_split(char **arr);
+int			load_cub(char *file, t_game *g);
+void		free_split(char **arr);
+int			count_words(char **words);
+
 
 /*
 ** events.c
 */
 
-int	is_key_press(int key, t_game *g);
-int	is_key_release(int key, t_game *g);
-int	close_program(int key, t_game *g);
+int			is_key_press(int key, t_game *g);
+int			is_key_release(int key, t_game *g);
+int			close_program(int key, t_game *g);
 
 /*
 ** raycasting.c
 */
 
-void raycasting(t_game *g, int worldMap[24][24]);
+void		raycasting(t_game *g, int worldMap[24][24]);
 
 /*
 ** move.c
 */
 
-void move(t_game *g, int worldMap[24][24]);
+void		move(t_game *g, int worldMap[24][24]);
 
 /*
 ** texture.c
@@ -67,5 +69,11 @@ void move(t_game *g, int worldMap[24][24]);
 
 t_texture	create_texture(char id[3], char *value);
 void		destroy_texture(t_texture tex, t_game *g);
+
+/*
+** map.c
+*/
+
+int			parse_str_map(char **words, char *line, t_game *g);
 
 #endif

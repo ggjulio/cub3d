@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:14:37 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/27 22:45:22 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/28 16:52:09 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	main(int ac, char **av)
 	{
 		if (load_cub(av[1], &g) == -1)
 		{
-			printf("syntax error in file ![1]    42232 segmentation faulte\n" );
+			printf("syntax error in file ![1]    42232 segmentation fault :)\n" );
 			exit_game(&g);
 		}
 	}

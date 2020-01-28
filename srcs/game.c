@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/27 18:17:51 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/28 16:50:43 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void		destroy_game(t_game g)
 
 int exit_game(t_game *g)
 {
-    destroy_game(*g);
+	(void)g;
+//    destroy_game(*g);
 	exit(0);
 	return(0);
 }
