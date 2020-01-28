@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 13:59:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/28 21:11:08 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/28 21:56:52 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		parse_resolution(char **words, char *line, t_game *g)
 	x = ft_atoi(words[1]);
 	y = ft_atoi(words[2]);
 	if (count_words(words) != 3 || x < 100
-		|| y < 100 || x > 2560 || y > 1440)
+		|| y < 100 || x > 2560 || y > 1440 || g->str_map != NULL)
 		return (-1);
 	if (g->app.res.x)
 		return (-1);
@@ -78,7 +78,7 @@ int		parse_west(char **words, char *line, t_game *g)
 int		parse_east(char **words, char *line, t_game *g)
 {
 	(void)line;
-	if (count_words(words) != 2 || g->east.id[0])
+	if (count_words(words) != 2 || g->east.id[0] || g->str_map != NULL)
 		return (-1);
 	g->east = create_texture(words[0], words[1]);
 	if (g->east.is_valid)
@@ -111,7 +111,7 @@ int		parse_ceil(char **words, char *line, t_game *g)
 int		parse_sprite(char **words, char *line, t_game *g)
 {
 	(void)line;
-	if (count_words(words) != 2 || g->sprite.id[0])
+	if (count_words(words) != 2 || g->sprite.id[0] || g->str_map != NULL)
 		return (-1);
 	g->sprite = create_texture(words[0], words[1]);
 	if (g->sprite.is_valid)
@@ -147,7 +147,8 @@ int		parse(char *line, t_game *g)
 	words = ft_split(line, ' ');
 	i = -1;
 	while (ids[++i][0])
-		if (ft_strncmp(words[0], ids[i], 2) == 0)
+		if (ft_strncmp(words[0], ids[i], 2) == 0
+			|| (words[0][0] == '1' && ft_strcmp(ids[i], "1") == 0))
 		{
 			ret = jmp_table[i](words, line, g);
 			free_split(words);
@@ -178,8 +179,7 @@ int		load_cub(char *file, t_game *g)
 	}
 	if (ret == -1)
 		return (-1);
-//	if (line[0])
-//		ret = parse(line, g);
+	ret = line[0] ? -1 : 0;
 	free(line);
 //	parse_map(g);
 	printf("|%s|\n", g->str_map);

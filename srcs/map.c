@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:00:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/28 18:24:27 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/28 22:27:55 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,23 @@ size_t	ft_strlen_ignore(const char *s, const char *ignore_charset)
 	}
 	return (len);
 }
-/*
-int		valid_line_values(char **words, t_game *g)
+
+int		valid_line_values(char *line, t_game *g)
 {
 	static uint8_t	is_pos;
 	int 			i;
-	int				value;
 
-	i = -1;
-	while (++i < g->map_len_x)
-	{
-		
-	}
+	(void)is_pos;
+	i = 0;
+	if (line[g->map_len_x - 1] != '1')
+		return (0);
+//	while (line[++i])
+//	{
+//		
+//	}
 	return (1);
 }
-*/
+
 int		parse_str_map(char **words, char *line, t_game *g)
 {
 	char *tmp;
@@ -74,8 +76,8 @@ int		parse_str_map(char **words, char *line, t_game *g)
 	}
 	else if (ft_strlen_ignore(line, " ") != g->map_len_x)
 		return (-1);
-//	if (!valid_line_values(words, g))
-//		return (-1);
+	if (g->map_len_x < 3 || !valid_line_values(line, g))
+		return (-1);
 	tmp = g->str_map;
 	g->str_map = ft_strjoin(tmp, line);
 	free(tmp);

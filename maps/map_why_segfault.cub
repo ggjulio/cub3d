@@ -5,11 +5,11 @@ WE ./tex/skull_octocat.xpm
 EA ./tex/skull_octocat.xpm
 F 252,3,207
 C 225,30,0
+S ./tex/skull_octocat.xpm
 
 1 1 1 1 1 1 1 1 1
 1 0 1 0 1 1 1 0 1
 1 0 0 0 0 1 1 0 1
-1 1 0 N 0 0 0 0 1
+1 1 0 S 0 0 0 0 1
 1 0 0 0 0 0 0 0 1
 1 1 1 1 1 1 1 1 1
-S ./tex/skull_octocat.xpm

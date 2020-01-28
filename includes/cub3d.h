@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/28 16:04:17 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/28 21:49:33 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@
 int			load_cub(char *file, t_game *g);
 void		free_split(char **arr);
 int			count_words(char **words);
-
 
 /*
 ** events.c
