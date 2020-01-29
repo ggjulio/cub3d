@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 13:59:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/29 16:49:29 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/29 18:14:51 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,12 +171,13 @@ int id_missing(t_game *g)
 	i = -1;
 	is_pos = 0;
 	while (g->str_map[++i] )
-		if (in_charset(g->str_map[++i], "NSWE"))
+		if (in_charset(g->str_map[i], "NSWE"))
 		{
 			is_pos = 1;
 			break ;
 		}
-	return (!is_pos);
+		return (!is_pos);
+	return (0);
 }
 
 int		load_cub(char *file, t_game *g)
