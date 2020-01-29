@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/28 21:49:33 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/29 16:42:12 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,8 @@ void		destroy_texture(t_texture tex, t_game *g);
 */
 
 int			parse_str_map(char **words, char *line, t_game *g);
+int			valid_map_first_line(t_game *g);
+int			valid_map_last_line(t_game *g);
+int			in_charset(char c, const char *charset);
 
 #endif

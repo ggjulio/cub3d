@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 13:59:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/28 21:56:52 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/29 16:49:29 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,8 @@ int		parse(char *line, t_game *g)
 	int				ret;
 
 	words = ft_split(line, ' ');
+	if (words[0] == NULL)
+		return (-1);
 	i = -1;
 	while (ids[++i][0])
 		if (ft_strncmp(words[0], ids[i], 2) == 0
@@ -156,6 +158,25 @@ int		parse(char *line, t_game *g)
 		}
 	free_split(words);
 	return (-1);
+}
+
+int id_missing(t_game *g)
+{
+	int i;
+	int is_pos;
+
+	if (!g->app.res.x || !g->north.id[0] || !g->south.id[0] || !g->east.id[0]
+		|| !g->west.id[0] || !g->ceil.id[0] || !g->floor.id[0] || !g->sprite.id[0])
+		return (1);
+	i = -1;
+	is_pos = 0;
+	while (g->str_map[++i] )
+		if (in_charset(g->str_map[++i], "NSWE"))
+		{
+			is_pos = 1;
+			break ;
+		}
+	return (!is_pos);
 }
 
 int		load_cub(char *file, t_game *g)
@@ -181,6 +202,8 @@ int		load_cub(char *file, t_game *g)
 		return (-1);
 	ret = line[0] ? -1 : 0;
 	free(line);
+	if (!valid_map_first_line(g) || !valid_map_last_line(g) || id_missing(g))
+		return (-1);
 //	parse_map(g);
 	printf("|%s|\n", g->str_map);
 	return (ret);

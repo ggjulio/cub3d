@@ -4,11 +4,12 @@ SO ./tex/skull_octocat.xpm
 WE ./tex/skull_octocat.xpm
 EA ./tex/skull_octocat.xpm
 S ./tex/skull_octocat.xpm
-F 252,3,207
+
+F 252,0,255
 C 225,30,0
 
 111111
-140101
-101001
+110101
+1N0001
 110011
 111111
