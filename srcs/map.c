@@ -6,18 +6,62 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:00:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/29 16:27:39 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/29 21:40:19 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/*
-int		parse_map(t_game *g)
+void	save_position(t_vector pos, char c, t_game *g)
 {
-	g->str_map;
+	(void)pos;
+	g->cam.pos.x = 15 + 0.5; 
+	g->cam.pos.y = 15 + 0.5;
+    g->cam.plane.x = 0.0; 
+	g->cam.plane.y = 0.66;
+	if (c == 'N')
+	{
+		g->cam.dir.x = -1.0; 
+		g->cam.dir.y = 0.0;
+	}
+	else if (c == 'S')
+	{
+		g->cam.dir.x = -1.0; 
+		g->cam.dir.y = 0.0;
+
+	}
+	else if (c == 'E')
+	{
+		g->cam.dir.x = -1.0; 
+		g->cam.dir.y = 0.0;
+
+	}
+	else if (c == 'W')
+	{
+		g->cam.dir.x = -1.0; 
+		g->cam.dir.y = 0.0;
+	}
 }
-*/
+
+int		str_map_to_map(t_game *g)
+{
+	int i;
+	int j;
+
+	if ((g->map = malloc(g->map_len_x * g->map_len_y)) == NULL)
+		return (-1);
+	i = 0;
+	j = 0;
+	while (g->str_map[i])
+	{
+		while (g->str_map[i] == ' ')
+			i++;
+		if (in_charset(g->str_map[i], "NSWE"))
+			save_position((t_vector){}, g->str_map[i], g);
+		g->map[j++] = g->str_map[i++] - '0';
+	}
+	return (0);
+}
 
 int valid_map_first_line(t_game *g)
 {
@@ -45,6 +89,8 @@ int valid_map_last_line(t_game *g)
 	int len;
 	int nb_one;
 
+	if (g->str_map == NULL)
+		return (0);
 	i = ft_strlen(g->str_map) - 1;
 	len = 0;
 	nb_one = 0;

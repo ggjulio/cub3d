@@ -6,31 +6,16 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/27 19:59:06 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/29 22:58:48 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-/*
-void draw_texel(int x, _game *g)
+
+uint8_t	map_value(t_game *g, int x, int y)
 {
-		//calculate value of wallX
-		double wallX; //where exactly the wall was hit
-		if (side == 0) 
-			r.wall_x = g->cam.pos.y + r.perpendicular_dist * r.ray_dir.y;
-		else
-			r.wall_x = g->cam.pos.x + r.perpendicular_dist * r.ray_dir.x;
-		r.wall_x -= floor(r.wall_x);
-
-		//x coordinate on the texture
-		int texX = (int)(wallX * (double(g->);
-		if (side == 0 && rayDirX > 0)
-			texX = texWidth - texX - 1;
-		if (side == 1 && rayDirY < 0) 
-		texX = texWidth - texX - 1;
-
-
-}*/
+	return (g->map[x + y * g->map_len_x]);
+}
 
 void draw_vertical_line(int x, int y_start, int y_end,  t_game *g)
 {
@@ -70,8 +55,10 @@ void	prehit_wall(t_game *g, t_raycast *r)
 }
 
 //DDA (Digital Differential Analysis)
-void	hit_wall(t_raycast *r, int worldMap[24][24])
+void	hit_wall(t_raycast *r, int worldMap[24][24], t_game *g)
 {
+	(void)worldMap;
+	(void)g;
 	while (1)
 	{
 		if (r->side_dist.x < r->side_dist.y)
@@ -87,6 +74,8 @@ void	hit_wall(t_raycast *r, int worldMap[24][24])
 			r->side = 1;
 		}	
 		if (worldMap[r->map.x][r->map.y] > 0) 
+//		if (map_value(g, r->map.x, r->map.y) > 0) 
+//		if (map_value(g, r->map.y, r->map.x) > 0) 
 			break;
 	}
 }
@@ -126,7 +115,7 @@ void raycasting(t_game *g, int worldMap[24][24])
 		r.map = (t_vector){(int)g->cam.pos.x, (int)g->cam.pos.y};
 		r.delta_dist = (t_fvector){fabs(1 / r.ray_dir.x), fabs(1 / r.ray_dir.y)};
 		prehit_wall(g, &r);
-		hit_wall(&r, worldMap);
+		hit_wall(&r, worldMap, g);
 		fix_fisheye(g, &r);
 		calculate_wall_height(g, &r);
 

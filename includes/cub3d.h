@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/29 16:42:12 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/29 22:46:28 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int			close_program(int key, t_game *g);
 */
 
 void		raycasting(t_game *g, int worldMap[24][24]);
+uint8_t		map_value(t_game *g, int x, int y);
 
 /*
 ** move.c
@@ -77,5 +78,6 @@ int			parse_str_map(char **words, char *line, t_game *g);
 int			valid_map_first_line(t_game *g);
 int			valid_map_last_line(t_game *g);
 int			in_charset(char c, const char *charset);
+int			str_map_to_map(t_game *g);
 
 #endif

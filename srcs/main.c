@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:14:37 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/29 18:07:11 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/29 22:58:45 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int do_job(t_game *g)
 {
-
 	int worldMap[24][24]=
 {
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -42,7 +41,6 @@ int do_job(t_game *g)
 	{1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,1},
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
-
 	move(g, worldMap);
 	raycasting(g, worldMap);
 	render_application(&(g->app));
@@ -59,21 +57,21 @@ int	main(int ac, char **av)
 	{
 		if (load_cub(av[1], &g) == -1)
 		{
-			printf("syntax error in file ![1]    42232 segmentation fault :)\n" );
+			ft_printf("Error\n");
 			exit_game(&g);
 		}
-		exit(0);
+//		exit(0);
 	}
 	else
 	{
-		printf(".cub file missing\n");
+		ft_printf(".cub file missing\n");
 		exit(0);
 	}
 	g.app = create_application(g.app.res.x, g.app.res.y,"Shit");
 
-	g.cam.pos.x = 17.0 + 0.5; g.cam.pos.y = 17.0 + 0.5; 
-	g.cam.dir.x = -1.0; g.cam.dir.y = 0.0;
-	g.cam.plane.x = 0.0; g.cam.plane.y = 0.66;
+//	g.cam.pos.x = 17.0 + 0.5; g.cam.pos.y = 17.0 + 0.5; 
+//	g.cam.dir.x = -1.0; g.cam.dir.y = 0.0;
+//	g.cam.plane.x = 0.0; g.cam.plane.y = 0.66;
 
 	mlx_do_key_autorepeatoff(g.app.mlx_ptr);
 	mlx_hook(g.app.win_ptr, KEYPRESS, KEYPRESSMASK, is_key_press, &g);

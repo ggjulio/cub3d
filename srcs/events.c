@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 16:44:33 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/27 18:16:46 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/29 20:30:54 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	is_key_press(int key, t_game *g)
 		g->key_left = 1;
 	else if (key == RIGHT_KEY)
 		g->key_right = 1;
+	else if (key == ESC_KEY)
+		exit_game(g);
 	return (0);
 }
 

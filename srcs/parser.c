@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 13:59:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/29 18:14:51 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/29 20:41:25 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void	free_split(char **arr)
 	arr = NULL;
 }
 
-int		parse(char *line, t_game *g)
+int		do_parse(char *line, t_game *g)
 {
 	const char		ids[10][3] = {"R", "NO", "SO", "WE", "EA",
 								  "F", "C", "S", "1", ""};
@@ -160,14 +160,16 @@ int		parse(char *line, t_game *g)
 	return (-1);
 }
 
-int id_missing(t_game *g)
+int		valid_map(t_game *g)
 {
 	int i;
 	int is_pos;
 
+	if (!valid_map_first_line(g) || !valid_map_last_line(g))
+		return (0);
 	if (!g->app.res.x || !g->north.id[0] || !g->south.id[0] || !g->east.id[0]
 		|| !g->west.id[0] || !g->ceil.id[0] || !g->floor.id[0] || !g->sprite.id[0])
-		return (1);
+		return (0);
 	i = -1;
 	is_pos = 0;
 	while (g->str_map[++i] )
@@ -176,8 +178,7 @@ int id_missing(t_game *g)
 			is_pos = 1;
 			break ;
 		}
-		return (!is_pos);
-	return (0);
+	return (is_pos);
 }
 
 int		load_cub(char *file, t_game *g)
@@ -194,7 +195,7 @@ int		load_cub(char *file, t_game *g)
 		if (g->str_map != NULL && line[0] == '\0')
 			return (-1);
 		if (line[0])
-			ret = parse(line, g);
+			ret = do_parse(line, g);
 		free(line);
 		if (ret == -1)
 			return (-1);
@@ -203,9 +204,7 @@ int		load_cub(char *file, t_game *g)
 		return (-1);
 	ret = line[0] ? -1 : 0;
 	free(line);
-	if (!valid_map_first_line(g) || !valid_map_last_line(g) || id_missing(g))
+	if (!valid_map(g) || str_map_to_map(g) == -1)
 		return (-1);
-//	parse_map(g);
-	printf("|%s|\n", g->str_map);
 	return (ret);
 }
