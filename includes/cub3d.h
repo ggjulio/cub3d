@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/30 16:55:54 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/30 17:26:01 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,11 @@ int			parse_str_map(char **words, char *line, t_game *g);
 int			valid_map_first_line(t_game *g);
 int			valid_map_last_line(t_game *g);
 int			str_map_to_map(t_game *g);
+
+/*
+** main.c
+*/
+
+int			ft_error(char *e);
 
 #endif

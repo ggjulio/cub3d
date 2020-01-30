@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:14:37 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/30 17:10:09 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/30 17:23:46 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ int do_job(t_game *g)
 	return (0);
 }
 
+int ft_error(char *e)
+{
+	ft_printf("Error\n%s", e);
+	return (-1);
+}
+
 int	main(int ac, char **av)
 {
 	t_game			g;
@@ -30,11 +36,7 @@ int	main(int ac, char **av)
 	if (ac == 2)
 	{
 		if (load_cub(av[1], &g) == -1)
-		{
-			ft_printf("Error\n");
 			exit_game(&g);
-		}
-//		exit(0);
 	}
 	else
 	{
