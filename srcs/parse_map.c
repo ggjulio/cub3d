@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/28 16:00:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/30 17:11:35 by juligonz         ###   ########.fr       */
+/*   Created: 2020/01/30 19:09:50 by juligonz          #+#    #+#             */
+/*   Updated: 2020/01/30 19:36:32 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		str_map_to_map(t_game *g)
 	int j;
 
 	if ((g->map = malloc(g->map_len_x * g->map_len_y)) == NULL)
-		return (-1);
+		return (ft_error("Map : map not defined ?"));
 	i = 0;
 	j = 0;
 	while (g->str_map[i])
@@ -84,7 +84,9 @@ int valid_map_first_line(t_game *g)
 			nb_one++;
 		i++;
 	}
-	return (nb_one == g->map_len_x);
+	if (nb_one == g->map_len_x)
+		return (1);
+	return (ft_error("Map : Invalid first line."));
 }
 
 int valid_map_last_line(t_game *g)
@@ -94,7 +96,7 @@ int valid_map_last_line(t_game *g)
 	int nb_one;
 
 	if (g->str_map == NULL)
-		return (0);
+		return (ft_error("Map : map not defined ?"));
 	i = ft_strlen(g->str_map) - 1;
 	len = 0;
 	nb_one = 0;
@@ -106,10 +108,12 @@ int valid_map_last_line(t_game *g)
 			nb_one++;
 		i--;;
 	}
-	return (nb_one == g->map_len_x);
+	if (nb_one == g->map_len_x)
+		return (1);
+	return (ft_error("Map : Invalid last line."));
 }
 
-size_t	ft_strlen_ignore(const char *s, const char *ignore_charset)
+size_t	ft_strlen_charset(const char *s, const char *charset)
 {
 	size_t	i;
 	size_t	len;
@@ -118,7 +122,7 @@ size_t	ft_strlen_ignore(const char *s, const char *ignore_charset)
 	len = 0;
 	while (s[i])
 	{
-		if (!in_charset(s[i], ignore_charset))
+		if (in_charset(s[i], charset))
 			len++;
 		i++;
 	}
@@ -133,22 +137,22 @@ int		valid_line(char *line, t_game *g)
 
 	(void)g;
 	i = 0;
-	tmp = ft_strrchr(line, '1');
-	while (tmp[++i])
-		if (tmp[i] != ' ')
-			return (0);
-	i = 0;
 	while (line[++i])
 	{
 		if (in_charset(line[i], "NSEW"))
 		{
 			if (is_pos)
-				return (0);
+				return (ft_error("Map : Several definition of start position"));
 			is_pos = 1;
 		}
 		if (!in_charset(line[i], "012NSEW "))
-			return (0);
+			return (ft_error("Map : Bad character in the map"));
 	}
+	i = 0;
+	tmp = ft_strrchr(line, '1');
+	while (tmp[++i])
+		if (tmp[i] != ' ')
+			return (ft_error("Map : Map not closed at right side"));
 	return (1);
 }
 
@@ -159,14 +163,16 @@ int		parse_str_map(char **words, char *line, t_game *g)
 	(void)words;
 	if (g->str_map == NULL)
 	{
-		if ((g->str_map = malloc(1)) == NULL) // !!!!!!!!!!!!!
-			return (-1); 
+		if ((g->str_map = malloc(1)) == NULL)
+			return (ft_error("malloc : Failed to allocate memory")); 
 		g->str_map[0] = '\0';
-		g->map_len_x = ft_strlen_ignore(line, " ");
+		g->map_len_x = ft_strlen_charset(line, "012NSWE");
 	}
-	else if (ft_strlen_ignore(line, " ") != g->map_len_x)
-		return (-1);
-	if (g->map_len_x < 3 || !valid_line(line, g))
+	else if (ft_strlen_charset(line, "012NSWE") != g->map_len_x)
+		return (ft_error("Map : Different len"));
+	if (g->map_len_x < 3)
+		return (ft_error("Map : Minimal size is 3 by 3"));
+	if (valid_line(line, g) == -1)
 		return (-1);
 	tmp = g->str_map;
 	g->str_map = ft_strjoin(tmp, line);

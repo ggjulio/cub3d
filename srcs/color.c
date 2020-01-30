@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 13:51:02 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/26 15:54:11 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/30 18:29:18 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,17 @@ t_color		create_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 	color.rgba.b = b;
 	color.rgba.a = a;
 	return (color);
+}
+
+int			no_digit_between_comma(char *format)
+{
+	char	**arr;
+	int		len;
+
+	arr = ft_split(format, ',');
+	len = count_str_arr(arr);
+	free_split(arr);
+	return (len != 3);
 }
 
 int			valid_color_fmt(char *format)
@@ -46,7 +57,7 @@ int			valid_color_fmt(char *format)
 		else
 			nb = nb * 10 + format[i] - '0';
 	}
-	if (nb_comma != 2 || nb > 255)
+	if (nb_comma != 2 || nb > 255 || no_digit_between_comma(format))
 		return (0);
 	return (1);
 }
