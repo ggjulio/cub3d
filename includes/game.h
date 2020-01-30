@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/28 14:33:25 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/30 16:50:40 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ typedef struct	s_texture
 	uint8_t		remaining:6;
 }				t_texture;
 
-
-
 typedef struct	s_game
 {
 	t_application	app;
@@ -60,7 +58,7 @@ typedef struct	s_game
 	t_texture		ceil;
 	t_texture		floor;
 	t_texture		sprite;
-	
+
 	uint16_t		key_w:1;
 	uint16_t		key_a:1;
 	uint16_t		key_s:1;
@@ -70,7 +68,7 @@ typedef struct	s_game
 	uint16_t		remaining:10;
 }				t_game;
 
-void        destroy_game(t_game g);
-int			exit_game(t_game *g);
+void			destroy_game(t_game g);
+int				exit_game(t_game *g);
 
 #endif

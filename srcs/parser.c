@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 13:59:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/29 20:41:25 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/30 16:54:02 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void	free_split(char **arr)
 	arr = NULL;
 }
 
-int		do_parse(char *line, t_game *g)
+int		parsing(char *line, t_game *g)
 {
 	const char		ids[10][3] = {"R", "NO", "SO", "WE", "EA",
 								  "F", "C", "S", "1", ""};
@@ -195,7 +195,7 @@ int		load_cub(char *file, t_game *g)
 		if (g->str_map != NULL && line[0] == '\0')
 			return (-1);
 		if (line[0])
-			ret = do_parse(line, g);
+			ret = parsing(line, g);
 		free(line);
 		if (ret == -1)
 			return (-1);

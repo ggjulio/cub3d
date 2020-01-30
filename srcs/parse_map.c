@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:00:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/30 15:42:08 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/30 17:11:35 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	save_position(t_vector pos, char c, t_game *g)
 {
-	(void)pos;
-	g->cam.pos.x = 2 + 0.5; 
-	g->cam.pos.y = 2 + 0.5;
+	printf("init pos>>}%d|%d\n", pos.x, pos.y);
+	g->cam.pos.x = pos.x + 0.5; 
+	g->cam.pos.y = pos.y + 0.5;
     g->cam.plane.x = 0.0; 
     g->cam.plane.y = 0.66; 
 	if (c == 'N')
@@ -57,7 +57,7 @@ int		str_map_to_map(t_game *g)
 			i++;
 		if (in_charset(g->str_map[i], "NSWE"))
 		{
-			save_position((t_vector){0 , 0}, g->str_map[i], g);
+			save_position((t_vector){j / g->map_len_x, j % g->map_len_x}, g->str_map[i], g);
 			g->map[j++] = 0;
 			i++;
 		}
@@ -107,18 +107,6 @@ int valid_map_last_line(t_game *g)
 		i--;;
 	}
 	return (nb_one == g->map_len_x);
-}
-
-
-int in_charset(char c, const char *charset)
-{
-	int i;
-	
-	i = 0;
-	while (charset[i])
-		if (c == charset[i++])
-			return (1);
-	return (0);
 }
 
 size_t	ft_strlen_ignore(const char *s, const char *ignore_charset)
