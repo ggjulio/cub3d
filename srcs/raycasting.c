@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/29 22:58:48 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/30 15:39:58 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 uint8_t	map_value(t_game *g, int x, int y)
 {
-	return (g->map[x + y * g->map_len_x]);
+	return (g->map[y + x * g->map_len_x]);
 }
 
 void draw_vertical_line(int x, int y_start, int y_end,  t_game *g)
@@ -55,10 +55,8 @@ void	prehit_wall(t_game *g, t_raycast *r)
 }
 
 //DDA (Digital Differential Analysis)
-void	hit_wall(t_raycast *r, int worldMap[24][24], t_game *g)
+void	hit_wall(t_raycast *r, t_game *g)
 {
-	(void)worldMap;
-	(void)g;
 	while (1)
 	{
 		if (r->side_dist.x < r->side_dist.y)
@@ -72,10 +70,8 @@ void	hit_wall(t_raycast *r, int worldMap[24][24], t_game *g)
 			r->side_dist.y += r->delta_dist.y;
 			r->map.y += r->step.y;
 			r->side = 1;
-		}	
-		if (worldMap[r->map.x][r->map.y] > 0) 
-//		if (map_value(g, r->map.x, r->map.y) > 0) 
-//		if (map_value(g, r->map.y, r->map.x) > 0) 
+		}
+		if (map_value(g, r->map.x, r->map.y) > 0)
 			break;
 	}
 }
@@ -101,7 +97,7 @@ void	calculate_wall_height(t_game *g, t_raycast *r)
 		r->wall_end = g->app.res.y - 1;
 }
 
-void raycasting(t_game *g, int worldMap[24][24])
+void raycasting(t_game *g)
 {
 	int x;
 	t_raycast r;
@@ -115,7 +111,7 @@ void raycasting(t_game *g, int worldMap[24][24])
 		r.map = (t_vector){(int)g->cam.pos.x, (int)g->cam.pos.y};
 		r.delta_dist = (t_fvector){fabs(1 / r.ray_dir.x), fabs(1 / r.ray_dir.y)};
 		prehit_wall(g, &r);
-		hit_wall(&r, worldMap, g);
+		hit_wall(&r, g);
 		fix_fisheye(g, &r);
 		calculate_wall_height(g, &r);
 

@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/29 22:46:28 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/30 15:14:48 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ int			close_program(int key, t_game *g);
 ** raycasting.c
 */
 
-void		raycasting(t_game *g, int worldMap[24][24]);
+void		raycasting(t_game *g);
 uint8_t		map_value(t_game *g, int x, int y);
 
 /*
 ** move.c
 */
 
-void		move(t_game *g, int worldMap[24][24]);
+void		move(t_game *g);
 
 /*
 ** texture.c

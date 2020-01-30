@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:00:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/29 21:40:19 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/30 15:42:08 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void	save_position(t_vector pos, char c, t_game *g)
 {
 	(void)pos;
-	g->cam.pos.x = 15 + 0.5; 
-	g->cam.pos.y = 15 + 0.5;
+	g->cam.pos.x = 2 + 0.5; 
+	g->cam.pos.y = 2 + 0.5;
     g->cam.plane.x = 0.0; 
-	g->cam.plane.y = 0.66;
+    g->cam.plane.y = 0.66; 
 	if (c == 'N')
 	{
 		g->cam.dir.x = -1.0; 
@@ -26,20 +26,19 @@ void	save_position(t_vector pos, char c, t_game *g)
 	}
 	else if (c == 'S')
 	{
-		g->cam.dir.x = -1.0; 
+		g->cam.dir.x = 1.0; 
 		g->cam.dir.y = 0.0;
-
 	}
 	else if (c == 'E')
 	{
-		g->cam.dir.x = -1.0; 
+		g->cam.dir.x = 1.0; 
 		g->cam.dir.y = 0.0;
 
 	}
 	else if (c == 'W')
 	{
-		g->cam.dir.x = -1.0; 
-		g->cam.dir.y = 0.0;
+		g->cam.dir.x = 0.0; 
+		g->cam.dir.y = -1.0;
 	}
 }
 
@@ -57,8 +56,13 @@ int		str_map_to_map(t_game *g)
 		while (g->str_map[i] == ' ')
 			i++;
 		if (in_charset(g->str_map[i], "NSWE"))
-			save_position((t_vector){}, g->str_map[i], g);
-		g->map[j++] = g->str_map[i++] - '0';
+		{
+			save_position((t_vector){0 , 0}, g->str_map[i], g);
+			g->map[j++] = 0;
+			i++;
+		}
+		else
+			g->map[j++] = g->str_map[i++] - '0';
 	}
 	return (0);
 }
