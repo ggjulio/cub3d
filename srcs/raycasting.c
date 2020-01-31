@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/30 15:39:58 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/31 16:11:08 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ uint8_t	map_value(t_game *g, int x, int y)
 	return (g->map[y + x * g->map_len_x]);
 }
 
-void draw_vertical_line(int x, int y_start, int y_end,  t_game *g)
+void	draw_vertical_line(int x, int y_start, int y_end,  t_game *g)
 {
 	while (y_start < y_end)
 		put_pixel(&(g->app), create_vector(x, y_start++), g->north.color);
@@ -97,7 +97,7 @@ void	calculate_wall_height(t_game *g, t_raycast *r)
 		r->wall_end = g->app.res.y - 1;
 }
 
-void raycasting(t_game *g)
+void	raycasting(t_game *g)
 {
 	int x;
 	t_raycast r;
@@ -109,13 +109,12 @@ void raycasting(t_game *g)
 		r.ray_dir = (t_fvector){g->cam.dir.x + g->cam.plane.x * r.camera_x,
 								g->cam.dir.y + g->cam.plane.y * r.camera_x};
 		r.map = (t_vector){(int)g->cam.pos.x, (int)g->cam.pos.y};
-		r.delta_dist = (t_fvector){fabs(1 / r.ray_dir.x), fabs(1 / r.ray_dir.y)};
+		r.delta_dist =
+			(t_fvector){fabs(1 / r.ray_dir.x), fabs(1 / r.ray_dir.y)};
 		prehit_wall(g, &r);
 		hit_wall(&r, g);
 		fix_fisheye(g, &r);
 		calculate_wall_height(g, &r);
-
 		draw_vertical_line(x, r.wall_start, r.wall_end, g);
 	}
 }
-
