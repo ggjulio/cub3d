@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/31 12:37:02 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/31 14:30:17 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@ void		destroy_game(t_game g)
 	destroy_texture(g.ceil, &g);
 	destroy_texture(g.floor, &g);
 	destroy_texture(g.sprite, &g);
-	//destroy_map 
+	//destroy_map
 	if (g.app.win_ptr != NULL)
 		destroy_application(g.app);
 }
 
-int exit_game(t_game *g)
+int			exit_game(t_game *g)
 {
 	(void)g;
 	destroy_game(*g);
 	exit(0);
-	return(0);
+	return (0);
 }

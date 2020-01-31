@@ -6,25 +6,27 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 14:06:47 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/31 12:37:11 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/31 14:33:57 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int valid_filename(char *filename)
+int			valid_file(char *filename)
 {
 	int	fd;
 	int	is_valid;
+
 	fd = open(filename, O_RDONLY);
-	is_valid = read(fd, NULL, 0) == -1 ? 0 : 1; 
+	is_valid = read(fd, NULL, 0) == -1 ? 0 : 1;
 	close(fd);
 	return (is_valid);
 }
 
-int valid_id(char id[3])
+int			valid_id(char id[3])
 {
-	const char	ids[10][3] = {"R", "NO", "SO", "WE", "EA", "F", "C", "S", "1", ""};
+	const char	ids[10][3] = {"R", "NO", "SO", "WE", "EA",
+							"F", "C", "S", "1", ""};
 	int8_t		i;
 
 	i = -1;
@@ -48,7 +50,7 @@ t_texture	create_texture(char id[3], char *value)
 		tex.color = create_color_from_str(value);
 		tex.is_valid = 1;
 	}
-	else if (valid_filename(value))
+	else if (valid_file(value))
 	{
 		tex.is_texture = 1;
 		if ((tex.filename = malloc(sizeof(char) * ft_strlen(value))) == NULL)
@@ -59,16 +61,17 @@ t_texture	create_texture(char id[3], char *value)
 	return (tex);
 }
 
-void	init_tex(t_texture *tex, t_game *g)
+void		init_tex(t_texture *tex, t_game *g)
 {
 	if (tex->is_color)
 		return ;
-	tex->img_ptr = mlx_xpm_file_to_image(g->app.mlx_ptr, tex->filename, &(tex->size.x), &(tex->size.y));
+	tex->img_ptr = mlx_xpm_file_to_image(g->app.mlx_ptr, tex->filename,
+									&(tex->size.x), &(tex->size.y));
 	tex->pixels = mlx_get_data_addr(tex->img_ptr, &(tex->bits_per_pixel),
 									&(tex->size_line), &(tex->endian));
 }
 
-void	destroy_texture(t_texture tex, t_game *g)
+void		destroy_texture(t_texture tex, t_game *g)
 {
 	if (tex.is_valid && tex.is_texture)
 	{

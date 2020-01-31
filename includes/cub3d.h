@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/31 12:55:54 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/31 15:10:43 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,32 @@
 # include "draw.h"
 
 /*
+** parser2.c
+*/
+
+int		parse_resolution(char **words, char *line, t_game *g);
+int		parse_north(char **words, char *line, t_game *g);
+int		parse_south(char **words, char *line, t_game *g);
+int		parse_west(char **words, char *line, t_game *g);
+int		parse_east(char **words, char *line, t_game *g);
+
+
+/*
 ** parser.c
 */
 
-int			load_cub(char *file, t_game *g);
-void		free_split(char **arr);
+int		parse_floor(char **words, char *line, t_game *g);
+int		parse_ceil(char **words, char *line, t_game *g);
+int		parse_sprite(char **words, char *line, t_game *g);
+int		parsing(char *line, t_game *g);
+int		load_cub(char *file, t_game *g);
+
+/*
+** utility.c
+*/
+
 int			count_str_arr(char **arr);
+void		free_split(char **arr);
 
 /*
 ** events.c
@@ -69,8 +89,9 @@ void		move(t_game *g, double speed, double lat_speed, double rot_speed);
 */
 
 int			parse_str_map(char **words, char *line, t_game *g);
-int			valid_map_first_line(t_game *g);
-int			valid_map_last_line(t_game *g);
+int			valid_map(t_game *g);
+//int			valid_map_first_line(t_game *g);
+//int			valid_map_last_line(t_game *g);
 int			str_map_to_map(t_game *g);
 
 /*

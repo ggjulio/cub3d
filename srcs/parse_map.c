@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 19:09:50 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/31 11:56:26 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/31 15:27:21 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		str_map_to_map(t_game *g)
 	{
 		while (g->str_map[i] == ' ')
 			i++;
-		if (in_charset(g->str_map[i], "NSWE"))
+		if (ft_in_charset(g->str_map[i], "NSWE"))
 		{
 			save_position((t_vector){j / g->map_len_x, j % g->map_len_x},
 						g->str_map[i], g);
@@ -112,6 +112,29 @@ int		valid_map_last_line(t_game *g)
 	return (ft_error("Map : Invalid last line."));
 }
 
+int		valid_map(t_game *g)
+{
+	int i;
+	int is_pos;
+
+	if (valid_map_first_line(g) == -1 || valid_map_last_line(g) == -1)
+		return (-1);
+	if (!g->app.res.x || !g->north.id[0] || !g->south.id[0] || !g->east.id[0] ||
+		!g->west.id[0] || !g->ceil.id[0] || !g->floor.id[0] || !g->sprite.id[0])
+		return (ft_error("File : Missing ids"));
+	i = -1;
+	is_pos = 0;
+	while (g->str_map[++i])
+		if (ft_in_charset(g->str_map[i], "NSWE"))
+		{
+			is_pos = 1;
+			break ;
+		}
+	if (!is_pos)
+		return (ft_error("Map : No start position defined"));
+	return (0);
+}
+
 size_t	ft_strlen_charset(const char *s, const char *charset)
 {
 	size_t	i;
@@ -121,7 +144,7 @@ size_t	ft_strlen_charset(const char *s, const char *charset)
 	len = 0;
 	while (s[i])
 	{
-		if (in_charset(s[i], charset))
+		if (ft_in_charset(s[i], charset))
 			len++;
 		i++;
 	}
@@ -138,13 +161,13 @@ int		valid_line(char *line, t_game *g)
 	i = 0;
 	while (line[++i])
 	{
-		if (in_charset(line[i], "NSEW"))
+		if (ft_in_charset(line[i], "NSEW"))
 		{
 			if (is_pos)
 				return (ft_error("Map : Several definition of start position"));
 			is_pos = 1;
 		}
-		if (!in_charset(line[i], "012NSEW "))
+		if (!ft_in_charset(line[i], "012NSEW "))
 			return (ft_error("Map : Bad character in the map"));
 	}
 	i = 0;
