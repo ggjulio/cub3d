@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 15:04:25 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/31 16:07:12 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/31 16:25:45 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 size_t	ft_strlen_charset(const char *s, const char *charset)
 {
-	size_t  i;
-	size_t  len;
+	size_t	i;
+	size_t	len;
 
 	i = 0;
 	len = 0;
