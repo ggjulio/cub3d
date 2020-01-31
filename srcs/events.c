@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 16:44:33 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/29 20:30:54 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/31 12:58:16 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,18 @@ int	is_key_release(int key, t_game *g)
 		g->key_left = 0;
 	else if (key == RIGHT_KEY)
 		g->key_right = 0;
+	return (0);
+}
+
+int	is_focus_out(int key, t_game *g)
+{
+	(void)key;
+	g->key_w = 0;
+	g->key_a = 0;
+	g->key_s = 0;
+	g->key_d = 0;
+	g->key_left = 0;
+	g->key_right = 0;
 	return (0);
 }
 

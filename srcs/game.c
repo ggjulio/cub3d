@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/28 16:50:43 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/31 12:37:02 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,19 @@ t_camera	create_camera(t_fvector position, t_fvector direction, \
 	return (camera);
 }
 
+void		init_textures(t_game *g)
+{
+	init_tex(&(g->north), g);
+	init_tex(&(g->south), g);
+	init_tex(&(g->east), g);
+	init_tex(&(g->west), g);
+	init_tex(&(g->ceil), g);
+	init_tex(&(g->floor), g);
+	init_tex(&(g->sprite), g);
+}
+
 void		destroy_game(t_game g)
 {
-	if (g.app.win_ptr != NULL)
-		destroy_application(g.app);
 	destroy_texture(g.north, &g);
 	destroy_texture(g.south, &g);
 	destroy_texture(g.east, &g);
@@ -34,13 +43,15 @@ void		destroy_game(t_game g)
 	destroy_texture(g.ceil, &g);
 	destroy_texture(g.floor, &g);
 	destroy_texture(g.sprite, &g);
-   //destroy_map 
+	//destroy_map 
+	if (g.app.win_ptr != NULL)
+		destroy_application(g.app);
 }
 
 int exit_game(t_game *g)
 {
 	(void)g;
-//    destroy_game(*g);
+	destroy_game(*g);
 	exit(0);
 	return(0);
 }

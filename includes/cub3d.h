@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/30 18:23:24 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/31 12:55:54 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int			count_str_arr(char **arr);
 
 int			is_key_press(int key, t_game *g);
 int			is_key_release(int key, t_game *g);
+int			is_focus_out(int key, t_game *g);
 int			close_program(int key, t_game *g);
 
 /*
@@ -61,14 +62,7 @@ uint8_t		map_value(t_game *g, int x, int y);
 ** move.c
 */
 
-void		move(t_game *g);
-
-/*
-** texture.c
-*/
-
-t_texture	create_texture(char id[3], char *value);
-void		destroy_texture(t_texture tex, t_game *g);
+void		move(t_game *g, double speed, double lat_speed, double rot_speed);
 
 /*
 ** map.c

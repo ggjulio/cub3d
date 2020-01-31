@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 14:06:47 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/27 17:30:18 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/31 12:37:11 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,10 @@ t_texture	create_texture(char id[3], char *value)
 
 void	init_tex(t_texture *tex, t_game *g)
 {
-		tex->img_ptr = mlx_xpm_file_to_image(g->app.mlx_ptr, tex->filename, &(tex->size.x), &(tex->size.y));
-		tex->pixels = mlx_get_data_addr(tex->img_ptr, &(tex->bits_per_pixel),
+	if (tex->is_color)
+		return ;
+	tex->img_ptr = mlx_xpm_file_to_image(g->app.mlx_ptr, tex->filename, &(tex->size.x), &(tex->size.y));
+	tex->pixels = mlx_get_data_addr(tex->img_ptr, &(tex->bits_per_pixel),
 									&(tex->size_line), &(tex->endian));
 }
 

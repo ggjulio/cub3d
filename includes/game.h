@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/30 16:50:40 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/31 12:45:30 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,12 @@ typedef struct	s_game
 	uint16_t		remaining:10;
 }				t_game;
 
-void			destroy_game(t_game g);
-int				exit_game(t_game *g);
+t_texture	create_texture(char id[3], char *value);
+void		destroy_texture(t_texture tex, t_game *g);
+void		init_tex(t_texture *tex, t_game *g);
+void		init_textures(t_game *g);
+
+void	destroy_game(t_game g);
+int		exit_game(t_game *g);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 19:09:50 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/30 19:36:32 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/31 11:56:26 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,28 @@
 
 void	save_position(t_vector pos, char c, t_game *g)
 {
-	printf("init pos>>}%d|%d\n", pos.x, pos.y);
-	g->cam.pos.x = pos.x + 0.5; 
+	g->cam.pos.x = pos.x + 0.5;
 	g->cam.pos.y = pos.y + 0.5;
-    g->cam.plane.x = 0.0; 
-    g->cam.plane.y = 0.66; 
+	g->cam.plane.x = 0.0;
+	g->cam.plane.y = 0.66;
 	if (c == 'N')
 	{
-		g->cam.dir.x = -1.0; 
+		g->cam.dir.x = -1.0;
 		g->cam.dir.y = 0.0;
 	}
 	else if (c == 'S')
 	{
-		g->cam.dir.x = 1.0; 
+		g->cam.dir.x = 1.0;
 		g->cam.dir.y = 0.0;
 	}
 	else if (c == 'E')
 	{
-		g->cam.dir.x = 1.0; 
+		g->cam.dir.x = 1.0;
 		g->cam.dir.y = 0.0;
-
 	}
 	else if (c == 'W')
 	{
-		g->cam.dir.x = 0.0; 
+		g->cam.dir.x = 0.0;
 		g->cam.dir.y = -1.0;
 	}
 }
@@ -57,7 +55,8 @@ int		str_map_to_map(t_game *g)
 			i++;
 		if (in_charset(g->str_map[i], "NSWE"))
 		{
-			save_position((t_vector){j / g->map_len_x, j % g->map_len_x}, g->str_map[i], g);
+			save_position((t_vector){j / g->map_len_x, j % g->map_len_x},
+						g->str_map[i], g);
 			g->map[j++] = 0;
 			i++;
 		}
@@ -67,7 +66,7 @@ int		str_map_to_map(t_game *g)
 	return (0);
 }
 
-int valid_map_first_line(t_game *g)
+int		valid_map_first_line(t_game *g)
 {
 	int i;
 	int len;
@@ -89,7 +88,7 @@ int valid_map_first_line(t_game *g)
 	return (ft_error("Map : Invalid first line."));
 }
 
-int valid_map_last_line(t_game *g)
+int		valid_map_last_line(t_game *g)
 {
 	int i;
 	int len;
@@ -106,7 +105,7 @@ int valid_map_last_line(t_game *g)
 			len++;
 		if (g->str_map[i] == '1')
 			nb_one++;
-		i--;;
+		i--;
 	}
 	if (nb_one == g->map_len_x)
 		return (1);
@@ -132,7 +131,7 @@ size_t	ft_strlen_charset(const char *s, const char *charset)
 int		valid_line(char *line, t_game *g)
 {
 	static uint8_t	is_pos;
-	int 			i;
+	int				i;
 	char			*tmp;
 
 	(void)g;
@@ -164,7 +163,7 @@ int		parse_str_map(char **words, char *line, t_game *g)
 	if (g->str_map == NULL)
 	{
 		if ((g->str_map = malloc(1)) == NULL)
-			return (ft_error("malloc : Failed to allocate memory")); 
+			return (ft_error("malloc : Failed to allocate memory"));
 		g->str_map[0] = '\0';
 		g->map_len_x = ft_strlen_charset(line, "012NSWE");
 	}
