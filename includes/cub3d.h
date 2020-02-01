@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/01 10:58:47 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/01 15:22:08 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ size_t	ft_strlen_charset(const char *s, const char *charset);
 int		is_key_press(int key, t_game *g);
 int		is_key_release(int key, t_game *g);
 int		is_focus_out(int key, t_game *g);
+int		is_mouse_moved(int key, t_game *g);
 int		close_program(int key, t_game *g);
 
 /*

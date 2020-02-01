@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/31 17:06:42 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/01 16:28:57 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ typedef struct	s_game
 	uint16_t		key_d:1;
 	uint16_t		key_left:1;
 	uint16_t		key_right:1;
-	uint16_t		remaining:10;
+	uint16_t		is_mouse_move:1;
+	uint16_t		remaining:9;
 }				t_game;
 
 t_texture		create_texture(char id[3], char *value);
