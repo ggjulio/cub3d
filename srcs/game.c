@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/31 14:30:17 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/01/31 17:05:12 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_camera	create_camera(t_fvector position, t_fvector direction, \
 	return (camera);
 }
 
-void		init_textures(t_game *g)
+void		load_textures(t_game *g)
 {
 	init_tex(&(g->north), g);
 	init_tex(&(g->south), g);
