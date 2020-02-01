@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vectors.c                                          :+:      :+:    :+:   */
+/*   fvectors.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/24 14:12:16 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/24 15:39:53 by juligonz         ###   ########.fr       */
+/*   Created: 2020/01/24 15:12:12 by juligonz          #+#    #+#             */
+/*   Updated: 2020/02/01 12:00:09 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef FVECTORS_H
+# define FVECTORS_H
 
-t_vector	create_vector(int x, int y)
+typedef struct	s_fvector
 {
-	t_vector vector;
+	double	x;
+	double	y;
+}				t_fvector;
 
-	vector.x = x;
-	vector.y = y;
-	return (vector);
-}
+t_fvector		create_fvector(double x, double y);
+t_fvector		perp_clock_fvec(t_fvector fvector);
+t_fvector   	perp_cntclock_fvec(t_fvector fvector);
+t_fvector		multiply_fvec_by_dbl(t_fvector fvector, double n);
 
-t_fvector	create_fvector(double x, double y)
-{
-	t_fvector fvector;
-
-	fvector.x = x;
-	fvector.y = y;
-	return (fvector);
-}
+#endif

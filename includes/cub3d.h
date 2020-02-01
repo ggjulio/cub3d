@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/31 16:23:31 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/01 10:58:47 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include "libft.h"
 
 # include "vectors.h"
+# include "fvectors.h"
 # include "x11.h"
 # include "color.h"
 # include "application.h"

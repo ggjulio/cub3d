@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:14:37 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/31 17:30:25 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/01 10:24:22 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	do_job(t_game *g)
 	move(g, 0.4, 0.2, 0.1);
 	raycasting(g);
 	render_application(&(g->app));
-	mlx_put_image_to_window(g->app.mlx_ptr, g->app.win_ptr, g->south.img_ptr, 0, 0);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:19:46 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/31 16:19:47 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/01 11:10:03 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,15 @@ void	save_position(t_vector pos, char c, t_game *g)
 	g->cam.pos.x = pos.x + 0.5;
 	g->cam.pos.y = pos.y + 0.5;
 	g->cam.plane.x = 0.0;
-	g->cam.plane.y = 0.66;
+	g->cam.plane.y = 0.58;
 	if (c == 'N')
-	{
-		g->cam.dir.x = -1.0;
-		g->cam.dir.y = 0.0;
-	}
+		g->cam.dir = (t_fvector){-1.0, 0.0};
 	else if (c == 'S')
-	{
-		g->cam.dir.x = 1.0;
-		g->cam.dir.y = 0.0;
-	}
+		g->cam.dir = (t_fvector){1.0, 0.0};
 	else if (c == 'E')
-	{
-		g->cam.dir.x = 1.0;
-		g->cam.dir.y = 0.0;
-	}
+		g->cam.dir = (t_fvector){1.0, 0.0};
 	else if (c == 'W')
-	{
-		g->cam.dir.x = 0.0;
-		g->cam.dir.y = -1.0;
-	}
+		g->cam.dir = (t_fvector){0.0, -1.0};
 }
 
 int		str_map_to_map(t_game *g)

@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:02:04 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/31 12:10:41 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/01 12:24:05 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,21 @@
 void	rotate(t_game *g, double rot_speed)
 {
 	double old;
+	
 
 	old = g->cam.dir.x;
 	g->cam.dir.x =
 		g->cam.dir.x * cos(rot_speed) - g->cam.dir.y * sin(rot_speed);
 	g->cam.dir.y = old * sin(rot_speed) + g->cam.dir.y * cos(rot_speed);
-	old = g->cam.plane.x;
+
+/*	old = g->cam.plane.x;
 	g->cam.plane.x =
 		g->cam.plane.x * cos(rot_speed) - g->cam.plane.y * sin(rot_speed);
 	g->cam.plane.y = old * sin(rot_speed) + g->cam.plane.y * cos(rot_speed);
+*/
+
+//	g->cam.plane = perp_clock_fvec(g->cam.dir);
+	
 }
 
 void	forward(t_game *g, double speed)
