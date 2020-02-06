@@ -1,6 +1,6 @@
 R 1000 800
 
-NO ./tex/my_png
+NO ./tex/skull_octocat.xpm
 SO ./tex/skull_octocat.xpm
 EA ./tex/skull_octocat.xpm
 WE ./tex/skull_octocat.xpm
