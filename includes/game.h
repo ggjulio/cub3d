@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/01 16:28:57 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/06 14:04:58 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ typedef struct	s_texture
 	uint8_t		is_texture:1;
 	uint8_t		is_color:1;
 	uint8_t		is_valid:1;
-	uint8_t		remaining:6;
+	uint8_t		is_bad_extention:1;
+	uint8_t		remaining:4;
 }				t_texture;
 
 typedef struct	s_game
@@ -66,12 +67,13 @@ typedef struct	s_game
 	uint16_t		key_left:1;
 	uint16_t		key_right:1;
 	uint16_t		is_mouse_move:1;
-	uint16_t		remaining:9;
+	uint16_t		mouse_move_enabled:1;
+	uint16_t		remaining:8;
 }				t_game;
 
 t_texture		create_texture(char id[3], char *value);
 void			destroy_texture(t_texture tex, t_game *g);
-void			init_tex(t_texture *tex, t_game *g);
+int				init_texture(t_texture *tex, t_game *g);
 void			load_textures(t_game *g);
 
 void			destroy_game(t_game g);

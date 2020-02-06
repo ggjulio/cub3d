@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 15:36:53 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/24 15:24:15 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/06 15:25:15 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,7 +205,7 @@
 /*
 ** Special keys
 ** CL_KEY is the caps lock key
-** LSFT_KEY and RLFT_KEY are the left shift and right shift keys
+** LSFT_KEY and RSFT_KEY are the left shift and right shift keys
 ** LCTRL_KEY and RCTRL_KEY are the left control and right control keys
 ** LOPT_KEY and ROPT_KEY are the left option and right option keys
 ** LCMD_KEY and RCMD_KEY are the left command and right command keys

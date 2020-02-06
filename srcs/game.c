@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/31 17:05:12 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/06 16:46:09 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ t_camera	create_camera(t_fvector position, t_fvector direction, \
 
 void		load_textures(t_game *g)
 {
-	init_tex(&(g->north), g);
-	init_tex(&(g->south), g);
-	init_tex(&(g->east), g);
-	init_tex(&(g->west), g);
-	init_tex(&(g->ceil), g);
-	init_tex(&(g->floor), g);
-	init_tex(&(g->sprite), g);
+	init_texture(&(g->north), g);
+	init_texture(&(g->south), g);
+	init_texture(&(g->east), g);
+	init_texture(&(g->west), g);
+	init_texture(&(g->ceil), g);
+	init_texture(&(g->floor), g);
+	init_texture(&(g->sprite), g);
 }
 
 void		destroy_game(t_game g)
@@ -43,7 +43,7 @@ void		destroy_game(t_game g)
 	destroy_texture(g.ceil, &g);
 	destroy_texture(g.floor, &g);
 	destroy_texture(g.sprite, &g);
-	//destroy_map
+	// destroy_map
 	if (g.app.win_ptr != NULL)
 		destroy_application(g.app);
 }

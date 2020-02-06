@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 15:04:32 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/31 15:07:17 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/06 16:43:54 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int		parse_resolution(char **words, char *line, t_game *g)
 		return (ft_error("R : Dupplicate id"));
 	g->app.res.x = x;
 	g->app.res.y = y;
+	g->app = create_application(g->app.res.x, g->app.res.y, "Cub3D");
 	return (0);
 }
 
@@ -42,7 +43,13 @@ int		parse_north(char **words, char *line, t_game *g)
 		return (ft_error("NO : Something wrong"));
 	g->north = create_texture(words[0], words[1]);
 	if (g->north.is_valid)
+	{
+		if (g->north.is_bad_extention)
+			return (ft_error("NO : Wrong texture extention"));
+		if (init_texture(&(g->north), g) == -1)
+			return (ft_error("NO : Can't load texture."));
 		return (0);
+	}
 	return (ft_error("NO : Invalid texture or color"));
 }
 
@@ -53,7 +60,13 @@ int		parse_south(char **words, char *line, t_game *g)
 		return (ft_error("SO : Something wrong"));
 	g->south = create_texture(words[0], words[1]);
 	if (g->south.is_valid)
+	{
+		if (g->south.is_bad_extention)
+			return (ft_error("SO : Wrong texture extention"));
+		if (init_texture(&(g->south), g) == -1)
+			return (ft_error("SO : Can't load texture."));
 		return (0);
+	}
 	return (ft_error("SO : Invalid texture or color"));
 }
 
@@ -64,7 +77,13 @@ int		parse_west(char **words, char *line, t_game *g)
 		return (ft_error("WE : Something wrong"));
 	g->west = create_texture(words[0], words[1]);
 	if (g->west.is_valid)
+	{
+		if (g->west.is_bad_extention)
+			return (ft_error("WE : Wrong texture extention"));
+		if (init_texture(&(g->west), g) == -1)
+			return (ft_error("WE : Can't load texture."));
 		return (0);
+	}
 	return (ft_error("WE : Invalid texture or color"));
 }
 
@@ -75,6 +94,12 @@ int		parse_east(char **words, char *line, t_game *g)
 		return (ft_error("EA : Something wrong"));
 	g->east = create_texture(words[0], words[1]);
 	if (g->east.is_valid)
+	{
+		if (g->east.is_bad_extention)
+			return (ft_error("EA : Wrong texture extention"));
+		if (init_texture(&(g->east), g) == -1)
+			return (ft_error("EA : Can't load texture."));
 		return (0);
+	}
 	return (ft_error("EA : Invalid texture or color"));
 }

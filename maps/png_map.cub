@@ -1,11 +1,11 @@
 R 1000 800
 
-NO ./tex/skull_octocat.xpm
+NO ./tex/my_png
 SO ./tex/skull_octocat.xpm
-WE ./tex/skull_octocat.xpm
 EA ./tex/skull_octocat.xpm
+WE ./tex/skull_octocat.xpm
 S ./tex/skull_octocat.xpm
- 
+
 F 252,3,207
 C 225,30,0
 

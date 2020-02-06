@@ -6,13 +6,27 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 16:44:33 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/01 17:48:49 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/06 16:34:48 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	is_key_press(int key, t_game *g)
+void	change_mouse_state(t_game *g)
+{
+	g->mouse_move_enabled = !g->mouse_move_enabled;
+	if (g->mouse_move_enabled)
+	{
+		mlx_mouse_hide();
+		mlx_mouse_move(g->app.win_ptr, g->app.res.x / 2, 0);
+	}
+	else
+		mlx_mouse_show();
+	g->key_left = 0;
+	g->key_right = 0;
+}
+
+int		is_key_press(int key, t_game *g)
 {
 	if (key == W_KEY)
 		g->key_w = 1;
@@ -32,12 +46,14 @@ int	is_key_press(int key, t_game *g)
 		g->key_right = 1;
 		g->is_mouse_move = 0;
 	}
+	else if (key == LSFT_KEY || key == RSFT_KEY)
+		change_mouse_state(g);
 	else if (key == ESC_KEY)
 		exit_game(g);
 	return (0);
 }
 
-int	is_key_release(int key, t_game *g)
+int		is_key_release(int key, t_game *g)
 {
 	if (key == W_KEY)
 		g->key_w = 0;
@@ -54,10 +70,9 @@ int	is_key_release(int key, t_game *g)
 	return (0);
 }
 
-int	is_focus_out(int key, t_game *g)
+int		is_focus_out(int key, t_game *g)
 {
 	(void)key;
-	printf("focus out:%d\n", key);
 	g->key_w = 0;
 	g->key_a = 0;
 	g->key_s = 0;
@@ -67,7 +82,7 @@ int	is_focus_out(int key, t_game *g)
 	return (0);
 }
 
-int	is_mouse_moved(int key, t_game *g)
+int		is_mouse_moved(int key, t_game *g)
 {
 	static int old_x;
 
@@ -82,14 +97,11 @@ int	is_mouse_moved(int key, t_game *g)
 		g->key_right = 0;
 		g->key_left = 0;
 		old_x = key;
-    }
-
-	(void)g;
-	printf("mouse event key:%d\n", key);
+	}
 	return (0);
 }
 
-int	close_program(int key, t_game *g)
+int		close_program(int key, t_game *g)
 {
 	(void)key;
 	return (exit_game(g));

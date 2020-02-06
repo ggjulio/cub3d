@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 14:06:47 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/01 20:02:25 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/06 16:44:53 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,25 +57,32 @@ t_texture	create_texture(char id[3], char *value)
 			return (tex);
 		ft_strcpy(tex.filename, value);
 		tex.is_valid = 1;
+		if (!ft_valid_extention(value, ".xpm"))
+			tex.is_bad_extention = 1;
 	}
 	return (tex);
 }
 
-void		init_tex(t_texture *tex, t_game *g)
+int			init_texture(t_texture *tex, t_game *g)
 {
 	if (tex->is_color)
-		return ;
+		return (0);
 	tex->img_ptr = mlx_xpm_file_to_image(g->app.mlx_ptr, tex->filename,
 									&(tex->size.x), &(tex->size.y));
-	tex->pixels = mlx_get_data_addr(tex->img_ptr, &(tex->bits_per_pixel),
+	if (tex->img_ptr != NULL)
+		tex->pixels = mlx_get_data_addr(tex->img_ptr, &(tex->bits_per_pixel),
 									&(tex->size_line), &(tex->endian));
+	else
+		return (-1);
+	return (0);
 }
 
 void		destroy_texture(t_texture tex, t_game *g)
 {
 	if (tex.is_valid && tex.is_texture)
 	{
-		mlx_destroy_image(g->app.mlx_ptr, tex.img_ptr);
+		if (tex.img_ptr != NULL)
+			mlx_destroy_image(g->app.mlx_ptr, tex.img_ptr);
 		free(tex.filename);
 	}
 }

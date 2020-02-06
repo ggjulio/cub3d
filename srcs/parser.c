@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 13:59:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/31 15:07:32 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/06 16:39:38 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,13 @@ int		parse_floor(char **words, char *line, t_game *g)
 		return (ft_error("F : Something wrong"));
 	g->floor = create_texture(words[0], words[1]);
 	if (g->floor.is_valid)
+	{
+		if (g->floor.is_bad_extention)
+			return (ft_error("F : Wrong texture extention"));
+		if (init_texture(&(g->floor), g) == -1)
+			return (ft_error("F : Can't load texture."));
 		return (0);
+	}
 	return (ft_error("F : Invalid texture or color"));
 }
 
@@ -32,7 +38,13 @@ int		parse_ceil(char **words, char *line, t_game *g)
 		return (ft_error("C : Something wrong"));
 	g->ceil = create_texture(words[0], words[1]);
 	if (g->ceil.is_valid)
+	{
+		if (g->ceil.is_bad_extention)
+			return (ft_error("C : Wrong texture extention"));
+		if (init_texture(&(g->ceil), g) == -1)
+			return (ft_error("C : Can't load texture."));
 		return (0);
+	}
 	return (ft_error("C : Invalid texture or color"));
 }
 
@@ -43,7 +55,13 @@ int		parse_sprite(char **words, char *line, t_game *g)
 		return (ft_error("S : Something wrong"));
 	g->sprite = create_texture(words[0], words[1]);
 	if (g->sprite.is_valid)
+	{
+		if (g->sprite.is_bad_extention)
+			return (ft_error("S : Wrong texture extention"));
+		if (init_texture(&(g->sprite), g) == -1)
+			return (ft_error("S : Can't load texture."));
 		return (0);
+	}
 	return (ft_error("S : Invalid texture or color"));
 }
 
