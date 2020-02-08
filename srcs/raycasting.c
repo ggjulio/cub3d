@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/31 16:11:08 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/07 10:56:48 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,12 @@ uint8_t	map_value(t_game *g, int x, int y)
 {
 	return (g->map[y + x * g->map_len_x]);
 }
-
+/*
+void	put_texel(t_application *app, t_vector coord, t_color color)
+{
+	
+}
+*/
 void	draw_vertical_line(int x, int y_start, int y_end,  t_game *g)
 {
 	while (y_start < y_end)
@@ -76,23 +81,21 @@ void	hit_wall(t_raycast *r, t_game *g)
 	}
 }
 
-//Calculate distance projected on camera direction (Euclidean distance will give fisheye effect!)
 void	fix_fisheye(t_game *g, t_raycast *r)
 {
 	if (r->side == 0) 
-		r->perpendicular_dist = (r->map.x - g->cam.pos.x + (1 - r->step.x) / 2) / r->ray_dir.x;
+		r->perp_wall_dist = (r->map.x - g->cam.pos.x + (1 - r->step.x) / 2) / r->ray_dir.x;
 	else
-		r->perpendicular_dist = (r->map.y - g->cam.pos.y + (1 - r->step.y) / 2) / r->ray_dir.y;
+		r->perp_wall_dist = (r->map.y - g->cam.pos.y + (1 - r->step.y) / 2) / r->ray_dir.y;
 }
 
 void	calculate_wall_height(t_game *g, t_raycast *r)
 {
-	int line_height = (int)(g->app.res.y / r->perpendicular_dist);
-
-	r->wall_start = -line_height / 2 + g->app.res.y / 2;
+	r->line_height = (int)(g->app.res.y / r->perp_wall_dist);
+	r->wall_start = -r->line_height / 2 + g->app.res.y / 2;
 	if (r->wall_start < 0)
 		r->wall_start = 0;
-	r->wall_end = line_height / 2 + g->app.res.y / 2;
+	r->wall_end = r->line_height / 2 + g->app.res.y / 2;
 	if (r->wall_end >= g->app.res.y)
 		r->wall_end = g->app.res.y - 1;
 }

@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 20:42:53 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/26 19:45:48 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/07 10:55:34 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ typedef struct	s_raycast
 	t_fvector	delta_dist;
 	t_vector	step;
 	t_fvector	side_dist;
-	double		perpendicular_dist;
+	double		perp_wall_dist;
+	int			line_height;
 	double		wall_x;
 	int			wall_start;
 	int			wall_end;
