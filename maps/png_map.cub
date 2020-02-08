@@ -1,12 +1,11 @@
 R 1000 800
 
-NO ./tex/skull_octocat.xpm
-SO ./tex/skull_octocat.xpm
-EA ./tex/skull_octocat.xpm
-WE ./tex/skull_octocat.xpm
-S ./tex/skull_octocat.xpm
+NO ./tex/8-bit.png
+SO 252,3,207
+WE 252,3,207
+EA 252,3,207
+S 252,3,207
 
-F 252,3,207
 C 225,30,0
 
 1 1 1 1 1 1

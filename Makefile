@@ -32,13 +32,13 @@ _IWHITE=$'\x1b[47m
 #    By: juligonz <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 18:50:56 by juligonz          #+#    #+#              #
-#    Updated: 2020/02/01 11:05:11 by juligonz         ###   ########.fr        #
+#    Updated: 2020/02/08 10:49:09 by juligonz         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME = Cub3D
 
-LIB = ft mlx
+LIB = ft mlx z
 FRAMEWORKS = OpenGL AppKit
 
 SRC = main.c color.c vector.c fvector.c application.c draw.c game.c events.c parser.c raycasting.c move.c texture.c parse_map.c parser2.c parse_map2.c utility.c
