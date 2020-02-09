@@ -32,7 +32,7 @@ _IWHITE=$'\x1b[47m
 #    By: juligonz <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 18:50:56 by juligonz          #+#    #+#              #
-#    Updated: 2020/02/08 10:49:09 by juligonz         ###   ########.fr        #
+#    Updated: 2020/02/09 13:46:06 by juligonz         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -41,48 +41,38 @@ NAME = Cub3D
 LIB = ft mlx z
 FRAMEWORKS = OpenGL AppKit
 
-SRC = main.c color.c vector.c fvector.c application.c draw.c game.c events.c parser.c raycasting.c move.c texture.c parse_map.c parser2.c parse_map2.c utility.c
-SRC := $(addprefix srcs/, $(SRC))
+SRC_DIR = srcs
+INC_DIR = includes
+OBJ_DIR = obj
+LIB_DIR =  $(shell find ./lib -type d -maxdepth 1)
 
-OBJ = $(SRC:.c=.o)
+SRC = main.c color.c vector.c fvector.c application.c 
+SRC+= draw.c game.c events.c parser.c raycasting.c move.c 
+SRC+= texture.c parse_map.c parser2.c parse_map2.c utility.c
 
-LFLAGS  = $(foreach framework, $(FRAMEWORKS),-framework $(framework))
-LFLAGS += -L./lib $(foreach lib, $(LIB),-l$(lib))
-IFLAGS  = -I./lib/libmlx -I./lib/libft -I./includes
+OBJ = $(addprefix  $(OBJ_DIR)/,$(SRC:%.c=%.o))
+vpath %.c $(SRC_DIR)
+
+LFLAGS = $(foreach lib, $(LIB_DIR),-L$(lib))  $(foreach lib, $(LIB),-l$(lib))
+LFLAGS+= $(foreach framework, $(FRAMEWORKS),-framework $(framework))
 
 CC = gcc
 CFLAGS  = -Wall -Wextra -Werror -g
-CFLAGS  += $(IFLAGS) #$(LFLAGS)
+IFLAGS  = -I./lib/libmlx -I./lib/libft -I./includes
 
 all: $(NAME)
 
-libs: 
-	@echo "$(_GREEN)Compiling libft.a ...$(_END)"
-	@make -s -C lib/libft/
-	@mv lib/libft/libft.a lib/
-	@make clean -s -C lib/libft/
-	@echo "$(_RED)done ...$(_END)"
-	@echo "\n"
-	@echo "$(_GREEN)Compiling libmlx.a ...$(_END)"
-	@make -s -i CFLAGS+=-w -C lib/libmlx/
-	@mv lib/libmlx/libmlx.a lib/
-	@make clean -s -C lib/libmlx/
-	@echo "$(_RED)done ...$(_END)"
-
-show:
-	@echo "$(_CYAN)SRC    :$(_RED)  $(SRC)$(_END)"
-	@echo "$(_CYAN)OBJ    :$(_RED)  $(OBJ)$(_END)"
-	@echo "$(_CYAN)IFLAGS :$(_RED)  $(IFLAGS)$(_END)"
-	@echo "$(_CYAN)LFLAGS :$(_RED)  $(LFLAGS)$(_END)"
-	@echo "$(_CYAN)CFLAGS :$(_RED)  $(CFLAGS)$(_END)"
+$(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
 	@echo "$(_GREEN)Compiling ...$(_END)"
-	$(CC) $(CFLAGS) $(LFLAGS) -o $@ $^
+	@$(CC) $(CFLAGS) $(IFLAGS) $(LFLAGS) -o $@ $^
 	@echo "$(_GREEN)Compiled !$(_END)"
 
 clean:
-	@rm -f $(OBJ)
+	@rm -rf $(OBJ_DIR)
 	@echo "$(_GREEN).o removed !$(_END)"
 
 fclean: clean
@@ -91,9 +81,35 @@ fclean: clean
 
 bonus: $(NAME)
 
+show:
+	@echo "$(_CYAN)SRC    :$(_RED)  $(SRC)$(_END)"
+	@echo "$(_CYAN)OBJ    :$(_RED)  $(OBJ)$(_END)"
+	@echo "$(_CYAN)IFLAGS :$(_RED)  $(IFLAGS)$(_END)"
+	@echo "$(_CYAN)LFLAGS :$(_RED)  $(LFLAGS)$(_END)"
+	@echo "$(_CYAN)CFLAGS :$(_RED)  $(CFLAGS)$(_END)"
+
 re: fclean all
 
-.PHONY: clean fclean re all bonus
+
+install: 
+	@echo "$(_GREEN)Install libft.a ...$(_END)"
+	@make -s -C lib/libft/
+	@echo "$(_RED)done ...$(_END)"
+	@echo "$(_GREEN)Install libmlx.a ...$(_END)"
+	@make -s -i CFLAGS+=-w -C lib/libmlx/
+	@echo "$(_RED)done ...$(_END)"
+
+fclean-install:
+	@echo "$(_GREEN)fclean-install libft.a ...$(_END)"
+	@make fclean -s -C lib/libft/
+	@echo "$(_GREEN)fclean-install libmlx.a ...$(_END)"
+	@make clean -s -i CFLAGS+=-w -C lib/libmlx/
+
+re-install: fclean-install install
+
+
+
+.PHONY: clean fclean re all bonus install re-install fclean-install
 
 
 #******************************************************************************#
