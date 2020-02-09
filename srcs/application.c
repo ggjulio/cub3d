@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 17:14:55 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/27 19:57:58 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/09 21:03:27 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,34 @@ void			destroy_application(t_application to_destroy)
 void			put_pixel(t_application *app, t_vector coord, t_color color)
 {
 	int *pixels;
+	t_color actual;
 
 	if (coord.x < 0 || coord.y < 0 || coord.x >= app->res.x - 1
 		|| coord.y >= app->res.y - 1)
 		return ;
 	pixels = (int *)(app->pixels);
-	pixels[coord.x + (app->res.x * coord.y)] = color.c;
+
+	actual.c = pixels[coord.x + (app->res.x * coord.y)];
+	if (actual.rgba.a == 0)  // added
+		pixels[coord.x + (app->res.x * coord.y)] = color.c;
+	else
+		pixels[coord.x + (app->res.x * coord.y)] = combine_color(actual, color).c;
 }
 
 void			render_application(t_application *app)
 {
 	mlx_put_image_to_window(app->mlx_ptr, app->win_ptr, app->img_ptr, 0, 0);
+}
+
+void			clear_application(t_application *app, t_color color)
+{
+	int i;
+	int nb_pixel;
+	int *pixels;
+
+	nb_pixel = app->res.x * app->res.y;
+	pixels = (int *)(app->pixels);
+	i = -1;
+	while (++i < nb_pixel)
+		pixels[i] = color.c;
 }

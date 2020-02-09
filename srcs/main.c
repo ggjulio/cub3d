@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:14:37 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/06 16:43:23 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/09 20:59:43 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,13 @@ void	mouse_movement(t_game *g)
 
 int		do_job(t_game *g)
 {
+	clear_application(&(g->app), create_color(0,0,0,0));
 	if (g->mouse_move_enabled)
 		mouse_movement(g);
 	move(g, 0.4, 0.2, 0.1);
 	raycasting(g);
+	draw_rectangle(&(g->app), (t_vector){400,400}, (t_vector){800,800},
+				   create_color(0,255,0,50));
 	render_application(&(g->app));
 	return (0);
 }
@@ -66,7 +69,7 @@ int		ft_error(char *e)
 
 /*
 ** 	mlx_string_put(app.mlx_ptr, app.win_ptr, 0, 0,\
-**				create_color(255, 255, 255, 0).c, "Salut");
+**				create_color(255, 255, 255, 100).c, "Salut");
 */
 
 int		main(int ac, char **av)
