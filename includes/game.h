@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/06 14:04:58 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/10 11:42:31 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ typedef struct	s_texture
 
 typedef struct	s_game
 {
-	t_application	app;
 	t_camera		cam;
 	uint8_t			map_len_x;
 	uint8_t			map_len_y;
@@ -72,11 +71,13 @@ typedef struct	s_game
 }				t_game;
 
 t_texture		create_texture(char id[3], char *value);
-void			destroy_texture(t_texture tex, t_game *g);
-int				init_texture(t_texture *tex, t_game *g);
-void			load_textures(t_game *g);
+void			destroy_texture(t_texture tex);
+int				init_texture(t_texture *tex);
+void			load_textures();
 
-void			destroy_game(t_game g);
-int				exit_game(t_game *g);
+void			destroy_game();
+void			free_game(t_game *to_free);
+
+int				exit_game();
 
 #endif

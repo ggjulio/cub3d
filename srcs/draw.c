@@ -12,8 +12,7 @@
 
 #include "cub3d.h"
 
-void	draw_rectangle(t_application *app, t_vector coord, \
-					t_vector size, t_color color)
+void	draw_rectangle(t_vector coord, t_vector size, t_color color)
 {
 	int x;
 	int y;
@@ -23,6 +22,6 @@ void	draw_rectangle(t_application *app, t_vector coord, \
 	{
 		x = coord.x - 1;
 		while (++x < coord.x + size.x)
-			put_pixel(app, create_vector(x, y), color);
+			put_pixel(create_vector(x, y), color);
 	}
 }

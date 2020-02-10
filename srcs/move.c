@@ -12,69 +12,69 @@
 
 #include "cub3d.h"
 
-void	rotate(t_game *g, double rot_speed)
+void	rotate(double rot_speed)
 {
 	double old;
 
-	old = g->cam.dir.x;
-	g->cam.dir.x =
-		g->cam.dir.x * cos(rot_speed) - g->cam.dir.y * sin(rot_speed);
-	g->cam.dir.y = old * sin(rot_speed) + g->cam.dir.y * cos(rot_speed);
-	old = g->cam.plane.x;
-	g->cam.plane.x =
-		g->cam.plane.x * cos(rot_speed) - g->cam.plane.y * sin(rot_speed);
-	g->cam.plane.y = old * sin(rot_speed) + g->cam.plane.y * cos(rot_speed);
+	old = g_game.cam.dir.x;
+	g_game.cam.dir.x =
+		g_game.cam.dir.x * cos(rot_speed) - g_game.cam.dir.y * sin(rot_speed);
+	g_game.cam.dir.y = old * sin(rot_speed) + g_game.cam.dir.y * cos(rot_speed);
+	old = g_game.cam.plane.x;
+	g_game.cam.plane.x =
+		g_game.cam.plane.x * cos(rot_speed) - g_game.cam.plane.y * sin(rot_speed);
+	g_game.cam.plane.y = old * sin(rot_speed) + g_game.cam.plane.y * cos(rot_speed);
 }
 
-void	forward(t_game *g, double speed)
+void	forward(double speed)
 {
-	if (!map_value(g,
-	(int)(g->cam.pos.x + g->cam.dir.x * speed), (int)g->cam.pos.y))
-		g->cam.pos.x += g->cam.dir.x * speed;
-	if (!map_value(g,
-	(int)g->cam.pos.x, (int)(g->cam.pos.y + g->cam.dir.y * speed)))
-		g->cam.pos.y += g->cam.dir.y * speed;
+	if (!map_value(
+	(int)(g_game.cam.pos.x + g_game.cam.dir.x * speed), (int)g_game.cam.pos.y))
+		g_game.cam.pos.x += g_game.cam.dir.x * speed;
+	if (!map_value(
+	(int)g_game.cam.pos.x, (int)(g_game.cam.pos.y + g_game.cam.dir.y * speed)))
+		g_game.cam.pos.y += g_game.cam.dir.y * speed;
 }
 
-void	backward(t_game *g, double speed)
+void	backward(double speed)
 {
-	if (!map_value(g,
-	(int)(g->cam.pos.x - g->cam.dir.x * speed), (int)g->cam.pos.y))
-		g->cam.pos.x -= g->cam.dir.x * speed;
-	if (!map_value(g,
-	(int)g->cam.pos.x, (int)(g->cam.pos.y - g->cam.dir.y * speed)))
-		g->cam.pos.y -= g->cam.dir.y * speed;
+	if (!map_value(
+	(int)(g_game.cam.pos.x - g_game.cam.dir.x * speed), (int)g_game.cam.pos.y))
+		g_game.cam.pos.x -= g_game.cam.dir.x * speed;
+	if (!map_value(
+	(int)g_game.cam.pos.x, (int)(g_game.cam.pos.y - g_game.cam.dir.y * speed)))
+		g_game.cam.pos.y -= g_game.cam.dir.y * speed;
 }
 
-void	left(t_game *g, double lat_speed)
+void	left(double lat_speed)
 {
-	if (!map_value(g,
-	(int)(g->cam.pos.x - g->cam.plane.x * lat_speed), (int)g->cam.pos.y))
-		g->cam.pos.x -= g->cam.plane.x * lat_speed;
-	if (!map_value(g,
-	(int)g->cam.pos.x, (int)(g->cam.pos.y - g->cam.plane.y * lat_speed)))
-		g->cam.pos.y -= g->cam.plane.y * lat_speed;
+	if (!map_value(
+	(int)(g_game.cam.pos.x - g_game.cam.plane.x * lat_speed), (int)g_game.cam.pos.y))
+		g_game.cam.pos.x -= g_game.cam.plane.x * lat_speed;
+	if (!map_value(
+	(int)g_game.cam.pos.x, (int)(g_game.cam.pos.y - g_game.cam.plane.y * lat_speed)))
+		g_game.cam.pos.y -= g_game.cam.plane.y * lat_speed;
 }
 
-void	move(t_game *g, double speed, double lat_speed, double rot_speed)
+void	move(double speed, double lat_speed, double rot_speed)
 {
-	if (g->key_w)
-		forward(g, speed);
-	if (g->key_s)
-		backward(g, speed);
-	if (g->key_a)
-		left(g, lat_speed);
-	if (g->key_d)
+	if (g_game.key_w)
+		forward(speed);
+	if (g_game.key_s)
+		backward(speed);
+	if (g_game.key_a)
+		left(lat_speed);
+	if (g_game.key_d)
 	{
-		if (!map_value(g,
-		(int)(g->cam.pos.x + g->cam.plane.x * lat_speed), (int)g->cam.pos.y))
-			g->cam.pos.x += g->cam.plane.x * lat_speed;
-		if (!map_value(g,
-		(int)g->cam.pos.x, (int)(g->cam.pos.y + g->cam.plane.y * lat_speed)))
-			g->cam.pos.y += g->cam.plane.y * lat_speed;
+		if (!map_value(
+		(int)(g_game.cam.pos.x + g_game.cam.plane.x * lat_speed), (int)g_game.cam.pos.y))
+			g_game.cam.pos.x += g_game.cam.plane.x * lat_speed;
+		if (!map_value(
+		(int)g_game.cam.pos.x, (int)(g_game.cam.pos.y + g_game.cam.plane.y * lat_speed)))
+			g_game.cam.pos.y += g_game.cam.plane.y * lat_speed;
 	}
-	if (g->key_right)
-		rotate(g, -rot_speed);
-	if (g->key_left)
-		rotate(g, rot_speed);
+	if (g_game.key_right)
+		rotate(-rot_speed);
+	if (g_game.key_left)
+		rotate(rot_speed);
 }

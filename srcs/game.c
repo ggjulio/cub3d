@@ -23,34 +23,41 @@ t_camera	create_camera(t_fvector position, t_fvector direction, \
 	return (camera);
 }
 
-void		load_textures(t_game *g)
+void		destroy_game(t_game to_destroy)
 {
-	init_texture(&(g->north), g);
-	init_texture(&(g->south), g);
-	init_texture(&(g->east), g);
-	init_texture(&(g->west), g);
-	init_texture(&(g->ceil), g);
-	init_texture(&(g->floor), g);
-	init_texture(&(g->sprite), g);
+	destroy_texture(to_destroy.north);
+	destroy_texture(to_destroy.south);
+	destroy_texture(to_destroy.east);
+	destroy_texture(to_destroy.west);
+	destroy_texture(to_destroy.ceil);
+	destroy_texture(to_destroy.floor);
+	destroy_texture(to_destroy.sprite);
+	free(to_destroy.map);
 }
 
-void		destroy_game(t_game g)
+void		free_game(t_game *to_free)
 {
-	destroy_texture(g.north, &g);
-	destroy_texture(g.south, &g);
-	destroy_texture(g.east, &g);
-	destroy_texture(g.west, &g);
-	destroy_texture(g.ceil, &g);
-	destroy_texture(g.floor, &g);
-	destroy_texture(g.sprite, &g);
-	free(g.map);
-	if (g.app.win_ptr != NULL)
-		destroy_application(g.app);
+	destroy_game(*to_free);
+	free(to_free);
 }
 
-int			exit_game(t_game *g)
+
+
+void		load_textures()
 {
-	destroy_game(*g);
+	init_texture(&(g_game.north));
+	init_texture(&(g_game.south));
+	init_texture(&(g_game.east));
+	init_texture(&(g_game.west));
+	init_texture(&(g_game.ceil));
+	init_texture(&(g_game.floor));
+	init_texture(&(g_game.sprite));
+}
+
+int			exit_game()
+{
+	destroy_game(g_game);
+	destroy_application(g_app);
 	exit(0);
 	return (0);
 }

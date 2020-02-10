@@ -12,44 +12,44 @@
 
 #include "cub3d.h"
 
-void	save_position(t_vector pos, char c, t_game *g)
+void	save_position(t_vector pos, char c)
 {
-	g->cam.pos.x = pos.x + 0.5;
-	g->cam.pos.y = pos.y + 0.5;
-	g->cam.plane.x = 0.0;
-	g->cam.plane.y = 0.58;
+	g_game.cam.pos.x = pos.x + 0.5;
+	g_game.cam.pos.y = pos.y + 0.5;
+	g_game.cam.plane.x = 0.0;
+	g_game.cam.plane.y = 0.58;
 	if (c == 'N')
-		g->cam.dir = (t_fvector){-1.0, 0.0};
+		g_game.cam.dir = (t_fvector){-1.0, 0.0};
 	else if (c == 'S')
-		g->cam.dir = (t_fvector){1.0, 0.0};
+		g_game.cam.dir = (t_fvector){1.0, 0.0};
 	else if (c == 'E')
-		g->cam.dir = (t_fvector){1.0, 0.0};
+		g_game.cam.dir = (t_fvector){1.0, 0.0};
 	else if (c == 'W')
-		g->cam.dir = (t_fvector){0.0, -1.0};
+		g_game.cam.dir = (t_fvector){0.0, -1.0};
 }
 
-int		str_map_to_map(t_game *g)
+int		str_map_to_map()
 {
 	int i;
 	int j;
 
-	if ((g->map = malloc(g->map_len_x * g->map_len_y)) == NULL)
+	if ((g_game.map = malloc(g_game.map_len_x * g_game.map_len_y)) == NULL)
 		return (ft_error("Map : map not defined ?"));
 	i = 0;
 	j = 0;
-	while (g->str_map[i])
+	while (g_game.str_map[i])
 	{
-		while (g->str_map[i] == ' ')
+		while (g_game.str_map[i] == ' ')
 			i++;
-		if (ft_in_charset(g->str_map[i], "NSWE"))
+		if (ft_in_charset(g_game.str_map[i], "NSWE"))
 		{
-			save_position((t_vector){j / g->map_len_x, j % g->map_len_x},
-						g->str_map[i], g);
-			g->map[j++] = 0;
+			save_position((t_vector){j / g_game.map_len_x, j % g_game.map_len_x},
+						g_game.str_map[i]);
+			g_game.map[j++] = 0;
 			i++;
 		}
 		else
-			g->map[j++] = g->str_map[i++] - '0';
+			g_game.map[j++] = g_game.str_map[i++] - '0';
 	}
 	return (0);
 }

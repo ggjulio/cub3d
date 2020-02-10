@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/01 15:22:08 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/10 11:37:42 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,21 @@
 ** parser2.c
 */
 
-int		parse_resolution(char **words, char *line, t_game *g);
-int		parse_north(char **words, char *line, t_game *g);
-int		parse_south(char **words, char *line, t_game *g);
-int		parse_west(char **words, char *line, t_game *g);
-int		parse_east(char **words, char *line, t_game *g);
+int		parse_resolution(char **words, char *line);
+int		parse_north(char **words, char *line);
+int		parse_south(char **words, char *line);
+int		parse_west(char **words, char *line);
+int		parse_east(char **words, char *line);
 
 /*
 ** parser.c
 */
 
-int		parse_floor(char **words, char *line, t_game *g);
-int		parse_ceil(char **words, char *line, t_game *g);
-int		parse_sprite(char **words, char *line, t_game *g);
-int		parsing(char *line, t_game *g);
-int		load_cub(char *file, t_game *g);
+int		parse_floor(char **words, char *line);
+int		parse_ceil(char **words, char *line);
+int		parse_sprite(char **words, char *line);
+int		parsing(char *line);
+int		load_cub(char *file);
 
 /*
 ** utility.c
@@ -67,42 +67,44 @@ size_t	ft_strlen_charset(const char *s, const char *charset);
 ** events.c
 */
 
-int		is_key_press(int key, t_game *g);
-int		is_key_release(int key, t_game *g);
-int		is_focus_out(int key, t_game *g);
-int		is_mouse_moved(int key, t_game *g);
-int		close_program(int key, t_game *g);
+int		is_key_press(int key);
+int		is_key_release(int key);
+int		is_focus_out(int key);
+int		is_mouse_moved(int key);
+int		close_program(int key);
 
 /*
 ** raycasting.c
 */
 
-void	raycasting(t_game *g);
-uint8_t	map_value(t_game *g, int x, int y);
+void	raycasting();
+uint8_t	map_value(int x, int y);
 
 /*
 ** move.c
 */
 
-void	move(t_game *g, double speed, double lat_speed, double rot_speed);
+void	move(double speed, double lat_speed, double rot_speed);
 
 /*
 ** parse_map.c
 */
 
-int		valid_map(t_game *g);
-int		parse_str_map(char **words, char *line, t_game *g);
+int		valid_map();
+int		parse_str_map(char **words, char *line);
 
 /*
 ** parse_map2.c
 */
 
-int		str_map_to_map(t_game *g);
+int		str_map_to_map();
 
 /*
 ** main.c
 */
-
 int		ft_error(char *e);
+
+extern t_game           g_game;
+extern t_application    g_app;
 
 #endif

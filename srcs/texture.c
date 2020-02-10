@@ -63,11 +63,11 @@ t_texture	create_texture(char id[3], char *value)
 	return (tex);
 }
 
-int			init_texture(t_texture *tex, t_game *g)
+int			init_texture(t_texture *tex)
 {
 	if (tex->is_color)
 		return (0);
-	tex->img_ptr = mlx_xpm_file_to_image(g->app.mlx_ptr, tex->filename,
+	tex->img_ptr = mlx_xpm_file_to_image(g_app.mlx_ptr, tex->filename,
 									&(tex->size.x), &(tex->size.y));
 	if (tex->img_ptr != NULL)
 		tex->pixels = mlx_get_data_addr(tex->img_ptr, &(tex->bits_per_pixel),
@@ -77,12 +77,12 @@ int			init_texture(t_texture *tex, t_game *g)
 	return (0);
 }
 
-void		destroy_texture(t_texture tex, t_game *g)
+void		destroy_texture(t_texture tex)
 {
 	if (tex.is_valid && tex.is_texture)
 	{
 		if (tex.img_ptr != NULL)
-			mlx_destroy_image(g->app.mlx_ptr, tex.img_ptr);
+			mlx_destroy_image(g_app.mlx_ptr, tex.img_ptr);
 		free(tex.filename);
 	}
 }

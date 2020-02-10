@@ -13,7 +13,6 @@
 #ifndef DRAW_H
 # define DRAW_H
 
-void	draw_rectangle(t_application *app, \
-					t_vector coord, t_vector size, t_color color);
+void	draw_rectangle(t_vector coord, t_vector size, t_color color);
 
 #endif

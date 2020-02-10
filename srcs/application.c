@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 17:14:55 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/09 21:03:27 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/10 11:44:38 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,42 +27,53 @@ t_application	create_application(int size_x, int size_y, char *title)
 	return (app);
 }
 
+t_application	*malloc_application(int size_x, int size_y, char *title)
+{
+	t_application *app;
+
+	if((app = malloc(sizeof(t_application))) == NULL )
+		return (NULL);
+	*app = create_application(size_x, size_y, title);
+	return (app);
+}
+
 void			destroy_application(t_application to_destroy)
 {
 	mlx_destroy_image(to_destroy.mlx_ptr, to_destroy.img_ptr);
 	mlx_destroy_window(to_destroy.mlx_ptr, to_destroy.win_ptr);
 }
 
-void			put_pixel(t_application *app, t_vector coord, t_color color)
+void			free_application(t_application *to_free)
 {
-	int *pixels;
-	t_color actual;
+	destroy_application(*to_free);
+	free(to_free);
+}
 
-	if (coord.x < 0 || coord.y < 0 || coord.x >= app->res.x - 1
-		|| coord.y >= app->res.y - 1)
+void			put_pixel(t_vector coord, t_color color)
+{
+	int		*pixels;
+
+	if (coord.x < 0 || coord.y < 0 || coord.x >= g_app.res.x - 1
+		|| coord.y >= g_app.res.y - 1)
 		return ;
-	pixels = (int *)(app->pixels);
+	pixels = (int *)(g_app.pixels);
 
-	actual.c = pixels[coord.x + (app->res.x * coord.y)];
-	if (actual.rgba.a == 0)  // added
-		pixels[coord.x + (app->res.x * coord.y)] = color.c;
-	else
-		pixels[coord.x + (app->res.x * coord.y)] = combine_color(actual, color).c;
+	pixels[coord.x + (g_app.res.x * coord.y)] = color.c;
 }
 
-void			render_application(t_application *app)
+void			render_application()
 {
-	mlx_put_image_to_window(app->mlx_ptr, app->win_ptr, app->img_ptr, 0, 0);
+	mlx_put_image_to_window(g_app.mlx_ptr, g_app.win_ptr, g_app.img_ptr, 0, 0);
 }
 
-void			clear_application(t_application *app, t_color color)
+void			clear_application(t_color color)
 {
 	int i;
 	int nb_pixel;
 	int *pixels;
 
-	nb_pixel = app->res.x * app->res.y;
-	pixels = (int *)(app->pixels);
+	nb_pixel = g_app.res.x * g_app.res.y;
+	pixels = (int *)(g_app.pixels);
 	i = -1;
 	while (++i < nb_pixel)
 		pixels[i] = color.c;
