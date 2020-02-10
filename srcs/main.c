@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:23:09 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/10 14:23:24 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/10 14:45:23 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 t_game			g_game;
 t_application	g_app;
-
 
 int		do_job()
 {

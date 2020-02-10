@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/10 14:31:26 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/10 14:51:09 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # include "game.h"
 # include "draw.h"
 # include "move.h"
+# include "event.h"
 
 /*
 ** parser2.c
@@ -68,11 +69,6 @@ size_t	ft_strlen_charset(const char *s, const char *charset);
 ** events.c
 */
 
-int		is_key_press(int key);
-int		is_key_release(int key);
-int		is_focus_out(int key);
-int		is_mouse_moved(int key);
-int		close_program(int key);
 
 /*
 ** raycasting.c
@@ -80,12 +76,6 @@ int		close_program(int key);
 
 void	raycasting();
 uint8_t	map_value(int x, int y);
-
-/*
-** move.c
-*/
-
-void	move(double speed, double lat_speed, double rot_speed);
 
 /*
 ** parse_map.c
