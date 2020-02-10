@@ -28,6 +28,11 @@ typedef union	u_color
 }				t_color;
 
 t_color			create_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
+t_color			*malloc_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
+void			destroy_color(t_color to_destroy);
+void			free_color(t_color *to_free);
+
+
 int				valid_color_fmt(char *format);
 t_color			create_color_from_str(char *format);
 t_color			combine_color(t_color c1, t_color c2);
