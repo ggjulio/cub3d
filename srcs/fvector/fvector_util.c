@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fvector.c                                          :+:      :+:    :+:   */
+/*   fvector_util.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,32 +12,26 @@
 
 #include "cub3d.h"
 
-t_fvector	create_fvector(double x, double y)
+t_fvector	perp_clock_fvec(t_fvector fvector)
 {
 	t_fvector result;
 
-	result.x = x;
-	result.y = y;
+	result = create_fvector(fvector.y, -fvector.x);
 	return (result);
 }
 
-t_fvector	*malloc_fvector(double x, double y)
+t_fvector	perp_cntclock_fvec(t_fvector fvector)
 {
-	t_fvector *result;
+	t_fvector result;
 
-	if ((result = malloc(sizeof(t_fvector))) == NULL)
-		return (NULL);
-	*result = create_fvector(x, y);
+	result = create_fvector(-fvector.y, fvector.x);
 	return (result);
 }
 
-void		destroy_fvector(t_vector to_destroy)
+t_fvector	multip_fvec_by_dbl(t_fvector fvector, double n)
 {
-	(void)to_destroy;
-}
+	t_fvector result;
 
-void		free_fvector(t_vector *to_free)
-{
-	destroy_fvector(*to_free);
-	free(to_free);
+	result = create_fvector(fvector.x * n, fvector.y * n);
+	return (result);
 }
