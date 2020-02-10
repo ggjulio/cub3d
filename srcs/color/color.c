@@ -14,23 +14,23 @@
 
 t_color		create_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 {
-	t_color color;
+	t_color result;
 
-	color.rgba.r = r;
-	color.rgba.g = g;
-	color.rgba.b = b;
-	color.rgba.a = a * 100 / 255;
-	return (color);
+	result.rgba.r = r;
+	result.rgba.g = g;
+	result.rgba.b = b;
+	result.rgba.a = a * 100 / 255;
+	return (result);
 }
 
 t_color		*malloc_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 {
-	t_color	*color;
+	t_color	*result;
 
-	if ((color = malloc(sizeof(t_color))) == NULL)
+	if ((result = malloc(sizeof(t_color))) == NULL)
 		return (NULL);
-	*color = create_color(r, g, b, a);
-	return (color);
+	*result = create_color(r, g, b, a);
+	return (result);
 }
 
 void		destroy_color(t_color to_destroy)

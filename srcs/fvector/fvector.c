@@ -14,12 +14,34 @@
 
 t_fvector	create_fvector(double x, double y)
 {
-	t_fvector fvector;
+	t_fvector result;
 
-	fvector.x = x;
-	fvector.y = y;
-	return (fvector);
+	result.x = x;
+	result.y = y;
+	return (result);
 }
+
+t_fvector	*malloc_fvector(double x, double y)
+{
+	t_fvector *result;
+
+	if ((result = malloc(sizeof(t_fvector))) == NULL)
+		return (NULL);
+	*result = create_fvector(x, y);
+	return (result);
+}
+
+void		destroy_fvector(t_vector to_destroy)
+{
+	(void)to_destroy;
+}
+
+void		free_fvector(t_vector *to_free)
+{
+	destroy_fvector(*to_free);
+	free(to_free);
+}
+
 
 t_fvector	perp_clock_fvec(t_fvector fvector)
 {

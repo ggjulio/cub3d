@@ -53,11 +53,11 @@ int			valid_color_fmt(char *format)
 
 t_color		create_color_from_str(char *format)
 {
-	t_color color;
+	t_color result;
 	char	**arr;
 
 	arr = ft_split(format, ',');
-	color = create_color(ft_atoi(arr[0]), ft_atoi(arr[1]), ft_atoi(arr[2]), 255);
+	result = create_color(ft_atoi(arr[0]), ft_atoi(arr[1]), ft_atoi(arr[2]), 255);
 	free_split(arr);
-	return (color);
+	return (result);
 }
