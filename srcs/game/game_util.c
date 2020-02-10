@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/10 16:55:44 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/10 18:58:01 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	load_textures(void)
 
 int		loop_game(void)
 {
+	printf("%f || %f |||", g_game.cam.pos.x, g_game.cam.pos.y);
+	printf("%f || %f\n", g_game.cam.dir.x, g_game.cam.dir.y);
 	clear_application(create_color(0, 0, 0, 0));
 	if (g_game.mouse_move_enabled)
 		mouse_movement();
@@ -36,7 +38,7 @@ int		loop_game(void)
 
 uint8_t	map_value(int x, int y)
 {
-	return (g_game.map[y + x * g_game.map_len_x]);
+	return (g_game.map[x + y * g_game.map_len_x]);
 }
 
 int		ft_error(char *e)

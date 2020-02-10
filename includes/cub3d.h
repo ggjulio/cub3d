@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/10 16:56:27 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/10 18:43:03 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@
 # include "event.h"
 # include "parse.h"
 # include "utility.h"
+
+# define FOV 0.58
 
 extern t_game			g_game;
 extern t_application	g_app;
