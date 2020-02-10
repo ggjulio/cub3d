@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/10 11:37:42 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/10 14:31:26 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # include "raycast.h"
 # include "game.h"
 # include "draw.h"
+# include "move.h"
 
 /*
 ** parser2.c

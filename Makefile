@@ -32,7 +32,7 @@ _IWHITE=$'\x1b[47m
 #    By: juligonz <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 18:50:56 by juligonz          #+#    #+#              #
-#    Updated: 2020/02/10 14:09:55 by juligonz         ###   ########.fr        #
+#    Updated: 2020/02/10 14:36:23 by juligonz         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -47,6 +47,7 @@ OBJ_DIR = obj
 LIB_DIR =  $(shell find ./lib -type d -maxdepth 1)
 
 SRC = main.c vector.c application.c
+SRC+= move.c move_mouse.c move_movement.c
 SRC+= fvector.c fvector_util.c
 SRC+= color.c color_utility.c color_str.c
 SRC+= draw.c game.c events.c parser.c raycasting.c move.c 

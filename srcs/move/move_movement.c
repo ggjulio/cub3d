@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move.c                                             :+:      :+:    :+:   */
+/*   move_movement.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:02:04 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/06 17:09:25 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/10 14:33:58 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,25 +56,12 @@ void	left(double lat_speed)
 		g_game.cam.pos.y -= g_game.cam.plane.y * lat_speed;
 }
 
-void	move(double speed, double lat_speed, double rot_speed)
+void	right(double lat_speed)
 {
-	if (g_game.key_w)
-		forward(speed);
-	if (g_game.key_s)
-		backward(speed);
-	if (g_game.key_a)
-		left(lat_speed);
-	if (g_game.key_d)
-	{
-		if (!map_value(
-		(int)(g_game.cam.pos.x + g_game.cam.plane.x * lat_speed), (int)g_game.cam.pos.y))
-			g_game.cam.pos.x += g_game.cam.plane.x * lat_speed;
-		if (!map_value(
-		(int)g_game.cam.pos.x, (int)(g_game.cam.pos.y + g_game.cam.plane.y * lat_speed)))
-			g_game.cam.pos.y += g_game.cam.plane.y * lat_speed;
-	}
-	if (g_game.key_right)
-		rotate(-rot_speed);
-	if (g_game.key_left)
-		rotate(rot_speed);
+	if (!map_value(
+	(int)(g_game.cam.pos.x + g_game.cam.plane.x * lat_speed), (int)g_game.cam.pos.y))
+		g_game.cam.pos.x += g_game.cam.plane.x * lat_speed;
+	if (!map_value(
+	(int)g_game.cam.pos.x, (int)(g_game.cam.pos.y + g_game.cam.plane.y * lat_speed)))
+		g_game.cam.pos.y += g_game.cam.plane.y * lat_speed;
 }
