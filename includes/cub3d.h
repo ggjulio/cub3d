@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/10 14:51:09 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/10 15:37:40 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@
 # include "x11.h"
 # include "color.h"
 # include "application.h"
-# include "game.h"
 # include "raycast.h"
+# include "camera.h"
+# include "texture.h"
 # include "game.h"
 # include "draw.h"
 # include "move.h"
@@ -66,11 +67,6 @@ void	free_split(char **arr);
 size_t	ft_strlen_charset(const char *s, const char *charset);
 
 /*
-** events.c
-*/
-
-
-/*
 ** raycasting.c
 */
 
@@ -95,7 +91,7 @@ int		str_map_to_map();
 */
 int		ft_error(char *e);
 
-extern t_game           g_game;
-extern t_application    g_app;
+extern t_game			g_game;
+extern t_application	g_app;
 
 #endif

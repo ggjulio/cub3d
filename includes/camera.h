@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move.h                                             :+:      :+:    :+:   */
+/*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/10 14:28:06 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/10 15:38:09 by juligonz         ###   ########.fr       */
+/*   Created: 2020/02/10 15:15:54 by juligonz          #+#    #+#             */
+/*   Updated: 2020/02/10 15:37:15 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MOVE_H
-# define MOVE_H
+#ifndef CAMERA_H
+# define CAMERA_H
 
-void	rotate(double rot_speed);
-void	forward(double speed);
-void	backward(double speed);
-void	left(double lat_speed);
-void	right(double lat_speed);
+# include "cub3d.h"
 
-void	move(double speed, double lat_speed, double rot_speed);
-void	mouse_movement(void);
+typedef struct	s_camera
+{
+	t_fvector	pos;
+	t_fvector	dir;
+	t_fvector	plane;
+}				t_camera;
+
+t_camera		create_camera(t_fvector position,\
+						t_fvector direction, t_fvector plane);
+t_camera		*malloc_camera(t_fvector position,\
+						t_fvector direction, t_fvector plane);
+void			destroy_camera(t_camera to_destroy);
+void			free_camera(t_camera *to_free);
 
 #endif

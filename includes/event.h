@@ -6,10 +6,9 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:50:30 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/10 14:50:58 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/10 15:36:14 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef EVENT_H
 # define EVENT_H

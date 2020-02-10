@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 13:52:22 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/10 12:52:40 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/10 15:36:29 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ t_color			create_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 t_color			*malloc_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 void			destroy_color(t_color to_destroy);
 void			free_color(t_color *to_free);
-
 
 int				valid_color_fmt(char *format);
 t_color			create_color_from_str(char *format);
