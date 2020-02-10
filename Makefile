@@ -41,12 +41,13 @@ NAME = Cub3D
 LIB = ft mlx z
 FRAMEWORKS = OpenGL AppKit
 
-SRC_DIR = srcs
+SRC_DIR = $(shell find ./srcs -type d)
 INC_DIR = includes
 OBJ_DIR = obj
 LIB_DIR =  $(shell find ./lib -type d -maxdepth 1)
 
-SRC = main.c color.c vector.c fvector.c application.c 
+SRC = main.c vector.c fvector.c application.c
+SRC+= color.c color_utility.c color_str.c
 SRC+= draw.c game.c events.c parser.c raycasting.c move.c 
 SRC+= texture.c parse_map.c parser2.c parse_map2.c utility.c
 
@@ -82,6 +83,7 @@ fclean: clean
 bonus: $(NAME)
 
 show:
+	@echo "$(_CYAN)SRC_DIR    :$(_RED)  $(SRC_DIR)$(_END)"
 	@echo "$(_CYAN)SRC    :$(_RED)  $(SRC)$(_END)"
 	@echo "$(_CYAN)OBJ    :$(_RED)  $(OBJ)$(_END)"
 	@echo "$(_CYAN)IFLAGS :$(_RED)  $(IFLAGS)$(_END)"
