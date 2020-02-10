@@ -6,13 +6,13 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 19:09:50 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/31 16:18:34 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/10 15:07:06 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		valid_map_first_line()
+int		valid_map_first_line(void)
 {
 	int i;
 	int len;
@@ -34,7 +34,7 @@ int		valid_map_first_line()
 	return (ft_error("Map : Invalid first line."));
 }
 
-int		valid_map_last_line()
+int		valid_map_last_line(void)
 {
 	int i;
 	int len;
@@ -58,7 +58,7 @@ int		valid_map_last_line()
 	return (ft_error("Map : Invalid last line."));
 }
 
-int		valid_map()
+int		valid_map(void)
 {
 	int i;
 	int is_pos;
