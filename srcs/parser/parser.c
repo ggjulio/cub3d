@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 13:59:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/06 16:39:38 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/10 15:05:25 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ typedef int	(*t_handler)(char **words, char *line);
 int		parse_floor(char **words, char *line)
 {
 	(void)line;
-	if (count_str_arr(words) != 2 || g_game.floor.id[0] || g_game.str_map != NULL)
+	if (count_str_arr(words) != 2 || g_game.floor.id[0]
+		|| g_game.str_map != NULL)
 		return (ft_error("F : Something wrong"));
 	g_game.floor = create_texture(words[0], words[1]);
 	if (g_game.floor.is_valid)
@@ -34,7 +35,8 @@ int		parse_floor(char **words, char *line)
 int		parse_ceil(char **words, char *line)
 {
 	(void)line;
-	if (count_str_arr(words) != 2 || g_game.ceil.id[0] || g_game.str_map != NULL)
+	if (count_str_arr(words) != 2 || g_game.ceil.id[0]
+		|| g_game.str_map != NULL)
 		return (ft_error("C : Something wrong"));
 	g_game.ceil = create_texture(words[0], words[1]);
 	if (g_game.ceil.is_valid)
@@ -51,7 +53,8 @@ int		parse_ceil(char **words, char *line)
 int		parse_sprite(char **words, char *line)
 {
 	(void)line;
-	if (count_str_arr(words) != 2 || g_game.sprite.id[0] || g_game.str_map != NULL)
+	if (count_str_arr(words) != 2 || g_game.sprite.id[0]
+		|| g_game.str_map != NULL)
 		return (ft_error("S : Something wrong"));
 	g_game.sprite = create_texture(words[0], words[1]);
 	if (g_game.sprite.is_valid)

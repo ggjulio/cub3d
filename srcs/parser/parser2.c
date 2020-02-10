@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 15:04:32 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/06 16:43:54 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/10 15:06:21 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int		parse_resolution(char **words, char *line)
 int		parse_north(char **words, char *line)
 {
 	(void)line;
-	if (count_str_arr(words) != 2 || g_game.north.id[0] || g_game.str_map != NULL)
+	if (count_str_arr(words) != 2 || g_game.north.id[0]
+		|| g_game.str_map != NULL)
 		return (ft_error("NO : Something wrong"));
 	g_game.north = create_texture(words[0], words[1]);
 	if (g_game.north.is_valid)
@@ -54,7 +55,8 @@ int		parse_north(char **words, char *line)
 int		parse_south(char **words, char *line)
 {
 	(void)line;
-	if (count_str_arr(words) != 2 || g_game.south.id[0] || g_game.str_map != NULL)
+	if (count_str_arr(words) != 2 || g_game.south.id[0]
+		|| g_game.str_map != NULL)
 		return (ft_error("SO : Something wrong"));
 	g_game.south = create_texture(words[0], words[1]);
 	if (g_game.south.is_valid)
@@ -71,7 +73,8 @@ int		parse_south(char **words, char *line)
 int		parse_west(char **words, char *line)
 {
 	(void)line;
-	if (count_str_arr(words) != 2 || g_game.west.id[0] || g_game.str_map != NULL)
+	if (count_str_arr(words) != 2 || g_game.west.id[0]
+		|| g_game.str_map != NULL)
 		return (ft_error("WE : Something wrong"));
 	g_game.west = create_texture(words[0], words[1]);
 	if (g_game.west.is_valid)
@@ -88,7 +91,8 @@ int		parse_west(char **words, char *line)
 int		parse_east(char **words, char *line)
 {
 	(void)line;
-	if (count_str_arr(words) != 2 || g_game.east.id[0] || g_game.str_map != NULL)
+	if (count_str_arr(words) != 2 || g_game.east.id[0]
+		|| g_game.str_map != NULL)
 		return (ft_error("EA : Something wrong"));
 	g_game.east = create_texture(words[0], words[1]);
 	if (g_game.east.is_valid)
