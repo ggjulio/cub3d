@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   application.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 12:46:35 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/10 11:33:52 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/10 16:46:23 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_application	create_application(int size_x, int size_y, char *title);
 t_application	*malloc_application(int size_x, int size_y, char *title);
 void			destroy_application(t_application to_destroy);
 void			free_application(t_application *to_free);
+
 void			put_pixel(t_vector coord, t_color color);
 void			render_application();
 void			clear_application(t_color color);

@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/10 15:30:40 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/10 15:45:08 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void		destroy_game(t_game to_destroy)
 	destroy_texture(to_destroy.floor);
 	destroy_texture(to_destroy.sprite);
 	free(to_destroy.map);
+	free(to_destroy.str_map);
 }
 
 void		free_game(t_game *to_free)

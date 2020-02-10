@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vectors.h                                          :+:      :+:    :+:   */
+/*   utility.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/24 15:12:12 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/10 16:42:07 by juligonz         ###   ########.fr       */
+/*   Created: 2020/02/10 16:50:20 by juligonz          #+#    #+#             */
+/*   Updated: 2020/02/10 16:53:28 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTORS_H
-# define VECTORS_H
+#ifndef UTILITY_H
+# define UTILITY_H
 
-typedef struct	s_vector
-{
-	int	x;
-	int	y;
-}				t_vector;
+# include "cub3d.h"
 
-t_vector		create_vector(int x, int y);
-t_vector		*malloc_vector(int x, int y);
-void			destroy_vector(t_vector to_destroy);
-void			free_vector(t_vector *to_free);
+int		count_str_arr(char **arr);
+void	free_split(char **arr);
+size_t	ft_strlen_charset(const char *s, const char *charset);
 
 #endif

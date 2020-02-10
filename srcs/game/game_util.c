@@ -6,13 +6,13 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/10 15:35:02 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/10 16:55:44 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void		load_textures(void)
+void	load_textures(void)
 {
 	init_texture(&(g_game.north));
 	init_texture(&(g_game.south));
@@ -23,7 +23,36 @@ void		load_textures(void)
 	init_texture(&(g_game.sprite));
 }
 
-int			exit_game(void)
+int		loop_game(void)
+{
+	clear_application(create_color(0, 0, 0, 0));
+	if (g_game.mouse_move_enabled)
+		mouse_movement();
+	move(0.4, 0.2, 0.1);
+	raycasting();
+	render_application();
+	return (0);
+}
+
+uint8_t	map_value(int x, int y)
+{
+	return (g_game.map[y + x * g_game.map_len_x]);
+}
+
+int		ft_error(char *e)
+{
+	static uint8_t first_call = 1;
+
+	if (first_call)
+	{
+		ft_printf("Error\n");
+		first_call = 0;
+	}
+	ft_printf("%s\n", e);
+	return (-1);
+}
+
+int		exit_game(void)
 {
 	destroy_game(g_game);
 	destroy_application(g_app);
