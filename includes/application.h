@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 12:46:35 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/10 16:46:23 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/11 12:40:41 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ typedef struct	s_application
 	char			*pixels;
 }				t_application;
 
-t_application	create_application(int size_x, int size_y, char *title);
+t_application	create_application(void);
+t_application	init_application(
+					t_application actual, int size_x, int size_y, char *title);
 t_application	*malloc_application(int size_x, int size_y, char *title);
 void			destroy_application(t_application to_destroy);
 void			free_application(t_application *to_free);

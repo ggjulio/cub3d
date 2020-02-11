@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:23:09 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/10 15:55:21 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/11 12:55:07 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_application	g_app;
 int		main(int ac, char **av)
 {
 	g_game = create_game();
+	g_app = create_application();
 	if (ac != 2)
 	{
 		ft_printf("Error\n.cub file missing or too many arguments\n");
@@ -25,6 +26,7 @@ int		main(int ac, char **av)
 	}
 	if (load_cub(av[1]) == -1)
 		exit_game();
+	g_app = init_application(g_app, g_app.res.x, g_app.res.y, "Super Cub");
 	load_textures();
 	mlx_do_key_autorepeatoff(g_app.mlx_ptr);
 	mlx_hook(g_app.win_ptr, KEYPRESS, NOEVENTMASK, is_key_press, NULL);

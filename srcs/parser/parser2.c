@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 15:04:32 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/10 15:06:21 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/11 13:08:46 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@ int		parse_resolution(char **words, char *line)
 		return (ft_error("R : Only digits plz."));
 	x = ft_atoi(words[1]);
 	y = ft_atoi(words[2]);
+	if (g_app.res.x > 0)
+		return (ft_error("R : Dupplicate id"));
 	if (x < 100 || y < 100 || x > 2560 || y > 1440)
 		return (ft_error("R : Resolution should be 100x100 up to 2560x1440"));
-	if (g_app.res.x)
-		return (ft_error("R : Dupplicate id"));
-	g_app = create_application(x, y, "Cub3D");
+	g_app.res.x = x;
+	g_app.res.y = y;
 	return (0);
 }
 
