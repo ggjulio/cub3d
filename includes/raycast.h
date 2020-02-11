@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 20:42:53 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/07 10:55:34 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/11 15:01:12 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 ** non_eucl_dist: Distance used on camera instead of euclidian distance
 ** wall_start	: Begin index of wall in y axis
 ** wall_end		: End index of wall in y axis
-** side 		: Boolean, 0 if Nord/South or 1 if West/East
+** side 		: Position of wall hit. 0 for Nord/South or 1 for West/East
 */
 
 typedef struct	s_raycast

@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/10 17:02:18 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/11 16:04:29 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,32 @@ void	draw_vertical_line(int x, int y_start, int y_end)
 		y_end++;
 	}
 }
+
+/*
+void	draw_texel(t_raycast *r, int x, int y_start,)
+{
+	//if
+	r->wall_x = g_game.cam.pos.y + r->perp_wall_dist * r->ray_dir.y;
+	// else if
+
+	r->wall_x -= floor(r->wall_x);
+	int tex_x = (int)(r->wall_x *g_app.res.x);
+	if ((r->side = 0 && r->ray_dir.x > 0)
+		|| (r->side = 1 && r->ray_dir.y < 0))
+		tex = g_app.res.y - tex_x - 1;
+
+	int step_y = 1.0 * g_app.res.y / r->line_height;
+	double tex_pos = r->wall_x 
+}
+*/
+
+
+
+
+
+
+
+
 
 void	prehit_wall(t_raycast *r)
 {

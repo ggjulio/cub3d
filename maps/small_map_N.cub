@@ -1,7 +1,7 @@
 NO 75,155,105
 SO ./tex/skull_octocat.xpm
 WE ./tex/skull_octocat.xpm
-EA ./tex/skull_octocat.xpm
+EA ./tex/stone.xpm
 S ./tex/stone.xpm
 F 252,3,207
 R 1000 800
