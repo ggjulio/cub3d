@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/11 16:04:29 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/12 17:26:26 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,43 @@ void	draw_vertical_line(int x, int y_start, int y_end)
 	}
 }
 
-/*
-void	draw_texel(t_raycast *r, int x, int y_start,)
+
+void	draw_texel(t_raycast *r, int x, int y_start, int y_end)
 {
-	//if
-	r->wall_x = g_game.cam.pos.y + r->perp_wall_dist * r->ray_dir.y;
-	// else if
+	int			*pixels = (int *)g_game.north.pixels;
+	t_vector	tex;
+	t_color		texel;
 
+	(void)x;
+	if (r->side == 0)
+		r->wall_x = g_game.cam.pos.y + r->perp_wall_dist * r->ray_dir.y;
+	else
+		r->wall_x = g_game.cam.pos.x + r->perp_wall_dist * r->ray_dir.x;
 	r->wall_x -= floor(r->wall_x);
-	int tex_x = (int)(r->wall_x *g_app.res.x);
-	if ((r->side = 0 && r->ray_dir.x > 0)
-		|| (r->side = 1 && r->ray_dir.y < 0))
-		tex = g_app.res.y - tex_x - 1;
 
-	int step_y = 1.0 * g_app.res.y / r->line_height;
-	double tex_pos = r->wall_x 
+	tex.x = (int)(r->wall_x * g_game.north.size.x);
+
+	double step_y = (double)g_game.north.size.y / (double)r->line_height;
+	double tex_pos = (y_start - g_app.res.y / 2 + r->line_height/ 2) * step_y;
+	while (y_start < y_end)
+	{
+		tex.y = (int)tex_pos;
+		tex_pos += step_y;
+
+		texel.c = pixels[(int)(tex.x + tex.y * g_game.north.size.y)];
+
+		put_pixel(create_vector(x, y_start), texel);
+		tex.y += tex_pos;
+		y_start++;
+	}
+	while (y_end < g_app.res.y)
+	{
+		put_pixel(create_vector(x, y_end), g_game.floor.color);
+		put_pixel(create_vector(x, g_app.res.y - y_end), g_game.ceil.color);
+		y_end++;
+	}
 }
-*/
+
 
 
 
@@ -135,6 +155,7 @@ void	raycasting(void)
 		dda(&r);
 		fix_fisheye(&r);
 		calculate_wall_height(&r);
-		draw_vertical_line(x, r.wall_start, r.wall_end);
+//		draw_vertical_line(x, r.wall_start, r.wall_end);
+		draw_texel(&r, x, r.wall_start, r.wall_end);
 	}
 }

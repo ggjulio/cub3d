@@ -7,3 +7,4 @@ a.out.dSYM
 *dSYM
 \#*\#
 .vscode/
+.DS_STORE
