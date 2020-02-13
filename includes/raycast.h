@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 20:42:53 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/13 11:36:12 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/13 15:31:21 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,9 @@ typedef struct	s_raycast
 	uint8_t				side:1;
 	uint8_t				remain_bits:7;
 }				t_raycast;
+
+t_texture		*get_texture_side(enum e_direction dir);
+void			draw_ceil_floor(int x, int y_end);
+void			draw_wall_is_color(int x, int y_start, int y_end, t_color pixel);
 
 #endif

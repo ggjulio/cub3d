@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/10 16:56:10 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/13 15:16:39 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,10 @@ typedef struct	s_game
 	uint16_t		key_d:1;
 	uint16_t		key_left:1;
 	uint16_t		key_right:1;
+	uint16_t		is_run:1;
 	uint16_t		is_mouse_move:1;
 	uint16_t		mouse_move_enabled:1;
-	uint16_t		remaining:8;
+	uint16_t		remaining:7;
 }				t_game;
 
 t_game			create_game(void);

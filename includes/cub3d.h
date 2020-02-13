@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/10 18:43:03 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/13 15:40:38 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@
 # include "x11.h"
 # include "color.h"
 # include "application.h"
+# include "texture.h"
 # include "raycast.h"
 # include "camera.h"
-# include "texture.h"
 # include "game.h"
 # include "draw.h"
 # include "move.h"
@@ -42,6 +42,15 @@
 
 # define FOV 0.58
 
+# define ROT_SPEED 0.1
+
+# define SPEED 0.1
+# define LAT_SPEED 0.05
+
+# define RUN_SPEED 0.4
+# define RUN_LAT_SPEED 0.2
+
+
 extern t_game			g_game;
 extern t_application	g_app;
 
@@ -49,6 +58,6 @@ extern t_application	g_app;
 ** raycasting.c
 */
 
-void	raycasting();
+void	raycasting(void);
 
 #endif

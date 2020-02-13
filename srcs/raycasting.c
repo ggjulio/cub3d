@@ -6,70 +6,52 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/13 11:44:27 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/13 15:29:13 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	draw_vertical_line(int x, int y_start, int y_end)
-{
-	while (y_start < y_end)
-		put_pixel(create_vector(x, y_start++), g_game.north.color);
-	while (y_end < g_app.res.y)
-	{
-		put_pixel(create_vector(x, y_end), g_game.floor.color);
-		put_pixel(create_vector(x, g_app.res.y - y_end), g_game.ceil.color);
-		y_end++;
-	}
-}
-/*
-t_texture get_texture_side()
-{
-
-}
-*/
-
-void	draw_texel(t_raycast *r, int x, int y_start, int y_end)
+void	draw_wall_is_texture(t_raycast *r, int x, t_texture *texture)
 {
 	t_vector	tex;
 	t_color		texel;
-	t_texture	*texture;
-
-	if (r->side)
-		texture = &g_game.north;
-	else
-		texture = &g_game.south;
-
-
-	(void)x;
-	if (r->side == 0)
+	int			y_start;
+	
+	y_start = r->wall_start;
+	if (r->side == 1)
 		r->wall_x = g_game.cam.pos.y + r->perp_wall_dist * r->ray_dir.y;
 	else
 		r->wall_x = g_game.cam.pos.x + r->perp_wall_dist * r->ray_dir.x;
 	r->wall_x -= floor(r->wall_x);
-
+	
 	tex.x = (int)(r->wall_x * texture->size.x);
-
+	
 	double step_y = (double)texture->size.y / (double)r->line_height;
-	double tex_pos = (y_start - g_app.res.y / 2 + r->line_height/ 2) * step_y;
-	while (y_start < y_end)
+	double tex_pos = (y_start - g_app.res.y / 2.0 + r->line_height / 2.0) * step_y;
+	while (y_start < r->wall_end)
 	{
+
 		tex.y = (int)tex_pos;
+		texel.c = texture->pixels[(int)(tex.x + tex.y * texture->size.x)];
+		put_pixel(create_vector(x, y_start), texel);
+//		tex.y += tex_pos;
 		tex_pos += step_y;
 
-		texel.c = texture->pixels[(int)(tex.x + tex.y * texture->size.y)];
-
-		put_pixel(create_vector(x, y_start), texel);
-		tex.y += tex_pos;
 		y_start++;
 	}
-	while (y_end < g_app.res.y)
-	{
-		put_pixel(create_vector(x, y_end), g_game.floor.color);
-		put_pixel(create_vector(x, g_app.res.y - y_end), g_game.ceil.color);
-		y_end++;
-	}
+}
+
+void	draw_strip(t_raycast *r, int x)
+{
+	t_texture	*texture;
+
+	texture = get_texture_side(r->wall_side);
+	if (texture->is_color)
+		draw_wall_is_color(x, r->wall_start, r->wall_end, texture->color);
+	else
+		draw_wall_is_texture(r, x, texture);
+	draw_ceil_floor(x, r->wall_end);
 }
 
 
@@ -113,22 +95,28 @@ void	dda(t_raycast *r)
 		{
 			r->side_dist.x += r->delta_dist.x;
 			r->map.x += r->step.x;
-			r->side = 0;
+			r->side = 1;
 		}
 		else
 		{
 			r->side_dist.y += r->delta_dist.y;
 			r->map.y += r->step.y;
-			r->side = 1;
+			r->side = 0;
 		}
 		if (map_value(r->map.x, r->map.y) > 0)
+		{
+			if (r->side)
+				r->wall_side = (r->ray_dir.x < 0.0 ? West : East);
+			else
+				r->wall_side = (r->ray_dir.y < 0.0 ? North : South);
 			break ;
+		}
 	}
 }
 
 void	fix_fisheye(t_raycast *r)
 {
-	if (r->side == 0)
+	if (r->side == 1)
 		r->perp_wall_dist =
 			(r->map.x - g_game.cam.pos.x + (1 - r->step.x) / 2) / r->ray_dir.x;
 	else
@@ -166,7 +154,6 @@ void	raycasting(void)
 		dda(&r);
 		fix_fisheye(&r);
 		calculate_wall_height(&r);
-//		draw_vertical_line(x, r.wall_start, r.wall_end);
-		draw_texel(&r, x, r.wall_start, r.wall_end);
+		draw_strip(&r, x);
 	}
 }

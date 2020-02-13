@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 15:31:49 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/13 11:43:05 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/13 14:54:22 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct	s_texture
 	t_color		color;
 	char		*filename;
 	void		*img_ptr;
-	int		*pixels;
+	int			*pixels;
 	int			bits_per_pixel;
 	int			size_line;
 	int			endian;

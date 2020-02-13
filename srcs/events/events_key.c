@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 16:44:33 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/10 15:00:24 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/13 15:37:27 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ int		is_key_press(int key)
 		g_game.key_right = 1;
 		g_game.is_mouse_move = 0;
 	}
-	else if (key == LSFT_KEY || key == RSFT_KEY)
+	else if (key == LSFT_KEY)
+		g_game.is_run = 1;
+	else if (key == LCTRL_KEY)
 		change_mouse_state();
 	else if (key == ESC_KEY)
 		exit_game();
@@ -67,5 +69,7 @@ int		is_key_release(int key)
 		g_game.key_left = 0;
 	else if (key == RIGHT_KEY)
 		g_game.key_right = 0;
+	else if (key == LSFT_KEY)
+		g_game.is_run = 0;
 	return (0);
 }

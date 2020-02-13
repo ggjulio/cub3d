@@ -1,8 +1,8 @@
-R 1000 800
+R 1000  800
 NO ./tex/stone.xpm
-SO ./tex/wood.xpm
-WE ./tex/metal.xpm
-EA ./tex/wood.xpm
+WE 24,155,15
+SO ./tex/metal.xpm
+EA ./tex/skull_octocat.xpm
 S 75,155,105
 F 252,3,207
 C 225,30,0
@@ -12,5 +12,5 @@ C 225,30,0
 1 0 0 0 0 1
 1 0 0 0 0 1
 1 0 0 0 1 1
-1 0 0 W 0 1
+1 0 0 N 0 1
 1 1 1 1 1 1
