@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/13 15:40:38 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/13 17:20:54 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 
 # define ROT_SPEED 0.1
 
-# define SPEED 0.1
+# define SPEED 0.11
 # define LAT_SPEED 0.05
 
 # define RUN_SPEED 0.4

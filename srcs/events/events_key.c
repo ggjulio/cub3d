@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 16:44:33 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/13 15:37:27 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/13 17:01:39 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		is_key_press(int key)
 	}
 	else if (key == LSFT_KEY)
 		g_game.is_run = 1;
-	else if (key == LCTRL_KEY)
+	else if (key == TAB_KEY)
 		change_mouse_state();
 	else if (key == ESC_KEY)
 		exit_game();

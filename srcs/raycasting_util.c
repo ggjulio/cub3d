@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 15:04:55 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/13 15:09:54 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/13 17:26:31 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void		draw_wall_is_color(int x, int y_start, int y_end, t_color pixel)
 
 void		draw_ceil_floor(int x, int y_end)
 {
+	if (y_end < 0)
+		return ;
 	while (y_end < g_app.res.y)
 	{
 		put_pixel(create_vector(x, y_end), g_game.floor.color);
