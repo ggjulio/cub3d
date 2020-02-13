@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/13 17:20:54 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/13 17:45:41 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,7 @@
 # define RUN_SPEED 0.4
 # define RUN_LAT_SPEED 0.2
 
-
 extern t_game			g_game;
 extern t_application	g_app;
-
-/*
-** raycasting.c
-*/
-
-void	raycasting(void);
 
 #endif

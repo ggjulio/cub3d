@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/13 15:40:14 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/13 17:51:57 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int		loop_game(void)
 	if (g_game.mouse_move_enabled)
 		mouse_movement();
 	move((g_game.is_run ? RUN_SPEED : SPEED),
-		 (g_game.is_run ? RUN_LAT_SPEED : LAT_SPEED),
-		 ROT_SPEED);
+		(g_game.is_run ? RUN_LAT_SPEED : LAT_SPEED),
+		ROT_SPEED);
 	raycasting();
 	render_application();
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/13 17:13:40 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/13 17:43:12 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	draw_wall_is_texture(t_raycast *r, int x, t_texture *texture)
 	int			y_start;
 
 	y_start = r->wall_start;
-	if (r->side == 1)
+	if (r->wall_side == West || r->wall_side == East)
 		r->wall_x = g_game.cam.pos.y + r->perp_wall_dist * r->ray_dir.y;
 	else
 		r->wall_x = g_game.cam.pos.x + r->perp_wall_dist * r->ray_dir.x;
@@ -27,17 +27,15 @@ void	draw_wall_is_texture(t_raycast *r, int x, t_texture *texture)
 
 	tex.x = (int)(r->wall_x * texture->size.x);
 
-	double step_y = (double)texture->size.y / (double)r->line_height;
-	double tex_pos = (y_start - g_app.res.y / 2.0 + r->line_height / 2.0) * step_y;
+	double		step_y = (double)texture->size.y / (double)r->line_height;
+	double		tex_pos = (y_start - g_app.res.y / 2.0 + r->line_height / 2.0) * step_y;
 	while (y_start < r->wall_end)
 	{
 		tex.y = (int)tex_pos;
 		tex_pos += step_y;
-
 		texel.c = texture->pixels[(int)(tex.x + tex.y * texture->size.x)];
 		put_pixel(create_vector(x, y_start), texel);
 		tex.y += tex_pos;
-
 		y_start++;
 	}
 }
@@ -53,15 +51,6 @@ void	draw_strip(t_raycast *r, int x)
 		draw_wall_is_texture(r, x, texture);
 	draw_ceil_floor(x, r->wall_end);
 }
-
-
-
-
-
-
-
-
-
 
 void	prehit_wall(t_raycast *r)
 {
@@ -139,10 +128,6 @@ void	raycasting(void)
 {
 	int			x;
 	t_raycast	r;
-
-	printf("pos(%f %f) || dir(%f - %f) || plane(%f - %f)\n", g_game.cam.pos.x, g_game.cam.pos.y, 
-		   g_game.cam.dir.x, g_game.cam.dir.y,
-		   g_game.cam.plane.x, g_game.cam.plane.y);
 
 	x = -1;
 	while (++x < g_app.res.x)
