@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/12 17:26:26 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/13 11:44:27 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,24 @@ void	draw_vertical_line(int x, int y_start, int y_end)
 		y_end++;
 	}
 }
+/*
+t_texture get_texture_side()
+{
 
+}
+*/
 
 void	draw_texel(t_raycast *r, int x, int y_start, int y_end)
 {
-	int			*pixels = (int *)g_game.north.pixels;
 	t_vector	tex;
 	t_color		texel;
+	t_texture	*texture;
+
+	if (r->side)
+		texture = &g_game.north;
+	else
+		texture = &g_game.south;
+
 
 	(void)x;
 	if (r->side == 0)
@@ -38,16 +49,16 @@ void	draw_texel(t_raycast *r, int x, int y_start, int y_end)
 		r->wall_x = g_game.cam.pos.x + r->perp_wall_dist * r->ray_dir.x;
 	r->wall_x -= floor(r->wall_x);
 
-	tex.x = (int)(r->wall_x * g_game.north.size.x);
+	tex.x = (int)(r->wall_x * texture->size.x);
 
-	double step_y = (double)g_game.north.size.y / (double)r->line_height;
+	double step_y = (double)texture->size.y / (double)r->line_height;
 	double tex_pos = (y_start - g_app.res.y / 2 + r->line_height/ 2) * step_y;
 	while (y_start < y_end)
 	{
 		tex.y = (int)tex_pos;
 		tex_pos += step_y;
 
-		texel.c = pixels[(int)(tex.x + tex.y * g_game.north.size.y)];
+		texel.c = texture->pixels[(int)(tex.x + tex.y * texture->size.y)];
 
 		put_pixel(create_vector(x, y_start), texel);
 		tex.y += tex_pos;

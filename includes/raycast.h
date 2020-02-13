@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 20:42:53 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/11 15:01:12 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/13 11:36:12 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,24 @@
 ** side 		: Position of wall hit. 0 for Nord/South or 1 for West/East
 */
 
+enum	e_direction{None, North, South, East, West};
+
 typedef struct	s_raycast
 {
-	double		camera_x;
-	t_fvector	ray_dir;
-	t_vector	map;
-	t_fvector	delta_dist;
-	t_vector	step;
-	t_fvector	side_dist;
-	double		perp_wall_dist;
-	int			line_height;
-	double		wall_x;
-	int			wall_start;
-	int			wall_end;
-	uint8_t		side:1;
-	uint8_t		remain_bits:7;
+	double				camera_x;
+	t_fvector			ray_dir;
+	t_vector			map;
+	t_fvector			delta_dist;
+	t_vector			step;
+	t_fvector			side_dist;
+	double				perp_wall_dist;
+	int					line_height;
+	double				wall_x;
+	int					wall_start;
+	int					wall_end;
+	enum e_direction	wall_side;
+	uint8_t				side:1;
+	uint8_t				remain_bits:7;
 }				t_raycast;
 
 #endif
