@@ -32,7 +32,7 @@ _IWHITE=$'\x1b[47m
 #    By: juligonz <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 18:50:56 by juligonz          #+#    #+#              #
-#    Updated: 2020/02/14 10:33:26 by juligonz         ###   ########.fr        #
+#    Updated: 2020/02/14 10:38:35 by juligonz         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -128,7 +128,7 @@ re-install: fclean-install install
                                                                                  \
 Automatic variables :                                                            \
                                                                                  \
-$@ : file name target. It's like $(NAME)                                         \
+$@ : rule name  target.         			                                     \
                                                                                  \
 $^ : The names of all the prerequisites, with spaces between them. For           \
 prerequisites which are archive members, only the named member is used.          \

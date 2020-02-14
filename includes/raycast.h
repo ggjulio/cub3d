@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 20:42:53 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/13 17:45:36 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/14 10:44:21 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ typedef struct	s_raycast
 	int					wall_start;
 	int					wall_end;
 	enum e_direction	wall_side;
+
+	t_list				*sprites;
+
 	uint8_t				side:1;
 	uint8_t				remain_bits:7;
 }				t_raycast;
