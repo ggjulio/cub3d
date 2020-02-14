@@ -6,20 +6,20 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:29:54 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/14 16:56:55 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/14 17:00:21 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 t_sprite	create_sprite(
-	t_texture *texture, t_vector pos_i, t_fvector pos_d, t_fvector dist_from_cam)
+	t_texture *texture, t_vector pos_int, t_fvector pos_dbl, t_fvector dist_from_cam)
 {
 	t_sprite result;
 
 	result.texture = texture;
-	result.pos_int = pos_i;
-	result.pos_d = pos_d;
+	result.pos_int = pos_int;
+	result.pos_dbl = pos_dbl;
 	result.dist_from_cam = dist_from_cam;
 	return (result);
 }
