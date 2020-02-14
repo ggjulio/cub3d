@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/13 17:43:12 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/14 16:54:02 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,33 @@ void	draw_wall_is_texture(t_raycast *r, int x, t_texture *texture)
 	}
 }
 
+void	draw_sprite(t_raycast *r, int x)
+{
+	t_list *pop_elem = NULL;
+	t_sprite *actual;
+
+	t_vector	tex = create_vector(1,1);
+	t_color		texel;
+	int			y_start = r->wall_start;
+	
+
+
+	while (r->lst_sprite != NULL)
+	{
+		pop_elem = ft_lstpop_front(&(r->lst_sprite));
+		actual = pop_elem->content;
+
+		texel.c = actual->texture->pixels[tex.x + tex.y * actual->texture->size.x];
+		while (y_start++ < r->wall_end)
+		{
+			
+			put_pixel(create_vector(x, y_start), texel);
+		}
+
+		ft_lstdelone(pop_elem, free_lst_sprite);
+	}
+}
+
 void	draw_strip(t_raycast *r, int x)
 {
 	t_texture	*texture;
@@ -50,7 +77,21 @@ void	draw_strip(t_raycast *r, int x)
 	else
 		draw_wall_is_texture(r, x, texture);
 	draw_ceil_floor(x, r->wall_end);
+	draw_sprite(r, x);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 void	prehit_wall(t_raycast *r)
 {
@@ -78,6 +119,8 @@ void	prehit_wall(t_raycast *r)
 
 void	dda(t_raycast *r)
 {
+	uint8_t map_v;
+
 	while (1)
 	{
 		if (r->side_dist.x < r->side_dist.y)
@@ -92,7 +135,22 @@ void	dda(t_raycast *r)
 			r->map.y += r->step.y;
 			r->side = 0;
 		}
-		if (map_value(r->map.x, r->map.y) > 0)
+		map_v = map_value(r->map.x, r->map.y);
+		if (map_v == 2)
+		{
+			t_fvector spr_pos_d = (t_fvector){r->map.x, r->map.y};
+			t_fvector spr_pos_i = (t_fvector){r->map.x, r->map.y};
+
+			ft_lstadd_front(&(r->lst_sprite),
+							ft_lstnew(
+								malloc_sprite(&(g_game.sprite), 
+											spr_pos_i,
+											spr_pos_d,
+											sub_fvec_by_fvec(g_game.cam.pos, spr_pos_d))
+								)
+				);
+		}
+		if (map_v == 1)
 		{
 			if (r->side)
 				r->wall_side = (r->ray_dir.x < 0.0 ? West : East);
@@ -130,6 +188,7 @@ void	raycasting(void)
 	t_raycast	r;
 
 	x = -1;
+	ft_bzero(&r, sizeof(t_raycast));
 	while (++x < g_app.res.x)
 	{
 		r.camera_x = 2 * x / (double)(g_app.res.y) - 1;

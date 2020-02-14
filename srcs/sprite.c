@@ -6,29 +6,33 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:29:54 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/14 10:35:39 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/14 16:56:55 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_sprite	create_sprite(t_texture *texture, t_vector position)
+t_sprite	create_sprite(
+	t_texture *texture, t_vector pos_i, t_fvector pos_d, t_fvector dist_from_cam)
 {
 	t_sprite result;
 
 	result.texture = texture;
-	result.pos = position;
+	result.pos_int = pos_i;
+	result.pos_d = pos_d;
+	result.dist_from_cam = dist_from_cam;
 	return (result);
 }
 
-t_sprite	*malloc_sprite(t_texture *texture, t_vector position)
+t_sprite	*malloc_sprite(
+				t_texture *texture, t_vector position, t_fvector distance)
 {
-	t_sprite *sprite;
+	t_sprite *result;
 
-	if ((sprite = malloc(sizeof(sprite))) == NULL)
+	if ((result = malloc(sizeof(t_sprite))) == NULL)
 		return (NULL);
-	*sprite = create_sprite(texture, position);
-	return (sprite);
+	*result = create_sprite(texture, position, distance);
+	return (result);
 }
 
 void		destroy_sprite(t_sprite to_destroy)
@@ -38,6 +42,14 @@ void		destroy_sprite(t_sprite to_destroy)
 
 void		free_sprite(t_sprite *to_free)
 {
+	if (to_free == NULL)
+		return ;
 	destroy_sprite(*to_free);
 	free(to_free);
+	to_free = NULL;
+}
+
+void		free_lst_sprite(void *to_free)
+{
+	free_sprite(to_free);
 }
