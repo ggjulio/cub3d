@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:12:59 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/15 18:44:27 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/15 19:25:26 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ t_bmp_header    create_bmp_header(
 	uint16_t  type, uint32_t  size, uint32_t  offset);
 t_bmp_header    init_bmp_header_reserved(
 	t_bmp_header result, uint16_t  reserved1, uint16_t  reserved2);
+void			save_image(char *file_name);
 
 #endif

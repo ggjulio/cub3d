@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 17:24:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/15 18:44:40 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/15 20:08:11 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,31 @@ t_bmp_header	init_bmp_header_reserved(
 {
 	result.reserved1 = reserved1;
 	result.reserved2 = reserved2;
-	return(result)
+	return (result);
 }
 
-void			save_image(void *img_ptr, char *file_name)
+void			save_image(char *file_name)
 {
 	
 	t_bmp_header	header;
-	char			type[3];
+	uint8_t			type[2];
+	int				fd;
 
-	type = "BM";
-	header = create_bmp_header((int)type, );
+	type[0] = 'B';
+	type[1] = 'M';
+	header = create_bmp_header((uint16_t)type, BMP_HEADER_SIZE + g_app.res.x * g_app.res.y, BMP_HEADER_SIZE);
 
+	printf("%lu \n", 		   sizeof(t_bmp_header));
+/*	header.dib.dib_header_size = sizeof(t_bmp_dib_header);
+	header.dib.width_px = g_app.res.x;
+	header.dib.height_px = g_app.res.y;
+	header.dib.num_planes = 1;
+	header.dib.bits_per_pixel = g_app.bits_per_pixel;
+*/
+
+	fd = open(file_name, O_RDWR | O_CREAT, 0666);
+
+	write(fd, &header, sizeof(t_bmp_header));
+	write(fd, g_app.pixels, g_app.size_line);
+	close(fd);
 }
