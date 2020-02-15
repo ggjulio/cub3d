@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/14 16:54:02 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/15 16:07:14 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	draw_wall_is_texture(t_raycast *r, int x, t_texture *texture)
 {
 	t_vector	tex;
-	t_color		texel;
 	int			y_start;
 
 	y_start = r->wall_start;
@@ -33,8 +32,9 @@ void	draw_wall_is_texture(t_raycast *r, int x, t_texture *texture)
 	{
 		tex.y = (int)tex_pos;
 		tex_pos += step_y;
-		texel.c = texture->pixels[(int)(tex.x + tex.y * texture->size.x)];
-		put_pixel(create_vector(x, y_start), texel);
+		put_pixel(create_vector(x, y_start),
+				(t_color){.c = texture->pixels[(int)(tex.x + tex.y * texture->size.x)]}
+			);
 		tex.y += tex_pos;
 		y_start++;
 	}
@@ -45,10 +45,16 @@ void	draw_sprite(t_raycast *r, int x)
 	t_list *pop_elem = NULL;
 	t_sprite *actual;
 
-	t_vector	tex = create_vector(1,1);
+	t_vector	tex;
+
 	t_color		texel;
 	int			y_start = r->wall_start;
-	
+
+    if (r->wall_side == West || r->wall_side == East)
+        r->wall_x = g_game.cam.pos.y + r->perp_wall_dist * r->ray_dir.y;
+    else
+        r->wall_x = g_game.cam.pos.x + r->perp_wall_dist * r->ray_dir.x;
+    r->wall_x -= floor(r->wall_x);
 
 
 	while (r->lst_sprite != NULL)
@@ -56,10 +62,14 @@ void	draw_sprite(t_raycast *r, int x)
 		pop_elem = ft_lstpop_front(&(r->lst_sprite));
 		actual = pop_elem->content;
 
+
+		tex.x = (int)(r->wall_x * actual->texture->size.x);
+
+		
 		texel.c = actual->texture->pixels[tex.x + tex.y * actual->texture->size.x];
 		while (y_start++ < r->wall_end)
 		{
-			
+
 			put_pixel(create_vector(x, y_start), texel);
 		}
 
@@ -82,16 +92,17 @@ void	draw_strip(t_raycast *r, int x)
 
 
 
-
-
-
-
-
-
-
-
-
-
+void	save_sprite(t_raycast *r)
+{
+	ft_lstadd_front(&(r->lst_sprite),
+					ft_lstnew(
+						malloc_sprite(&(g_game.sprite),
+									  r->map,
+									  sub_fvec_by_fvec(g_game.cam.pos, vec_to_fvec(r->map))
+							)
+						)
+		);
+}
 
 void	prehit_wall(t_raycast *r)
 {
@@ -137,19 +148,7 @@ void	dda(t_raycast *r)
 		}
 		map_v = map_value(r->map.x, r->map.y);
 		if (map_v == 2)
-		{
-			t_fvector spr_pos_d = (t_fvector){r->map.x, r->map.y};
-			t_fvector spr_pos_i = (t_fvector){r->map.x, r->map.y};
-
-			ft_lstadd_front(&(r->lst_sprite),
-							ft_lstnew(
-								malloc_sprite(&(g_game.sprite), 
-											spr_pos_i,
-											spr_pos_d,
-											sub_fvec_by_fvec(g_game.cam.pos, spr_pos_d))
-								)
-				);
-		}
+			save_sprite(r);
 		if (map_v == 1)
 		{
 			if (r->side)

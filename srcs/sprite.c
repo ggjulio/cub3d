@@ -6,32 +6,31 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:29:54 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/14 17:00:21 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/15 11:06:45 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 t_sprite	create_sprite(
-	t_texture *texture, t_vector pos_int, t_fvector pos_dbl, t_fvector dist_from_cam)
+				t_texture *texture, t_vector pos, t_fvector pos_rel_player)
 {
 	t_sprite result;
 
 	result.texture = texture;
-	result.pos_int = pos_int;
-	result.pos_dbl = pos_dbl;
-	result.dist_from_cam = dist_from_cam;
+	result.pos = pos;
+	result.pos_rel_player = pos_rel_player;
 	return (result);
 }
 
 t_sprite	*malloc_sprite(
-				t_texture *texture, t_vector position, t_fvector distance)
+				t_texture *texture, t_vector pos, t_fvector pos_rel_player)
 {
 	t_sprite *result;
 
 	if ((result = malloc(sizeof(t_sprite))) == NULL)
 		return (NULL);
-	*result = create_sprite(texture, position, distance);
+	*result = create_sprite(texture, pos, pos_rel_player);
 	return (result);
 }
 

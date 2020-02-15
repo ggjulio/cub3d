@@ -1,16 +1,21 @@
-R 1000 800
-NO 75,155,105
-SO ./tex/skull_octocat.xpm
-WE ./tex/skull_octocat.xpm
+R 1000  800
+NO ./tex/stone.xpm
+WE ./tex/wood.xpm
+SO ./tex/metal.xpm
 EA ./tex/skull_octocat.xpm
-S ./tex/skull_octocat.xpm
+S ./tex/pillar.xpm
 F 252,3,207
 C 225,30,0
 
 1 1 1 1 1 1
 1 0 0 0 0 1
-1 S 0 0 0 1
+1 0 1 0 0 1
+1 0 0 0 0 1
+1 0 0 0 0 1
+1 0 0 0 0 1
+1 0 0 0 0 1
+1 0 0 0 0 1
 1 0 0 0 0 1
 1 0 0 0 1 1
-1 0 0 0 1 1
+1 0 0 N 0 1
 1 1 1 1 1 1

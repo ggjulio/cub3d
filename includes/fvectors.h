@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:12:12 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/14 16:48:11 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/15 11:14:25 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ void			free_fvector(t_vector *to_free);
 
 t_fvector		perp_clock_fvec(t_fvector fvector);
 t_fvector		perp_cntclock_fvec(t_fvector fvector);
-t_fvector		multiply_fvec_by_dbl(t_fvector fvector, double n);
+t_fvector		multiply_fvec_by_scalar(t_fvector fvector, double n);
 t_fvector		sub_fvec_by_fvec(t_fvector v1, t_fvector v2);
+
+t_fvector		vec_to_fvec(t_vector vector);
 
 #endif
