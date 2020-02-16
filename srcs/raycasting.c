@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/15 16:07:14 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/16 17:52:26 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	draw_wall_is_texture(t_raycast *r, int x, t_texture *texture)
 	tex.x = (int)(r->wall_x * texture->size.x);
 
 	double		step_y = (double)texture->size.y / (double)r->line_height;
-	double		tex_pos = (y_start - g_app.res.y / 2.0 + r->line_height / 2.0) * step_y;
+	double		tex_pos = fabs(y_start - g_app.res.y / 2.0 + r->line_height / 2.0) * step_y;
 	while (y_start < r->wall_end)
 	{
 		tex.y = (int)tex_pos;
@@ -82,11 +82,11 @@ void	draw_strip(t_raycast *r, int x)
 	t_texture	*texture;
 
 	texture = get_texture_side(r->wall_side);
+	draw_ceil_floor(x, r->wall_end);
 	if (texture->is_color)
 		draw_wall_is_color(x, r->wall_start, r->wall_end, texture->color);
 	else
 		draw_wall_is_texture(r, x, texture);
-	draw_ceil_floor(x, r->wall_end);
 	draw_sprite(r, x);
 }
 
@@ -188,7 +188,7 @@ void	raycasting(void)
 
 	x = -1;
 	ft_bzero(&r, sizeof(t_raycast));
-	while (++x < g_app.res.x)
+	while (++x <= g_app.res.x)
 	{
 		r.camera_x = 2 * x / (double)(g_app.res.y) - 1;
 		r.ray_dir = (t_fvector){

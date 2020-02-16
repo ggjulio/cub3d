@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 17:14:55 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/10 14:39:48 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/16 17:55:11 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void			put_pixel(t_vector coord, t_color color)
 {
 	int		*pixels;
 
-	if (coord.x < 0 || coord.y < 0 || coord.x >= g_app.res.x - 1
-		|| coord.y >= g_app.res.y - 1)
+	if (coord.x < 0 || coord.y < 0 || coord.x >= g_app.res.x
+		|| coord.y >= g_app.res.y)
 		return ;
 	pixels = (int *)(g_app.pixels);
 	pixels[coord.x + (g_app.res.x * coord.y)] = color.c;

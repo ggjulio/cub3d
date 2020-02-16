@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 15:04:32 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/11 13:08:46 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/16 17:13:31 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ int		parse_resolution(char **words, char *line)
 	y = ft_atoi(words[2]);
 	if (g_app.res.x > 0)
 		return (ft_error("R : Dupplicate id"));
-	if (x < 100 || y < 100 || x > 2560 || y > 1440)
-		return (ft_error("R : Resolution should be 100x100 up to 2560x1440"));
-	g_app.res.x = x;
-	g_app.res.y = y;
+	if (x < 100 || y < 100)
+		return (ft_error("R : Resolution should be at least 100 by 100"));
+	g_app.res.x = (x > 2560 ? 2560 : x);
+	g_app.res.y = (y > 1440 ? 1440 : y);
 	return (0);
 }
 
