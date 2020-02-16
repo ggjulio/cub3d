@@ -1,4 +1,4 @@
-R 1000 600
+R 31000 3600
 NO ./tex/wood.xpm
 SO ./tex/metal.xpm
 WE ./tex/Stone.xpm
