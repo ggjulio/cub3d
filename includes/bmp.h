@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:12:59 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/15 19:25:26 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/16 15:59:25 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,56 +16,45 @@
 # include "cub3d.h"
 
 /*
-** -------------  Defines  ----------------- 
-**	BMP_HEADER_SIZE = 14 in byte (octet)
+** Sources :
+**    https://www.fileformat.info/format/bmp/egff.htm
+**	  http://fvirtman.free.fr/recueil/01_09_02_testbmp.c.php
+** http://www.ece.ualberta.ca/~elliott/ee552/studentAppNotes/
+**        2003_w/misc/bmp_file_format/bmp_file_format.htm
 **
+** -------------  Defines  -----------------
+**	BMP_HEADER_SIZE = 14 in byte (octet)
 */
 
-# define BMP_HEADER_SIZE 14
+# define BMP_HEADER_SIZE 54
 
 /*
 ** -------------  Header  -----------------
-**	uint16_t  type;             // Magic identifier: 0x4d42
-**	uint32_t  size;             // File size in bytes
-**	uint16_t  reserved1;        // Not used
-**	uint16_t  reserved2;        // Not used
-**	uint32_t  offset;           // Offset to image data in bytes from beginning of file (54 bytes)
+**	16b  type;             // Magic identifier: 0x4d42
+**	32b  size;             // File size in bytes
+**	16b  reserved1;        // Not used
+**	16b  reserved2;        // Not used
+**	32b  offset; // Offset to img data in bytes from beginning of file
 **
+**  ------------ Dib  Header Windows BITMAPINFOHEADER  ---------------
+**	32b  dib_header_size;  // DIB Header size in bytes (40 bytes)
+**	32b   width_px;         // Width of the image
+**	32b   height_px;        // Height of image
+**	16b  num_planes;       // Number of color planes
+**	16b  bits_per_pixel;   // Bits per pixel
+**	32b  compression;      // Compression type
+**	32b  image_size_bytes; // Image size in bytes
+**	32b   x_resolution_ppm; // Pixels per meter
+**	32b   y_resolution_ppm; // Pixels per meter
+**	32b  num_colors;       // Number of colors
+**	32b  important_colors; // Important colors
 */
 
-/* ------------ Dib  Header  ---------------
-**	uint32_t  dib_header_size;  // DIB Header size in bytes (40 bytes)
-**	int32_t   width_px;         // Width of the image
-**	int32_t   height_px;        // Height of image
-**	uint16_t  num_planes;       // Number of color planes
-**	uint16_t  bits_per_pixel;   // Bits per pixel
-**	uint32_t  compression;      // Compression type
-**	uint32_t  image_size_bytes; // Image size in bytes
-**	int32_t   x_resolution_ppm; // Pixels per meter
-**	int32_t   y_resolution_ppm; // Pixels per meter
-**	uint32_t  num_colors;       // Number of colors  
-**	uint32_t  important_colors; // Important colors 
+/*
+** This is Windows BITMAPINFOHEADER
+** : https://en.wikipedia.org/wiki/BMP_file_format
 */
 
-typedef struct	s_bmp_header
-{
-	uint16_t  type;            
-	uint32_t  size;            
-	uint16_t  reserved1;       
-	uint16_t  reserved2;       
-	uint32_t  offset;
-}				t_bmp_header;
-
-typedef struct	s_bmp_image
-{
-	t_bmp_header	header;
-	int				*pixels;
-}				t_bmp_image;
-
-t_bmp_header    create_bmp_header(
-	uint16_t  type, uint32_t  size, uint32_t  offset);
-t_bmp_header    init_bmp_header_reserved(
-	t_bmp_header result, uint16_t  reserved1, uint16_t  reserved2);
 void			save_image(char *file_name);
 
 #endif
