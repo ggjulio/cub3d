@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 16:44:33 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/17 17:09:36 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/17 17:38:03 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,16 @@
 int		is_focus_out(void)
 {
 	printf("focus out\n");
-	t_color color;	
 	t_color color_str;
 
-	color = create_color(0,0,0,100);
 	color_str = create_color(255,255,255,255);
 	raycasting();
-	clear_application(color);
+	clear_application(
+		create_color(0,0,0,100));
 	render_application();
 	mlx_string_put(g_app.mlx_ptr, g_app.win_ptr, 
-				   g_app.res.x / 2, 
-				   g_app.res.y / 2,
+				   g_app.res.x / 2.3, 
+				   g_app.res.y / 2.1,
 				   color_str.c, "Resume Game");
     mlx_loop_hook(g_app.mlx_ptr, NULL, NULL);
 	return (0);
