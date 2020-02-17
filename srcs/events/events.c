@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 16:44:33 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/17 17:40:33 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/17 17:56:00 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int		is_focus_out(void)
 	t_color color_str;
 
 	color_str = create_color(255,255,255,255);
-	raycasting();
 	clear_application(
 		create_color(0,0,0,100));
 	render_application();

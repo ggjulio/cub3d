@@ -6,13 +6,13 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 17:24:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/16 16:03:17 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/17 18:01:51 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	set_header(uint8_t header[54], \
+static void	set_header(uint8_t header[54], \
 				uint32_t size_file, uint32_t width_px, uint32_t height_px)
 {
 	uint32_t *size;
@@ -27,7 +27,7 @@ void	set_header(uint8_t header[54], \
 	*height = height_px;
 }
 
-void	write_header(int fd, int w, int h)
+static void	write_header(int fd, int w, int h)
 {
 	static uint8_t header[54] = {'B', 'M', 0, 0, 0, 0, 0, 0, 0, 0, 54, \
 			0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 24};
@@ -40,7 +40,7 @@ void	write_header(int fd, int w, int h)
 	write(fd, header, 54);
 }
 
-void	write_line(int w, int **img, int fd)
+static void	write_line(int w, int **img, int fd)
 {
 	int		i;
 	t_color	color;
@@ -56,6 +56,20 @@ void	write_line(int w, int **img, int fd)
 		write(fd, &color.c, sizeof(char) * 3);
 	}
 	write(fd, "000", (4 - ((w * sizeof(char)) % 4)) % 4);
+}
+
+void draw_saving(char *message)
+{
+    t_color color_str;
+
+    color_str = create_color(255,255,255,255);
+    clear_application(
+        create_color(0,0,0,100));
+    render_application();
+    mlx_string_put(g_app.mlx_ptr, g_app.win_ptr,
+                   g_app.res.x / 2.3,
+                   g_app.res.y / 2.1,
+                   color_str.c, message);
 }
 
 void	save_image(char *file_name)
