@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 17:14:55 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/17 14:54:59 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/17 17:07:43 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void			clear_application(t_color color)
 	int nb_pixel;
 	int *pixels;
 
-	mlx_clear_window(g_app.mlx_ptr, g_app.win_ptr);
 	nb_pixel = g_app.res.x * g_app.res.y - 1;
 	pixels = (int *)(g_app.pixels);
 	i = -1;
