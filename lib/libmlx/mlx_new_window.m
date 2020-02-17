@@ -312,15 +312,6 @@ int get_mouse_button(NSEventType eventtype)
     event_funct[4](button, (int)(thepoint.x), size_y - 1 - (int)(thepoint.y), event_param[4]);
 }
 
-
-- (void) exposeNotification:(NSNotification *)note
-{
-  //    printf("Expose...\n");
-    if (event_funct[12] != NULL)
-      event_funct[12](event_param[12]);
-    //    printf("Expose done.\n");
-}
-
 - (void) closeNotification:(NSNotification *)note
 {
   if (event_funct[17] != NULL)
@@ -333,7 +324,25 @@ int get_mouse_button(NSEventType eventtype)
   //    event_funct[??](event_param[??]);
   [self exposeNotification:note];
 }
+
+// julio : added this func
+- (void) focusOutNotification:(NSNotification *)note
+{
+    //printf("Focus out\n");
+	if (event_funct[10] != NULL)
+		event_funct[10](event_param[10]);
+}
+
+- (void) focusInNotification:(NSNotification *)note
+{
+    //printf("focus in\n");
+    if (event_funct[9] != NULL)
+      event_funct[9](event_param[9]);
+}
+// julio : end
 @end
+
+
 
 
 @implementation MlxWin
@@ -368,12 +377,17 @@ int get_mouse_button(NSEventType eventtype)
       [self setNextKeyView:self];
 
       //      [[NSNotificationCenter defaultCenter] addObserver:win selector:@selector(exposeNotification:) name:@"NSWindowDidExposeNotification" object:nil];
-      [[NSNotificationCenter defaultCenter] addObserver:win selector:@selector(exposeNotification:) name:@"NSWindowDidBecomeKeyNotification" object:win];
       [[NSNotificationCenter defaultCenter] addObserver:win selector:@selector(deminiaturizeNotification:) name:@"NSWindowDidDeminiaturizeNotification" object:win];
       [[NSNotificationCenter defaultCenter] addObserver:win selector:@selector(closeNotification:) name:@"NSWindowWillCloseNotification" object:win];
       // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ctxNeedsUpdate:)
       //				    name:NSViewGlobalFrameDidChangeNotification
       //				    object:nil];
+
+	  // Julio : added this to focus out event
+      [[NSNotificationCenter defaultCenter] addObserver:win selector:@selector(focusInNotification:) name:@"NSWindowDidBecomeKeyNotification" object:win];
+	  [[NSNotificationCenter defaultCenter] addObserver:win selector:@selector(focusOutNotification:) name:@"NSWindowDidResignKeyNotification" object:nil];
+	  // Julio : end
+
 
       size_x = rect.size.width;
       size_y = rect.size.height;
