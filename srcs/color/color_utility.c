@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 13:51:02 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/09 21:00:55 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:47:58 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ t_color		combine_color(t_color actual, t_color to_add)
 		actual.rgba.r * (1.0f - alpha) + to_add.rgba.r * alpha,
 		actual.rgba.g * (1.0f - alpha) + to_add.rgba.g * alpha,
 		actual.rgba.b * (1.0f - alpha) + to_add.rgba.b * alpha,
-		255);
+		0);
 	return (result);
 }

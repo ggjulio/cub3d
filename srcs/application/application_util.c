@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 17:14:55 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/16 17:55:11 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:49:29 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 void			put_pixel(t_vector coord, t_color color)
 {
+	t_color actual;
 	int		*pixels;
 
 	if (coord.x < 0 || coord.y < 0 || coord.x >= g_app.res.x
 		|| coord.y >= g_app.res.y)
 		return ;
 	pixels = (int *)(g_app.pixels);
-	pixels[coord.x + (g_app.res.x * coord.y)] = color.c;
+	actual.c = pixels[coord.x + (g_app.res.x * coord.y)];
+	pixels[coord.x + (g_app.res.x * coord.y)] = combine_color(actual, color);
 }
 
 void			render_application(void)
@@ -34,7 +36,8 @@ void			clear_application(t_color color)
 	int nb_pixel;
 	int *pixels;
 
-	nb_pixel = g_app.res.x * g_app.res.y;
+	mlx_clear_window(g_app.mlx_ptr, g_app.win_ptr);
+	nb_pixel = g_app.res.x * g_app.res.y - 1;
 	pixels = (int *)(g_app.pixels);
 	i = -1;
 	while (++i < nb_pixel)

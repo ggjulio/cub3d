@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/16 17:52:26 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:16:26 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ void	draw_wall_is_texture(t_raycast *r, int x, t_texture *texture)
 	{
 		tex.y = (int)tex_pos;
 		tex_pos += step_y;
-		put_pixel(create_vector(x, y_start),
-				(t_color){.c = texture->pixels[(int)(tex.x + tex.y * texture->size.x)]}
-			);
+		t_color texel;
+		texel.c = texture->pixels[(int)(tex.x + tex.y * texture->size.x)];
+		texel.rgba.a = 255;
+		put_pixel(create_vector(x, y_start), texel);
 		tex.y += tex_pos;
 		y_start++;
 	}

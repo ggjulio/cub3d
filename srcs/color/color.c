@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 13:51:02 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/09 21:00:55 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/17 13:12:51 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_color		create_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 	result.rgba.r = r;
 	result.rgba.g = g;
 	result.rgba.b = b;
-	result.rgba.a = a * 100 / 255;
+	result.rgba.a = a;
 	return (result);
 }
 
