@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/17 14:16:26 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/17 16:05:43 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,19 @@ void	draw_wall_is_texture(t_raycast *r, int x, t_texture *texture)
 
 	tex.x = (int)(r->wall_x * texture->size.x);
 
-	double		step_y = (double)texture->size.y / (double)r->line_height;
-	double		tex_pos = fabs(y_start - g_app.res.y / 2.0 + r->line_height / 2.0) * step_y;
+	float		step_y = (float)texture->size.y / (float)r->line_height;
+	float		tex_pos = fabs(y_start - g_app.res.y / 2.0 + r->line_height / 2.0) * step_y;
+
 	while (y_start < r->wall_end)
 	{
-		tex.y = (int)tex_pos;
-		tex_pos += step_y;
 		t_color texel;
+
+		tex.y = (int)tex_pos;
 		texel.c = texture->pixels[(int)(tex.x + tex.y * texture->size.x)];
 		texel.rgba.a = 255;
 		put_pixel(create_vector(x, y_start), texel);
-		tex.y += tex_pos;
+
+		tex_pos += step_y;
 		y_start++;
 	}
 }
@@ -191,7 +193,7 @@ void	raycasting(void)
 	ft_bzero(&r, sizeof(t_raycast));
 	while (++x <= g_app.res.x)
 	{
-		r.camera_x = 2 * x / (double)(g_app.res.y) - 1;
+		r.camera_x = 2 * x / (double)(g_app.res.x) - 1;
 		r.ray_dir = (t_fvector){
 			g_game.cam.dir.x + g_game.cam.plane.x * r.camera_x,
 			g_game.cam.dir.y + g_game.cam.plane.y * r.camera_x};

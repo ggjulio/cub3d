@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 17:14:55 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/17 14:49:29 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:54:59 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void			put_pixel(t_vector coord, t_color color)
 		return ;
 	pixels = (int *)(g_app.pixels);
 	actual.c = pixels[coord.x + (g_app.res.x * coord.y)];
-	pixels[coord.x + (g_app.res.x * coord.y)] = combine_color(actual, color);
+	pixels[coord.x + (g_app.res.x * coord.y)] = combine_color(actual, color).c;
 }
 
 void			render_application(void)

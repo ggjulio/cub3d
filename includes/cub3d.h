@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/15 19:22:29 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/17 15:46:55 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,9 @@
 # include "parse.h"
 # include "utility.h"
 
-# define FOV 0.58
-
 # define ROT_SPEED 0.1
 
-# define SPEED 0.11
+# define SPEED 0.12
 # define LAT_SPEED 0.05
 
 # define RUN_SPEED 0.4

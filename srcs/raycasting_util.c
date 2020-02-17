@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 15:04:55 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/16 18:01:31 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/17 15:54:18 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void		draw_ceil_floor(int x, int y_end)
 	while (y_end < g_app.res.y)
 	{
 		put_pixel(create_vector(x, y_end), g_game.floor.color);
-		put_pixel(create_vector(x, g_app.res.y - y_end), g_game.ceil.color);
+		put_pixel(create_vector(x, g_app.res.y - (y_end + 1)), g_game.ceil.color);
 		y_end++;
 	}
 }
