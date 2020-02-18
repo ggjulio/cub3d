@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/17 16:05:43 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/18 19:25:47 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,31 @@ void	draw_wall_is_texture(t_raycast *r, int x, t_texture *texture)
 	}
 }
 
+double	get_perpendicular_dist(t_vector vec)
+{
+	double result;
+
+//	if (r->side == 1)
+	result = (r->map.x - g_game.cam.pos.x + (1 - r->step.x) / 2) / r->ray_dir.x;
+//	else
+//		result = (r->map.y - g_game.cam.pos.y + (1 - r->step.y) / 2) / r->ray_dir.y;
+	return (result);
+}
+
+t_vector	calculate_sprite_height(t_raycast *r / r->)
+{
+	t_vector result;
+
+	r->line_height = (int)(g_app.res.y / r->perp_wall_dist);
+	result.x = -r->line_height / 2 + g_app.res.y / 2;
+	if (r->wall_start < 0)
+		r->wall_start = 0;
+	result.y = r->line_height / 2 + g_app.res.y / 2;
+	if (r->wall_end >= g_app.res.y)
+		r->wall_end = g_app.res.y - 1;
+	return (result);
+}
+
 void	draw_sprite(t_raycast *r, int x)
 {
 	t_list *pop_elem = NULL;
@@ -51,13 +76,14 @@ void	draw_sprite(t_raycast *r, int x)
 	t_vector	tex;
 
 	t_color		texel;
-	int			y_start = r->wall_start;
+	t_vector	height = calculate_wall_height(r);
 
     if (r->wall_side == West || r->wall_side == East)
         r->wall_x = g_game.cam.pos.y + r->perp_wall_dist * r->ray_dir.y;
     else
         r->wall_x = g_game.cam.pos.x + r->perp_wall_dist * r->ray_dir.x;
     r->wall_x -= floor(r->wall_x);
+
 
 
 	while (r->lst_sprite != NULL)
@@ -68,12 +94,18 @@ void	draw_sprite(t_raycast *r, int x)
 
 		tex.x = (int)(r->wall_x * actual->texture->size.x);
 
+		float		step_y = (float)actual->texture->size.y / (float)r->line_height;
+		float		tex_pos = fabs(height.x - g_app.res.y / 2.0 + actual->pos.y / 2.0) * step_y;
+
 		
-		texel.c = actual->texture->pixels[tex.x + tex.y * actual->texture->size.x];
-		while (y_start++ < r->wall_end)
+		while (height.x++ < height.y)
 		{
 
-			put_pixel(create_vector(x, y_start), texel);
+			tex.y = (int)tex_pos;
+			texel.c = actual->texture->pixels[tex.x + tex.y * actual->texture->size.x];
+			texel.rgba.a = 255;
+			put_pixel(create_vector(x, height.x), texel);
+			tex_pos += step_y;
 		}
 
 		ft_lstdelone(pop_elem, free_lst_sprite);
@@ -173,16 +205,21 @@ void	fix_fisheye(t_raycast *r)
 			(r->map.y - g_game.cam.pos.y + (1 - r->step.y) / 2) / r->ray_dir.y;
 }
 
-void	calculate_wall_height(t_raycast *r)
+
+t_vector	calculate_wall_height(t_raycast *r)
 {
+	t_vector result;
+
 	r->line_height = (int)(g_app.res.y / r->perp_wall_dist);
-	r->wall_start = -r->line_height / 2 + g_app.res.y / 2;
+	result.x = -r->line_height / 2 + g_app.res.y / 2;
 	if (r->wall_start < 0)
 		r->wall_start = 0;
-	r->wall_end = r->line_height / 2 + g_app.res.y / 2;
+	result.y = r->line_height / 2 + g_app.res.y / 2;
 	if (r->wall_end >= g_app.res.y)
 		r->wall_end = g_app.res.y - 1;
+	return (result);
 }
+
 
 void	raycasting(void)
 {
@@ -203,7 +240,9 @@ void	raycasting(void)
 		prehit_wall(&r);
 		dda(&r);
 		fix_fisheye(&r);
-		calculate_wall_height(&r);
+		t_vector wall_height = calculate_wall_height(&r);
+		r.wall_start = wall_height.x;
+		r.wall_end = wall_height.y;
 		draw_strip(&r, x);
 	}
 }
