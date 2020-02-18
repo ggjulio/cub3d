@@ -59,22 +59,22 @@ int get_mouse_button(NSEventType eventtype)
 - (NSWindowEvent *) initWithContentRect:(NSRect)rect styleMask:(NSUInteger)winstyle backing:(NSBackingStoreType)bck defer:(BOOL) dfr
 {
   int i;
-
+  
   if ((self = [super initWithContentRect:rect
-		     styleMask:winstyle
-		     backing:bck
-		     defer:dfr]))
-    {
-      i = MAX_EVENT;
-      while (i--)
-	{
-	  event_funct[i] = NULL;
-	  event_param[i] = NULL;
-	}
-      keyrepeat = 0;
-      keyflag = 0;
-      size_x = rect.size.width;
-      size_y = rect.size.height;
+					 styleMask:winstyle
+					 backing:bck
+					 defer:dfr]))
+  {
+		i = MAX_EVENT;
+		while (i--)
+		{
+			event_funct[i] = NULL;
+			event_param[i] = NULL;
+		}
+		keyrepeat = 0;
+		keyflag = 0;
+		size_x = rect.size.width;
+		size_y = rect.size.height;
     }
   return (self);
 }
@@ -339,6 +339,13 @@ int get_mouse_button(NSEventType eventtype)
     if (event_funct[9] != NULL)
       event_funct[9](event_param[9]);
 }
+
+- (void) configureNotifyNotification:(NSNotification *)note
+{
+    printf("configureNotifyNotification\n");
+    if (event_funct[22] != NULL)
+      event_funct[22](event_param[22]);
+}
 // julio : end
 @end
 
@@ -385,7 +392,9 @@ int get_mouse_button(NSEventType eventtype)
 
 	  // Julio : added this to focus out event
       [[NSNotificationCenter defaultCenter] addObserver:win selector:@selector(focusInNotification:) name:@"NSWindowDidBecomeKeyNotification" object:win];
-	  [[NSNotificationCenter defaultCenter] addObserver:win selector:@selector(focusOutNotification:) name:@"NSWindowDidResignKeyNotification" object:nil];
+	  [[NSNotificationCenter defaultCenter] addObserver:win selector:@selector(focusOutNotification:) name:@"NSWindowDidResignKeyNotification" object:win];
+	  [[NSNotificationCenter defaultCenter] addObserver:win selector:@selector(configureNotifyNotification:) name:NSWindowDidResizeNotification object:win];
+
 	  // Julio : end
 
 
