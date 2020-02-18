@@ -342,7 +342,7 @@ int get_mouse_button(NSEventType eventtype)
 
 - (void) configureNotifyNotification:(NSNotification *)note
 {
-    printf("configureNotifyNotification\n");
+    //printf("configureNotifyNotification\n");
     if (event_funct[22] != NULL)
       event_funct[22](event_param[22]);
 }
