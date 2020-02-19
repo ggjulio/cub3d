@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/17 15:46:55 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/19 12:39:00 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@
 # include "event.h"
 # include "parse.h"
 # include "utility.h"
+
+# define WIN_MIN_WIDTH 100
+# define WIN_MIN_HEIGHT 100
 
 # define ROT_SPEED 0.1
 

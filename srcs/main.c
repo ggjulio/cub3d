@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:23:09 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/18 15:31:24 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/19 12:58:29 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,15 @@ int		main(int ac, char **av)
 	mlx_hook(g_app.win_ptr, DESTROYNOTIFY, NOEVENTMASK, close_program, NULL);
 	mlx_hook(g_app.win_ptr, CONFIGURENOTIFY, NOEVENTMASK, is_configure_notify, NULL);
 	mlx_loop_hook(g_app.mlx_ptr, loop_game, NULL);
+
+	mlx_window_set_min_size(g_app.win_ptr, WIN_MIN_WIDTH, WIN_MIN_HEIGHT);
+
+
+
+	mlx_screen_get_resolution(&(g_app.screen_res.x), &(g_app.screen_res.y));
+	ft_printf("%d - %d\n", g_app.screen_res.x, g_app.screen_res.y);
+
 	mlx_loop(g_app.mlx_ptr);
+	
 	return (0);
 }

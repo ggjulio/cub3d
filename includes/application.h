@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 12:46:35 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/11 12:40:41 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/19 12:48:23 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct	s_resolution
 typedef struct	s_application
 {
 	char			*title;
+	t_resolution	screen_res;
 	t_resolution	res;
 
 	void			*mlx_ptr;
@@ -31,7 +32,7 @@ typedef struct	s_application
 	int				bits_per_pixel;
 	int				size_line;
 	int				endian;
-	char			*pixels;
+	int				*pixels;
 }				t_application;
 
 t_application	create_application(void);
@@ -42,7 +43,7 @@ void			destroy_application(t_application to_destroy);
 void			free_application(t_application *to_free);
 
 void			put_pixel(t_vector coord, t_color color);
-void			render_application();
+void			render_application(void);
 void			clear_application(t_color color);
 
 #endif

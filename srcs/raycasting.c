@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/18 19:25:47 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/19 11:22:53 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	draw_wall_is_texture(t_raycast *r, int x, t_texture *texture)
 		y_start++;
 	}
 }
-
+/*
 double	get_perpendicular_dist(t_vector vec)
 {
 	double result;
@@ -67,7 +67,7 @@ t_vector	calculate_sprite_height(t_raycast *r / r->)
 		r->wall_end = g_app.res.y - 1;
 	return (result);
 }
-
+*/
 void	draw_sprite(t_raycast *r, int x)
 {
 	t_list *pop_elem = NULL;
@@ -75,8 +75,9 @@ void	draw_sprite(t_raycast *r, int x)
 
 	t_vector	tex;
 
-	t_color		texel;
-	t_vector	height = calculate_wall_height(r);
+	(void)x;
+//	t_color		texel;
+//	t_vector	height = calculate_wall_height(r);
 
     if (r->wall_side == West || r->wall_side == East)
         r->wall_x = g_game.cam.pos.y + r->perp_wall_dist * r->ray_dir.y;
@@ -94,10 +95,10 @@ void	draw_sprite(t_raycast *r, int x)
 
 		tex.x = (int)(r->wall_x * actual->texture->size.x);
 
-		float		step_y = (float)actual->texture->size.y / (float)r->line_height;
-		float		tex_pos = fabs(height.x - g_app.res.y / 2.0 + actual->pos.y / 2.0) * step_y;
+//		float		step_y = (float)actual->texture->size.y / (float)r->line_height;
+//		float		tex_pos = fabs(height.x - g_app.res.y / 2.0 + actual->pos.y / 2.0) * step_y;
 
-		
+		/*
 		while (height.x++ < height.y)
 		{
 
@@ -107,7 +108,7 @@ void	draw_sprite(t_raycast *r, int x)
 			put_pixel(create_vector(x, height.x), texel);
 			tex_pos += step_y;
 		}
-
+		*/
 		ft_lstdelone(pop_elem, free_lst_sprite);
 	}
 }
