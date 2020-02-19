@@ -32,7 +32,7 @@ _IWHITE=$'\x1b[47m
 #    By: juligonz <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 18:50:56 by juligonz          #+#    #+#              #
-#    Updated: 2020/02/19 12:34:52 by juligonz         ###   ########.fr        #
+#    Updated: 2020/02/19 18:16:28 by juligonz         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -65,7 +65,7 @@ LFLAGS = $(foreach lib, $(LIB_DIR),-L$(lib))  $(foreach lib, $(LIB),-l$(lib))
 LFLAGS+= $(foreach framework, $(FRAMEWORKS),-framework $(framework))
 
 CC = gcc
-CFLAGS  = -Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS  = -Wall -Wextra -Werror -g #-fsanitize=undefined   #-fsanitize=address 
 IFLAGS  = -I./lib/libmlx -I./lib/libft -I./includes
 
 all: $(NAME)
