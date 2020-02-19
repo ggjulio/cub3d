@@ -167,6 +167,9 @@ int     mlx_window_titled_off(void *win_ptr);
 
 int     mlx_window_toggle_fullscreen(void *win_ptr);
 
+int     mlx_window_set_title(void *win_ptr, char *title);
+int     mlx_window_set_background(void *win_ptr, int color);
+
 int     mlx_screen_get_resolution(int *width, int *height);
 // Julio end
 

@@ -1,12 +1,12 @@
 // ************************************************************************** //
 //                                                                            //
 //                                                        :::      ::::::::   //
-//   mlx_windows.m                                      :+:      :+:    :+:   //
+//   mlx_window.m                                       :+:      :+:    :+:   //
 //                                                    +:+ +:+         +:+     //
 //   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2020/02/18 15:35:33 by juligonz          #+#    #+#             //
-//   Updated: 2020/02/19 16:37:08 by juligonz         ###   ########.fr       //
+//   Updated: 2020/02/19 19:20:47 by juligonz         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -134,6 +134,34 @@ int     mlx_window_toggle_fullscreen(mlx_win_list_t *win)
 
 	theWindow = [(id)(win->winid) win];	
     [theWindow toggleFullScreen:theWindow];
+	return (0);
+}
+
+int     mlx_window_set_title(mlx_win_list_t *win, char *p_title)
+{
+	id			theWindow;
+	NSString	*str;
+
+	theWindow = [(id)(win->winid) win];	
+	str = [NSString stringWithCString:p_title encoding:NSASCIIStringEncoding];
+	[theWindow setTitle:str];
+	return (0);
+}
+
+int     mlx_window_set_background(mlx_win_list_t *win, int p_color)
+{
+	id      	theWindow;
+	NSColor		*myColor;
+
+	float b  = (p_color      & 0xFF) / 255.0f;
+	float g  = (p_color>>8   & 0xFF) / 255.0f;
+	float r  = (p_color>>16  & 0xFF)  / 255.0f;
+	float a  = (p_color>>24  & 0xFF)  / 255.0f;
+
+	myColor = [NSColor colorWithCalibratedRed:r green:g blue:b alpha:a];
+
+	theWindow = [(id)(win->winid) win];	
+	[theWindow setBackgroundColor:myColor];
 	return (0);
 }
 
