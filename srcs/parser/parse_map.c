@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 19:09:50 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/10 15:07:06 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/19 13:35:58 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		valid_map(void)
 
 	if (valid_map_first_line() == -1 || valid_map_last_line() == -1)
 		return (-1);
-	if (!g_app.res.x || !g_game.north.id[0] || !g_game.south.id[0] ||
+	if (g_app.res.x < 0 || !g_game.north.id[0] || !g_game.south.id[0] ||
 		!g_game.east.id[0] || !g_game.west.id[0] ||
 		!g_game.ceil.id[0] || !g_game.floor.id[0] || !g_game.sprite.id[0])
 		return (ft_error("File : Missing ids"));

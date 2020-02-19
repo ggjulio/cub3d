@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/19 11:22:53 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/19 13:39:15 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,20 +207,14 @@ void	fix_fisheye(t_raycast *r)
 }
 
 
-t_vector	calculate_wall_height(t_raycast *r)
+void	calculate_wall_height(t_raycast *r)
 {
-	t_vector result;
-
 	r->line_height = (int)(g_app.res.y / r->perp_wall_dist);
-	result.x = -r->line_height / 2 + g_app.res.y / 2;
-	if (r->wall_start < 0)
-		r->wall_start = 0;
-	result.y = r->line_height / 2 + g_app.res.y / 2;
-	if (r->wall_end >= g_app.res.y)
-		r->wall_end = g_app.res.y - 1;
-	return (result);
+	r->wall_start = -r->line_height / 2 + g_app.res.y / 2;
+	r->wall_start = (r->wall_start < 0 ? 0 : r->wall_start);
+	r->wall_end = r->line_height / 2 + g_app.res.y / 2;
+	r->wall_end = (r->wall_end > g_app.res.y ? g_app.res.y : r->wall_end);
 }
-
 
 void	raycasting(void)
 {
@@ -241,9 +235,7 @@ void	raycasting(void)
 		prehit_wall(&r);
 		dda(&r);
 		fix_fisheye(&r);
-		t_vector wall_height = calculate_wall_height(&r);
-		r.wall_start = wall_height.x;
-		r.wall_end = wall_height.y;
+		calculate_wall_height(&r);
 		draw_strip(&r, x);
 	}
 }

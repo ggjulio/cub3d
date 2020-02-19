@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:23:09 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/19 12:58:29 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/19 13:40:38 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,6 @@ int		main(int ac, char **av)
 
 	mlx_window_set_min_size(g_app.win_ptr, WIN_MIN_WIDTH, WIN_MIN_HEIGHT);
 
-
-
-	mlx_screen_get_resolution(&(g_app.screen_res.x), &(g_app.screen_res.y));
-	ft_printf("%d - %d\n", g_app.screen_res.x, g_app.screen_res.y);
 
 	mlx_loop(g_app.mlx_ptr);
 	
