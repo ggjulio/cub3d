@@ -6,7 +6,7 @@
 //   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2020/02/18 15:35:33 by juligonz          #+#    #+#             //
-//   Updated: 2020/02/19 12:44:36 by juligonz         ###   ########.fr       //
+//   Updated: 2020/02/19 16:37:08 by juligonz         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -49,6 +49,91 @@ int     mlx_window_set_max_size(mlx_win_list_t *win, int width, int height)
 	windowMaxSize.width = width;
 	windowMaxSize.height = height;
 	[theWindow setMaxSize:windowMaxSize];
+	return (0);
+}
+
+int     mlx_window_resizable_on(mlx_win_list_t *win)
+{
+	id         theWindow;
+
+	theWindow = [(id)(win->winid) win];	
+	[theWindow setStyleMask: [theWindow styleMask] | NSResizableWindowMask];
+	return (0);
+}
+
+int     mlx_window_resizable_off(mlx_win_list_t *win)
+{
+	id         theWindow;
+
+	theWindow = [(id)(win->winid) win];	
+	[theWindow setStyleMask: [theWindow styleMask] & ~NSResizableWindowMask];
+	return (0);
+}
+
+
+
+int     mlx_window_miniaturizable_on(mlx_win_list_t *win)
+{
+	id         theWindow;
+
+	theWindow = [(id)(win->winid) win];	
+	[theWindow setStyleMask: [theWindow styleMask] | NSWindowStyleMaskMiniaturizable];
+	return (0);
+}
+
+int     mlx_window_miniaturizable_off(mlx_win_list_t *win)
+{
+	id         theWindow;
+
+	theWindow = [(id)(win->winid) win];	
+	[theWindow setStyleMask: [theWindow styleMask] & ~NSWindowStyleMaskMiniaturizable];
+	return (0);
+}
+
+
+
+int     mlx_window_closable_on(mlx_win_list_t *win)
+{
+	id         theWindow;
+
+	theWindow = [(id)(win->winid) win];	
+	[theWindow setStyleMask: [theWindow styleMask] | NSWindowStyleMaskClosable];
+	return (0);
+}
+
+int     mlx_window_closable_off(mlx_win_list_t *win)
+{
+	id         theWindow;
+
+	theWindow = [(id)(win->winid) win];	
+	[theWindow setStyleMask: [theWindow styleMask] & ~NSWindowStyleMaskClosable];
+	return (0);
+}
+
+int     mlx_window_titled_on(mlx_win_list_t *win)
+{
+	id         theWindow;
+
+	theWindow = [(id)(win->winid) win];	
+	[theWindow setStyleMask: [theWindow styleMask] | NSWindowStyleMaskTitled];
+	return (0);
+}
+
+int     mlx_window_titled_off(mlx_win_list_t *win)
+{
+	id         theWindow;
+
+	theWindow = [(id)(win->winid) win];	
+	[theWindow setStyleMask: [theWindow styleMask] & ~NSWindowStyleMaskTitled];
+	return (0);
+}
+
+int     mlx_window_toggle_fullscreen(mlx_win_list_t *win)
+{
+	id         theWindow;
+
+	theWindow = [(id)(win->winid) win];	
+    [theWindow toggleFullScreen:theWindow];
 	return (0);
 }
 

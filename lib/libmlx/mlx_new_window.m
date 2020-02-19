@@ -360,7 +360,7 @@ int get_mouse_button(NSEventType eventtype)
 
   if ((self = [super initWithFrame:rect pixelFormat:pixFmt]) != nil)
     {
-      NSUInteger windowStyle = NSWindowStyleMaskTitled | NSWindowStyleMaskClosable | NSWindowStyleMaskMiniaturizable | NSWindowStyleMaskResizable;
+		NSUInteger windowStyle = NSWindowStyleMaskTitled | NSWindowStyleMaskClosable | NSWindowStyleMaskMiniaturizable;
 
       win = [[NSWindowEvent alloc] initWithContentRect:rect
 				   styleMask:windowStyle
@@ -394,7 +394,6 @@ int get_mouse_button(NSEventType eventtype)
       [[NSNotificationCenter defaultCenter] addObserver:win selector:@selector(focusInNotification:) name:@"NSWindowDidBecomeKeyNotification" object:win];
 	  [[NSNotificationCenter defaultCenter] addObserver:win selector:@selector(focusOutNotification:) name:@"NSWindowDidResignKeyNotification" object:win];
 	  [[NSNotificationCenter defaultCenter] addObserver:win selector:@selector(configureNotifyNotification:) name:NSWindowDidResizeNotification object:win];
-
 	  // Julio : end
 
 

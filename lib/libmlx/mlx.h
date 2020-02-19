@@ -153,6 +153,20 @@ int		mlx_window_get_size(void *win_ptr, int *width, int *height);
 int		mlx_window_set_min_size(void *win_ptr, int width, int height);
 int		mlx_window_set_max_size(void *win_ptr, int width, int height);
 
+int		mlx_window_resizable_on(void *win_ptr);
+int     mlx_window_resizable_off(void *win_ptr);
+
+int     mlx_window_miniaturizable_on(void *win_ptr);
+int     mlx_window_miniaturizable_off(void *win_ptr);
+
+int     mlx_window_closable_on(void *win_ptr);
+int     mlx_window_closable_off(void *win_ptr);
+
+int     mlx_window_titled_on(void *win_ptr);
+int     mlx_window_titled_off(void *win_ptr);
+
+int     mlx_window_toggle_fullscreen(void *win_ptr);
+
 int     mlx_screen_get_resolution(int *width, int *height);
 // Julio end
 
