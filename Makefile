@@ -32,7 +32,7 @@ _IWHITE=$'\x1b[47m
 #    By: juligonz <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 18:50:56 by juligonz          #+#    #+#              #
-#    Updated: 2020/02/20 10:43:26 by juligonz         ###   ########.fr        #
+#    Updated: 2020/02/20 11:15:33 by juligonz         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -46,14 +46,15 @@ INC_DIR = includes
 OBJ_DIR = obj
 LIB_DIR =  $(shell find ./lib -type d -maxdepth 1)
 
-SRC = main.c vector.c
+SRC = main.c
 SRC+= game.c game_util.c
 SRC+= sprite.c bmp.c
 SRC+= application.c application_util.c application_window.c
 SRC+= move.c move_mouse.c move_movement.c
 SRC+= events.c events_key.c
 SRC+= raycasting.c raycasting_util.c 
-SRC+= fvector.c fvector_util.c
+SRC+= vector.c vector_util.c
+SRC+= fvector.c fvector_util.c fvector_cast.c 
 SRC+= color.c color_utility.c color_str.c
 SRC+= draw.c parser.c move.c camera.c
 SRC+= texture.c parse_map.c parser2.c parse_map2.c utility.c
@@ -65,7 +66,7 @@ LFLAGS = $(foreach lib, $(LIB_DIR),-L$(lib))  $(foreach lib, $(LIB),-l$(lib))
 LFLAGS+= $(foreach framework, $(FRAMEWORKS),-framework $(framework))
 
 CC = gcc
-CFLAGS  = -Wall -Wextra -Werror -g #-fsanitize=undefined   #-fsanitize=address 
+CFLAGS  = -Wall -Wextra -Werror -g #-fsanitize=undefined  -fsanitize=address 
 IFLAGS  = -I./lib/libmlx -I./lib/libft -I./includes
 
 all: $(NAME)
