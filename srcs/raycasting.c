@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/20 14:24:46 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/20 16:44:39 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,7 @@ void	draw_wall_is_texture(t_raycast *r, int x, t_texture *texture)
 		y_start++;
 	}
 }
-
-double	get_perp_sprite_dist(t_fvector object, t_raycast *r)
-{
-	double result;
-
-	object = perp_clock_fvec(object);
-	result = (object.x - g_game.cam.pos.x + (1 - r->step.x) / 2) / r->ray_dir.x;
-	return (fabs(result));
-}
-
+/*
 t_vector	calculate_sprite_height(t_raycast *r, t_sprite sprite)
 {
 	t_vector result;
@@ -67,40 +58,25 @@ t_vector	calculate_sprite_height(t_raycast *r, t_sprite sprite)
 		r->wall_end = g_app.res.y - 1;
 	return (result);
 }
-
+*/
 void	draw_sprite(t_raycast *r, int x)
 {
-
-//    if (r->wall_side == West || r->wall_side == East)
-        r->wall_x = g_game.cam.pos.y + r->perp_wall_dist * r->ray_dir.y;
-//    else
-//        r->wall_x = g_game.cam.pos.x + r->perp_wall_dist * r->ray_dir.x;
-    r->wall_x -= floor(r->wall_x);
 
 	while (r->lst_sprite != NULL)
 	{
 		t_list		*pop_elem = ft_lstpop_front(&(r->lst_sprite));
 		t_sprite	*actual = pop_elem->content;
-		t_vector	height = calculate_sprite_height(r, *actual);
+		t_vector	height = (t_vector){100, 400};
 		t_vector	tex;
 
 		tex.x = (int)(r->wall_x * actual->texture->size.x);
 
-		actual->line_height = (int)(g_app.res.y / actual->perp_dist_rel_cam);
-
-		float		step_y = (float)actual->texture->size.y / (float)actual->line_height;
-		float		tex_pos = fabs(height.x - g_app.res.y / 2.0 + actual->pos.y / 2.0) * step_y;
-
-		
 		while (height.x++ < height.y)
 		{
-			t_color		texel;
+			t_color		texel = create_color(0,130,200, 100);
 
-			tex.y = (int)tex_pos;
-			texel.c = actual->texture->pixels[tex.x + tex.y * actual->texture->size.x];
-			texel.rgba.a = 255;
+
 			put_pixel(create_vector(x, height.x), texel);
-			tex_pos += step_y;
 		}
 		
 		ft_lstdelone(pop_elem, free_lst_sprite);
@@ -129,9 +105,7 @@ void	save_sprite(t_raycast *r)
 			r->map,
 			sub_fvec_by_fvec(
 				add_scalar_to_fvec(0.5, vec_to_fvec(r->map)),
-				g_game.cam.pos),
-			get_perp_sprite_dist(
-					sub_fvec_by_fvec(vec_to_fvec(r->map), g_game.cam.pos), r)
+				g_game.cam.pos)
 			);
 
 /*	ft_printf("pos(%d, %d)  ||  ", new_sprite->pos.x, new_sprite->pos.y);
