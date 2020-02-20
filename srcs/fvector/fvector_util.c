@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 14:12:16 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/20 12:09:03 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/20 15:07:48 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ t_fvector	sub_fvec_by_fvec(t_fvector v1, t_fvector v2)
 	return (result);
 }
 
-t_fvector	vec_to_fvec(t_vector vector)
+t_fvector	inverse_fvec(t_fvector p_fvect)
 {
 	t_fvector result;
 
-	result.x = (double)vector.x;
-	result.y = (double)vector.y;
+	result.x = -p_fvect.x;
+	result.y = -p_fvect.y;
 	return (result);
 }
