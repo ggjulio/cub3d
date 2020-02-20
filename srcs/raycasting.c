@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/20 12:29:26 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/20 14:24:46 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,10 +134,10 @@ void	save_sprite(t_raycast *r)
 					sub_fvec_by_fvec(vec_to_fvec(r->map), g_game.cam.pos), r)
 			);
 
-	ft_printf("pos(%d, %d)  ||  ", new_sprite->pos.x, new_sprite->pos.y);
+/*	ft_printf("pos(%d, %d)  ||  ", new_sprite->pos.x, new_sprite->pos.y);
 	ft_printf("pos_rel_player(%f, %f) ||", new_sprite->pos_rel_cam.x, new_sprite->pos_rel_cam.y);
 	ft_printf("perp_dist_rel_player = %f\n", new_sprite->perp_dist_rel_cam);
-
+*/
 	ft_lstadd_front(&(r->lst_sprite), ft_lstnew(new_sprite));
 }
 
