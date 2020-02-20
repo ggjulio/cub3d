@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 14:12:16 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/20 16:33:50 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/20 17:13:33 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_fvector	sub_fvec_by_fvec(t_fvector v1, t_fvector v2)
 	return (result);
 }
 
-double		fvec_magnitude(t_fvector p_fvec)
+double		magnitude_fvec(t_fvector p_fvec)
 {
 	return (sqrt(p_fvec.x * p_fvec.x + p_fvec.y * p_fvec.y));
 }

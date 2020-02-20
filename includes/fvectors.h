@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:12:12 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/20 16:32:50 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/20 17:13:13 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_fvector		sub_fvec_by_fvec(t_fvector v1, t_fvector v2);
 t_fvector		add_scalar_to_fvec(double n, t_fvector fvector);
 
 t_fvector		inverse_fvec(t_fvector p_fvec);
-double			fvec_magnitude(t_fvector p_fvec);
+double			magnitude_fvec(t_fvector p_fvec);
 
 /*
 ** fvector_cast.c

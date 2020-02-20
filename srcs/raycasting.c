@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/20 16:44:39 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/20 17:08:15 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,23 +42,7 @@ void	draw_wall_is_texture(t_raycast *r, int x, t_texture *texture)
 		y_start++;
 	}
 }
-/*
-t_vector	calculate_sprite_height(t_raycast *r, t_sprite sprite)
-{
-	t_vector result;
 
-	(void)sprite;
-
-	r->line_height = (int)(g_app.res.y / sprite.perp_dist_rel_cam);
-	result.x = -r->line_height / 2 + g_app.res.y / 2;
-	if (r->wall_start < 0)
-		r->wall_start = 0;
-	result.y = r->line_height / 2 + g_app.res.y / 2;
-	if (r->wall_end >= g_app.res.y)
-		r->wall_end = g_app.res.y - 1;
-	return (result);
-}
-*/
 void	draw_sprite(t_raycast *r, int x)
 {
 
