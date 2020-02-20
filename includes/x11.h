@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 15:36:53 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/06 15:25:15 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/20 12:55:30 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 */
 
 /*
-** Event mask define
+** Event mask define (Useless using mlx, just use NOEVENTMASK everywhere)
 */
 
 # define NOEVENTMASK 0L
@@ -319,7 +319,6 @@
 **   int	mlx_loop (void *mlx_ptr);
 **
 **
-**
 **  ____________________________________________________________________________
 **  ||||                            Usually asked...                        ||||
 **  ----------------------------------------------------------------------------
@@ -345,6 +344,11 @@
 **   int	mlx_hook(void *win_ptr, int x_event, int x_mask,
 **               int (*funct)(), void *param);
 **
+**   Working x_events :
+**      KEYPRESS, KEYRELEASE, DESTROYNOTIFY, FOCUSOUT, FOCUSIN, CONFIGURENOTIFY
+**
+**   x_mask  : Useless in mlx, just put NOEVENTMASK (NOEVENTMASK is 0)
+**
 **   int     mlx_mouse_hide();
 **   int     mlx_mouse_show();
 **   int     mlx_mouse_move(void *win_ptr, int x, int y);
@@ -352,6 +356,33 @@
 **   int	mlx_do_key_autorepeatoff(void *mlx_ptr);
 **   int	mlx_do_key_autorepeaton(void *mlx_ptr);
 **   int	mlx_do_sync(void *mlx_ptr);
+**
+**  ____________________________________________________________________________
+**  |||                          Julio functions                            ||||
+**  ----------------------------------------------------------------------------
+**
+**   int     mlx_window_get_size(void *win_ptr, int *width, int *height);
+**   int     mlx_window_set_min_size(void *win_ptr, int width, int height);
+**   int     mlx_window_set_max_size(void *win_ptr, int width, int height);
+**
+**   int     mlx_window_resizable_on(void *win_ptr);
+**   int     mlx_window_resizable_off(void *win_ptr);
+**
+**   int     mlx_window_miniaturizable_on(void *win_ptr);
+**   int     mlx_window_miniaturizable_off(void *win_ptr);
+**
+**   int     mlx_window_closable_on(void *win_ptr);
+**   int     mlx_window_closable_off(void *win_ptr);
+**
+**   int     mlx_window_titled_on(void *win_ptr);
+**   int     mlx_window_titled_off(void *win_ptr);
+**
+**   int     mlx_window_toggle_fullscreen(void *win_ptr);
+**
+**   int     mlx_window_set_title(void *win_ptr, char *title);
+**   int     mlx_window_set_background(void *win_ptr, int color);
+**
+**   int     mlx_screen_get_resolution(int *width, int *height);
 */
 
 #endif
