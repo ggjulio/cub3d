@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 14:12:16 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/15 11:14:07 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/20 12:09:03 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,19 @@ t_fvector	perp_cntclock_fvec(t_fvector fvector)
 	return (result);
 }
 
-t_fvector	multiply_fvec_by_scalarl(t_fvector fvector, double n)
+t_fvector	multiply_fvec_by_scalar(t_fvector fvector, double n)
 {
 	t_fvector result;
 
 	result = create_fvector(fvector.x * n, fvector.y * n);
+	return (result);
+}
+
+t_fvector	add_scalar_to_fvec(double n, t_fvector fvector)
+{
+	t_fvector result;
+
+	result = create_fvector(fvector.x + n, fvector.y + n);
 	return (result);
 }
 
