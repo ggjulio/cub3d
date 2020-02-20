@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/17 15:59:54 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/20 10:39:28 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int		loop_game(void)
 		ROT_SPEED);
 	raycasting();
 	render_application();
+	rainbow_bar();
 	return (0);
 }
 

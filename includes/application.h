@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 12:46:35 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/19 12:48:23 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/20 10:43:06 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,7 @@ void			free_application(t_application *to_free);
 void			put_pixel(t_vector coord, t_color color);
 void			render_application(void);
 void			clear_application(t_color color);
+
+void			rainbow_bar(void);
 
 #endif

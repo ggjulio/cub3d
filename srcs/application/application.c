@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 17:14:55 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/19 11:38:57 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/20 10:42:29 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ t_application	init_application(
 	result.mlx_ptr = actual.mlx_ptr;
 	result.win_ptr = mlx_new_window(result.mlx_ptr, size_x, size_y, title);
 	result.img_ptr = mlx_new_image(result.mlx_ptr, size_x, size_y);
-	result.pixels = (int *)mlx_get_data_addr(result.img_ptr, &(result.bits_per_pixel),
-						&(result.size_line), &(result.endian));
+	result.pixels = (int *)mlx_get_data_addr(result.img_ptr,
+			&(result.bits_per_pixel), &(result.size_line), &(result.endian));
 	return (result);
 }
 
