@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/13 15:16:39 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/21 16:46:53 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ typedef struct	s_game
 	t_texture		floor;
 	t_texture		sprite;
 
+	double			fog_ratio;
+	t_color			fog_color;
+
 	uint16_t		key_w:1;
 	uint16_t		key_a:1;
 	uint16_t		key_s:1;
@@ -40,7 +43,9 @@ typedef struct	s_game
 	uint16_t		is_run:1;
 	uint16_t		is_mouse_move:1;
 	uint16_t		mouse_move_enabled:1;
-	uint16_t		remaining:7;
+	uint16_t		is_fog_on_ceil:1;
+	uint16_t		is_sunset:1;
+	uint16_t		remaining:6;
 }				t_game;
 
 t_game			create_game(void);

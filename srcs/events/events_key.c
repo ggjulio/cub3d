@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 16:44:33 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/19 16:37:41 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/21 17:18:45 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,42 @@ void	change_mouse_state(void)
 		mlx_mouse_show();
 	g_game.key_left = 0;
 	g_game.key_right = 0;
+}
+
+void	change_fog_color(void)
+{
+	static int i;
+	static t_color arr[5] = 
+		{
+			(t_color){.rgba.r=255,.rgba.g=255,.rgba.b=255},
+			(t_color){.rgba.r=0,.rgba.g=186,.rgba.b=50},
+			(t_color){.rgba.r=186,.rgba.g=0,.rgba.b=9},
+			(t_color){.rgba.r=255,.rgba.g=234,.rgba.b=97},
+			(t_color){.rgba.r=0,.rgba.g=0,.rgba.b=0},
+		};
+	if (i == 5)
+		i = 0;
+	g_game.fog_color = arr[i++];
+	printf("%3d, %3d, %3d\n", g_game.fog_color.rgba.r, g_game.fog_color.rgba.g, g_game.fog_color.rgba.b);
+}
+
+void effects(int key)
+{
+	if (key == NKMN_KEY)
+	{
+		g_game.fog_ratio -= (g_game.fog_ratio >= 0.1 ? 0.1 : 0.0);
+		ft_printf("%f\n", g_game.fog_ratio);
+	}
+	else if (key == NKPL_KEY)
+	{
+		g_game.fog_ratio += (g_game.fog_ratio <= 0.9 ? 0.1 : 0.0);
+	}
+	else if (key == NKWC_KEY)
+		change_fog_color();
+	else if (key == NKEQ_KEY)
+		g_game.is_sunset = !g_game.is_sunset;		
+	else if (key == NKSL_KEY)
+		g_game.is_fog_on_ceil = !g_game.is_fog_on_ceil;
 }
 
 int		is_key_press(int key)
@@ -56,6 +92,9 @@ int		is_key_press(int key)
 		mlx_window_toggle_fullscreen(g_app.win_ptr);
 	else if (key == ESC_KEY)
 		exit_game();
+	else 
+		ft_printf("%d\n", key);
+	effects(key);
 	return (0);
 }
 

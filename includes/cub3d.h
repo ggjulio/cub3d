@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/19 12:39:00 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/21 16:48:58 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@
 # define WIN_MIN_WIDTH 100
 # define WIN_MIN_HEIGHT 100
 
+# define FOG_INTENSITY  0.9
+
 # define ROT_SPEED 0.1
 
 # define SPEED 0.12
@@ -55,5 +57,8 @@
 
 extern t_game			g_game;
 extern t_application	g_app;
+
+t_color	add_fog(t_color pixel, int y_end);
+t_color add_sunset(t_color pixel, int y_end);
 
 #endif
