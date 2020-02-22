@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 16:44:33 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/20 17:06:21 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/22 17:00:41 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int		is_configure_notify(void)
 	double		ratio;
 
 	mlx_window_get_size(g_app.win_ptr, &(size.x), &(size.y));
+	g_app.win_res = size;
 	ratio = fabs((double)size.x / (double)size.y);
 	g_game.cam.plane = (t_fvector){
 		(-0.5 * ratio) * g_game.cam.dir.y,

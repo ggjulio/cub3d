@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/22 15:15:27 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/22 18:39:42 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	draw_strip(t_raycast *r, int x)
 		draw_wall_is_color(x, r->wall_start - g_game.y_offset, r->wall_end - g_game.y_offset, texture->color);
 	else
 		draw_wall_is_texture(r, x, texture);	
-	draw_sprite(r, x);
+//	draw_sprite(r, x);
 }
 
 void	save_sprite(t_raycast *r)

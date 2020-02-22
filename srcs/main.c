@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:23:09 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/20 15:14:54 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/22 17:50:31 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ int		main(int ac, char **av)
 	}
 	if (load_cub(av[1]) == -1)
 		exit_game();
+	ft_printf("%d || %d || %p\n", g_app.res.x, g_app.res.y, g_app.mlx_ptr);
 	g_app = init_application(g_app, g_app.res.x, g_app.res.y, "Super Cub");
+	ft_printf("%d || %d || %p\n", g_app.res.x, g_app.res.y, g_app.mlx_ptr);
 	load_textures();
 	if (ac == 3)
 	{

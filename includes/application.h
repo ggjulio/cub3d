@@ -6,24 +6,19 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 12:46:35 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/20 10:43:06 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/22 17:16:24 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef APPLICATION_H
 # define APPLICATION_H
 
-typedef struct	s_resolution
-{
-	int x;
-	int y;
-}				t_resolution;
-
 typedef struct	s_application
 {
 	char			*title;
-	t_resolution	screen_res;
-	t_resolution	res;
+	t_vector		screen_res;
+	t_vector		win_res;
+	t_vector		res;
 
 	void			*mlx_ptr;
 	void			*win_ptr;
