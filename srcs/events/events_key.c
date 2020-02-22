@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 16:44:33 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/22 15:22:17 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/22 15:40:46 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ int		is_key_press(int key)
 		exit_game();
 	else 
 		ft_printf("%d\n", key);
-	ft_printf("offset : %d\n", g_game.y_offset);
 	effects(key);
 	return (0);
 }
