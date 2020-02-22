@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:02:04 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/15 11:58:36 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/22 09:59:27 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,14 @@ void	right(double lat_speed)
 	(int)g_game.cam.pos.x,
 	(int)(g_game.cam.pos.y + g_game.cam.plane.y * lat_speed)))
 		g_game.cam.pos.y += g_game.cam.plane.y * lat_speed;
+}
+
+void	look_up(void)
+{
+	g_game.y_offset -= 15;
+}
+
+void	look_down(void)
+{
+	g_game.y_offset += 15;
 }

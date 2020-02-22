@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/20 10:39:28 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/22 10:08:33 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	load_textures(void)
 
 int		loop_game(void)
 {
-	clear_application(create_color(0, 0, 0, 255));
+	clear_application(create_color(0, 0, 0, 0));
 	if (g_game.mouse_move_enabled)
 		mouse_movement();
 	move((g_game.is_run ? RUN_SPEED : SPEED),

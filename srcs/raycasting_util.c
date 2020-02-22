@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 15:04:55 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/21 16:55:49 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/22 10:08:57 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,26 @@ void		draw_wall_is_color(int x, int y_start, int y_end, t_color pixel)
 		put_pixel(create_vector(x, y_start++), pixel);
 }
 
-void		draw_ceil_floor(int x, int y_end)
+void		draw_ceil_floor(int x,int wall_start, int wall_end)
 {
+	int i;
 	t_color ceil;
 	
-	if (y_end < 0)
+	if (wall_end < 0)
 		return ;
 	ceil = g_game.ceil.color;
-	while (y_end < g_app.res.y)
+	i = -1;
+	while (++i < wall_start)
 	{
-		put_pixel(create_vector(x, y_end),
-				  add_fog(g_game.floor.color, y_end));
-		if (g_game.is_sunset)
-			ceil = add_sunset(g_game.ceil.color, y_end);
-		else if (g_game.is_fog_on_ceil)
-			ceil = add_fog(g_game.ceil.color, y_end);
-		put_pixel(create_vector(x, g_app.res.y - (y_end + 1)), ceil);
-		y_end++;
+		ceil = g_game.is_sunset ? add_sunset(g_game.ceil.color, i) : ceil;
+		ceil = g_game.is_fog_on_ceil ? add_fog(g_game.ceil.color, i) : ceil;
+		put_pixel(create_vector(x, i), ceil);
+	}
+	while (wall_end < g_app.res.y)
+	{
+		put_pixel(create_vector(x, wall_end),
+				  add_fog(g_game.floor.color, wall_end));
+		wall_end++;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:02:04 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/10 18:48:08 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/22 09:55:20 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,8 @@ void	move(double speed, double lat_speed, double rot_speed)
 		rotate(rot_speed);
 	if (g_game.key_left)
 		rotate(-rot_speed);
+	if (g_game.key_up)
+		look_up();
+	if (g_game.key_down)
+		look_down();
 }

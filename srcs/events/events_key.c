@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 16:44:33 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/21 17:18:45 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/22 10:12:33 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,10 @@ int		is_key_press(int key)
 		g_game.key_s = 1;
 	else if (key == D_KEY)
 		g_game.key_d = 1;
+	else if (key == UP_KEY)
+		g_game.key_up = 1;
+	else if (key == DOWN_KEY)
+		g_game.key_down = 1;
 	else if (key == LEFT_KEY)
 	{
 		g_game.key_left = 1;
@@ -94,6 +98,7 @@ int		is_key_press(int key)
 		exit_game();
 	else 
 		ft_printf("%d\n", key);
+	ft_printf("offset : %d\n", g_game.y_offset);
 	effects(key);
 	return (0);
 }
@@ -108,6 +113,10 @@ int		is_key_release(int key)
 		g_game.key_s = 0;
 	else if (key == D_KEY)
 		g_game.key_d = 0;
+	else if (key == UP_KEY)
+		g_game.key_up = 0;
+	else if (key == DOWN_KEY)
+		g_game.key_down = 0;
 	else if (key == LEFT_KEY)
 		g_game.key_left = 0;
 	else if (key == RIGHT_KEY)
