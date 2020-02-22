@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 16:44:33 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/22 10:12:33 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/22 12:07:02 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,9 @@ void	change_fog_color(void)
 void effects(int key)
 {
 	if (key == NKMN_KEY)
-	{
 		g_game.fog_ratio -= (g_game.fog_ratio >= 0.1 ? 0.1 : 0.0);
-		ft_printf("%f\n", g_game.fog_ratio);
-	}
 	else if (key == NKPL_KEY)
-	{
 		g_game.fog_ratio += (g_game.fog_ratio <= 0.9 ? 0.1 : 0.0);
-	}
 	else if (key == NKWC_KEY)
 		change_fog_color();
 	else if (key == NKEQ_KEY)

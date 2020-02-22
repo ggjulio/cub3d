@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/22 10:41:27 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/22 11:57:52 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@
 # define ROT_SPEED 0.17
 
 # define SPEED 0.12
-# define LAT_SPEED 0.05
+# define LAT_SPEED 0.051
 
 # define RUN_SPEED 0.4
 # define RUN_LAT_SPEED 0.2
@@ -58,7 +58,7 @@
 extern t_game			g_game;
 extern t_application	g_app;
 
-t_color	add_fog(t_color pixel, int y_end);
-t_color add_sunset(t_color pixel, int y_end);
+t_color add_fog(t_color pixel, int y_end);
+t_color	add_sunset(t_color pixel, int y, int y_start);
 
 #endif
