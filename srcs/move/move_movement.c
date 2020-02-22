@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:02:04 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/22 09:59:27 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/22 15:36:14 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,12 @@ void	right(double lat_speed)
 
 void	look_up(void)
 {
-	g_game.y_offset -= 15;
+	if (g_game.y_offset > -100)
+		g_game.y_offset -= 15;
 }
 
 void	look_down(void)
 {
-	g_game.y_offset += 15;
+	if  (g_game.y_offset < 240)
+		g_game.y_offset += 15;
 }
