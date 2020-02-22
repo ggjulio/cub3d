@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/21 16:48:58 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/22 10:41:27 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 
 # define FOG_INTENSITY  0.9
 
-# define ROT_SPEED 0.1
+# define ROT_SPEED 0.17
 
 # define SPEED 0.12
 # define LAT_SPEED 0.05

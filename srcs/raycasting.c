@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/22 10:11:27 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/22 11:18:25 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ t_color add_sunset(t_color pixel, int y_end)
 {
 	t_color result;
 	t_color sunset;
+	int		p;
+
 	int		p = ((g_app.res.y - (y_end + 1)) - y_end);
 
 	sunset = create_color(200, 50, 50, 0);
-//	sunset = create_color(255, 255, 255, 0);
 	sunset.rgba.a = p * 255 / (g_app.res.y);
-
 	result = combine_color(pixel, sunset);
 	result.rgba.a = pixel.rgba.a;
 	return (result);
@@ -48,6 +48,7 @@ void	draw_wall_is_texture(t_raycast *r, int x, t_texture *texture)
 	int			y_start;
 
 	y_start = r->wall_start;
+
 	if (r->wall_side == West || r->wall_side == East)
 		r->wall_x = g_game.cam.pos.y + r->perp_wall_dist * r->ray_dir.y;
 	else
@@ -59,7 +60,7 @@ void	draw_wall_is_texture(t_raycast *r, int x, t_texture *texture)
 	float		step_y = (float)texture->size.y / (float)r->line_height;
 	float		tex_pos = fabs(y_start - g_app.res.y / 2.0 + r->line_height / 2.0) * step_y;
 
-	while (y_start - g_game.y_offset < r->wall_end + g_game.y_offset)
+	while (y_start < r->wall_end)
 	{
 		t_color texel;
 
@@ -67,7 +68,8 @@ void	draw_wall_is_texture(t_raycast *r, int x, t_texture *texture)
 		texel.c = texture->pixels[(int)(tex.x + tex.y * texture->size.x)];
 		texel.rgba.a = 255;
 
-		put_pixel(create_vector(x, y_start - g_game.y_offset), add_fog(texel, r->wall_end));
+		put_pixel(create_vector(x, y_start - (r->wall_end - y_start == g_app.res.y ?  0 : g_game.y_offset)), 
+				  add_fog(texel, r->wall_end));
 
 		tex_pos += step_y;
 		y_start++;
@@ -104,11 +106,12 @@ void	draw_strip(t_raycast *r, int x)
 
 	texture = get_texture_side(r->wall_side);
 	draw_ceil_floor(x, r->wall_start - g_game.y_offset, r->wall_end - g_game.y_offset);
-//	if (texture->is_color)
-//		draw_wall_is_color(x, r->wall_start, r->wall_end, texture->color);
-//	else
-//		draw_wall_is_texture(r, x, texture);
-//	draw_sprite(r, x);
+	if (texture->is_color)
+		draw_wall_is_color(x, r->wall_start - g_game.y_offset, r->wall_end - g_game.y_offset, texture->color);
+	else
+		draw_wall_is_texture(r, x, texture);
+	draw_sprite(r, x);
+
 }
 
 void	save_sprite(t_raycast *r)
