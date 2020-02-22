@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/22 10:08:33 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/22 15:21:26 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,28 @@ void	load_textures(void)
 	init_texture(&(g_game.sprite));
 }
 
+
+void    draw_map(void)
+{
+    t_vector map;
+	int ratio = 9;
+
+    map = (t_vector){-1, -1};
+	while (++map.y < g_game.map_len_y)
+	{
+		while (++map.x < g_game.map_len_x)
+		{
+			draw_rectangle((t_vector){map.x * ratio, map.y * ratio},
+						   (t_vector){ratio, ratio}, 
+				(map_value(map.x, map.y) == 1 ?
+				 create_color(65,65,65, 100) :  create_color(222, 222, 222, 100)));
+		}
+		map.x = -1;
+	}
+	draw_rectangle((t_vector){g_game.cam.pos.x * ratio, g_game.cam.pos.y * ratio},
+				   (t_vector){3, 3}, create_color(231, 76, 60, 255));
+}
+
 int		loop_game(void)
 {
 	clear_application(create_color(0, 0, 0, 0));
@@ -32,6 +54,8 @@ int		loop_game(void)
 		(g_game.is_run ? RUN_LAT_SPEED : LAT_SPEED),
 		ROT_SPEED);
 	raycasting();
+	if (g_game.show_map)
+		draw_map();
 	render_application();
 	rainbow_bar();
 	return (0);

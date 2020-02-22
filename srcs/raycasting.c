@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/22 12:16:18 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/22 15:15:27 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	draw_wall_is_texture(t_raycast *r, int x, t_texture *texture)
 	tex.x = (int)(r->wall_x * texture->size.x);
 
 	float		step_y = (float)texture->size.y / (float)r->line_height;
-	float		tex_pos = fabs(y_start - g_app.res.y / 2.0 + r->line_height / 2.0) * step_y;
+	float		tex_pos = fabs(y_start - g_app.res.y * g_game.cam.height + r->line_height * (1.0 - g_game.cam.height)) * step_y;
 
 	while (y_start < r->wall_end)
 	{
@@ -112,9 +112,8 @@ void	draw_strip(t_raycast *r, int x)
 	if (texture->is_color)
 		draw_wall_is_color(x, r->wall_start - g_game.y_offset, r->wall_end - g_game.y_offset, texture->color);
 	else
-		draw_wall_is_texture(r, x, texture);
+		draw_wall_is_texture(r, x, texture);	
 	draw_sprite(r, x);
-
 }
 
 void	save_sprite(t_raycast *r)
@@ -128,11 +127,6 @@ void	save_sprite(t_raycast *r)
 				add_scalar_to_fvec(0.5, vec_to_fvec(r->map)),
 				g_game.cam.pos)
 			);
-
-/*	ft_printf("pos(%d, %d)  ||  ", new_sprite->pos.x, new_sprite->pos.y);
-	ft_printf("pos_rel_player(%f, %f) ||", new_sprite->pos_rel_cam.x, new_sprite->pos_rel_cam.y);
-	ft_printf("perp_dist_rel_player = %f\n", new_sprite->perp_dist_rel_cam);
-*/
 	ft_lstadd_front(&(r->lst_sprite), ft_lstnew(new_sprite));
 }
 
@@ -206,9 +200,9 @@ void	fix_fisheye(t_raycast *r)
 void	calculate_wall_height(t_raycast *r)
 {
 	r->line_height = (int)(g_app.res.y / r->perp_wall_dist);
-	r->wall_start = -r->line_height / 2 + g_app.res.y / 2;
+	r->wall_start = -r->line_height * (1.0 - g_game.cam.height) + g_app.res.y * g_game.cam.height;
 	r->wall_start = (r->wall_start < 0 ? 0 : r->wall_start);
-	r->wall_end = r->line_height / 2 + g_app.res.y / 2;
+	r->wall_end = r->line_height * g_game.cam.height + g_app.res.y * g_game.cam.height;
 	r->wall_end = (r->wall_end > g_app.res.y ? g_app.res.y : r->wall_end);
 }
 

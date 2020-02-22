@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 15:15:54 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/10 15:37:15 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/22 12:21:27 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct	s_camera
 	t_fvector	pos;
 	t_fvector	dir;
 	t_fvector	plane;
+	double		height;
 }				t_camera;
 
 t_camera		create_camera(t_fvector position,\

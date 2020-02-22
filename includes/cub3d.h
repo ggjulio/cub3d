@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/22 11:57:52 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/22 13:03:48 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@
 
 # define WIN_MIN_WIDTH 100
 # define WIN_MIN_HEIGHT 100
+
+# define CAMERA_HEIGHT 0.5
+# define CAMERA_HEIGHT_SQUAT 0.45
 
 # define FOG_INTENSITY  0.9
 

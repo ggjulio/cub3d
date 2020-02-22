@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/10 15:25:59 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/22 12:34:51 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_camera	create_camera(t_fvector position, t_fvector direction, \
 	camera.pos = position;
 	camera.dir = direction;
 	camera.plane = plane;
+	camera.height = 0.5;
 	return (camera);
 }
 

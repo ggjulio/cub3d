@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:19:46 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/17 15:47:29 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/22 12:37:51 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	save_position(t_vector pos, char c)
 		(-0.5 * ratio) * g_game.cam.dir.y,
 		(0.5 * ratio)* g_game.cam.dir.x,
 	};
+	g_game.cam.height = CAMERA_HEIGHT;
 }
 
 int		str_map_to_map(void)
