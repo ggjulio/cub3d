@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:12:12 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/20 17:13:13 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/23 16:07:47 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ typedef struct	s_fvector
 	double	x;
 	double	y;
 }				t_fvector;
-
 
 /*
 ** fvector.c
@@ -46,6 +45,5 @@ double			magnitude_fvec(t_fvector p_fvec);
 */
 t_fvector		vec_to_fvec(t_vector vector);
 t_vector		fvec_to_vec(t_fvector fvector);
-
 
 #endif

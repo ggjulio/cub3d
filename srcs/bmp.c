@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 17:24:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/23 15:35:30 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/23 16:12:27 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,21 +58,7 @@ static void	write_line(int w, int **img, int fd)
 	write(fd, "000", (4 - ((w * sizeof(char)) % 4)) % 4);
 }
 
-void draw_saving(char *message)
-{
-    t_color color_str;
-
-    color_str = create_color(255,255,255,255);
-    clear_application(
-        create_color(0,0,0,100));
-    render_application();
-    mlx_string_put(g_app.mlx_ptr, g_app.win_ptr,
-                   g_app.res.x / 2.3,
-                   g_app.res.y / 2.1,
-                   color_str.c, message);
-}
-
-void	save_image(char *file_name)
+void		save_image(char *file_name)
 {
 	int fd;
 	int i;

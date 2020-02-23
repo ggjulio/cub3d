@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/22 15:20:46 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/23 16:17:49 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,26 @@ typedef struct	s_game
 	uint16_t		remaining:1;
 }				t_game;
 
+/*
+** game.c
+*/
 t_game			create_game(void);
 t_game			*malloc_game(void);
 void			destroy_game(t_game to_destroy);
 void			free_game(t_game *to_free);
 
+/*
+** game_util.c
+*/
 void			load_textures(void);
 int				loop_game(void);
 uint8_t			map_value(int x, int y);
 int				ft_error(char *e);
 int				exit_game(void);
+
+/*
+** game_draw_map.c
+*/
+void			draw_map(void);
 
 #endif

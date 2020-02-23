@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 11:14:45 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/20 15:14:16 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/23 16:13:29 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_vector	fvec_to_vec(t_fvector fvector)
 
 	result.x = (int)fvector.x;
 	result.y = (int)fvector.y;
-  	return (result);
+	return (result);
 }
 
 t_fvector	vec_to_fvec(t_vector vector)

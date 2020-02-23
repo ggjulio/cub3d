@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 17:14:55 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/23 15:35:48 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/23 16:09:37 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,11 @@ void			put_pixel(t_vector coord, t_color color)
 
 void			render_application(void)
 {
-	mlx_put_image_to_window(g_app.mlx_ptr, g_app.win_ptr, g_app.img.img_ptr, 0, 0);
+	mlx_put_image_to_window(g_app.mlx_ptr,
+							g_app.win_ptr,
+							g_app.img.img_ptr,
+							0,
+							0);
 }
 
 void			clear_application(t_color color)

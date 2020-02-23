@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 17:14:55 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/23 15:41:21 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/23 16:09:03 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ t_application	*malloc_application(int size_x, int size_y, char *title)
 
 void			destroy_application(t_application to_destroy)
 {
-//	if (to_destroy.img_ptr != NULL)
-//		mlx_destroy_image(to_destroy.mlx_ptr, to_destroy.img_ptr);
 	destroy_image(to_destroy.img);
 	if (to_destroy.win_ptr != NULL)
 		mlx_destroy_window(to_destroy.mlx_ptr, to_destroy.win_ptr);
