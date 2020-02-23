@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 19:48:44 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/23 20:08:05 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/23 20:13:54 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	image_to_image(t_image img_base, t_image img_to_add,
 	{
 		while (++x < img_to_add.size.x)
 		{
-			put_pixel_to_image(img_base, coord.x + x , coord, (t_color.c)4);
+			put_pixel_to_image(img_base, coord, (t_color){.c=4});
 		}
 		x = -1;
 	}
