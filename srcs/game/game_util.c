@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/22 17:15:03 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/23 15:54:15 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ void    draw_map(void)
 	double r = (double)g_app.win_res.x / (double)g_app.win_res.y;
 	(void)r;
 
-	ft_printf("%f  || %d || %d  ||", r, g_app.win_res.x, g_app.win_res.y);
+//	ft_printf("%f  || %d || %d  ||", r, g_app.win_res.x, g_app.win_res.y);
 	ratio.x *= r;
 	ratio.y *= r;
 
-	ft_printf(" || (%d,%d)\n", ratio.x, ratio.y);
+//	ft_printf(" || (%d,%d)\n", ratio.x, ratio.y);
 
     map = (t_vector){-1, -1};
 	while (++map.y < g_game.map_len_y)

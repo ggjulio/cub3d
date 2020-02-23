@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 17:24:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/19 11:57:23 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/23 15:35:30 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	save_image(char *file_name)
 	int i;
 	int *image;
 
-	image = &(g_app.pixels[g_app.res.x * g_app.res.y - 1]);
+	image = &(g_app.img.pixels[g_app.res.x * g_app.res.y - 1]);
 	if ((fd = open(file_name, O_RDWR | O_CREAT, 0666)) == -1)
 	{
 		ft_error("Can't save screenshot.");

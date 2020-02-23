@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 17:14:55 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/23 13:16:55 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/23 15:41:21 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,8 @@ t_application	init_application(
 	result.res.y = size_y;
 	result.title = title;
 	result.mlx_ptr = actual.mlx_ptr;
-	ft_printf("size(%d, %d) title:%s\n", size_x, size_y, title);
 	result.win_ptr = mlx_new_window(result.mlx_ptr, size_x, size_y, title);
-	result.img_ptr = mlx_new_image(result.mlx_ptr, size_x, size_y);
-	result.pixels = (int *)mlx_get_data_addr(result.img_ptr,
-			&(result.bits_per_pixel), &(result.size_line), &(result.endian));
+	result.img = create_image(result.res);
 	return (result);
 }
 
@@ -53,8 +50,9 @@ t_application	*malloc_application(int size_x, int size_y, char *title)
 
 void			destroy_application(t_application to_destroy)
 {
-	if (to_destroy.img_ptr != NULL)
-		mlx_destroy_image(to_destroy.mlx_ptr, to_destroy.img_ptr);
+//	if (to_destroy.img_ptr != NULL)
+//		mlx_destroy_image(to_destroy.mlx_ptr, to_destroy.img_ptr);
+	destroy_image(to_destroy.img);
 	if (to_destroy.win_ptr != NULL)
 		mlx_destroy_window(to_destroy.mlx_ptr, to_destroy.win_ptr);
 }

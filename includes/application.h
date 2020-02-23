@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 12:46:35 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/22 17:16:24 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/23 15:44:30 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,8 @@ typedef struct	s_application
 
 	void			*mlx_ptr;
 	void			*win_ptr;
-	void			*img_ptr;
 
-	int				bits_per_pixel;
-	int				size_line;
-	int				endian;
-	int				*pixels;
+	t_image			img;
 }				t_application;
 
 t_application	create_application(void);
