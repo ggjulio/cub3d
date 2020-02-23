@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:23:09 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/23 15:20:04 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/23 17:17:04 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		main(int ac, char **av)
 	if (ac == 3)
 	{
 		raycasting();
-		save_image("ok.bmp");
+		save_image("screenshot.bmp");
 	}
 	mlx_do_key_autorepeatoff(g_app.mlx_ptr);
 	mlx_hook(g_app.win_ptr, KEYPRESS, NOEVENTMASK, is_key_press, NULL);
