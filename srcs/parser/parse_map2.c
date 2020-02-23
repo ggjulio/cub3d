@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:19:46 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/22 12:37:51 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/23 17:09:30 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	save_position(t_vector pos, char c)
 {
 	double ratio;
-	
+
 	g_game.cam.pos.x = pos.x + 0.5;
 	g_game.cam.pos.y = pos.y + 0.5;
 	if (c == 'N')
@@ -29,7 +29,7 @@ void	save_position(t_vector pos, char c)
 	ratio = fabs((double)g_app.res.x / (double)g_app.res.y);
 	g_game.cam.plane = (t_fvector){
 		(-0.5 * ratio) * g_game.cam.dir.y,
-		(0.5 * ratio)* g_game.cam.dir.x,
+		(0.5 * ratio) * g_game.cam.dir.x,
 	};
 	g_game.cam.height = CAMERA_HEIGHT;
 }
