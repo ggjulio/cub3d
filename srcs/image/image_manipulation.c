@@ -6,13 +6,13 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 19:48:44 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/23 20:13:54 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/23 20:45:06 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	image_to_image(t_image img_base, t_image img_to_add,
+void	put_image_in_image(t_image img_base, t_image img_to_add,
 			t_vector coord, t_vector size)
 {
 	int x = -1;

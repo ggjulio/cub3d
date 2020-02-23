@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:23:09 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/23 20:07:14 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/23 20:20:05 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,15 @@ int		main(int ac, char **av)
 	}
 	mlx_do_key_autorepeatoff(g_app.mlx_ptr);
 	mlx_hook(g_app.win_ptr, KEYPRESS, NOEVENTMASK, is_key_press, NULL);
-	mlx_hook(g_app.win_ptr, FOCUSOUT, NOEVENTMASK, is_focus_out, NULL);
-	mlx_hook(g_app.win_ptr, FOCUSIN, NOEVENTMASK, is_focus_in, NULL);
 	mlx_hook(g_app.win_ptr, KEYRELEASE, NOEVENTMASK, is_key_release, NULL);
 	mlx_hook(g_app.win_ptr, DESTROYNOTIFY, NOEVENTMASK, close_program, NULL);
+	mlx_hook(g_app.win_ptr, FOCUSOUT, NOEVENTMASK, is_focus_out, NULL);
+	mlx_hook(g_app.win_ptr, FOCUSIN, NOEVENTMASK, is_focus_in, NULL);
 	mlx_hook(g_app.win_ptr, CONFIGURENOTIFY, NOEVENTMASK, is_configure_notify, NULL);
 	mlx_loop_hook(g_app.mlx_ptr, loop_game, NULL);
 
 	mlx_window_set_min_size(g_app.win_ptr, WIN_MIN_WIDTH, WIN_MIN_HEIGHT);
 	mlx_window_resizable_on(g_app.win_ptr);
-
-	t_vector p1 = create_vector(-1,-2);
-	t_vector p2 = create_vector(1,2);
-
-	t_vector result = add_vec_to_vec(p1, p2);
-
-	ft_printf("res(%d,%d)\n", result.x, result.y);
-	
 
 	mlx_loop(g_app.mlx_ptr);	
 	return (0);
