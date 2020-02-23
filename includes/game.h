@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/23 16:17:49 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/23 19:09:12 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct	s_game
 	t_texture		ceil;
 	t_texture		floor;
 	t_texture		sprite;
+
+	t_image			weapon;
 
 	double			fog_ratio;
 	t_color			fog_color;

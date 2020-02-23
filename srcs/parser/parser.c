@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 13:59:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/10 15:05:25 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/23 19:13:18 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int		parse_floor(char **words, char *line)
 			return (ft_error("F : Wrong texture extention"));
 		if (init_texture(&(g_game.floor)) == -1)
 			return (ft_error("F : Can't load texture."));
+		if (g_game.floor.is_texture)
+			return (ft_error("F : No texture plz."));
 		return (0);
 	}
 	return (ft_error("F : Invalid texture or color"));
@@ -45,6 +47,8 @@ int		parse_ceil(char **words, char *line)
 			return (ft_error("C : Wrong texture extention"));
 		if (init_texture(&(g_game.ceil)) == -1)
 			return (ft_error("C : Can't load texture."));
+		if (g_game.ceil.is_texture)
+			return (ft_error("F : No texture plz."));
 		return (0);
 	}
 	return (ft_error("C : Invalid texture or color"));

@@ -32,7 +32,7 @@ _IWHITE=$'\x1b[47m
 #    By: juligonz <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 18:50:56 by juligonz          #+#    #+#              #
-#    Updated: 2020/02/23 18:19:59 by juligonz         ###   ########.fr        #
+#    Updated: 2020/02/23 19:53:37 by juligonz         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -47,18 +47,20 @@ OBJ_DIR = obj
 LIB_DIR =  $(shell find ./lib -type d -maxdepth 1)
 
 SRC = main.c
-SRC+= game.c game_util.c game_draw_map.c
-SRC+= sprite.c bmp.c
-SRC+= image.c image_load.c
 SRC+= application.c application_util.c application_window.c
+SRC+= game.c game_util.c game_draw_map.c
+SRC+= sprite.c
+SRC+= bmp.c
+SRC+= image.c image_load.c image_util.c image_manipulation.c
 SRC+= move.c move_mouse.c move_movement.c
 SRC+= events.c events_key.c events_effects.c
 SRC+= raycasting.c raycasting_util.c 
 SRC+= vector.c vector_util.c
 SRC+= fvector.c fvector_basic_operation.c fvector_cast.c fvector_rotation.c 
 SRC+= color.c color_utility.c color_str.c
-SRC+= draw.c parser.c move.c camera.c
-SRC+= texture.c parse_map.c parser2.c parse_map2.c utility.c
+SRC+= parser.c parse_map.c parser2.c parse_map2.c
+SRC+= draw.c move.c camera.c
+SRC+= texture.c utility.c
 
 OBJ = $(addprefix  $(OBJ_DIR)/,$(SRC:%.c=%.o))
 vpath %.c $(SRC_DIR)
