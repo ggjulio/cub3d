@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/22 13:03:48 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/23 13:01:32 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # include "fvectors.h"
 # include "x11.h"
 # include "color.h"
+# include "image.h"
 # include "application.h"
 # include "texture.h"
 # include "bmp.h"

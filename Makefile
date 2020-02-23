@@ -32,7 +32,7 @@ _IWHITE=$'\x1b[47m
 #    By: juligonz <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 18:50:56 by juligonz          #+#    #+#              #
-#    Updated: 2020/02/22 17:37:30 by juligonz         ###   ########.fr        #
+#    Updated: 2020/02/23 13:09:20 by juligonz         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -49,6 +49,7 @@ LIB_DIR =  $(shell find ./lib -type d -maxdepth 1)
 SRC = main.c
 SRC+= game.c game_util.c
 SRC+= sprite.c bmp.c
+SRC+= image.c
 SRC+= application.c application_util.c application_window.c
 SRC+= move.c move_mouse.c move_movement.c
 SRC+= events.c events_key.c
