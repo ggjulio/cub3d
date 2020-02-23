@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 16:44:33 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/22 17:00:41 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/23 17:05:22 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ int		is_focus_out(void)
 	return (0);
 }
 
+int		is_focus_in(void)
+{
+	mlx_loop_hook(g_app.mlx_ptr, loop_game, NULL);
+	return (0);
+}
+
 int		is_configure_notify(void)
 {
 	t_vector	size;
@@ -41,12 +47,6 @@ int		is_configure_notify(void)
 		(-0.5 * ratio) * g_game.cam.dir.y,
 		(0.5 * ratio) * g_game.cam.dir.x,
 	};
-	return (0);
-}
-
-int		is_focus_in(void)
-{
-	mlx_loop_hook(g_app.mlx_ptr, loop_game, NULL);
 	return (0);
 }
 

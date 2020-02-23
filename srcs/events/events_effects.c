@@ -6,13 +6,13 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 16:26:23 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/23 16:33:03 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/23 16:51:18 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	change_fog_color(void)
+static void	change_fog_color(void)
 {
 	static int		i;
 	static t_color	arr[5] = {
@@ -28,7 +28,7 @@ void	change_fog_color(void)
 	g_game.fog_color = arr[i++];
 }
 
-void	effects(int key)
+void		key_effects(int key)
 {
 	if (key == NKMN_KEY)
 		g_game.fog_ratio -= (g_game.fog_ratio >= 0.1 ? 0.1 : 0.0);
