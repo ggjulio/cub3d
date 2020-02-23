@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 12:52:56 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/23 13:14:14 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/23 13:16:06 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ typedef struct	s_image
 	int			*pixels;
 }				t_image;
 
-t_image		create_image(t_vector size);
-t_image		*malloc_image(t_vector size);
-void		destroy_image(t_image to_destroy);
-void		free_image(t_image *to_free);
+t_image			create_image(t_vector size);
+t_image			*malloc_image(t_vector size);
+void			destroy_image(t_image to_destroy);
+void			free_image(t_image *to_free);
 
 #endif
