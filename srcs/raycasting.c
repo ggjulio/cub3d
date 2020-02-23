@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/22 18:39:42 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/23 18:24:51 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ void	draw_wall_is_texture(t_raycast *r, int x, t_texture *texture)
 		r->wall_x = g_game.cam.pos.x + r->perp_wall_dist * r->ray_dir.x;
 	r->wall_x -= floor(r->wall_x);
 
-	tex.x = (int)(r->wall_x * texture->size.x);
+	tex.x = (int)(r->wall_x * texture->img.size.x);
 
-	float		step_y = (float)texture->size.y / (float)r->line_height;
+	float		step_y = (float)texture->img.size.y / (float)r->line_height;
 	float		tex_pos = fabs(y_start - g_app.res.y * g_game.cam.height + r->line_height * (1.0 - g_game.cam.height)) * step_y;
 
 	while (y_start < r->wall_end)
@@ -68,7 +68,7 @@ void	draw_wall_is_texture(t_raycast *r, int x, t_texture *texture)
 		t_color texel;
 
 		tex.y = (int)tex_pos;
-		texel.c = texture->pixels[(int)(tex.x + tex.y * texture->size.x)];
+		texel.c = texture->img.pixels[(int)(tex.x + tex.y * texture->img.size.x)];
 		texel.rgba.a = 255;
 
 		put_pixel(create_vector(x, y_start - (r->wall_end - y_start == g_app.res.y ?  0 : g_game.y_offset)), 
@@ -89,7 +89,7 @@ void	draw_sprite(t_raycast *r, int x)
 		t_vector	height = (t_vector){100, 400};
 		t_vector	tex;
 
-		tex.x = (int)(r->wall_x * actual->texture->size.x);
+		tex.x = (int)(r->wall_x * actual->texture->img.size.x);
 
 		while (height.x++ < height.y)
 		{

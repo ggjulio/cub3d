@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 14:06:47 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/13 17:54:24 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/23 18:35:42 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,23 +67,15 @@ int			init_texture(t_texture *tex)
 {
 	if (tex->is_color)
 		return (0);
-	tex->img_ptr = mlx_xpm_file_to_image(g_app.mlx_ptr, tex->filename,
-									&(tex->size.x), &(tex->size.y));
-	if (tex->img_ptr != NULL)
-		tex->pixels = (int *)mlx_get_data_addr(tex->img_ptr,
-									&(tex->bits_per_pixel),
-									&(tex->size_line), &(tex->endian));
-	else
-		return (-1);
-	return (0);
+	tex->img = create_image_from_xpm(tex->filename);
+	return (tex->img.img_ptr == NULL ? -1 : 0);
 }
 
 void		destroy_texture(t_texture tex)
 {
 	if (tex.is_valid && tex.is_texture)
 	{
-		if (tex.img_ptr != NULL)
-			mlx_destroy_image(g_app.mlx_ptr, tex.img_ptr);
+		destroy_image(tex.img);
 		free(tex.filename);
 	}
 }
