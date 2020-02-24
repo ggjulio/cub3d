@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 18:38:53 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/24 17:18:54 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/24 17:36:39 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	set_opacity_image(t_image p_img, uint8_t p_opacity)
 	int nb_pixel;
 	t_color tmp;
 
-	nb_pixel = p_img.size.x * p_img.size.y - 1;
+	nb_pixel = p_img.size.x * p_img.size.y;
 	i = -1;
 	while (++i < nb_pixel)
 	{
