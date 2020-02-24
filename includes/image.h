@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 12:52:56 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/23 19:31:00 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/24 12:21:52 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,14 @@ t_image			*malloc_image_from_xpm(char *p_filename);
 void			put_pixel_to_image(t_image img, t_vector coord, t_color color);
 void			render_image(t_image p_img);
 void			clear_image(t_image p_img, t_color color);
+t_color			get_pixel_from_image(t_image img, int x, int y);
+void			set_opacity_image(t_image p_img, uint8_t p_opacity);
+
+
+/*
+** image_manipulation.c
+*/
+void			put_image_in_image(t_image img_base, t_image img_to_add,
+					t_vector coord, t_vector size);
 
 #endif

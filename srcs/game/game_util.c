@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/24 11:04:15 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/24 11:33:32 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int		loop_game(void)
 	raycasting();
 	if (g_game.show_map)
 		draw_map();
+	put_image_in_image(g_app.img, g_game.reticle, (t_vector){10, 10}, (t_vector){100,100});
 	render_application();
 	rainbow_bar();
 	return (0);
