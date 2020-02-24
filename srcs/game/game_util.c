@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/23 16:18:04 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/24 11:04:15 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	load_textures(void)
 	init_texture(&(g_game.ceil));
 	init_texture(&(g_game.floor));
 	init_texture(&(g_game.sprite));
+
+	g_game.reticle = create_image_from_xpm("tex/bonus/reticle.xpm");
 }
 
 int		loop_game(void)
