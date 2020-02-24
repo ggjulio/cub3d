@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/24 17:14:55 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/24 18:21:07 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@ void	load_textures(void)
 	init_texture(&(g_game.floor));
 	init_texture(&(g_game.sprite));
 
-//	g_game.reticle = create_image_from_xpm("tex/bonus/reticle.xpm");
-	g_game.reticle = create_image_from_xpm("tex/alex.xpm");
+	g_game.reticle = create_image_from_xpm("tex/bonus/reticle.xpm");
 //	g_game.reticle = create_image_from_xpm("tex/skull_octocat.xpm");
-	set_opacity_image(g_game.reticle, 60);
-
+	set_opacity_image(g_game.reticle, 255);
+	set_opacity_image_if_color(g_game.reticle, 0, create_color(255,255,255,0));
 }
 
 int		loop_game(void)
@@ -40,7 +39,6 @@ int		loop_game(void)
 	raycasting();
 	if (g_game.show_map)
 		draw_map();
-//ft_printf(">>(%d, %d ||", div_vec_by_scalar(g_game.reticle.size, 3).x, div_vec_by_scalar(g_game.reticle.size, 3).y);
 //	put_image_in_image(g_app.img, g_game.reticle, (t_vector){100, 100}, (t_vector){450,150});
 	put_image_in_image(g_app.img, g_game.reticle, (t_vector){100, 100}, div_vec_by_scalar(g_game.reticle.size, 8));
 	render_application();

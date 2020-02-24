@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 19:48:44 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/24 15:01:12 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/24 17:53:05 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void	put_image_in_image(t_image img_base, t_image img_to_add,
 	float step_y = (float)img_to_add.size.y / (float)p_size.y;
 	float step_x = (float)img_to_add.size.x / (float)p_size.x;
 
-	ft_printf("(%f,%f)\n", step_x, step_y);
-	
 	(void)step_x;
 	(void)step_y;
 	while (++y < p_size.y &&  x * step_x < img_to_add.size.y)
