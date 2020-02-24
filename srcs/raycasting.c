@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/23 18:24:51 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/24 12:38:16 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	draw_wall_is_texture(t_raycast *r, int x, t_texture *texture)
 
 		tex.y = (int)tex_pos;
 		texel.c = texture->img.pixels[(int)(tex.x + tex.y * texture->img.size.x)];
-		texel.rgba.a = 255;
 
 		put_pixel(create_vector(x, y_start - (r->wall_end - y_start == g_app.res.y ?  0 : g_game.y_offset)), 
 				  add_fog(texel, r->wall_end));

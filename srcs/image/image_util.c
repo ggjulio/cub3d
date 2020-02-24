@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 18:38:53 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/24 12:26:02 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/24 17:18:54 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	put_pixel_to_image(t_image img, t_vector coord, t_color color)
 {
 	t_color actual;
 
-	if (coord.x < 0 || coord.y < 0 || coord.x >= g_app.res.x
-		|| coord.y >= g_app.res.y)
+	if (coord.x < 0 || coord.y < 0 || coord.x >= img.size.x
+		|| coord.y >= img.size.y)
 		return ;
 	actual.c = img.pixels[coord.x + (coord.y * img.size.x)];
 	img.pixels[coord.x + (coord.y * img.size.x)] =
