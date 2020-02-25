@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 15:04:32 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/23 17:09:59 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/25 10:59:55 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int		parse_resolution(char **words, char *line)
 		return (ft_error("R : Resolution should be at least 100 by 100"));
 	g_app.res.x = (x > g_app.screen_res.x ? g_app.screen_res.x : x);
 	g_app.res.y = (y > g_app.screen_res.y ? g_app.screen_res.y : y);
-	g_app.win_res = g_app.res;
 	return (0);
 }
 

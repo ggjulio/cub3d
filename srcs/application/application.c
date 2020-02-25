@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 17:14:55 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/23 16:09:03 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/02/25 10:59:21 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_application	init_application(
 
 	result.res.x = size_x;
 	result.res.y = size_y;
+	result.win_res = result.res;
 	result.title = title;
 	result.mlx_ptr = actual.mlx_ptr;
 	result.win_ptr = mlx_new_window(result.mlx_ptr, size_x, size_y, title);
