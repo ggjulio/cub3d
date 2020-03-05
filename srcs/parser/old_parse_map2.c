@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_map.c                                        :+:      :+:    :+:   */
+/*   parse_map2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/30 19:09:50 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/05 18:54:17 by juligonz         ###   ########.fr       */
+/*   Created: 2020/01/31 16:19:46 by juligonz          #+#    #+#             */
+/*   Updated: 2020/02/23 17:09:30 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	save_position(t_vector pos, char c)
 		g_game.cam.dir = (t_fvector){1.0, 0.0};
 	else if (c == 'W')
 		g_game.cam.dir = (t_fvector){-1.0, 0.0};
-	ratio = (double)g_app.res.x / (double)g_app.res.y;
+	ratio = fabs((double)g_app.res.x / (double)g_app.res.y);
 	g_game.cam.plane = (t_fvector){
 		(-0.5 * ratio) * g_game.cam.dir.y,
 		(0.5 * ratio) * g_game.cam.dir.x,
@@ -36,33 +36,27 @@ void	save_position(t_vector pos, char c)
 
 int		str_map_to_map(void)
 {
-    int x;
-    int y;
-    int k;
+	int i;
+	int j;
 
-    if ((g_game.map = malloc(g_game.map_len_x * g_game.map_len_y)) == NULL)
-        return (ft_error("Map : map not defined ?"));
-	y = -1;
-	k = -1;
-	ft_memset(g_game.map, '-', g_game.map_len_x * g_game.map_len_y);
-	while (++y < g_game.map_len_y)
+	if ((g_game.map = malloc(g_game.map_len_x * g_game.map_len_y)) == NULL)
+		return (ft_error("Map : map not defined ?"));
+	i = 0;
+	j = 0;
+	while (g_game.str_map[i])
 	{
-		x = 0;
-		while (g_game.str_map[++k] && g_game.str_map[k] != '\n')
+		while (g_game.str_map[i] == ' ')
+			i++;
+		if (ft_in_charset(g_game.str_map[i], "NSWE"))
 		{
-			if (ft_in_charset(g_game.str_map[k], "NSWE"))
-			{
-				save_position(
-					(t_vector){x, y},
-					g_game.str_map[k]);
-				g_game.map[x + y * g_game.map_len_x] = 0;
-			}
-			else
-				g_game.map[x + y * g_game.map_len_x] = g_game.str_map[k] - '0';
-			x++;
+			save_position(
+				(t_vector){j % g_game.map_len_x, j / g_game.map_len_x},
+				g_game.str_map[i]);
+			g_game.map[j++] = 0;
+			i++;
 		}
-		while (x < g_game.map_len_x)
-			g_game.map[x++ + y * g_game.map_len_x] = '-' - '0';
+		else
+			g_game.map[j++] = g_game.str_map[i++] - '0';
 	}
 	return (0);
 }

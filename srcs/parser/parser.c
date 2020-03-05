@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 13:59:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/23 19:13:18 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/05 19:06:16 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,12 @@ int		parse_sprite(char **words, char *line)
 
 int		parsing(char *line)
 {
-	const char		ids[10][3] = {"R", "NO", "SO", "WE", "EA",
-								"F", "C", "S", "1", ""};
-	const t_handler jmp_table[9] = {parse_resolution, parse_north,
+	const char		ids[9][3] = {"R", "NO", "SO", "WE", "EA",
+								"F", "C", "S", ""};
+	const t_handler jmp_table[8] = {parse_resolution, parse_north,
 									parse_south, parse_west, parse_east,
 									parse_floor, parse_ceil, parse_sprite,
-									parse_str_map};
+									};
 	char			**words;
 	int				i;
 	int				ret;
@@ -96,9 +96,23 @@ int		parsing(char *line)
 			free_split(words);
 			return (ret);
 		}
-	ft_printf("Undefined id : %s", words[0]);
+	ret = parse_str_map(line);
 	free_split(words);
-	return (-1);
+	return (ret);
+}
+
+void	print_map()
+{
+	int i = -1;
+	int j = -1;
+
+	while (++i < g_game.map_len_y)
+	{
+		j = -1;
+		while (++j < g_game.map_len_x)
+			ft_printf("%c", map_value(j, i) + '0');
+		ft_printf("\n");
+	}
 }
 
 int		load_cub(char *file)
@@ -124,7 +138,9 @@ int		load_cub(char *file)
 		return (-1);
 	ret = line[0] ? ft_error("Map : Missing nl at the last line") : 0;
 	free(line);
-	if (ret == -1 || valid_map() == -1 || str_map_to_map() == -1)
+
+	if (ret == -1 || str_map_to_map() == -1 || valid_map() == -1)
 		return (-1);
+	print_map();
 	return (ret);
 }

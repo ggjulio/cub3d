@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 19:48:44 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/25 12:17:03 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/05 15:10:35 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,35 @@
 t_vector keep_ratio(t_image p_img, t_vector p_size)
 {
 	t_vector	result;
-	float		ratio;
+	float		ratio_screen;
+	float		ratio_img_screen;
+	float		ratio_actual_size;
+	float		ratio_new_size;
 
-	(void)p_img;
-	result = p_size;
-	ratio = fabs((float)g_app.win_res.x / (float)g_app.win_res.y);
+	
+	ratio_screen = (float)g_app.win_res.x / (float)g_app.win_res.y;
+	ratio_img_screen = (float)g_app.res.x / (float)g_app.res.y;
+	ratio_new_size = (float)p_size.x / (float)p_size.y;
+	ratio_actual_size = (float)p_img.size.x / (float)p_img.size.y;
 
-	ft_printf("size(%d,%d) | ratio : %f", result.x, result.y, ratio);
-//	if  (g_app.win_res.x > g_app.win_res.y)
-	{
-		ft_printf(" |if|");
-		result.x = p_size.y * (ratio);
-	}
-//	else
-	{
-		ft_printf(" |else|");
-		result.y = p_size.x * ratio;
-	}
-	ft_printf("  || res(%d,%d)\n", result.x, result.y);
+//	ft_printf("win(%4d,%4d)=%4f|  ", g_app.win_res.x, g_app.win_res.y, ratio_screen);
+//	ft_printf("img(%4d,%4d)=%4f|  ", g_app.res.x, g_app.res.y, ratio_img_screen);
+
+
+	t_vector delta = abs_vec(sub_vec_to_vec(g_app.win_res, g_app.res));
+
+	delta = add_vec_to_vec(g_app.win_res, delta);
+
+//	float ratio_delta = (float)delta.x / (float)delta.y;
+//	ft_printf("delta(%4d,%4d)=%4f|  ", delta.x, delta.y, ratio_delta);
+
+
+	result.x = 0;
+	result.y = 0;
+
+
+//	ft_printf("res(%4d,%4d)=%4f\n|  ", result.x, result.y, (float)result.x / (float)result.y);
+
 	return (result);
 }
 
