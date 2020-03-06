@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 16:48:34 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/05 18:37:27 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/06 13:48:36 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ int		parse_east(char **words, char *line);
 */
 
 int		valid_map(void);
-int		parse_str_map(char *line);
 
 /*
 ** parse_map2.c
 */
 
+int		parse_str_map(char *line);
 int		str_map_to_map(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 13:59:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/05 19:06:16 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/06 16:23:55 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,6 @@ int		load_cub(char *file)
 		return (-1);
 	ret = line[0] ? ft_error("Map : Missing nl at the last line") : 0;
 	free(line);
-
 	if (ret == -1 || str_map_to_map() == -1 || valid_map() == -1)
 		return (-1);
 	print_map();

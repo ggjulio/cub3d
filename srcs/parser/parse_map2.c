@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 19:09:50 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/05 18:54:17 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/06 16:40:03 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ void	save_position(t_vector pos, char c)
 
 int		str_map_to_map(void)
 {
-    int x;
-    int y;
-    int k;
+	int x;
+	int y;
+	int k;
 
-    if ((g_game.map = malloc(g_game.map_len_x * g_game.map_len_y)) == NULL)
-        return (ft_error("Map : map not defined ?"));
+	if ((g_game.map = malloc(g_game.map_len_x * g_game.map_len_y)) == NULL)
+		return (ft_error("Map : map malloc error "));
 	y = -1;
 	k = -1;
 	ft_memset(g_game.map, '-', g_game.map_len_x * g_game.map_len_y);
@@ -50,6 +50,8 @@ int		str_map_to_map(void)
 		x = 0;
 		while (g_game.str_map[++k] && g_game.str_map[k] != '\n')
 		{
+			if (x >= g_game.map_len_x)
+				continue;
 			if (ft_in_charset(g_game.str_map[k], "NSWE"))
 			{
 				save_position(
@@ -65,4 +67,45 @@ int		str_map_to_map(void)
 			g_game.map[x++ + y * g_game.map_len_x] = '-' - '0';
 	}
 	return (0);
+}
+
+size_t	ft_strlen_no_end_space(const char *s)
+{
+	size_t i;
+	size_t len;
+
+	i = 0;
+	len = 0;
+	while (s[i])
+	{
+		if (s[i] != ' ')
+			len = ++i;
+		else
+			i++;
+	}
+	return (len);
+}
+
+int     parse_str_map(char *line)
+{
+    char    *tmp;
+    size_t  line_len;
+
+    line_len = ft_strlen_no_end_space(line);
+	if (g_game.str_map == NULL)
+    {
+        if ((g_game.str_map = malloc(1)) == NULL)
+            return (ft_error("malloc : Failed to allocate memory"));
+        g_game.str_map[0] = '\0';
+    }
+    g_game.map_len_x = (line_len > g_game.map_len_x ? line_len : g_game.map_len_x);
+    tmp = g_game.str_map;
+    g_game.str_map = ft_strjoin(tmp, line);
+    free(tmp);
+    tmp = g_game.str_map;
+    g_game.str_map = ft_strjoin(tmp, "\n");
+    free(tmp);
+    if (line_len)
+        g_game.map_len_y++;
+    return (0);
 }
