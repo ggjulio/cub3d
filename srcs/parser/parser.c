@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 13:59:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/07 13:56:56 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/07 14:34:22 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,7 @@ int		parsing(char *line)
 								"F", "C", "S", ""};
 	const t_handler jmp_table[8] = {parse_resolution, parse_north,
 									parse_south, parse_west, parse_east,
-									parse_floor, parse_ceil, parse_sprite,
-									};
+									parse_floor, parse_ceil, parse_sprite};
 	char			**words;
 	int				i;
 	int				ret;
@@ -89,7 +88,7 @@ int		parsing(char *line)
 		return (ft_error("File : spaces at empty line"));
 	i = -1;
 	while (ids[++i][0])
-		if ((ft_strncmp(words[0], ids[i], 2) == 0 
+		if ((ft_strncmp(words[0], ids[i], 2) == 0
 			&& ft_strlen_no_end_space(words[0]) < 3)
 			|| (words[0][0] == '1' && ft_strcmp(ids[i], "1") == 0))
 		{
@@ -100,20 +99,6 @@ int		parsing(char *line)
 	ret = parse_str_map(line);
 	free_split(words);
 	return (ret);
-}
-
-void	print_map()
-{
-	int i = -1;
-	int j = -1;
-
-	while (++i < g_game.map_len_y)
-	{
-		j = -1;
-		while (++j < g_game.map_len_x)
-			ft_printf("%c", map_value(j, i) + '0');
-		ft_printf("\n");
-	}
 }
 
 int		load_cub(char *file)
@@ -139,10 +124,7 @@ int		load_cub(char *file)
 		return (-1);
 	ret = line[0] ? ft_error("Map : Missing nl at the last line") : 0;
 	free(line);
-	str_map_to_map();
-	print_map();
-//	if (ret == -1 || str_map_to_map() == -1 || valid_map() == -1)
-	if (ret == -1 || valid_map() == -1)
+	if (ret == -1 || str_map_to_map() == -1 || valid_map() == -1)
 		return (-1);
 	return (ret);
 }
