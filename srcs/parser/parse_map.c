@@ -6,31 +6,41 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 19:09:50 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/07 11:56:08 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/07 13:02:14 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+int		valid_position(void)
+{
+	int i;
+	int is_pos;
+
+	is_pos = 0;
+	i = -1;
+	while (g_game.str_map[++i])
+	{
+		if (ft_in_charset(g_game.str_map[i], "NSWE"))
+		{
+			if (is_pos)
+				return (ft_error("Map : Several definition of start position"));
+			is_pos = 1;
+		}
+	}
+    if (!is_pos)
+		return (ft_error("Map : No start position defined"));
+	return (0);
+}
+
 int		valid_map_char(void)
 {
 	int i;
-	int is_pos = 0;
 
 	i = -1;
 	while (++i < g_game.map_len_x * g_game.map_len_y)
-	{
-		if (!ft_in_charset((char)g_game.map[i] + '0', "NSWE 012"))
+		if (!ft_in_charset(g_game.map[i] + '0', "NSWE 012"))
 			return (ft_error("Map : Only \"NSWE 012\" are allowed in the map"));
-		if (ft_in_charset((char)g_game.map[i] + '0', "NSWE"))
-		{
-			if (is_pos)
-				return (ft_error("Map : Only \"NSWE 012\" are allowed in the map"));
-				
-		}
-	}
-//    if (!is_pos)
-//        return (ft_error("Map : No start position defined"));
 	return (0);
 }
 
@@ -49,10 +59,12 @@ int		valid_map_closed_map(void)
 		}
 	}
 
+
 	y = 0;
 	while (++y < g_game.map_len_y - 1)
 	{
-		if (!ft_in_charset((map_value(x, y) + '0'), "1 "))
+		if (!ft_in_charset((map_value(0, y) + '0'), "1 ") ||
+			!ft_in_charset((map_value(g_game.map_len_x - 1, y) + '0'), "1 "))
 			return (ft_error("Map : Maps no well closed"));
 		x = 0;
 		while (++x < g_game.map_len_x - 1)
@@ -68,7 +80,6 @@ int		valid_map_closed_map(void)
 	return (0);
 }
 
-
 int		valid_map_all_ids(void)
 {
     if (g_app.res.x < 0 || !g_game.north.id[0] || !g_game.south.id[0] ||
@@ -78,11 +89,12 @@ int		valid_map_all_ids(void)
 	return (0);
 }
 
-
 int     valid_map(void)
 {
-	if (
-		valid_map_all_ids() == -1 ||
+	if (!g_game.map_len_x && !g_game.map_len_y)
+		return (ft_error("Map : No map. You suck."));
+	if (valid_map_all_ids() == -1 ||
+		valid_position() == -1 ||
 		valid_map_char() == -1 ||
 		valid_map_closed_map() == -1)
 		return (-1);

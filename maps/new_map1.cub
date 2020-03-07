@@ -1,14 +1,12 @@
 R 1000  600
-NO ./tex/stone.xpm
 WE ./tex/wood.xpm
+NO ./tex/stone.xpm
 SO ./tex/metal.xpm
 EA ./tex/skull_octocat.xpm
 S ./tex/pillar.xpm
 F 252,3,207
 C 225,30,0
-111
+
+ 1
 1N1
- 1  111                       
-  110011                  
-  10N11                    
-   11111                       
+ 1

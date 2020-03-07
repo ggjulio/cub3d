@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 15:04:25 by juligonz          #+#    #+#             */
-/*   Updated: 2020/01/31 16:25:45 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/07 13:54:33 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,23 @@ size_t	ft_strlen_charset(const char *s, const char *charset)
 		i++;
 	}
 	return (len);
+}
+
+size_t  ft_strlen_no_end_space(const char *s)
+{
+    size_t i;
+    size_t len;
+
+    i = 0;
+    len = 0;
+    while (s[i])
+    {
+        if (s[i] != ' ')
+            len = ++i;
+        else
+            i++;
+    }
+    return (len);
 }
 
 int		count_str_arr(char **arr)

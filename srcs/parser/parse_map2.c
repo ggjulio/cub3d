@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 19:09:50 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/07 11:51:18 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/07 13:54:46 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,23 +67,6 @@ int		str_map_to_map(void)
 			g_game.map[x++ + y * g_game.map_len_x] = ' ' - '0';
 	}
 	return (0);
-}
-
-size_t	ft_strlen_no_end_space(const char *s)
-{
-	size_t i;
-	size_t len;
-
-	i = 0;
-	len = 0;
-	while (s[i])
-	{
-		if (s[i] != ' ')
-			len = ++i;
-		else
-			i++;
-	}
-	return (len);
 }
 
 int     parse_str_map(char *line)
