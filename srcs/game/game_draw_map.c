@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 16:16:10 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/23 16:16:29 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/07 14:59:08 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,12 @@
 void    draw_map(void)
 {
 	t_vector map;
-	t_vector ratio = (t_vector){9, 9};
+	t_fvector ratio = (t_fvector){9.0, 9.0};
 
-	double r = (double)g_app.win_res.x / (double)g_app.win_res.y;
-	(void)r;
+	double r;
 
-//	ft_printf("%f  || %d || %d  ||", r, g_app.win_res.x, g_app.win_res.y);
-	ratio.x *= r;
-	ratio.y *= r;
-
-//	ft_printf(" || (%d,%d)\n", ratio.x, ratio.y);
-
+	r = (double)g_app.win_res.x / (double)g_app.win_res.y;
+	ratio = multiply_fvec_by_scalar(ratio, r);
     map = (t_vector){-1, -1};
 	while (++map.y < g_game.map_len_y)
 	{
