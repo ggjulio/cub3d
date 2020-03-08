@@ -6,45 +6,11 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/08 15:36:17 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/08 17:09:40 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	draw_wall_is_texture(t_raycast *r, int x, t_texture *texture)
-{
-	t_vector	tex;
-	int			y_start;
-
-	y_start = r->wall_start;
-
-	if (r->wall_side == West || r->wall_side == East)
-		r->wall_x = g_game.cam.pos.y + r->perp_wall_dist * r->ray_dir.y;
-	else
-		r->wall_x = g_game.cam.pos.x + r->perp_wall_dist * r->ray_dir.x;
-	r->wall_x -= floor(r->wall_x);
-
-	tex.x = (int)(r->wall_x * texture->img.size.x);
-
-	float		step_y = (float)texture->img.size.y / (float)r->line_height;
-	float		tex_pos = fabs(y_start - g_app.res.y * g_game.cam.height + r->line_height * (1.0 - g_game.cam.height)) * step_y;
-
-
-	while (y_start < r->wall_end)
-	{
-		t_color texel;
-
-		tex.y = (int)tex_pos;
-		texel.c = texture->img.pixels[(int)(tex.x + tex.y * texture->img.size.x)];
-
-		put_pixel(create_vector(x, y_start - g_game.y_offset), 
-				  add_fog(texel, r->wall_end));
-
-		tex_pos += step_y;
-		y_start++;
-	}
-}
 
 void	draw_strip(t_raycast *r, int x)
 {

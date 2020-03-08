@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 20:42:53 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/08 12:50:10 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/08 17:06:15 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void			raycasting(void);
 */
 t_texture		*get_texture_side(enum e_direction dir);
 void			draw_ceil_floor(int x, int wall_start, int wall_end);
+void			draw_wall_is_texture(t_raycast *r, int x, t_texture *texture);
 void			draw_wall_is_color(
 					int x, int y_start, int y_end, t_color pixel);
 
