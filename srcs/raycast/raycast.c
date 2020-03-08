@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/08 17:09:40 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/08 19:20:23 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,14 +101,22 @@ void	calculate_wall_height(t_raycast *r)
 	r->wall_end = (r->wall_end > g_app.res.y ? g_app.res.y : r->wall_end);
 }
 
-void	raycasting(void)
+#define NB_THREAD 4
+
+void 	*thread_raycasting(void *idx_thread)
 {
 	int			x;
 	t_raycast	r;
+	
 
-	x = -1;
+	int idx_t = (long)(idx_thread);
+
+	x = idx_t *  g_app.res.x / NB_THREAD;
+	x+= 10;;
+	int max = (idx_t + 1) * g_app.res.x / NB_THREAD;
+
 	ft_bzero(&r, sizeof(t_raycast));
-	while (++x <= g_app.res.x)
+	while (++x <= max)
 	{
 		r.camera_x = 2 * x / (double)(g_app.res.x) - 1;
 		r.ray_dir = (t_fvector){
@@ -123,4 +131,23 @@ void	raycasting(void)
 		calculate_wall_height(&r);
 		draw_strip(&r, x);
 	}
+	return (NULL);
 }
+#include "pthread.h"
+
+
+void	raycasting(void)
+{
+	pthread_t threads[NB_THREAD];
+	long i;
+	int ret;
+
+	i = -1;
+	while (++i < NB_THREAD)
+		if ((ret = pthread_create(&threads[i], NULL, thread_raycasting, (void *)i)) != 0)
+			ft_printf("Error : thread nb -> %ld", i);
+	i = -1;
+	while (++i < NB_THREAD)
+		pthread_join(threads[i], NULL);
+}
+
