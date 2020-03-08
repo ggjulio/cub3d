@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 19:09:50 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/07 13:54:46 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/08 15:14:53 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,51 +44,46 @@ int		str_map_to_map(void)
 		return (ft_error("Map : map malloc error "));
 	y = -1;
 	k = -1;
-	ft_memset(g_game.map, '-', g_game.map_len_x * g_game.map_len_y);
 	while (++y < g_game.map_len_y)
 	{
-		x = 0;
+		x = -1;
 		while (g_game.str_map[++k] && g_game.str_map[k] != '\n')
-		{
-			if (x >= g_game.map_len_x)
+			if (++x >= g_game.map_len_x)
 				continue;
-			if (ft_in_charset(g_game.str_map[k], "NSWE"))
+			else if (ft_in_charset(g_game.str_map[k], "NSWE"))
 			{
-				save_position(
-					(t_vector){x, y},
-					g_game.str_map[k]);
+				save_position((t_vector){x, y}, g_game.str_map[k]);
 				g_game.map[x + y * g_game.map_len_x] = 0;
 			}
 			else
 				g_game.map[x + y * g_game.map_len_x] = g_game.str_map[k] - '0';
-			x++;
-		}
-		while (x < g_game.map_len_x)
-			g_game.map[x++ + y * g_game.map_len_x] = ' ' - '0';
+		while (++x < g_game.map_len_x)
+			g_game.map[x + y * g_game.map_len_x] = ' ' - '0';
 	}
 	return (0);
 }
 
-int     parse_str_map(char *line)
+int		parse_str_map(char *line)
 {
-    char    *tmp;
-    size_t  line_len;
+	char	*tmp;
+	size_t	line_len;
 
-    line_len = ft_strlen_no_end_space(line);
+	line_len = ft_strlen_no_end_space(line);
 	if (g_game.str_map == NULL)
-    {
-        if ((g_game.str_map = malloc(1)) == NULL)
-            return (ft_error("malloc : Failed to allocate memory"));
-        g_game.str_map[0] = '\0';
-    }
-    g_game.map_len_x = (line_len > g_game.map_len_x ? line_len : g_game.map_len_x);
-    tmp = g_game.str_map;
-    g_game.str_map = ft_strjoin(tmp, line);
-    free(tmp);
-    tmp = g_game.str_map;
-    g_game.str_map = ft_strjoin(tmp, "\n");
-    free(tmp);
-    if (line_len)
-        g_game.map_len_y++;
-    return (0);
+	{
+		if ((g_game.str_map = malloc(1)) == NULL)
+			return (ft_error("malloc : Failed to allocate memory"));
+		g_game.str_map[0] = '\0';
+	}
+	g_game.map_len_x =
+		(line_len > g_game.map_len_x ? line_len : g_game.map_len_x);
+	tmp = g_game.str_map;
+	g_game.str_map = ft_strjoin(tmp, line);
+	free(tmp);
+	tmp = g_game.str_map;
+	g_game.str_map = ft_strjoin(tmp, "\n");
+	free(tmp);
+	if (line_len)
+		g_game.map_len_y++;
+	return (0);
 }

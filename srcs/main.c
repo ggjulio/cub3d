@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:23:09 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/08 14:34:23 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/08 14:39:32 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int			main(int ac, char **av)
 		raycasting();
 		save_image("screenshot.bmp");
 	}
+	set_mlx();
 	mlx_loop(g_app.mlx_ptr);
 	return (0);
 }
