@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 18:38:53 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/08 12:44:35 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/08 16:55:17 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ void	set_opacity_image(t_image p_img, uint8_t p_opacity)
 		p_img.pixels[i] = tmp.c;
 	}
 }
-void	set_opacity_image_if_color(t_image p_img, uint8_t p_opacity, t_color p_color)
+
+void	set_opacity_image_if_color(
+	t_image p_img, uint8_t p_opacity, t_color p_color)
 {
 	int		i;
 	int		nb_pixel;

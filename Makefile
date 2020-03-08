@@ -32,7 +32,7 @@ _IWHITE=$'\x1b[47m
 #    By: juligonz <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 18:50:56 by juligonz          #+#    #+#              #
-#    Updated: 2020/03/08 15:18:46 by juligonz         ###   ########.fr        #
+#    Updated: 2020/03/08 15:37:20 by juligonz         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -49,7 +49,7 @@ LIB_DIR =  $(shell find ./lib -type d -maxdepth 1)
 SRC = main.c
 SRC+= application.c application_util.c application_window.c
 SRC+= game.c game_util.c game_draw_map.c
-SRC+= sprite.c
+SRC+= sprite.c sprite_util.c
 SRC+= bmp.c
 SRC+= image.c image_load.c image_manipulation.c image_util.c image_util2.c 
 SRC+= move.c move_mouse.c move_movement.c move_movement_camera.c
@@ -69,7 +69,7 @@ LFLAGS = $(foreach lib, $(LIB_DIR),-L$(lib))  $(foreach lib, $(LIB),-l$(lib))
 LFLAGS+= $(foreach framework, $(FRAMEWORKS),-framework $(framework))
 
 CC = gcc
-CFLAGS  = -Wall -Wextra -Werror -g -fsanitize=address  -fsanitize=undefined -fstack-protector  
+CFLAGS  = -Wall -Wextra -Werror -g # -fsanitize=address  -fsanitize=undefined -fstack-protector  
 IFLAGS  = -I./lib/libmlx -I./lib/libft -I./includes
 
 all: $(NAME)

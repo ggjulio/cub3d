@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/08 12:23:37 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/08 15:36:01 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 # include "application.h"
 # include "texture.h"
 # include "bmp.h"
-# include "sprite.h"
 # include "raycast.h"
+# include "sprite.h"
 # include "camera.h"
 # include "game.h"
 # include "draw.h"

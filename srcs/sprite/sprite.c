@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:29:54 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/20 16:27:00 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/08 15:36:45 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,4 @@ void		free_sprite(t_sprite *to_free)
 	destroy_sprite(*to_free);
 	free(to_free);
 	to_free = NULL;
-}
-
-void		free_lst_sprite(void *to_free)
-{
-	free_sprite(to_free);
 }
