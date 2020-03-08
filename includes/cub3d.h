@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/23 13:01:32 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/08 12:23:37 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,5 @@
 
 extern t_game			g_game;
 extern t_application	g_app;
-
-t_color add_fog(t_color pixel, int y_end);
-t_color	add_sunset(t_color pixel, int y, int y_start);
 
 #endif

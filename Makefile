@@ -32,7 +32,7 @@ _IWHITE=$'\x1b[47m
 #    By: juligonz <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 18:50:56 by juligonz          #+#    #+#              #
-#    Updated: 2020/03/08 10:06:28 by juligonz         ###   ########.fr        #
+#    Updated: 2020/03/08 12:45:34 by juligonz         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -51,10 +51,10 @@ SRC+= application.c application_util.c application_window.c
 SRC+= game.c game_util.c game_draw_map.c
 SRC+= sprite.c
 SRC+= bmp.c
-SRC+= image.c image_load.c image_util.c image_manipulation.c
+SRC+= image.c image_load.c image_manipulation.c image_util.c image_util2.c 
 SRC+= move.c move_mouse.c move_movement.c
 SRC+= events.c events_key.c events_effects.c
-SRC+= raycasting.c raycasting_util.c 
+SRC+= raycast.c raycast_util.c 
 SRC+= vector.c vector_util.c
 SRC+= fvector.c fvector_basic_operation.c fvector_cast.c fvector_rotation.c 
 SRC+= color.c color_utility.c color_str.c

@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 18:13:44 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/24 12:37:53 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/08 12:36:33 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ t_image		create_image_from_xpm(char *p_filename)
 
 	result.img_ptr = mlx_xpm_file_to_image(g_app.mlx_ptr, p_filename,
 				&(result.size.x), &(result.size.y));
-
 	if (result.img_ptr == NULL)
-		result.pixels = NULL;		
+		result.pixels = NULL;
 	else
 	{
 		result.pixels = (int *)mlx_get_data_addr(result.img_ptr,

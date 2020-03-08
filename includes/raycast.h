@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 20:42:53 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/22 09:46:50 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/08 12:23:17 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,23 @@ typedef struct	s_raycast
 	uint8_t				remain_bits:7;
 }				t_raycast;
 
+/*
+** raycast.c
+*/
 void			raycasting(void);
+
+/*
+** raycast_util.c
+*/
 t_texture		*get_texture_side(enum e_direction dir);
 void			draw_ceil_floor(int x, int wall_start, int wall_end);
 void			draw_wall_is_color(
 					int x, int y_start, int y_end, t_color pixel);
+
+/*
+** raycast_effects.c
+*/
+t_color		add_fog(t_color pixel, int y_end);
+t_color		add_sunset(t_color pixel, int y, int y_start);
 
 #endif
