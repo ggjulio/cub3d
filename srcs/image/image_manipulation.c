@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 19:48:44 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/07 15:26:10 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/08 09:33:56 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_vector keep_ratio(t_image p_img, t_vector p_size)
 
 //	delta = add_vec_to_vec(g_app.win_res, delta);
 
-	float ratio_delta = (float)delta.x / (float)delta.y;
+	float ratio_delta = 1.0 - (float)delta.x / (float)delta.y;
 //	ft_printf("delta(%4d,%4d)=%4f|  ", delta.x, delta.y, ratio_delta);
 
 

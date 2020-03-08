@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/07 16:36:06 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/08 12:10:02 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	draw_wall_is_texture(t_raycast *r, int x, t_texture *texture)
 	float		step_y = (float)texture->img.size.y / (float)r->line_height;
 	float		tex_pos = fabs(y_start - g_app.res.y * g_game.cam.height + r->line_height * (1.0 - g_game.cam.height)) * step_y;
 
+
 	while (y_start < r->wall_end)
 	{
 		t_color texel;
@@ -70,7 +71,7 @@ void	draw_wall_is_texture(t_raycast *r, int x, t_texture *texture)
 		tex.y = (int)tex_pos;
 		texel.c = texture->img.pixels[(int)(tex.x + tex.y * texture->img.size.x)];
 
-		put_pixel(create_vector(x, y_start - (r->wall_end - y_start == g_app.res.y ?  0 : g_game.y_offset)), 
+		put_pixel(create_vector(x, y_start - g_game.y_offset), 
 				  add_fog(texel, r->wall_end));
 
 		tex_pos += step_y;
@@ -90,14 +91,18 @@ void	draw_sprite(t_raycast *r, int x)
 
 		tex.x = (int)(r->wall_x * actual->texture->img.size.x);
 
+//		t_fvector transform = create_fvector(
+//			1.0 / g_game.cam.dir.x * 
+//			);
+
 		while (height.x++ < height.y)
 		{
 			t_color		texel = create_color(0, 130, 200, 100);
 
 
+
 			put_pixel(create_vector(x, height.x), texel);
-		}
-		
+		}		
 		ft_lstdelone(pop_elem, free_lst_sprite);
 	}
 }
@@ -112,7 +117,7 @@ void	draw_strip(t_raycast *r, int x)
 		draw_wall_is_color(x, r->wall_start - g_game.y_offset, r->wall_end - g_game.y_offset, texture->color);
 	else
 		draw_wall_is_texture(r, x, texture);	
-//	draw_sprite(r, x);
+	draw_sprite(r, x);
 }
 
 void	save_sprite(t_raycast *r)
