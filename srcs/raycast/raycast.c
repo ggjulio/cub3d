@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/08 19:20:23 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/09 15:08:21 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,21 +101,15 @@ void	calculate_wall_height(t_raycast *r)
 	r->wall_end = (r->wall_end > g_app.res.y ? g_app.res.y : r->wall_end);
 }
 
-#define NB_THREAD 4
-
 void 	*thread_raycasting(void *idx_thread)
 {
 	int			x;
+	int			max;
 	t_raycast	r;
 	
-
-	int idx_t = (long)(idx_thread);
-
-	x = idx_t *  g_app.res.x / NB_THREAD;
-	x+= 10;;
-	int max = (idx_t + 1) * g_app.res.x / NB_THREAD;
-
 	ft_bzero(&r, sizeof(t_raycast));
+	x = ((long)(idx_thread) *  g_app.res.x / NB_THREAD) - 1;
+	max = ((long)(idx_thread) + 1) * g_app.res.x / NB_THREAD;
 	while (++x <= max)
 	{
 		r.camera_x = 2 * x / (double)(g_app.res.x) - 1;
@@ -133,8 +127,6 @@ void 	*thread_raycasting(void *idx_thread)
 	}
 	return (NULL);
 }
-#include "pthread.h"
-
 
 void	raycasting(void)
 {

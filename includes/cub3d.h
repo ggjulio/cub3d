@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/08 15:36:01 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/09 15:52:34 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdio.h>
 # include <stdint.h>
 # include <math.h>
+# include <pthread.h>
 
 # include "mlx.h"
 # include "libft.h"
@@ -43,6 +44,8 @@
 # include "parse.h"
 # include "utility.h"
 
+# define NB_THREAD 16
+
 # define WIN_MIN_WIDTH 100
 # define WIN_MIN_HEIGHT 100
 
@@ -53,11 +56,16 @@
 
 # define ROT_SPEED 0.17
 
-# define SPEED 0.12
-# define LAT_SPEED 0.051
+# define SPEED 2.0
+# define LAT_SPEED 0.5
+# define RUN_SPEED 3.0
+# define RUN_LAT_SPEED 5.0
 
-# define RUN_SPEED 0.4
-# define RUN_LAT_SPEED 0.2
+
+//# define SPEED 0.12
+//# define LAT_SPEED 0.051
+//# define RUN_SPEED 0.4
+//# define RUN_LAT_SPEED 0.2
 
 extern t_game			g_game;
 extern t_application	g_app;

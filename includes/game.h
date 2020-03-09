@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/23 20:43:45 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/09 15:13:22 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ typedef struct	s_game
 	t_color			fog_color;
 
 	int				y_offset;
+
+	clock_t			ticks_begin;
+	clock_t			ticks_end;
+	clock_t			ticks_delta;
+	int				fps;
 
 	uint16_t		key_w:1;
 	uint16_t		key_a:1;
