@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/09 15:13:22 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/09 16:02:07 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct	s_game
 	clock_t			ticks_begin;
 	clock_t			ticks_end;
 	clock_t			ticks_delta;
-	int				fps;
+	float			fps;
 
 	uint16_t		key_w:1;
 	uint16_t		key_a:1;

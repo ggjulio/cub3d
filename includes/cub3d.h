@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/09 15:52:34 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/09 16:37:44 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include "mlx.h"
 # include "libft.h"
 
+# include "timing.h"
 # include "vectors.h"
 # include "fvectors.h"
 # include "x11.h"
@@ -54,18 +55,12 @@
 
 # define FOG_INTENSITY  0.9
 
-# define ROT_SPEED 0.17
+# define ROT_SPEED 0.2
 
-# define SPEED 2.0
-# define LAT_SPEED 0.5
-# define RUN_SPEED 3.0
-# define RUN_LAT_SPEED 5.0
-
-
-//# define SPEED 0.12
-//# define LAT_SPEED 0.051
-//# define RUN_SPEED 0.4
-//# define RUN_LAT_SPEED 0.2
+# define SPEED 0.12
+# define LAT_SPEED 0.051
+# define RUN_SPEED 0.4
+# define RUN_LAT_SPEED 0.2
 
 extern t_game			g_game;
 extern t_application	g_app;

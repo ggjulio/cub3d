@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/09 15:53:45 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/09 16:46:48 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,24 @@ void	load_textures(void)
 		g_game.reticle, 0, create_color(255, 255, 255, 0));
 }
 
-/*
-** units/(units/time) => time (seconds) * 1000 = milliseconds
-*/
-double clockToMilliseconds(clock_t ticks){
-	return (ticks * 1000 / CLOCKS_PER_SEC);
+void	ticks_begin(void)
+{
+	g_game.ticks_begin = clock();
+	g_game.ticks_delta = 0;
+	g_game.ticks_end = 0;
+	g_game.fps = 0;
 }
 
-double clockToSeconds(clock_t ticks){
-	return ((double)ticks / (double)CLOCKS_PER_SEC);
+void	ticks_end(void)
+{
+	g_game.ticks_end = clock();
+	g_game.ticks_delta = g_game.ticks_end - g_game.ticks_begin;
+	g_game.fps = get_fps(g_game.ticks_delta);
 }
 
 int		loop_game(void)
 {
-////////////////////////////
-	g_game.ticks_begin = clock();
-///////////////////////////
-
+	ticks_begin();
 	clear_application(create_color(0, 0, 0, 0));
 	raycasting();
 	if (g_game.show_map)
@@ -52,31 +53,13 @@ int		loop_game(void)
 	put_image_in_image_center(g_app.img, g_game.reticle,
 		div_vec_by_scalar(g_game.reticle.size, 13), (t_vector){0, 0});
 	rainbow_bar();
-
-
-//////////////////////////////////////
-	g_game.ticks_end = clock();
-	g_game.ticks_delta = g_game.ticks_end - g_game.ticks_begin;
-	if (g_game.ticks_delta > 0)
-		g_game.fps = CLOCKS_PER_SEC / g_game.ticks_delta;
-	unsigned long millis = clockToMilliseconds((g_game.ticks_end - g_game.ticks_begin)); 
-	ft_printf( "%ld ms| ||%f|| fps: %d^^^", millis, millis / 100.0, g_game.fps);
-/////////////////////////////////////////
-
-	double frametime = clockToSeconds((g_game.ticks_end - g_game.ticks_begin));
-
-
-	
-
-	ft_printf("||%.15f\n", frametime);
-
-
+	render_application();
+	ticks_end();
 	if (g_game.mouse_move_enabled)
 		mouse_movement();
-	move((g_game.is_run ? RUN_SPEED * frametime : SPEED * frametime),
-		(g_game.is_run ? RUN_LAT_SPEED * frametime : LAT_SPEED * frametime),
-		ROT_SPEED * frametime);
-	render_application();
+	move((g_game.is_run ? RUN_SPEED : SPEED),
+		(g_game.is_run ? RUN_LAT_SPEED : LAT_SPEED),
+		ROT_SPEED);
 	return (0);
 }
 
