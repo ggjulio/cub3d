@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/09 15:08:21 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/10 11:58:55 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	draw_strip(t_raycast *r, int x)
 		draw_wall_is_color(x, r->wall_start - g_game.y_offset, r->wall_end - g_game.y_offset, texture->color);
 	else
 		draw_wall_is_texture(r, x, texture);	
-	draw_sprite(r, x);
+	draw_sprites(r, x);
 }
 
 void	prehit_wall(t_raycast *r)
@@ -90,7 +90,6 @@ void	fix_fisheye(t_raycast *r)
 		r->perp_wall_dist =
 			(r->map.y - g_game.cam.pos.y + (1 - r->step.y) / 2) / r->ray_dir.y;
 }
-
 
 void	calculate_wall_height(t_raycast *r)
 {
