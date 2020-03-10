@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/10 10:51:24 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/10 17:55:45 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ void	load_textures(void)
 	set_opacity_image(g_game.reticle, 190);
 	set_opacity_image_if_color(
 		g_game.reticle, 0, create_color(0, 0, 0, 0));
+// need check if sprite is color
+/*	set_opacity_image_if_color(
+		g_game.sprite.img, 0,
+		get_pixel_from_image(g_game.sprite.img, 0, 0)
+		);*/
 }
 
 void	ticks_begin(void)
