@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/09 18:04:33 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/10 11:20:52 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,9 @@ void	draw_sprite(t_raycast *r, int x)
 	{
 		t_list		*pop_elem = ft_lstpop_front(&(r->lst_sprite));
 		t_sprite	*actual = pop_elem->content;
-		t_vector	s_size = (t_vector){100, 400};
-		t_vector	draw = (t_vector){100, 400};
+		t_vector	s_size;
+		t_vector	draw ;
 		t_vector	tex;
-
-		tex.x = (int)(r->wall_x * actual->texture->img.size.x);
 
 
 		double inv_determinant =
@@ -36,13 +34,21 @@ void	draw_sprite(t_raycast *r, int x)
 		s_size.x = g_app.res.x * 0.5 * (1 + transform.x / transform.y);
 		s_size.y = g_app.res.y / transform.y;
 
+//////
+		draw.x = - s_size.y * 0.5 + g_app.res.y * 0.5;
+		draw.y = s_size.y * 0.5 + g_app.res.y * 0.5;
+			
+
+/////////
+		tex.x = r->wall_x * actual->texture->img.size.x;
 		while (draw.x++ < draw.y)
 		{
 			t_color		texel = create_color(0, 130, 200, 100);
 
+//			texel.c = get_pixel_from_image(actual->texture.img, x, y);
 
 
-			put_pixel(create_vector(x, s_size.x), texel);
+			put_pixel(create_vector(x, draw.x), texel);
 		}
 		ft_lstdelone(pop_elem, free_lst_sprite);
 	}
