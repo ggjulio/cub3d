@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/09 16:46:48 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/10 10:51:24 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void	load_textures(void)
 	init_texture(&(g_game.ceil));
 	init_texture(&(g_game.floor));
 	init_texture(&(g_game.sprite));
-	g_game.reticle = create_image_from_xpm("tex/alex.xpm");
-//	g_game.reticle = create_image_from_xpm("tex/bonus/reticle.xpm");
+//	g_game.reticle = create_image_from_xpm("tex/alex.xpm");
+	g_game.reticle = create_image_from_xpm("tex/bonus/reticle.xpm");
 	set_opacity_image(g_game.reticle, 190);
 	set_opacity_image_if_color(
-		g_game.reticle, 0, create_color(255, 255, 255, 0));
+		g_game.reticle, 0, create_color(0, 0, 0, 0));
 }
 
 void	ticks_begin(void)
@@ -51,7 +51,7 @@ int		loop_game(void)
 	if (g_game.show_map)
 		draw_map();
 	put_image_in_image_center(g_app.img, g_game.reticle,
-		div_vec_by_scalar(g_game.reticle.size, 13), (t_vector){0, 0});
+		mul_vec_by_scalar(g_game.reticle.size, 13), (t_vector){0, 0});
 	rainbow_bar();
 	render_application();
 	ticks_end();
