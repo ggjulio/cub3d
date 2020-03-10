@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 15:04:55 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/10 11:35:17 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/10 13:14:49 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void		draw_wall_is_texture(t_raycast *r, int x, t_texture *texture)
 	step_y = (float)texture->img.size.y / (float)r->line_height;
 	tex_y = fabs(y_start - g_app.res.y * g_game.cam.height +
 			r->line_height * (1.0 - g_game.cam.height)) * step_y;
-	while (y_start++ < r->wall_end)
+	while (y_start < r->wall_end)
 	{
 		put_pixel(
 			create_vector(x, y_start - g_game.y_offset),
@@ -46,6 +46,7 @@ void		draw_wall_is_texture(t_raycast *r, int x, t_texture *texture)
 				get_pixel_from_image(texture->img, tex_x, (int)tex_y),
 				r->wall_end));
 		tex_y += step_y;
+		y_start++;
 	}
 }
 
