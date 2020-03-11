@@ -1,9 +1,9 @@
-R 600 600
+R 1600 600
 NO ./tex/metal.xpm
 SO ./tex/wood.xpm
 WE ./tex/stone.xpm
 EA ./tex/wood.xpm
-S ./tex/skull_octocat.xpm
+S ./tex/alex.xpm
 F 209,209,209
 C 23,236,255
 
