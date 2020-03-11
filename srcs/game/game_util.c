@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/10 17:55:45 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/11 12:51:15 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,14 @@ void	load_textures(void)
 	init_texture(&(g_game.ceil));
 	init_texture(&(g_game.floor));
 	init_texture(&(g_game.sprite));
-//	g_game.reticle = create_image_from_xpm("tex/alex.xpm");
 	g_game.reticle = create_image_from_xpm("tex/bonus/reticle.xpm");
-	set_opacity_image(g_game.reticle, 190);
 	set_opacity_image_if_color(
 		g_game.reticle, 0, create_color(0, 0, 0, 0));
 // need check if sprite is color
-/*	set_opacity_image_if_color(
+	set_opacity_image_if_color(
 		g_game.sprite.img, 0,
 		get_pixel_from_image(g_game.sprite.img, 0, 0)
-		);*/
+		);
 }
 
 void	ticks_begin(void)
