@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 19:48:44 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/11 20:01:04 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/11 20:08:43 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ void	put_image_in_image_bottom(t_image p_img_base, t_image p_img_to_add,
 
 	p_size = keep_ratio(p_img_to_add, p_size);
 	
-	coord.x = p_img_base.size.x / 2 - p_size.x / 2 + offset.x;
-	coord.y = p_img_base.size.y / 2 - p_size.y / 2 + offset.y;
+	coord.x = p_img_base.size.x - p_size.x + offset.x;
+	coord.y = g_app.res.y - p_size.y ;
 	put_image_in_image(p_img_base, p_img_to_add, coord, p_size);
 
 }
