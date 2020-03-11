@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/11 14:40:39 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/11 15:50:07 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	draw_strip(t_raycast *r, int x)
 	t_texture	*texture;
 
 	texture = get_texture_side(r->wall_side);
-	draw_ceil_floor(x, r->wall_start - g_game.y_offset, r->wall_end - g_game.y_offset);
+	draw_ceil_floor(x, r->y_draw.x - g_game.y_offset, r->y_draw.y - g_game.y_offset);
 	if (texture->is_color)
-		draw_wall_is_color(x, r->wall_start - g_game.y_offset, r->wall_end - g_game.y_offset, texture->color);
+		draw_wall_is_color(x, r->y_draw.x - g_game.y_offset, r->y_draw.y - g_game.y_offset, texture->color);
 	else
 		draw_wall_is_texture(r, x, texture);	
 	draw_sprites(r, x);
@@ -91,15 +91,6 @@ void	fix_fisheye(t_raycast *r)
 			(r->map.y - g_game.cam.pos.y + (1 - r->step.y) / 2) / r->ray_dir.y;
 }
 
-void	calculate_wall_height(t_raycast *r)
-{
-	r->line_height = (int)(g_app.res.y / r->perp_wall_dist);
-	r->wall_start = -r->line_height * (1.0 - g_game.cam.height) + g_app.res.y * g_game.cam.height;
-	r->wall_start = (r->wall_start < 0 ? 0 : r->wall_start);
-	r->wall_end = r->line_height * g_game.cam.height + g_app.res.y * g_game.cam.height;
-	r->wall_end = (r->wall_end > g_app.res.y ? g_app.res.y : r->wall_end);
-}
-
 void 	*thread_raycasting(void *idx_thread)
 {
 	int			x;
@@ -129,7 +120,8 @@ void 	*thread_raycasting(void *idx_thread)
 		prehit_wall(&r);
 		dda(&r);
 		fix_fisheye(&r);
-		calculate_wall_height(&r);
+		r.line_height = (int)(g_app.res.y / r.perp_wall_dist);
+		r.y_draw = calc_obj_y_draw(r.line_height);
 		draw_strip(&r, x);
 	}
 	return (NULL);

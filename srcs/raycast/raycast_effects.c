@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/08 12:20:53 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/11 17:01:47 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_color add_sunset(t_color pixel, int y, int y_start)
 	(void)y_start;
 	(void)y;
 	p = g_app.res.y - y_start * 2;
-//	p = (g_app.res.y / 2 - (y_start + 1)) - y_start;
 	
 	sunset = create_color(200, 50, 50, 0);
 	sunset.rgba.a = p * 255 / (g_app.res.y);

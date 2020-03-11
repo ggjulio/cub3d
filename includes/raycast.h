@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 20:42:53 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/11 13:15:56 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/11 15:45:14 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ typedef struct	s_raycast
 	double				perp_wall_dist;
 	int					line_height;
 	double				wall_x;
-	int					wall_start;
-	int					wall_end;
+	t_vector			y_draw;
 	enum e_direction	wall_side;
 
 	t_list				*lst_sprite;
