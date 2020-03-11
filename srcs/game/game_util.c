@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/11 12:51:15 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/11 14:44:37 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ int		loop_game(void)
 		draw_map();
 	put_image_in_image_center(g_app.img, g_game.reticle,
 		mul_vec_by_scalar(g_game.reticle.size, 13), (t_vector){0, 0});
-	rainbow_bar();
 	render_application();
 	ticks_end();
+	rainbow_bar();
 	if (g_game.mouse_move_enabled)
 		mouse_movement();
 	move((g_game.is_run ? RUN_SPEED : SPEED),

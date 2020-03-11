@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/10 11:58:55 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/11 14:40:39 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,16 @@ void 	*thread_raycasting(void *idx_thread)
 	t_raycast	r;
 	
 	ft_bzero(&r, sizeof(t_raycast));
-	x = ((long)(idx_thread) *  g_app.res.x / NB_THREAD) - 1;
-	max = ((long)(idx_thread) + 1) * g_app.res.x / NB_THREAD;
+	if (NB_THREAD != 0)
+	{
+		x = ((long)(idx_thread) *  g_app.res.x / NB_THREAD) - 1;
+		max = ((long)(idx_thread) + 1) * g_app.res.x / NB_THREAD;
+	}
+	else
+	{
+		x = -1;
+		max = g_app.res.x;
+	}
 	while (++x <= max)
 	{
 		r.camera_x = 2 * x / (double)(g_app.res.x) - 1;
@@ -133,6 +141,11 @@ void	raycasting(void)
 	long i;
 	int ret;
 
+	if (NB_THREAD == 0)
+	{
+		thread_raycasting(NULL);
+		return ;
+	}	
 	i = -1;
 	while (++i < NB_THREAD)
 		if ((ret = pthread_create(&threads[i], NULL, thread_raycasting, (void *)i)) != 0)

@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 20:42:53 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/08 17:06:15 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/11 13:15:56 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,10 @@ void			draw_wall_is_color(
 */
 t_color			add_fog(t_color pixel, int y_end);
 t_color			add_sunset(t_color pixel, int y, int y_start);
+
+/*
+** raycast_effects.c
+*/
+t_vector		calc_obj_y_draw(int obj_line_height);
 
 #endif

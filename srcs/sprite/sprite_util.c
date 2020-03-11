@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/11 12:05:49 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/11 13:18:50 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,13 @@ void	draw_sprite(t_raycast *r, int x, t_sprite *sprite)
 	sprite_size.x = g_app.res.x * 0.5 * (1 + transform.x / transform.y);
 	sprite_size.y = abs((int)(g_app.res.y / transform.y));
 
-//////
-	y_draw.x = -sprite_size.y * (1.0 - g_game.cam.height) + g_app.res.y * g_game.cam.height;
-	y_draw.y = sprite_size.y * g_game.cam.height + g_app.res.y * g_game.cam.height;
-	y_draw.x = (y_draw.x < 0 ? 0 : y_draw.x);
-	y_draw.y = (y_draw.y > g_app.res.y ? g_app.res.y : y_draw.y);
-/////////
+	y_draw = calc_obj_y_draw(sprite_size.y);
 
 	tex_x = (x - (-sprite_size.y * 0.5 + sprite_size.x)) * sprite->texture->img.size.x / sprite_size.y;
 	step_y = (float)sprite->texture->img.size.y / (float)sprite_size.y;
 	tex_y = 
 		fabs(y_draw.x - g_app.res.y * g_game.cam.height + sprite_size.y * (1.0 - g_game.cam.height)) * step_y;
-	if (tex_x > 0 && tex_x <  sprite->texture->img.size.x)
+	if (tex_x > 0 && tex_x < sprite->texture->img.size.x)
 	while (y_draw.x++ < y_draw.y)
 	{
 		put_pixel(create_vector(x, y_draw.x - g_game.y_offset), 
