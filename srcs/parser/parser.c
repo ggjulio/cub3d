@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 13:59:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/11 15:21:02 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/11 19:52:35 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,8 @@ int		load_cub(char *file)
 
 	if (!ft_valid_extention(file, ".cub"))
 		return (ft_error("File : invalid extention"));
-	fd = open(file, O_RDONLY);
+	if ((fd = open(file, O_RDONLY)) == -1)
+		return (ft_error("File : File not found"));
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
 		if (g_game.str_map != NULL && line[0] == '\0')

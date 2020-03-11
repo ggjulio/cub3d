@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 12:52:56 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/08 12:48:42 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/11 20:02:27 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,12 @@ void			set_opacity_image_if_color(
 /*
 ** image_manipulation.c
 */
+t_vector		keep_ratio(t_image p_img, t_vector p_size);
 void			put_image_in_image(t_image p_img_base, t_image p_img_to_add,
 					t_vector p_coord, t_vector p_size);
 void			put_image_in_image_center(t_image p_img_base,
+			t_image p_img_to_add, t_vector p_size, t_vector offset);
+void			put_image_in_image_bottom(t_image p_img_base,
 			t_image p_img_to_add, t_vector p_size, t_vector offset);
 
 #endif
