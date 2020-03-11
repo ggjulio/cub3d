@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 13:59:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/07 14:34:22 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/11 15:21:02 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int		parse_sprite(char **words, char *line)
 		|| g_game.str_map != NULL)
 		return (ft_error("S : Something wrong"));
 	g_game.sprite = create_texture(words[0], words[1]);
+	if (g_game.sprite.is_color)
+		return (ft_error("S : Can't be a color"));
 	if (g_game.sprite.is_valid)
 	{
 		if (g_game.sprite.is_bad_extention)
