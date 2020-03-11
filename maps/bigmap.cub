@@ -3,7 +3,7 @@ NO ./tex/wood.xpm
 SO ./tex/metal.xpm
 WE ./tex/Stone.xpm
 EA ./tex/skull_octocat.xpm
-S ./tex/alex.xpm
+S ./tex/pillar.xpm
 
 F 173,173,173
 C 125,175,255

@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/10 18:49:36 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/11 12:05:49 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,28 +36,18 @@ void	draw_sprite(t_raycast *r, int x, t_sprite *sprite)
 	y_draw.x = (y_draw.x < 0 ? 0 : y_draw.x);
 	y_draw.y = (y_draw.y > g_app.res.y ? g_app.res.y : y_draw.y);
 /////////
-//(stripe - (-spriteWidth / 2 + spriteScreenX)) * texWidth / spriteWidth);
 
 	tex_x = (x - (-sprite_size.y * 0.5 + sprite_size.x)) * sprite->texture->img.size.x / sprite_size.y;
-
-
 	step_y = (float)sprite->texture->img.size.y / (float)sprite_size.y;
-
 	tex_y = 
 		fabs(y_draw.x - g_app.res.y * g_game.cam.height + sprite_size.y * (1.0 - g_game.cam.height)) * step_y;
-	ft_printf("%f\n",transform.y);
-	if (transform.y > 0 && transform.y < r->perp_wall_dist)
+	if (tex_x > 0 && tex_x <  sprite->texture->img.size.x)
 	while (y_draw.x++ < y_draw.y)
 	{
-		t_color		texel = create_color(0, 130, 200, 100);
-	
-//		texel = get_pixel_from_image(sprite->texture->img, tex_x, (int)tex_y);
-
-		texel.c = sprite->texture->img.pixels[ tex_x + ((int)tex_y) * sprite->texture->img.size.x];
 		put_pixel(create_vector(x, y_draw.x - g_game.y_offset), 
-				  add_fog(
-					  texel,
-					  y_draw.y));
+			add_fog(
+				get_pixel_from_image(sprite->texture->img, tex_x, (int)tex_y),
+				y_draw.y));
 		tex_y += step_y;
 	}
 }
