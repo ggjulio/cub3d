@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 15:04:55 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/11 17:02:48 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/11 17:23:01 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,10 @@ void		draw_ceil_floor(int x, int wall_start, int wall_end)
 	i = -1;
 	while (++i < wall_start)
 	{
-		ceil = g_game.is_sunset ? add_sunset(g_game.ceil.color, i, 0) : ceil;
-		if (g_game.is_fog_on_ceil)
-			ceil = add_fog(g_game.ceil.color,
-			(g_app.res.y - i - g_game.y_offset) > g_app.res.y ?
-			g_app.res.y : (g_app.res.y - i - g_game.y_offset));
+		tmp = (g_app.res.y - i - g_game.y_offset) > g_app.res.y ?
+			g_app.res.y : (g_app.res.y - i - g_game.y_offset);
+		ceil = g_game.is_sunset ? add_sunset(g_game.ceil.color, tmp) : ceil;
+		ceil = g_game.is_fog_on_ceil ? add_fog(g_game.ceil.color, tmp) : ceil;
 		put_pixel(create_vector(x, i), ceil);
 	}
 	while (wall_end < g_app.res.y)

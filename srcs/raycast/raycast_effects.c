@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
+/*   raycast_effects.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/11 17:01:47 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/11 17:07:38 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_color add_sunset(t_color pixel, int y, int y_start)
+t_color add_sunset(t_color pixel, int y_end)
 {
 	t_color result;
 	t_color sunset;
 	int		p;
 
-	(void)y_start;
-	(void)y;
-	p = g_app.res.y - y_start * 2;
-	
+	p = g_app.res.y - y_end * 2;
+
 	sunset = create_color(200, 50, 50, 0);
 	sunset.rgba.a = p * 255 / (g_app.res.y);
 	result = combine_color(pixel, sunset);
