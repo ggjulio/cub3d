@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 12:41:47 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 12:56:13 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 # include "parse.h"
 # include "utility.h"
 
-# define NB_THREAD 8
+# define NB_THREAD 32
 
 # define WIN_MIN_WIDTH 100
 # define WIN_MIN_HEIGHT 100

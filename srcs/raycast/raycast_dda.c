@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 12:45:43 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 12:53:45 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ static void	prehit_wall(t_raycast *r)
 
 void		dda(t_raycast *r)
 {
-	uint8_t map_v;
-
 	prehit_wall(r);
 	while (1)
 	{
@@ -71,10 +69,9 @@ void		dda(t_raycast *r)
 			r->map.y += r->step.y;
 			r->side = 0;
 		}
-		map_v = map_value(r->map.x, r->map.y);
-		if (map_v == 2)
+		if (2 == map_value(r->map.x, r->map.y))
 			dda_sprite(r);
-		if (map_v == 1)
+		if (1 == map_value(r->map.x, r->map.y))
 		{
 			dda_wall(r);
 			break ;
