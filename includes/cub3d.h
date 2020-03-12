@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 21:53:17 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 22:02:43 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@
 # define WIN_MIN_WIDTH 100
 # define WIN_MIN_HEIGHT 100
 
-# define LIFE 4
+# define LIFE 100
 
 # define CAMERA_HEIGHT 0.5
 # define CAMERA_HEIGHT_SQUAT 0.45
