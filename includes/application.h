@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 12:46:35 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/23 19:46:35 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 16:20:27 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct	s_application
 
 	void			*mlx_ptr;
 	void			*win_ptr;
+	FMOD_SYSTEM		*fmod_ptr;
 
 	t_image			img;
 }				t_application;

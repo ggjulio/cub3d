@@ -32,7 +32,7 @@ _IWHITE=$'\x1b[47m
 #    By: juligonz <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 18:50:56 by juligonz          #+#    #+#              #
-#    Updated: 2020/03/12 14:38:16 by juligonz         ###   ########.fr        #
+#    Updated: 2020/03/12 16:09:18 by juligonz         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -63,6 +63,7 @@ SRC+= parser.c parser2.c parse_map.c parse_map2.c
 SRC+= draw.c move.c camera.c
 SRC+= texture.c utility.c
 
+DYLD_LIBRARY_PATH=lib/libfmod
 OBJ = $(addprefix  $(OBJ_DIR)/,$(SRC:%.c=%.o))
 vpath %.c $(SRC_DIR)
 
@@ -82,6 +83,7 @@ $(OBJ_DIR)/%.o: %.c
 $(NAME): $(OBJ)
 	@echo "$(_GREEN)Compiling ...$(_END)"
 	@$(CC) $(CFLAGS) $(IFLAGS) $(LFLAGS) -o $@ $^
+	@install_name_tool -change "@rpath/libfmod.dylib" "lib/libfmod/libfmod.dylib" $(NAME)
 	@echo "$(_GREEN)Compiled !$(_END)"
 
 clean:

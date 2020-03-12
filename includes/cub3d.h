@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 14:35:51 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 16:19:17 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include "libft.h"
 
 # include "timing.h"
+# include "sound.h"
 # include "vectors.h"
 # include "fvectors.h"
 # include "x11.h"
