@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 21:35:14 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 21:49:08 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct	s_game
 	t_texture		ceil;
 	t_texture		floor;
 	t_texture		sprite;
+
+	int				life;
 
 	t_image			reticle;
 	t_image			weapon[5];

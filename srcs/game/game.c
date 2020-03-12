@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 21:35:39 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 21:53:23 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_game		create_game(void)
 	t_game result;
 
 	ft_bzero(&result, sizeof(t_game));
+	result.life = LIFE;
 	return (result);
 }
 
