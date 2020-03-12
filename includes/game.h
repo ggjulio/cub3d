@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 23:01:30 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 23:16:05 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct	s_game
 	t_image			reticle;
 	t_image			weapon[5];
 	t_image			corona;
+	t_image			health_bar;
 
 	t_sound			shoot;
 	t_sound			ambiance;

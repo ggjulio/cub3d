@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 23:10:17 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 23:40:50 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,22 @@ void			draw_life(void)
 	t_vector	size;
 	t_color		color;
 
-	color = create_color(255, 0, 0, 255);
-	size = create_vector(g_app.res.x, 15);
+	if (g_game.life > 75)
+		color = create_color(0, 255, 0, 255);
+	else if (g_game.life > 50)
+		color = create_color(255, 255, 0, 255);
+	else if (g_game.life > 25)
+		color = create_color(255, 100, 0, 255);
+	else
+		color = create_color(255, 0, 0, 255);
+	size = keep_ratio(g_game.health_bar, (t_vector){150, -1});
+	size.x -= 33;
+	size.y -= 13;
 	size.x *= g_game.life / LIFE;
-	draw_rectangle((t_vector){0, 0}, size, color);
+	draw_rectangle((t_vector){44, 22}, size, color);
+	put_image_in_image(g_app.img, g_game.health_bar,
+		(t_vector){15, 15},
+	keep_ratio(g_game.health_bar, (t_vector){150, -1}));
 }
 
 void			draw_hud(void)
