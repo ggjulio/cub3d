@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 14:06:47 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/11 12:32:01 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 12:10:33 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ t_texture	create_texture(char id[3], char *value)
 	else if (valid_file(value))
 	{
 		tex.is_texture = 1;
-		if ((tex.filename = malloc(sizeof(char) * (ft_strlen(value) + 1))) == NULL)
+		if ((tex.filename =
+			malloc(sizeof(char) * (ft_strlen(value) + 1))) == NULL)
 			return (tex);
 		ft_strcpy(tex.filename, value);
 		tex.is_valid = 1;
