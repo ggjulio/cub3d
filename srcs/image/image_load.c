@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 18:13:44 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 09:58:47 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 11:37:49 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,14 @@ t_image		create_image_from_xpm(char *p_filename)
 	return (result);
 }
 
-t_image     create_image_from_xpm_no_border(char *p_filename)
+t_image		create_image_from_xpm_no_border(char *p_filename)
 {
 	t_image result;
 
 	result = create_image_from_xpm(p_filename);
-    set_opacity_image_if_color(
-        result, 0,
-        get_pixel_from_image(result, 0, 0)
-        );
+	set_opacity_image_if_color(
+		result, 0,
+		get_pixel_from_image(result, 0, 0));
 	return (result);
 }
 

@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 11:13:01 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 11:33:09 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,15 @@ void			free_game(t_game *to_free);
 */
 void			load_textures(void);
 int				loop_game(void);
-uint8_t			map_value(int x, int y);
-void			set_map_value(int x, int y, uint8_t p_value);
 int				ft_error(char *e);
 int				exit_game(void);
 
 /*
-** game_draw_map.c
+** game_map.c
 */
 void			draw_map(void);
+uint8_t			map_value(int x, int y);
+void			set_map_value(int x, int y, uint8_t p_value);
 
 /*
 ** game_hud.c

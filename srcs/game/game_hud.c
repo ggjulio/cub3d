@@ -6,13 +6,13 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 11:07:29 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 11:35:14 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static uint8_t		gun_frame(void)
+static uint8_t	gun_frame(void)
 {
 	static	uint8_t		frame;
 	static	clock_t		last_event;
@@ -36,12 +36,14 @@ static uint8_t		gun_frame(void)
 	return (frame);
 }
 
-void	draw_hud(void)
+void			draw_hud(void)
 {
 	put_image_in_image_center(g_app.img, g_game.reticle,
-		keep_ratio(g_game.reticle, (t_vector){g_app.res.x / 40, g_app.res.y / 40}),
+		keep_ratio(g_game.reticle,
+		(t_vector){g_app.res.x / 40, g_app.res.y / 40}),
 		(t_vector){0, 0});
 	put_image_in_image_center_bottom(g_app.img, g_game.weapon[gun_frame()],
 		keep_ratio(g_game.weapon[gun_frame()],
-		(t_vector){g_app.res.x / 4, g_app.res.y / 4}), (t_vector){g_app.res.x / 4,0});
+		(t_vector){g_app.res.x / 4, g_app.res.y / 4}),
+		(t_vector){g_app.res.x / 4, 0});
 }

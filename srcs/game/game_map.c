@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_draw_map.c                                    :+:      :+:    :+:   */
+/*   game_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 16:16:10 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/08 12:31:02 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 11:34:20 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,14 @@ void	draw_map(void)
 		(t_vector){g_game.cam.pos.x * ratio.x, g_game.cam.pos.y * ratio.y},
 		(t_vector){3, 3}, create_color(231, 76, 60, 255)
 );
+}
+
+uint8_t	map_value(int x, int y)
+{
+	return (g_game.map[x + y * g_game.map_len_x]);
+}
+
+void	set_map_value(int x, int y, uint8_t p_value)
+{
+	g_game.map[x + y * g_game.map_len_x] = p_value;
 }

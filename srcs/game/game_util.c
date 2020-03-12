@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 11:12:42 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 11:34:46 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,13 @@ void	load_textures(void)
 	init_texture(&(g_game.sprite));
 	set_opacity_image_if_color(
 		g_game.sprite.img, 0,
-		get_pixel_from_image(g_game.sprite.img, 0, 0)
-		);
+		get_pixel_from_image(g_game.sprite.img, 0, 0));
 	g_game.reticle = create_image_from_xpm_no_border("tex/bonus/reticle.xpm");
-    g_game.weapon[0] = create_image_from_xpm_no_border("tex/bonus/gun1.xpm");
-    g_game.weapon[1] = create_image_from_xpm_no_border("tex/bonus/gun2.xpm");
-    g_game.weapon[2] = create_image_from_xpm_no_border("tex/bonus/gun3.xpm");
-    g_game.weapon[3] = create_image_from_xpm_no_border("tex/bonus/gun4.xpm");
-    g_game.weapon[4] = create_image_from_xpm_no_border("tex/bonus/gun5.xpm");
+	g_game.weapon[0] = create_image_from_xpm_no_border("tex/bonus/gun1.xpm");
+	g_game.weapon[1] = create_image_from_xpm_no_border("tex/bonus/gun2.xpm");
+	g_game.weapon[2] = create_image_from_xpm_no_border("tex/bonus/gun3.xpm");
+	g_game.weapon[3] = create_image_from_xpm_no_border("tex/bonus/gun4.xpm");
+	g_game.weapon[4] = create_image_from_xpm_no_border("tex/bonus/gun5.xpm");
 }
 
 int		loop_game(void)
@@ -50,16 +49,6 @@ int		loop_game(void)
 		(g_game.is_run ? RUN_LAT_SPEED : LAT_SPEED),
 		ROT_SPEED);
 	return (0);
-}
-
-uint8_t	map_value(int x, int y)
-{
-	return (g_game.map[x + y * g_game.map_len_x]);
-}
-
-void	set_map_value(int x, int y, uint8_t p_value)
-{
-	g_game.map[x + y * g_game.map_len_x] = p_value;
 }
 
 int		ft_error(char *e)
