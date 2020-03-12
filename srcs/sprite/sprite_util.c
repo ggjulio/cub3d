@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 12:07:28 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 22:20:08 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void		draw_sprite(int x, t_sprite *sprite)
 	tex.y = fabs(y_draw.x - g_app.res.y * g_game.cam.height + sprite_size.y *
 		(1.0 - g_game.cam.height)) * step_y;
 	if (tex.x > 0 && tex.x < sprite->texture->img.size.x)
-		while (y_draw.x++ < y_draw.y)
+		while (y_draw.x < y_draw.y)
 		{
-			put_pixel(create_vector(x, y_draw.x - g_game.y_offset),
+			put_pixel(create_vector(x, y_draw.x++ - g_game.y_offset),
 			add_fog(
 			get_pixel_from_image(sprite->texture->img, (int)tex.x, (int)tex.y),
 				y_draw.y));

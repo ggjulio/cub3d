@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 21:49:08 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 22:21:47 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,6 @@ void			set_map_value(int x, int y, uint8_t p_value);
 ** game_hud.c
 */
 void			draw_hud(void);
+void			check_life(void);
 
 #endif

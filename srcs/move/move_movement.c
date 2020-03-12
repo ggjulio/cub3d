@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:02:04 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 22:11:38 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 22:27:35 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	check_is_monster(double x, double y)
 {
 	if (2 == map_value(x, y))
 	{
-		g_game.life--;
+		g_game.life -= LIFE_HIT;
 		ft_printf("%d\n", g_game.life);
 	}
 	if (g_game.life < 1)

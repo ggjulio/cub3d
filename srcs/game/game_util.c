@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 18:46:35 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 22:25:50 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int		loop_game(void)
 	render_application();
 	FMOD_System_Update(g_app.fmod_ptr);
 	rainbow_bar();
+	check_life();
 	if (g_game.mouse_move_enabled)
 		mouse_movement();
 	move((g_game.is_run ? RUN_SPEED : SPEED),
