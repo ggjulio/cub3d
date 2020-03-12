@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 16:44:33 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 18:32:02 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 21:36:49 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,13 @@ static void	key_movement(int key, uint8_t value)
 		g_game.key_right = value;
 		g_game.is_mouse_move = 0;
 	}
+	else if (key == LSFT_KEY)
+		g_game.is_run = value;
 }
 
-int			is_key_press(int key)
+static void	key_bonus(int key)
 {
-	key_movement(key, 1);
-	key_effects(key);
-	if (key == SP_KEY)
-	{
-		g_game.key_space = 1;
-		g_game.cam.height = CAMERA_HEIGHT_SQUAT;
-	}
-	else if (key == LSFT_KEY)
-		g_game.is_run = 1;
-	else if (key == TAB_KEY)
+	if (key == TAB_KEY)
 		change_mouse_state();
 	else if (key == P_KEY)
 	{
@@ -79,6 +72,18 @@ int			is_key_press(int key)
 		mlx_window_toggle_fullscreen(g_app.win_ptr);
 	else if (key == O_KEY)
 		g_game.show_map = !g_game.show_map;
+}
+
+int			is_key_press(int key)
+{
+	key_movement(key, 1);
+	key_effects(key);
+	key_bonus(key);
+	if (key == SP_KEY)
+	{
+		g_game.key_space = 1;
+		g_game.cam.height = CAMERA_HEIGHT_SQUAT;
+	}
 	else if (key == ESC_KEY)
 		exit_game();
 	return (0);
@@ -92,7 +97,5 @@ int			is_key_release(int key)
 		g_game.key_space = 0;
 		g_game.cam.height = 0.5;
 	}
-	else if (key == LSFT_KEY)
-		g_game.is_run = 0;
 	return (0);
 }

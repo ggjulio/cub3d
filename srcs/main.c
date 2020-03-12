@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:23:09 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 18:34:17 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 19:16:59 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,8 @@ static void	set_mlx(void)
 	mlx_window_resizable_on(g_app.win_ptr);
 }
 
-int			main(int ac, char **av)
+static void	check_args(int ac, char **av)
 {
-	g_game = create_game();
-	g_app = create_application();
 	if (ac != 2 && ac != 3)
 	{
 		ft_printf("Error\n.cub file missing or too many arguments\n");
@@ -44,6 +42,13 @@ int			main(int ac, char **av)
 		ft_printf("Error\n.cub Second argument incorrect\n");
 		exit(0);
 	}
+}
+
+int			main(int ac, char **av)
+{
+	g_game = create_game();
+	g_app = create_application();
+	check_args(ac, av);
 	if (load_cub(av[1]) == -1)
 		exit_game();
 	g_app = init_application(g_app, g_app.res.x, g_app.res.y, "Super Cub");
@@ -53,6 +58,7 @@ int			main(int ac, char **av)
 	{
 		raycasting();
 		save_image("screenshot.bmp");
+		exit_game();
 	}
 	set_mlx();
 	play_sound(g_game.ambiance);

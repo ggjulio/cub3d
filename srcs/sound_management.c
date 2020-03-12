@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 13:26:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 18:59:22 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 21:35:23 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_sound	create_sound(char *p_filename)
 {
 	t_sound		result;
-    FMOD_RESULT	ret;
+	FMOD_RESULT	ret;
 
 	result.filename = ft_strnew(ft_strlen(p_filename));
 	if (result.filename != NULL)
@@ -50,4 +50,3 @@ void	play_sound(t_sound p_sound)
 {
 	FMOD_System_PlaySound(g_app.fmod_ptr, p_sound.ptr, NULL, 0, NULL);
 }
-
