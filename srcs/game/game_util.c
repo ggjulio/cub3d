@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 11:05:30 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 11:08:11 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	load_textures(void)
 		g_game.sprite.img, 0,
 		get_pixel_from_image(g_game.sprite.img, 0, 0)
 		);
-
 	g_game.reticle = create_image_from_xpm_no_border("tex/bonus/reticle.xpm");
     g_game.weapon[0] = create_image_from_xpm_no_border("tex/bonus/gun1.xpm");
     g_game.weapon[1] = create_image_from_xpm_no_border("tex/bonus/gun2.xpm");
