@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 16:37:12 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 10:53:20 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 12:11:40 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ double	get_fps(clock_t p_ticks)
 	return ((float)CLOCKS_PER_SEC / p_ticks);
 }
 
-void    ticks_begin(void)
+void	ticks_begin(void)
 {
-    g_game.ticks_begin = clock();
-    g_game.ticks_end = 0;
-    g_game.fps = 0;
+	g_game.ticks_begin = clock();
+	g_game.ticks_end = 0;
+	g_game.fps = 0;
 }
 
-void    ticks_end(void)
+void	ticks_end(void)
 {
-    g_game.ticks_end = clock();
-    g_game.ticks_delta = g_game.ticks_end - g_game.ticks_begin;
-    g_game.fps = get_fps(g_game.ticks_delta);
+	g_game.ticks_end = clock();
+	g_game.ticks_delta = g_game.ticks_end - g_game.ticks_begin;
+	g_game.fps = get_fps(g_game.ticks_delta);
 }

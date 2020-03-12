@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 20:42:53 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/11 17:24:58 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 12:19:47 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,11 @@ typedef struct	s_raycast
 ** raycast.c
 */
 void			raycasting(void);
+
+/*
+** raycast_dda.c
+*/
+void			dda(t_raycast *r);
 
 /*
 ** raycast_util.c
