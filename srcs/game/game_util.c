@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 22:25:50 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 22:39:58 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	load_textures(void)
 	g_game.weapon[2] = create_image_from_xpm_no_border("tex/bonus/gun3.xpm");
 	g_game.weapon[3] = create_image_from_xpm_no_border("tex/bonus/gun4.xpm");
 	g_game.weapon[4] = create_image_from_xpm_no_border("tex/bonus/gun5.xpm");
+	g_game.corona = create_image_from_xpm_no_border("tex/bonus/corona.xpm");
 }
 
 int		loop_game(void)
