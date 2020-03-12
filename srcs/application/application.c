@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 17:14:55 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 16:24:10 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 17:07:15 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_application	create_application(void)
 	app.res.y = -1;
 	app.title = "";
 	app.mlx_ptr = mlx_init();
-	app.fmod_ptr = FMOD_System_Create(&(app.fmod_ptr));
-	FMOD_System_Init(app.fmod_ptr, 1, FMOD_INIT_NORMAL, NULL);
+	FMOD_System_Create(&app.fmod_ptr);
+	FMOD_System_Init(app.fmod_ptr, FMOD_NB_CHANNELS, FMOD_INIT_NORMAL, NULL);
 	return (app);
 }
 

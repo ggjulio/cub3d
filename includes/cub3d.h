@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 16:19:17 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 16:45:41 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 # include "utility.h"
 
 # define NB_THREAD 32
+# define FMOD_NB_CHANNELS 4
 
 # define WIN_MIN_WIDTH 100
 # define WIN_MIN_HEIGHT 100
