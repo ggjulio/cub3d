@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 16:44:33 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/23 17:03:45 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 10:10:43 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int			is_key_press(int key)
 		change_mouse_state();
 	else if (key == P_KEY)
 		save_image("screenshot.bmp");
+	else if (key == Q_KEY)
+		g_game.is_shoot = 1;
 	else if (key == I_KEY)
 		mlx_window_toggle_fullscreen(g_app.win_ptr);
 	else if (key == O_KEY)

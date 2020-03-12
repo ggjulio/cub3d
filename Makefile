@@ -32,7 +32,7 @@ _IWHITE=$'\x1b[47m
 #    By: juligonz <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 18:50:56 by juligonz          #+#    #+#              #
-#    Updated: 2020/03/11 13:17:23 by juligonz         ###   ########.fr        #
+#    Updated: 2020/03/12 10:44:21 by juligonz         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -44,22 +44,22 @@ FRAMEWORKS = OpenGL AppKit
 SRC_DIR = $(shell find ./srcs -type d)
 INC_DIR = includes
 OBJ_DIR = obj
-LIB_DIR =  $(shell find ./lib -type d -maxdepth 1)
+LIB_DIR = $(shell find ./lib -type d -maxdepth 1)
 
 SRC = main.c
 SRC+= timing.c
 SRC+= application.c application_util.c application_window.c
-SRC+= game.c game_util.c game_draw_map.c
+SRC+= game.c game_util.c game_draw_map.c game_hud.c
 SRC+= sprite.c sprite_util.c
 SRC+= bmp.c
 SRC+= image.c image_load.c image_manipulation.c image_util.c image_util2.c 
 SRC+= move.c move_mouse.c move_movement.c move_movement_camera.c
 SRC+= events.c events_key.c events_effects.c
-SRC+= raycast.c raycast_util.c raycast_effects.c raycast_util_calc.c 
+SRC+= raycast.c raycast_util.c raycast_effects.c raycast_util_calc.c
 SRC+= vector.c vector_util.c
-SRC+= fvector.c fvector_basic_operation.c fvector_cast.c fvector_rotation.c 
+SRC+= fvector.c fvector_basic_operation.c fvector_cast.c fvector_rotation.c
 SRC+= color.c color_utility.c color_str.c
-SRC+= parser.c parser2.c parse_map.c parse_map2.c 
+SRC+= parser.c parser2.c parse_map.c parse_map2.c
 SRC+= draw.c move.c camera.c
 SRC+= texture.c utility.c
 

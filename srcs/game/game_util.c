@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 10:04:09 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 11:05:30 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,11 @@ void	load_textures(void)
 		);
 
 	g_game.reticle = create_image_from_xpm_no_border("tex/bonus/reticle.xpm");
-    g_game.weapon = create_image_from_xpm_no_border("tex/bonus/gun1.xpm");
-}
-
-void	draw_hud(void)
-{
-	put_image_in_image_center(g_app.img, g_game.reticle,
-		keep_ratio(g_game.reticle, (t_vector){g_app.res.x / 40, g_app.res.y / 40}),
-		(t_vector){0, 0});
-	put_image_in_image_center_bottom(g_app.img, g_game.weapon,
-		keep_ratio(g_game.weapon, (t_vector){g_app.res.x / 4, g_app.res.y / 4}),
-		(t_vector){0,0});
+    g_game.weapon[0] = create_image_from_xpm_no_border("tex/bonus/gun1.xpm");
+    g_game.weapon[1] = create_image_from_xpm_no_border("tex/bonus/gun2.xpm");
+    g_game.weapon[2] = create_image_from_xpm_no_border("tex/bonus/gun3.xpm");
+    g_game.weapon[3] = create_image_from_xpm_no_border("tex/bonus/gun4.xpm");
+    g_game.weapon[4] = create_image_from_xpm_no_border("tex/bonus/gun5.xpm");
 }
 
 int		loop_game(void)
@@ -47,9 +41,11 @@ int		loop_game(void)
 	raycasting();
 	if (g_game.show_map)
 		draw_map();
-	draw_hud();
-	render_application();
 	ticks_end();
+	draw_hud();
+    if (g_game.is_shoot)
+		mlx_do_sync(g_app.mlx_ptr);
+	render_application();
 	rainbow_bar();
 	if (g_game.mouse_move_enabled)
 		mouse_movement();

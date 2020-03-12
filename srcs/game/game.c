@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/24 10:49:43 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 10:11:45 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,11 @@ void		destroy_game(t_game to_destroy)
 	destroy_texture(to_destroy.floor);
 	destroy_texture(to_destroy.sprite);
 	destroy_image(to_destroy.reticle);
-	destroy_image(to_destroy.weapon);
+	destroy_image(to_destroy.weapon[0]);
+	destroy_image(to_destroy.weapon[1]);
+	destroy_image(to_destroy.weapon[2]);
+	destroy_image(to_destroy.weapon[3]);
+	destroy_image(to_destroy.weapon[4]);
 	free(to_destroy.map);
 	free(to_destroy.str_map);
 }

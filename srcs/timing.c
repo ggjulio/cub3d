@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 16:37:12 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 10:02:20 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 10:53:20 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ double	get_fps(clock_t p_ticks)
 void    ticks_begin(void)
 {
     g_game.ticks_begin = clock();
-    g_game.ticks_delta = 0;
     g_game.ticks_end = 0;
     g_game.fps = 0;
 }

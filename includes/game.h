@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/09 16:02:07 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 10:45:59 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct	s_game
 	t_texture		sprite;
 
 	t_image			reticle;
-	t_image			weapon;
+	t_image			weapon[5];
 
 	double			fog_ratio;
 	t_color			fog_color;
@@ -62,7 +62,7 @@ typedef struct	s_game
 	uint16_t		is_sunset:1;
 	uint16_t		show_map:1;
 
-	uint16_t		remaining:1;
+	uint16_t		is_shoot:1;
 }				t_game;
 
 /*
@@ -86,5 +86,10 @@ int				exit_game(void);
 ** game_draw_map.c
 */
 void			draw_map(void);
+
+/*
+** game_hud.c
+*/
+void			draw_hud(void);
 
 #endif
