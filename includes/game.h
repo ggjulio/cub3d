@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 16:28:57 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 17:43:24 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct	s_game
 	t_image			weapon[5];
 
 	t_sound			shoot;
+	t_sound			ambiance;
 
 	double			fog_ratio;
 	t_color			fog_color;

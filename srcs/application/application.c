@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 17:14:55 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 17:07:15 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 17:20:26 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 
 t_application	create_application(void)
 {
-	t_application app;
+	t_application result;
 
-	app.res.x = -1;
-	app.res.y = -1;
-	app.title = "";
-	app.mlx_ptr = mlx_init();
-	FMOD_System_Create(&app.fmod_ptr);
-	FMOD_System_Init(app.fmod_ptr, FMOD_NB_CHANNELS, FMOD_INIT_NORMAL, NULL);
-	return (app);
+	ft_bzero(&result, sizeof(t_application));
+	result.res.x = -1;
+	result.res.y = -1;
+	result.title = "";
+	result.mlx_ptr = mlx_init();
+	return (result);
 }
 
 t_application	init_application(
@@ -37,6 +36,8 @@ t_application	init_application(
 	result.mlx_ptr = actual.mlx_ptr;
 	result.win_ptr = mlx_new_window(result.mlx_ptr, size_x, size_y, title);
 	result.img = create_image(result.res);
+	FMOD_System_Create(&result.fmod_ptr);
+	FMOD_System_Init(result.fmod_ptr, FMOD_NB_CHANNELS, FMOD_INIT_NORMAL, NULL);
 	return (result);
 }
 

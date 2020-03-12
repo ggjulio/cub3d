@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:23:09 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 16:50:14 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 17:51:12 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,14 @@ int			main(int ac, char **av)
 	g_app = init_application(g_app, g_app.res.x, g_app.res.y, "Super Cub");
 	load_textures();
 	load_sounds();
-	FMOD_System_PlaySound(g_app.fmod_ptr, g_game.shoot.ptr, NULL, 0, NULL);
 	if (ac == 3)
 	{
 		raycasting();
 		save_image("screenshot.bmp");
 	}
 	set_mlx();
+	play_sound(g_game.ambiance);
+	pause_sound(g_game.ambiance);
 	mlx_loop(g_app.mlx_ptr);
 	return (0);
 }
