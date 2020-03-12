@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:19:17 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/10 18:47:11 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 11:51:26 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void			free_sprite(t_sprite *to_free);
 /*
 ** sprite_util.c
 */
-void			draw_sprite(t_raycast *r, int x, t_sprite *sprite);
+void			draw_sprite(int x, t_sprite *sprite);
 void			draw_sprites(t_raycast *r, int x);
 void			save_sprite(t_raycast *r);
 void			free_lst_sprite(void *to_free);
