@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 19:48:44 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/11 20:08:43 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 09:45:14 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,22 +69,21 @@ void	put_image_in_image_center(t_image p_img_base, t_image p_img_to_add,
 {
     t_vector coord;
 
-	p_size = keep_ratio(p_img_to_add, p_size);
+//	p_size = keep_ratio(p_img_to_add, p_size);
 	
 	coord.x = p_img_base.size.x / 2 - p_size.x / 2 + offset.x;
 	coord.y = p_img_base.size.y / 2 - p_size.y / 2 + offset.y;
 	put_image_in_image(p_img_base, p_img_to_add, coord, p_size);
 }
 
-void	put_image_in_image_bottom(t_image p_img_base, t_image p_img_to_add,
+void	put_image_in_image_center_bottom(t_image p_img_base, t_image p_img_to_add,
 				t_vector p_size, t_vector offset)
 {
     t_vector coord;
 
-	p_size = keep_ratio(p_img_to_add, p_size);
-	
-	coord.x = p_img_base.size.x - p_size.x + offset.x;
-	coord.y = g_app.res.y - p_size.y ;
-	put_image_in_image(p_img_base, p_img_to_add, coord, p_size);
+//	p_size = keep_ratio(p_img_to_add, p_size);
 
+	coord.x = p_img_base.size.x / 2 - p_size.x / 2 + offset.x;
+	coord.y = p_img_base.size.y - p_size.y + offset.y;
+	put_image_in_image(p_img_base, p_img_to_add, coord, p_size);
 }

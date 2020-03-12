@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 12:52:56 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/11 20:02:27 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 10:02:35 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void			free_image(t_image *to_free);
 */
 t_image			create_image_from_xpm(char *p_filename);
 t_image			*malloc_image_from_xpm(char *p_filename);
+t_image			create_image_from_xpm_no_border(char *p_filename);
 
 /*
 ** image_util.c
@@ -61,7 +62,7 @@ void			put_image_in_image(t_image p_img_base, t_image p_img_to_add,
 					t_vector p_coord, t_vector p_size);
 void			put_image_in_image_center(t_image p_img_base,
 			t_image p_img_to_add, t_vector p_size, t_vector offset);
-void			put_image_in_image_bottom(t_image p_img_base,
+void			put_image_in_image_center_bottom(t_image p_img_base,
 			t_image p_img_to_add, t_vector p_size, t_vector offset);
 
 #endif

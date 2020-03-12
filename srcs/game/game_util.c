@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/11 20:00:37 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 10:04:09 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,58 +20,24 @@ void	load_textures(void)
 	init_texture(&(g_game.west));
 	init_texture(&(g_game.ceil));
 	init_texture(&(g_game.floor));
-
 	init_texture(&(g_game.sprite));
 	set_opacity_image_if_color(
 		g_game.sprite.img, 0,
 		get_pixel_from_image(g_game.sprite.img, 0, 0)
 		);
 
-	g_game.reticle = create_image_from_xpm("tex/bonus/reticle.xpm");
-	set_opacity_image_if_color(
-        g_game.reticle, 0,
-        get_pixel_from_image(g_game.reticle, 0, 0)
-		);
-	g_game.weapon = create_image_from_xpm("tex/bonus/gun.xpm");
-
-    set_opacity_image_if_color(
-        g_game.weapon, 0,
-        get_pixel_from_image(g_game.weapon, 0, 0)
-        );
-
-//	set_opacity_image_if_color(
-//		g_game.reticle, 0, create_color(0, 0, 0, 0));
-}
-
-void	ticks_begin(void)
-{
-	g_game.ticks_begin = clock();
-	g_game.ticks_delta = 0;
-	g_game.ticks_end = 0;
-	g_game.fps = 0;
-}
-
-void	ticks_end(void)
-{
-	g_game.ticks_end = clock();
-	g_game.ticks_delta = g_game.ticks_end - g_game.ticks_begin;
-	g_game.fps = get_fps(g_game.ticks_delta);
+	g_game.reticle = create_image_from_xpm_no_border("tex/bonus/reticle.xpm");
+    g_game.weapon = create_image_from_xpm_no_border("tex/bonus/gun1.xpm");
 }
 
 void	draw_hud(void)
 {
-	if (g_game.show_map)
-		draw_map();
-	put_image_in_image_center(g_app.img,                         g_game.reticle,
-			  (t_vector){g_app.res.x / 40,-1}, (t_vector){0, 0});
-
-	put_image_in_image(g_app.img,                                 g_game.weapon,
-	   (t_vector){g_app.res.x / 2 - 500, g_app.res.y - 500},
-	   keep_ratio(g_game.weapon, (t_vector){500,500}));
-//	put_image_in_image_center(g_app.img, g_game.weapon,
-//							  (t_vector){g_app.res.y / 6,-1}, (t_vector){100,g_game.weapon.size.y});
-//		mul_vec_by_scalar(g_game.reticle.size, 0.1), (t_vector){0, 0});
-
+	put_image_in_image_center(g_app.img, g_game.reticle,
+		keep_ratio(g_game.reticle, (t_vector){g_app.res.x / 40, g_app.res.y / 40}),
+		(t_vector){0, 0});
+	put_image_in_image_center_bottom(g_app.img, g_game.weapon,
+		keep_ratio(g_game.weapon, (t_vector){g_app.res.x / 4, g_app.res.y / 4}),
+		(t_vector){0,0});
 }
 
 int		loop_game(void)
@@ -79,6 +45,8 @@ int		loop_game(void)
 	ticks_begin();
 	clear_application(create_color(0, 0, 0, 0));
 	raycasting();
+	if (g_game.show_map)
+		draw_map();
 	draw_hud();
 	render_application();
 	ticks_end();
