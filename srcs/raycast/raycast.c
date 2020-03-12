@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/11 15:50:07 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 11:17:04 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,12 @@ void	dda(t_raycast *r)
 		}
 		map_v = map_value(r->map.x, r->map.y);
 		if (map_v == 2)
-			save_sprite(r);
+		{
+			if (g_game.is_shoot && r->camera_x == 0)
+				set_map_value(r->map.x, r->map.y, 0);
+			else
+				save_sprite(r);
+		}
 		if (map_v == 1)
 		{
 			if (r->side)

@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 11:08:11 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 11:12:42 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ int		loop_game(void)
 		draw_map();
 	ticks_end();
 	draw_hud();
-    if (g_game.is_shoot)
-		mlx_do_sync(g_app.mlx_ptr);
 	render_application();
 	rainbow_bar();
 	if (g_game.mouse_move_enabled)
@@ -57,6 +55,11 @@ int		loop_game(void)
 uint8_t	map_value(int x, int y)
 {
 	return (g_game.map[x + y * g_game.map_len_x]);
+}
+
+void	set_map_value(int x, int y, uint8_t p_value)
+{
+	g_game.map[x + y * g_game.map_len_x] = p_value;
 }
 
 int		ft_error(char *e)
