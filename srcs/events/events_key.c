@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 16:44:33 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 16:41:08 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 18:32:02 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,10 @@ int			is_key_press(int key)
 	else if (key == TAB_KEY)
 		change_mouse_state();
 	else if (key == P_KEY)
+	{
+		play_sound(g_game.snapshot);
 		save_image("screenshot.bmp");
+	}
 	else if (key == Q_KEY)
 	{
 		g_game.is_shoot = 1;

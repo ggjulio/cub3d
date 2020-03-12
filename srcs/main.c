@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:23:09 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 17:51:12 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 18:34:17 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int			main(int ac, char **av)
 	}
 	set_mlx();
 	play_sound(g_game.ambiance);
-	pause_sound(g_game.ambiance);
 	mlx_loop(g_app.mlx_ptr);
 	return (0);
 }

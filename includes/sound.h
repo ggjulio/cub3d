@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 14:49:23 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 17:50:40 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 18:59:08 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,5 @@ t_sound			create_sound(char *p_filename);
 void			destroy_sound(t_sound to_destroy);
 void			load_sounds(void);
 void			play_sound(t_sound p_sound);
-void			pause_sound(t_sound p_sound);
 
 #endif
