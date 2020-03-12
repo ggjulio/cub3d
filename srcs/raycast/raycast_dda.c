@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 18:51:58 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 23:44:05 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void	dda_sprite(t_raycast *r)
 	{
 		play_sound(g_game.monster_killed);
 		set_map_value(r->map.x, r->map.y, 0);
+		g_game.nb_kill++;
 	}
 	else
 		save_sprite(r);

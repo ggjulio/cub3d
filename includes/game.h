@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 23:16:05 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 23:41:51 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct	s_game
 	t_texture		sprite;
 
 	double			life;
+	int				nb_kill;
 
 	t_image			reticle;
 	t_image			weapon[5];
