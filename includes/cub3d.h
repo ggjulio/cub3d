@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 13:21:21 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/12 14:35:51 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <pthread.h>
 
 # include "mlx.h"
+# include "fmod.h"
 # include "libft.h"
 
 # include "timing.h"

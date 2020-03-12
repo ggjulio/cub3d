@@ -32,13 +32,13 @@ _IWHITE=$'\x1b[47m
 #    By: juligonz <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 18:50:56 by juligonz          #+#    #+#              #
-#    Updated: 2020/03/12 12:19:10 by juligonz         ###   ########.fr        #
+#    Updated: 2020/03/12 14:38:16 by juligonz         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME = Cub3D
 
-LIB = ft mlx z
+LIB = ft mlx z fmod
 FRAMEWORKS = OpenGL AppKit
 
 SRC_DIR = $(shell find ./srcs -type d)
@@ -47,7 +47,7 @@ OBJ_DIR = obj
 LIB_DIR = $(shell find ./lib -type d -maxdepth 1)
 
 SRC = main.c
-SRC+= timing.c
+SRC+= timing.c sound_management.c
 SRC+= application.c application_util.c application_window.c
 SRC+= game.c game_util.c game_map.c game_hud.c
 SRC+= sprite.c sprite_util.c
@@ -71,7 +71,7 @@ LFLAGS+= $(foreach framework, $(FRAMEWORKS),-framework $(framework))
 
 CC = gcc
 CFLAGS  = -Wall -Wextra -Werror -g # -fsanitize=address  -fsanitize=undefined -fstack-protector  
-IFLAGS  = -I./lib/libmlx -I./lib/libft -I./includes
+IFLAGS  = -I./lib/libmlx -I./lib/libft -I./lib/libfmod -I./includes
 
 all: $(NAME)
 
