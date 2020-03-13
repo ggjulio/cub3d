@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 10:39:41 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/11 15:11:55 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/13 01:51:19 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	rainbow_bar(void)
 		color.rgba.r += speed;
 	}
 	ft_bzero(&title, 30);
-	ft_sprintf((char *)&title, "Super cub3D (%4.2f fps)", g_game.fps);
+	ft_sprintf((char *)&title, "Corona3D (%4.2f fps)", g_game.fps);
 	mlx_window_set_title(g_app.win_ptr, title);
 	mlx_window_set_background(g_app.win_ptr, color.c);
 }
