@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 13:26:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 21:35:23 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/13 02:35:08 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	load_sounds(void)
 	g_game.snapshot = create_sound("sound/snapshot.mp3");
 	g_game.monster_killed = create_sound("sound/gag.wav");
 	g_game.ambiance = create_sound("sound/poltergeist-mike_koenig.wav");
+	g_game.game_over = create_sound("sound/you_suck.mp3");
 }
 
 void	play_sound(t_sound p_sound)

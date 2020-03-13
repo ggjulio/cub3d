@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/13 00:18:55 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/13 02:36:37 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void			check_life(void)
 
 	if (g_game.life > 0)
 		return ;
+	play_sound(g_game.game_over);
 	color_str = create_color(255, 255, 255, 255);
 	clear_application(
 		create_color(170, 0, 0, 100));

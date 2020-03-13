@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/13 00:57:41 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/13 02:33:52 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct	s_game
 	t_sound			ambiance;
 	t_sound			snapshot;
 	t_sound			monster_killed;
+	t_sound			game_over;
 
 	double			fog_ratio;
 	t_color			fog_color;
