@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 23:40:50 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/13 01:00:13 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,68 +36,21 @@ static uint8_t	gun_frame(void)
 	return (frame);
 }
 
-void			put_corona(void)
+void			draw_kills(void)
 {
-	put_image_in_image_center(g_app.img, g_game.corona,
-		keep_ratio(g_game.reticle,
-	(t_vector){g_app.res.x / 10, g_app.res.y / 10}), (t_vector){-100, 50});
-	put_image_in_image_center(g_app.img, g_game.corona,
-		keep_ratio(g_game.reticle,
-	(t_vector){g_app.res.x / 7, g_app.res.y / 7}), (t_vector){100, -150});
-	put_image_in_image_center(g_app.img, g_game.corona,
-		keep_ratio(g_game.reticle,
-	(t_vector){g_app.res.x / 15, g_app.res.y / 15}), (t_vector){-200, -200});
-	put_image_in_image_center(g_app.img, g_game.corona,
-		keep_ratio(g_game.reticle,
-	(t_vector){g_app.res.x / 10, g_app.res.y / 10}), (t_vector){200, 200});
-	put_image_in_image_center(g_app.img, g_game.corona,
-		keep_ratio(g_game.reticle,
-	(t_vector){g_app.res.x / 16, g_app.res.y / 16}), (t_vector){-350, 0});
-	put_image_in_image_center(g_app.img, g_game.corona,
-		keep_ratio(g_game.reticle,
-	(t_vector){g_app.res.x / 16, g_app.res.y / 16}), (t_vector){350, 100});
-}
+	t_vector size_left;
+	t_vector size_right;
 
-void			check_life(void)
-{
-	t_color color_str;
-
-	if (g_game.life > 0)
-		return ;
-	color_str = create_color(255, 255, 255, 255);
-	clear_application(
-		create_color(170, 0, 0, 100));
-	put_corona();
-	render_application();
-	mlx_string_put(g_app.mlx_ptr, g_app.win_ptr,
-				g_app.res.x / 2.3,
-				g_app.res.y / 2.5,
-				color_str.c, "You suck ! :)");
-	mlx_window_set_title(g_app.win_ptr, "You suck very much !");
-	mlx_loop_hook(g_app.mlx_ptr, NULL, NULL);
-}
-
-void			draw_life(void)
-{
-	t_vector	size;
-	t_color		color;
-
-	if (g_game.life > 75)
-		color = create_color(0, 255, 0, 255);
-	else if (g_game.life > 50)
-		color = create_color(255, 255, 0, 255);
-	else if (g_game.life > 25)
-		color = create_color(255, 100, 0, 255);
-	else
-		color = create_color(255, 0, 0, 255);
-	size = keep_ratio(g_game.health_bar, (t_vector){150, -1});
-	size.x -= 33;
-	size.y -= 13;
-	size.x *= g_game.life / LIFE;
-	draw_rectangle((t_vector){44, 22}, size, color);
-	put_image_in_image(g_app.img, g_game.health_bar,
-		(t_vector){15, 15},
-	keep_ratio(g_game.health_bar, (t_vector){150, -1}));
+	if (g_game.nb_kills > 99)
+		g_game.nb_kills = 0;
+	size_right = keep_ratio(
+		g_game.number[g_game.nb_kills % 10], (t_vector){-1, g_app.res.y / 7});
+	size_left = keep_ratio(
+		g_game.number[g_game.nb_kills / 10], (t_vector){-1, g_app.res.y / 7});
+	put_image_in_image(g_app.img, g_game.number[g_game.nb_kills / 10],
+		(t_vector){g_app.res.x - size_left.x - size_right.x, 20}, size_left);
+	put_image_in_image(g_app.img, g_game.number[g_game.nb_kills % 10],
+		(t_vector){g_app.res.x - size_right.x, 20}, size_right);
 }
 
 void			draw_hud(void)
@@ -118,4 +71,5 @@ void			draw_hud(void)
 		(t_vector){g_app.res.x / 4, g_app.res.y / 4}),
 		(t_vector){g_app.res.x / 4, 0});
 	draw_life();
+	draw_kills();
 }

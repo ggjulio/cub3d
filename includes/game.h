@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:39:57 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 23:41:51 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/13 00:57:41 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,13 @@ typedef struct	s_game
 	t_texture		sprite;
 
 	double			life;
-	int				nb_kill;
+	int				nb_kills;
 
 	t_image			reticle;
 	t_image			weapon[5];
 	t_image			corona;
 	t_image			health_bar;
+	t_image			number[10];
 
 	t_sound			shoot;
 	t_sound			ambiance;
@@ -102,6 +103,11 @@ void			set_map_value(int x, int y, uint8_t p_value);
 ** game_hud.c
 */
 void			draw_hud(void);
+
+/*
+** game_life.c
+*/
 void			check_life(void);
+void			draw_life(void);
 
 #endif

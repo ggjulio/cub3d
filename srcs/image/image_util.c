@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 18:38:53 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 22:53:29 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/13 01:04:16 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	render_image(t_image p_img)
 
 void	clear_image(t_image p_img, t_color color)
 {
-	int i;
-	int nb_pixel;
+	int		i;
+	int		nb_pixel;
 	t_color actual;
 
 	nb_pixel = p_img.size.x * p_img.size.y;

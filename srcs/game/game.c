@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 23:17:10 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/13 01:01:48 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,20 @@ t_game		*malloc_game(void)
 		return (NULL);
 	*result = create_game();
 	return (result);
+}
+
+static void	destroy_number(t_game to_destroy)
+{
+	destroy_image(to_destroy.number[0]);
+	destroy_image(to_destroy.number[1]);
+	destroy_image(to_destroy.number[2]);
+	destroy_image(to_destroy.number[3]);
+	destroy_image(to_destroy.number[4]);
+	destroy_image(to_destroy.number[5]);
+	destroy_image(to_destroy.number[6]);
+	destroy_image(to_destroy.number[7]);
+	destroy_image(to_destroy.number[8]);
+	destroy_image(to_destroy.number[9]);
 }
 
 void		destroy_game(t_game to_destroy)
