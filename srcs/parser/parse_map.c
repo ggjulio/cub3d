@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 19:09:50 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/08 14:46:33 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/13 03:07:40 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int		valid_map_char(void)
 
 	i = -1;
 	while (++i < g_game.map_len_x * g_game.map_len_y)
-		if (!ft_in_charset(g_game.map[i] + '0', "NSWE 012"))
-			return (ft_error("Map : Only \"NSWE 012\" are allowed in the map"));
+		if (!ft_in_charset(g_game.map[i] + '0', VALID_CHAR_MAP))
+			return (ft_error("Map: Only \"NSWE 0123\" are allowed in the map"));
 	return (0);
 }
 

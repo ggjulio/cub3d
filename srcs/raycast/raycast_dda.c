@@ -6,22 +6,24 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/13 00:32:49 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/13 03:06:25 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	dda_sprite(t_raycast *r)
+static void	dda_sprite(t_raycast *r, uint8_t value)
 {
-	if (g_game.is_shoot && r->camera_x == 0)
+	if (value == 3)
+		save_sprite(r, &(g_game.sprite_medic));
+	else if (g_game.is_shoot && r->camera_x == 0)
 	{
 		play_sound(g_game.monster_killed);
 		set_map_value(r->map.x, r->map.y, 0);
 		g_game.nb_kills++;
 	}
 	else
-		save_sprite(r);
+		save_sprite(r, &(g_game.sprite));
 }
 
 static void	dda_wall(t_raycast *r)
@@ -73,8 +75,9 @@ void		dda(t_raycast *r)
 			r->map.y += r->step.y;
 			r->side = 0;
 		}
-		if (2 == map_value(r->map.x, r->map.y))
-			dda_sprite(r);
+		if (2 == map_value(r->map.x, r->map.y) ||
+			3 == map_value(r->map.x, r->map.y))
+			dda_sprite(r, map_value(r->map.x, r->map.y));
 		if (1 == map_value(r->map.x, r->map.y))
 		{
 			dda_wall(r);

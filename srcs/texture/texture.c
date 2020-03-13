@@ -6,7 +6,7 @@
 /*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 14:06:47 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 12:10:33 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/13 03:01:02 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int			valid_file(char *filename)
 
 int			valid_id(char id[3])
 {
-	const char	ids[10][3] = {"R", "NO", "SO", "WE", "EA",
-							"F", "C", "S", "1", ""};
+	const char	ids[11][3] = {"R", "NO", "SO", "WE", "EA",
+							"F", "C", "S", "1", "M", ""};
 	int8_t		i;
 
 	i = -1;

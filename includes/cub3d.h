@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 23:07:21 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/13 03:08:53 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,14 @@
 # define NB_THREAD 32
 # define FMOD_NB_CHANNELS 4
 
+# define VALID_CHAR_MAP "NSWE 0123"
+
 # define WIN_MIN_WIDTH 100
 # define WIN_MIN_HEIGHT 100
 
 # define LIFE 100
 # define LIFE_HIT 4
-# define LIFE_CORONA_HIT 0.01
+# define LIFE_CORONA_HIT 0.07
 
 # define CAMERA_HEIGHT 0.5
 # define CAMERA_HEIGHT_SQUAT 0.45

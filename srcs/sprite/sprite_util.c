@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:17:48 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 22:20:08 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/13 02:56:19 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,12 @@ void		draw_sprites(t_raycast *r, int x)
 	}
 }
 
-void		save_sprite(t_raycast *r)
+void		save_sprite(t_raycast *r, t_texture *p_texture)
 {
 	t_sprite *new_sprite;
 
 	new_sprite =
-		malloc_sprite(&(g_game.sprite),
+		malloc_sprite(p_texture,
 			r->map,
 			sub_fvec_by_fvec(
 				add_scalar_to_fvec(0.5, vec_to_fvec(r->map)),
