@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/13 02:50:30 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/03/13 03:29:21 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,11 @@ void			load_textures(void)
 	g_game.health_bar =
 		create_image_from_xpm_no_border("tex/bonus/health_bar.xpm");
 	load_number();
-	g_game.sprite_medic = create_texture("M", "tex/bonus/corona.xpm");
+	g_game.sprite_medic = create_texture("M", "tex/bonus/medic_small.xpm");
 	init_texture(&(g_game.sprite_medic));
+	set_opacity_image_if_color(
+		g_game.sprite_medic.img, 0,
+		get_pixel_from_image(g_game.sprite.img, 0, 0));
 }
 
 int				loop_game(void)
