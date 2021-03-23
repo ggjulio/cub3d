@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2021/03/23 11:04:26 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/03/23 13:20:16 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,6 @@ static	void	load_number(void)
 
 void			load_textures(void)
 {
-	init_texture(&(g_game.north));
-	init_texture(&(g_game.south));
-	init_texture(&(g_game.east));
-	init_texture(&(g_game.west));
-	init_texture(&(g_game.ceil));
-	init_texture(&(g_game.floor));
-	init_texture(&(g_game.sprite));
 	set_opacity_image_if_color(
 		g_game.sprite.img, 0,
 		get_pixel_from_image(g_game.sprite.img, 0, 0));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sound_management.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 13:26:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/13 02:35:08 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/03/23 11:19:17 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_sound	create_sound(char *p_filename)
 		if (ret != FMOD_OK)
 		{
 			ft_printf("File : can't load %s\n", p_filename);
-			exit(0);
+			exit(1);
 		}
 	}
 	return (result);
