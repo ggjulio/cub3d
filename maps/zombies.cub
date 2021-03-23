@@ -1,7 +1,7 @@
 R 1200 600
 NO ./tex/wood.xpm
 SO ./tex/metal.xpm
-WE ./tex/Stone.xpm
+WE ./tex/stone.xpm
 EA ./tex/skull_octocat.xpm
 S ./tex/zombie.xpm
 

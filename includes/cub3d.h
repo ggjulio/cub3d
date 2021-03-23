@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/13 03:08:53 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/03/23 10:14:51 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@
 # include <stdint.h>
 # include <math.h>
 # include <pthread.h>
+# include <X11/X.h>
+# include <X11/Xlib.h>
+# include <X11/keysym.h>
+# include <X11/keysymdef.h>
 
 # include "mlx.h"
 # include "fmod.h"
@@ -31,7 +35,7 @@
 # include "sound.h"
 # include "vectors.h"
 # include "fvectors.h"
-# include "x11.h"
+// # include "x11.h"
 # include "color.h"
 # include "image.h"
 # include "application.h"

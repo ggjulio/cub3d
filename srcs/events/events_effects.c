@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events_effects.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 16:26:23 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/23 16:51:18 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/03/23 10:56:49 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ static void	change_fog_color(void)
 
 void		key_effects(int key)
 {
-	if (key == NKMN_KEY)
+	if (key == XK_1)
 		g_game.fog_ratio -= (g_game.fog_ratio >= 0.1 ? 0.1 : 0.0);
-	else if (key == NKPL_KEY)
+	else if (key == XK_2)
 		g_game.fog_ratio += (g_game.fog_ratio <= 0.9 ? 0.1 : 0.0);
-	else if (key == NKWC_KEY)
+	else if (key == XK_3)
 		change_fog_color();
-	else if (key == NKEQ_KEY)
+	else if (key == XK_4)
 		g_game.is_sunset = !g_game.is_sunset;
-	else if (key == NKSL_KEY)
+	else if (key == XK_5)
 		g_game.is_fog_on_ceil = !g_game.is_fog_on_ceil;
 }

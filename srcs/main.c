@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:23:09 by juligonz          #+#    #+#             */
-/*   Updated: 2021/03/23 01:50:45 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/03/23 11:05:38 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@ t_application	g_app;
 static void	set_mlx(void)
 {
 	mlx_do_key_autorepeatoff(g_app.mlx_ptr);
-	mlx_hook(g_app.win_ptr, KEYPRESS, NOEVENTMASK, is_key_press, NULL);
-	mlx_hook(g_app.win_ptr, KEYRELEASE, NOEVENTMASK, is_key_release, NULL);
-	mlx_hook(g_app.win_ptr, DESTROYNOTIFY, NOEVENTMASK, close_program, NULL);
-	mlx_hook(g_app.win_ptr, FOCUSOUT, NOEVENTMASK, is_focus_out, NULL);
-	mlx_hook(g_app.win_ptr, FOCUSIN, NOEVENTMASK, is_focus_in, NULL);
+	mlx_do_sync(g_app.mlx_ptr);
+	mlx_hook(g_app.win_ptr, KeyPress, KeyPressMask, is_key_press, NULL);
+	mlx_hook(g_app.win_ptr, KeyRelease, KeyReleaseMask, is_key_release, NULL);
+	mlx_hook(g_app.win_ptr, DestroyNotify, ButtonPressMask, close_program, NULL);
+	mlx_hook(g_app.win_ptr, FocusIn, FocusChangeMask, is_focus_out, NULL);
+	mlx_hook(g_app.win_ptr, FocusIn, FocusChangeMask, is_focus_in, NULL);
 	mlx_hook(g_app.win_ptr,
-		CONFIGURENOTIFY, NOEVENTMASK, is_configure_notify, NULL);
+		ConfigureNotify, StructureNotifyMask, is_configure_notify, NULL);
 	mlx_loop_hook(g_app.mlx_ptr, loop_game, NULL);
 	// mlx_window_set_min_size(g_app.win_ptr, WIN_MIN_WIDTH, WIN_MIN_HEIGHT);
 	// mlx_window_resizable_on(g_app.win_ptr);

@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/13 03:30:47 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/03/23 11:04:26 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ int				ft_error(char *e)
 
 int				exit_game(void)
 {
+	mlx_do_key_autorepeaton(g_app.mlx_ptr);
+	mlx_do_sync(g_app.mlx_ptr);
 	destroy_game(g_game);
 	destroy_application(g_app);
 	exit(0);

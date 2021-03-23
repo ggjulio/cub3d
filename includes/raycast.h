@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 20:42:53 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 12:19:47 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/03/23 09:45:39 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 ** side 		 : Position of wall hit. 0 for Nord/South or 1 for West/East
 */
 
-enum	e_direction{None, North, South, East, West};
+enum	e_direction{NoneD, North, South, East, West};
 
 typedef struct	s_raycast
 {
