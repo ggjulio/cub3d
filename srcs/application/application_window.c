@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   application_window.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juligonz <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 10:39:41 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/13 01:51:19 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/03/23 01:51:04 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ void	rainbow_bar(void)
 	}
 	ft_bzero(&title, 30);
 	ft_sprintf((char *)&title, "Corona3D (%4.2f fps)", g_game.fps);
-	mlx_window_set_title(g_app.win_ptr, title);
-	mlx_window_set_background(g_app.win_ptr, color.c);
+	// mlx_window_set_title(g_app.win_ptr, title);
+	// mlx_window_set_background(g_app.win_ptr, color.c);
 }

@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 16:44:33 by juligonz          #+#    #+#             */
-/*   Updated: 2020/03/12 21:36:49 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/03/23 01:59:03 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static void	change_mouse_state(void)
 	g_game.mouse_move_enabled = !g_game.mouse_move_enabled;
 	if (g_game.mouse_move_enabled)
 	{
-		mlx_mouse_hide();
-		mlx_mouse_move(g_app.win_ptr, g_app.res.x / 2, 0);
+		// mlx_mouse_hide();
+		mlx_mouse_move(g_app.mlx_ptr, g_app.win_ptr, g_app.res.x / 2, 0);
 	}
-	else
-		mlx_mouse_show();
+	// else
+		// mlx_mouse_show();
 	g_game.key_left = 0;
 	g_game.key_right = 0;
 }
@@ -68,8 +68,8 @@ static void	key_bonus(int key)
 		g_game.is_shoot = 1;
 		play_sound(g_game.shoot);
 	}
-	else if (key == I_KEY)
-		mlx_window_toggle_fullscreen(g_app.win_ptr);
+	// else if (key == I_KEY)
+	// 	mlx_window_toggle_fullscreen(g_app.win_ptr);
 	else if (key == O_KEY)
 		g_game.show_map = !g_game.show_map;
 }

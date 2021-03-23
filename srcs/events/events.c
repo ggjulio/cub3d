@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 16:44:33 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/26 11:45:21 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/03/23 01:57:55 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		is_focus_out(void)
 				g_app.res.x / 2.3,
 				g_app.res.y / 2.1,
 				color_str.c, "Resume Game");
-	mlx_window_set_title(g_app.win_ptr, "Super Cub3D Paused :)");
+	// mlx_window_set_title(g_app.win_ptr, "Super Cub3D Paused :)");
 	mlx_loop_hook(g_app.mlx_ptr, NULL, NULL);
 	return (0);
 }
@@ -37,16 +37,16 @@ int		is_focus_in(void)
 
 int		is_configure_notify(void)
 {
-	t_vector	size;
-	double		ratio;
+	// t_vector	size;
+	// double		ratio;
 
-	mlx_window_get_size(g_app.win_ptr, &(size.x), &(size.y));
-	g_app.win_res = size;
-	ratio = (double)size.x / (double)size.y;
-	g_game.cam.plane = (t_fvector){
-		(-0.5 * ratio) * g_game.cam.dir.y,
-		(0.5 * ratio) * g_game.cam.dir.x,
-	};
+	// // mlx_window_get_size(g_app.win_ptr, &(size.x), &(size.y));
+	// g_app.win_res = size;
+	// ratio = (double)size.x / (double)size.y;
+	// g_game.cam.plane = (t_fvector){
+	// 	(-0.5 * ratio) * g_game.cam.dir.y,
+	// 	(0.5 * ratio) * g_game.cam.dir.x,
+	// };
 	return (0);
 }
 

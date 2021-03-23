@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 15:04:32 by juligonz          #+#    #+#             */
-/*   Updated: 2020/02/25 10:59:55 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/03/23 02:00:32 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int		parse_resolution(char **words, char *line)
 	int y;
 
 	(void)line;
-	mlx_screen_get_resolution(&(g_app.screen_res.x), &(g_app.screen_res.y));
+	// mlx_screen_get_resolution(&(g_app.screen_res.x), &(g_app.screen_res.y));
+	mlx_get_screen_size(g_app.mlx_ptr, &(g_app.screen_res.x), &(g_app.screen_res.y));
 	if (count_str_arr(words) != 3 || g_game.str_map != NULL)
 		return (ft_error("R : Something wrong"));
 	if (!ft_isnumber(words[1]) || !ft_isnumber(words[2]))

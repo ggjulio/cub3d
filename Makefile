@@ -1,28 +1,37 @@
-# This is a minimal set of ANSI/VT100 color codes
-_END=$'\x1b[0m
-_BOLD=$'\x1b[1m
-_UNDER=$'\x1b[4m
-_REV=$'\x1b[7m
+# https://misc.flogisoft.com/bash/tip_colors_and_formatting
+_BOLD      =\e[1m
+_DIM       =\e[2m
+_UNDERLINE =\e[4m
+_BLINK     =\e[5m
+_REVERSE   =\e[7m
+_HIDDEN    =\e[8m
+
+# RESET list
+_R          =\e[0m
+_RBOLD      =\e[21m
+_RDIM       =\e[22m
+_RUNDERLINE =\e[24m
+_RBLINK     =\e[25m
+_RREVERSE   =\e[27m
+_RHIDDEN    =\e[28m
 
 # Colors
-_GREY=$'\x1b[30m
-_RED=$'\x1b[31m
-_GREEN=$'\x1b[32m
-_YELLOW=$'\x1b[33m
-_BLUE=$'\x1b[34m
-_PURPLE=$'\x1b[35m
-_CYAN=$'\x1b[36m
-_WHITE=$'\x1b[37m
+_RED      =\e[91m
+_GREEN    =\e[92m
+_YELLOW   =\e[93m
+_BLUE     =\e[94m
+_MAGENTA  =\e[35m
+_CYAN     =\e[96m
+_WHITE    =\e[97m
 
 # Inverted, i.e. colored backgrounds
-_IGREY=$'\x1b[40m
-_IRED=$'\x1b[41m
-_IGREEN=$'\x1b[42m
-_IYELLOW=$'\x1b[43m
-_IBLUE=$'\x1b[44m
-_IPURPLE=$'\x1b[45m
-_ICYAN=$'\x1b[46m
-_IWHITE=$'\x1b[47m
+_IRED     =\e[101m
+_IGREEN   =\e[102m
+_IYELLOW  =\e[103m
+_IBLUE    =\e[104m
+_IMAGENTA =\e[45m
+_ICYAN    =\e[106m
+_IWHITE   =\e[107m
 
 #******************************************************************************#
 #                                                                              #
@@ -37,14 +46,20 @@ _IWHITE=$'\x1b[47m
 #******************************************************************************#
 
 NAME = Cub3D
+UNAME := $(shell uname)
 
 LIB = ft mlx z fmod
-FRAMEWORKS = OpenGL AppKit
+ifeq ($(UNAME), Darwin)
+	LIB+= z
+else
+	#Linux and others...
+	LIB+= pthread Xext X11 m
+endif
 
 SRC_DIR = $(shell find ./srcs -type d)
 INC_DIR = includes
 OBJ_DIR = obj
-LIB_DIR = $(shell find ./lib -type d -maxdepth 1)
+LIB_DIR = $(shell find ./lib -maxdepth 1 -type d )
 
 SRC = main.c
 SRC+= timing.c sound_management.c
@@ -63,16 +78,24 @@ SRC+= parser.c parser2.c parse_map.c parse_map2.c
 SRC+= draw.c move.c camera.c
 SRC+= texture.c utility.c
 
-DYLD_LIBRARY_PATH=lib/libfmod
 OBJ = $(addprefix  $(OBJ_DIR)/,$(SRC:%.c=%.o))
 vpath %.c $(SRC_DIR)
 
 LFLAGS = $(foreach lib, $(LIB_DIR),-L$(lib))  $(foreach lib, $(LIB),-l$(lib))
-LFLAGS+= $(foreach framework, $(FRAMEWORKS),-framework $(framework))
 
-CC = gcc
+CC = clang
 CFLAGS  = -Wall -Wextra -Werror -g # -fsanitize=address  -fsanitize=undefined -fstack-protector  
-IFLAGS  = -I./lib/libmlx -I./lib/libft -I./lib/libfmod -I./includes
+IFLAGS  = -I./lib/libmlx -I./lib/libft -I./includes -I./lib/libfmod_$(UNAME)
+
+ifeq ($(UNAME), Darwin)
+	# mac
+	DYLD_LIBRARY_PATH=lib/libfmod
+	FRAMEWORKS = OpenGL AppKit
+	LFLAGS+= $(foreach framework, $(FRAMEWORKS),-framework $(framework))
+else
+	#Linux and others...
+	CC := LD_LIBRARY_PATH=./lib/libfmod_Linux $(CC)
+endif
 
 all: $(NAME)
 
@@ -81,44 +104,46 @@ $(OBJ_DIR)/%.o: %.c
 	@$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
-	@echo "$(_GREEN)Compiling ...$(_END)"
-	@$(CC) $(CFLAGS) $(IFLAGS) $(LFLAGS) -o $@ $^
-	@install_name_tool -change "@rpath/libfmod.dylib" "lib/libfmod/libfmod.dylib" $(NAME)
-	@echo "$(_GREEN)Compiled !$(_END)"
+	@printf "$(_GREEN)Compiling ...$(_R)\n"
+	@$(CC) $(CFLAGS) $(IFLAGS)  -o $@ $(OBJ) $(LFLAGS)
+	@printf "$(_GREEN)Compiled !$(_R)\n"
 
 clean:
 	@rm -rf $(OBJ_DIR)
-	@echo "$(_GREEN).o removed !$(_END)"
+	@printf "$(_GREEN).o removed !$(_R)\n"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "$(_GREEN)$(NAME) program removed !$(_END)"
+	@printf "$(_GREEN)$(NAME) program removed !$(_R)\n"
 
 bonus: $(NAME)
 
 show:
-	@echo "$(_CYAN)SRC_DIR    :$(_RED)  $(SRC_DIR)$(_END)"
-	@echo "$(_CYAN)SRC    :$(_RED)  $(SRC)$(_END)"
-	@echo "$(_CYAN)OBJ    :$(_RED)  $(OBJ)$(_END)"
-	@echo "$(_CYAN)IFLAGS :$(_RED)  $(IFLAGS)$(_END)"
-	@echo "$(_CYAN)LFLAGS :$(_RED)  $(LFLAGS)$(_END)"
-	@echo "$(_CYAN)CFLAGS :$(_RED)  $(CFLAGS)$(_END)"
+	@printf "$(_CYAN)CC     :$(_RED)  $(CC)$(_R)\n"
+	@printf "$(_CYAN)CFLAGS :$(_RED)  $(CFLAGS)$(_R)\n"
+	@printf "$(_CYAN)IFLAGS :$(_RED)  $(IFLAGS)$(_R)\n\n"
+	@printf "$(_CYAN)LIB    :$(_RED)  $(LIB)$(_R)\n"
+	@printf "$(_CYAN)LIB_DIR:$(_RED)  $(LIB_DIR)$(_R)\n"
+	@printf "$(_CYAN)LFLAGS :$(_RED)  $(LFLAGS)$(_R)\n\n"
+	@printf "$(_CYAN)SRC_DIR:$(_RED)  $(SRC_DIR)$(_R)\n\n"
+	@printf "$(_CYAN)SRC    :$(_RED)  $(SRC)$(_R)\n"
+	@printf "$(_CYAN)OBJ    :$(_RED)  $(OBJ)$(_R)\n"
 
 re: fclean all
 
 
 install: 
-	@echo "$(_GREEN)Install libft.a ...$(_END)"
-	@make -s -C lib/libft/
-	@echo "$(_RED)done ...$(_END)"
-	@echo "$(_GREEN)Install libmlx.a ...$(_END)"
-	@make -s -i CFLAGS+=-w -C lib/libmlx/
-	@echo "$(_RED)done ...$(_END)"
+	@printf "$(_GREEN)Install libft.a ...$(_R)\n"
+	@make  -C lib/libft/
+	@printf "$(_RED)done ...$(_R)\n"
+	@printf "$(_GREEN)Install libmlx.a ...$(_R)\n"
+	@make  -i -C lib/libmlx/
+	@printf "$(_RED)done ...$(_R)\n"
 
 fclean-install:
-	@echo "$(_GREEN)fclean-install libft.a ...$(_END)"
+	@printf "$(_GREEN)fclean-install libft.a ...$(_R)\n"
 	@make fclean -s -C lib/libft/
-	@echo "$(_GREEN)fclean-install libmlx.a ...$(_END)"
+	@printf "$(_GREEN)fclean-install libmlx.a ...$(_R)\n"
 	@make clean -s -i CFLAGS+=-w -C lib/libmlx/
 
 re-install: fclean-install install
