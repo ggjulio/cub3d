@@ -75,7 +75,7 @@ SRC+= vector.c vector_util.c
 SRC+= fvector.c fvector_basic_operation.c fvector_cast.c fvector_rotation.c
 SRC+= color.c color_utility.c color_str.c
 SRC+= parser.c parser2.c parse_map.c parse_map2.c
-SRC+= draw.c move.c camera.c
+SRC+= draw.c camera.c
 SRC+= texture.c utility.c
 
 OBJ = $(addprefix  $(OBJ_DIR)/,$(SRC:%.c=%.o))
@@ -94,7 +94,7 @@ ifeq ($(UNAME), Darwin)
 	LFLAGS+= $(foreach framework, $(FRAMEWORKS),-framework $(framework))
 else
 	#Linux and others...
-	CC := LD_LIBRARY_PATH=./lib/libfmod_Linux $(CC)
+	# CC := LD_LIBRARY_PATH=./lib/libfmod_Linux $(CC)
 endif
 
 all: $(NAME)
