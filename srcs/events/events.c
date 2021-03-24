@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 16:44:33 by juligonz          #+#    #+#             */
-/*   Updated: 2021/03/23 01:57:55 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/03/24 06:00:43 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,11 @@ int		is_focus_in(void)
 
 int		is_configure_notify(void)
 {
-	// t_vector	size;
-	// double		ratio;
+// 	t_vector	size;
+// 	double		ratio;
 
-	// // mlx_window_get_size(g_app.win_ptr, &(size.x), &(size.y));
+	// mlx_window_get_size(g_app.win_ptr, &(size.x), &(size.y));
+	// mlx_get_screen_size(mlx)
 	// g_app.win_res = size;
 	// ratio = (double)size.x / (double)size.y;
 	// g_game.cam.plane = (t_fvector){

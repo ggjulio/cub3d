@@ -50,6 +50,7 @@ UNAME := $(shell uname)
 
 LIB = ft mlx z fmod
 ifeq ($(UNAME), Darwin)
+	# macos
 	LIB+= z
 else
 	#Linux and others...
@@ -81,20 +82,17 @@ SRC+= texture.c utility.c
 OBJ = $(addprefix  $(OBJ_DIR)/,$(SRC:%.c=%.o))
 vpath %.c $(SRC_DIR)
 
-LFLAGS = $(foreach lib, $(LIB_DIR),-L$(lib))  $(foreach lib, $(LIB),-l$(lib))
 
 CC = clang
 CFLAGS  = -Wall -Wextra -Werror -g # -fsanitize=address  -fsanitize=undefined -fstack-protector  
-IFLAGS  = -I./lib/libmlx -I./lib/libft -I./includes -I./lib/libfmod_$(UNAME)
+IFLAGS  = -I./lib/libft -I./lib/libmlx -I./lib/libfmod_$(UNAME) -I./includes 
+LFLAGS 	= -L./lib/libft -L./lib/libmlx -L./lib/libfmod_$(UNAME)
+LFLAGS += $(foreach lib, $(LIB),-l$(lib))
 
 ifeq ($(UNAME), Darwin)
-	# mac
-	DYLD_LIBRARY_PATH=lib/libfmod
-	FRAMEWORKS = OpenGL AppKit
-	LFLAGS+= $(foreach framework, $(FRAMEWORKS),-framework $(framework))
-else
-	#Linux and others...
-	# CC := LD_LIBRARY_PATH=./lib/libfmod_Linux $(CC)
+	# DYLD_LIBRARY_PATH=lib/libfmod
+	# FRAMEWORKS = OpenGL AppKit
+	# LFLAGS+= $(foreach framework, $(FRAMEWORKS),-framework $(framework))
 endif
 
 all: $(NAME)
@@ -103,10 +101,22 @@ $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
+ifeq ($(UNAME), Darwin)
 $(NAME): $(OBJ)
-	@printf "$(_GREEN)Compiling ...$(_R)\n"
+	@printf "$(_GREEN)Compiling for Darwin...$(_R)\n"
+	@$(CC) $(CFLAGS) $(IFLAGS)  -o $@ $(OBJ) $(LFLAGS)
+	@install_name_tool -change "@rpath/libfmod.dylib" "lib/libfmod/libfmod_Darwin.dylib" $(NAME)
+	@printf "$(_GREEN)Compiled !$(_R)\n"
+else
+# Linux
+$(NAME): $(OBJ)
+	@printf "$(_GREEN)Compiling for Linux...$(_R)\n"
 	@$(CC) $(CFLAGS) $(IFLAGS)  -o $@ $(OBJ) $(LFLAGS)
 	@printf "$(_GREEN)Compiled !$(_R)\n"
+	@printf "$(_YELLOW)Run $(_RED) eval \$$(make env)$(_YELLOW)  to set LD_LIBRARY_PATH$(_R)\n"
+env:
+	export LD_LIBRARY_PATH="$(shell pwd)/lib/libfmod_Linux:$(LD_LIBRARY_PATH)"
+endif
 
 clean:
 	@rm -rf $(OBJ_DIR)

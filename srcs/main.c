@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:23:09 by juligonz          #+#    #+#             */
-/*   Updated: 2021/03/23 12:07:40 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/03/24 05:14:03 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	set_mlx(void)
 	mlx_hook(g_app.win_ptr, KeyRelease, KeyReleaseMask, is_key_release, NULL);
 	// mlx_hook(g_app.win_ptr, DestroyNotify, ButtonPressMask, close_program, NULL);
 	mlx_hook(g_app.win_ptr, ClientMessage, ButtonPressMask, close_program, NULL);
-	mlx_hook(g_app.win_ptr, FocusIn, FocusChangeMask, is_focus_out, NULL);
+	mlx_hook(g_app.win_ptr, FocusOut, FocusChangeMask, is_focus_out, NULL);
 	mlx_hook(g_app.win_ptr, FocusIn, FocusChangeMask, is_focus_in, NULL);
 	mlx_hook(g_app.win_ptr,
 		ConfigureNotify, ResizeRedirectMask, is_configure_notify, NULL);
