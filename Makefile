@@ -48,10 +48,9 @@ _IWHITE   =\e[107m
 NAME = Cub3D
 UNAME := $(shell uname)
 
-LIB = ft mlx z fmod
+LIB = ft mlx fmod
 ifeq ($(UNAME), Darwin)
 	# macos
-	LIB+= z
 else
 	#Linux and others...
 	LIB+= pthread Xext X11 m

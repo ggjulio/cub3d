@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:23:09 by juligonz          #+#    #+#             */
-/*   Updated: 2021/03/24 05:14:03 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/03/26 16:09:47 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	set_mlx(void)
 	mlx_hook(g_app.win_ptr, FocusOut, FocusChangeMask, is_focus_out, NULL);
 	mlx_hook(g_app.win_ptr, FocusIn, FocusChangeMask, is_focus_in, NULL);
 	mlx_hook(g_app.win_ptr,
-		ConfigureNotify, ResizeRedirectMask, is_configure_notify, NULL);
+		ConfigureNotify, StructureNotifyMask, is_configure_notify, NULL);
 	mlx_loop_hook(g_app.mlx_ptr, loop_game, NULL);
 	// mlx_window_set_min_size(g_app.win_ptr, WIN_MIN_WIDTH, WIN_MIN_HEIGHT);
 	// mlx_window_resizable_on(g_app.win_ptr);

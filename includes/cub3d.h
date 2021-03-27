@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 18:21:40 by juligonz          #+#    #+#             */
-/*   Updated: 2021/03/23 10:14:51 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/03/25 06:50:29 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@
 # include "sound.h"
 # include "vectors.h"
 # include "fvectors.h"
-// # include "x11.h"
 # include "color.h"
 # include "image.h"
 # include "application.h"

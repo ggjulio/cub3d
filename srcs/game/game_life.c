@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 14:04:01 by juligonz          #+#    #+#             */
-/*   Updated: 2021/03/23 10:47:18 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/03/27 11:36:43 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void			check_life(void)
 	mlx_string_put(g_app.mlx_ptr, g_app.win_ptr,
 				g_app.res.x / 2.3,
 				g_app.res.y / 2.5,
-				color_str.c, "You suck ! :)");
+				color_str.c, "You suck !");
 	mlx_loop_hook(g_app.mlx_ptr, NULL, NULL);
 }
 
